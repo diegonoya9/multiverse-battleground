@@ -4,7 +4,7 @@ import FightMenu from './UI/FightMenu'
 import { useEffect, useState } from 'react'
 
 const Battleground = () => {
-    console.log('a')
+    const [turn, setTurn] = useState("user")
     const [user, setUser] = useState({
         name: "Red",
         objects: [
@@ -34,7 +34,7 @@ const Battleground = () => {
             name: "Goku",
             maxHP: 500,
             active: true,
-            currentHP: 200,
+            currentHP: 500,
             currentXP: 200,
             level: 15,
             moves: [
@@ -61,61 +61,90 @@ const Battleground = () => {
     const [userFighter, setUserFighter] = useState()
     const [enemyFighter, setEnemyFighter] = useState()
     const handleSubMenuOption = (option, selectedOption) => {
-        if (selectedOption === "attacks") {
-            if (enemyFighter && enemyFighter.currentHP > 0) {
-                const result = enemyFighter.currentHP - option.damage;
-                if (result <= 0) {
-                    setEnemyFighter((prevState) => {
-                        let newState = { ...prevState }
-                        newState.currentHP = 0
-                        return newState
-                    })
-                } else {
-                    setEnemyFighter((prevState) => {
-                        let newState = { ...prevState }
-                        newState.currentHP = result
-                        return newState
-                    })
-                }
-                return result
-            }
-        }
-        if (selectedOption === "objects") {
-            setUserFighter((prevState) => {
-                let newFighter = { ...prevState }
-                newFighter.currentHP += option.value
-                return newFighter
-            })
-            setUser((prevState) => {
-                let newUser = { ...prevState }
-                newUser.fighters.forEach((fighter) => {
-                    if (fighter.active) {
-                        fighter.currentHP += option.value
+        if (turn === "user") {
+            if (selectedOption === "attacks") {
+                if (enemyFighter && enemyFighter.currentHP > 0) {
+                    let result = enemyFighter.currentHP - option.damage;
+                    if (result <= 0) {
+                        setEnemyFighter((prevState) => {
+                            let newState = { ...prevState }
+                            newState.currentHP = 0
+                            return newState
+                        })
+                    } else {
+                        setEnemyFighter((prevState) => {
+                            let newState = { ...prevState }
+                            newState.currentHP = result
+                            return newState
+                        })
                     }
-                    return fighter
+                }
+            }
+            if (selectedOption === "objects") {
+                setUserFighter((prevState) => {
+                    let newFighter = { ...prevState }
+                    newFighter.currentHP += option.value
+                    return newFighter
                 })
-                return newUser
-            })
+                setUser((prevState) => {
+                    let newUser = { ...prevState }
+                    newUser.fighters.forEach((fighter) => {
+                        if (fighter.active) {
+                            fighter.currentHP += option.value
+                        }
+                        return fighter
+                    })
+                    return newUser
+                })
+            }
+            setTurn("enemy")
         }
     }
     useEffect(() => {
-        setUserFighter({
-            name: "Mew",
-            maxHP: 500,
-            currentHP: 200,
-            currentXP: 200,
-            level: 15,
-            moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
-            ]
+        if (turn === "enemy") {
+            let randomMove = Math.floor(Math.random() * 4)
+            let damage = enemyFighter.moves[randomMove].damage
+            if (userFighter && userFighter.currentHP > 0) {
+                let result = userFighter.currentHP - damage;
+                if (result <= 0) {
+                    result = 0
+                }
+                setUser((prevState) => {
+                    let newState = { ...prevState }
+                    newState.fighters.forEach((fighter) => {
+                        if (fighter.active) {
+                            fighter.currentHP = result
+                        }
+                    })
+                    return newState
+                })
+                setUserFighter((prevState) => {
+                    let newState = { ...prevState }
+                    newState.currentHP = result
+                    return newState
+                })
+            }
+            setTurn("user")
+        }
+    }, [turn])
+    useEffect(() => {
+        setUserFighter((prevState) => {
+            let newFighter = {}
+            if (user) {
+                newFighter = user.fighters.filter((fighter) => {
+                    if (fighter.active) {
+                        return fighter
+                    }
+                })
+                return newFighter[0]
+            }
         })
+    }, [user])
+    useEffect(() => {
         setEnemyFighter({
             name: "Charizard",
             maxHP: 400,
-            currentHP: 350,
+            currentHP: 400,
             level: 13,
             currentXP: 500,
             moves: [
