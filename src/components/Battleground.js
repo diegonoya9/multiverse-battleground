@@ -19,7 +19,7 @@ const Battleground = () => {
         ],
         fighters: [{
             name: "Dragonite",
-            active: true,
+            active: false,
             maxHP: 500,
             currentHP: 200,
             currentXP: 200,
@@ -31,17 +31,17 @@ const Battleground = () => {
                 { name: "Hiper Ray", damage: 200 }
             ]
         }, {
-            name: "Mew",
+            name: "Goku",
             maxHP: 500,
-            active: false,
+            active: true,
             currentHP: 200,
             currentXP: 200,
             level: 15,
             moves: [
-                { name: "Quick Attack", damage: 50 },
+                { name: "Kame Hame Ha", damage: 50 },
                 { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
+                { name: "Blast", damage: 40 },
+                { name: "Bite", damage: 200 }
             ]
         }, {
             name: "Mew",
