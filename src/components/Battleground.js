@@ -40,7 +40,7 @@ const Battleground = () => {
             moves: [
                 { name: "Kame Hame Ha", damage: 50 },
                 { name: "Punch", damage: 150 },
-                { name: "Blast", damage: 40 },
+                { name: "Kick", damage: 40 },
                 { name: "Bite", damage: 200 }
             ]
         }, {
