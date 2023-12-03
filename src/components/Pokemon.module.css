@@ -1,0 +1,32 @@
+.pokemonImage {
+    width: 100%;
+    /* La imagen ocupará el 100% del ancho del contenedor */
+    height: auto;
+    /* Mantiene la proporción de aspecto original */
+    display: block;
+    /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
+    max-width: 100%;
+}
+
+.pokemonWrapper {
+    width: 25%;
+    /* Establece el ancho máximo deseado */
+    margin: 0 auto;
+    position: absolute;
+}
+
+.userPokemonWrapper {
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.enemyPokemonWrapper {
+    top: 2rem;
+    right: 2rem;
+}
+
+@media(max-height: 500px) {
+    .pokemonWrapper {
+        width: 100px;
+    }
+}

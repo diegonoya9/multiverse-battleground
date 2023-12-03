@@ -1,0 +1,37 @@
+.lifeBarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hp {
+
+    color: white;
+    background-color: grey;
+    width: 100%;
+    /* Ajusta el espacio entre hp y lifeBarWrapper según sea necesario */
+}
+
+.lifeBarWrapper {
+    display: flex;
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+    /* La mitad de la altura del contenedor */
+}
+
+.lifeBarBorder {
+    flex-grow: 1;
+    border: 3px solid #000000;
+    height: 50%;
+    /* Puedes personalizar el borde según tus necesidades */
+    margin: 0 10px;
+    /* Ajusta el espacio entre lifeBarBorder y lifeBar según sea necesario */
+    width: 100%;
+}
+
+.lifeBar {
+    height: 1rem;
+    background-color: #4caf50;
+    /* Puedes personalizar el color de la barra según tus necesidades */
+}

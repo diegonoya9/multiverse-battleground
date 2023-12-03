@@ -1,0 +1,42 @@
+.fightMenu {
+    bottom: 0px;
+    width: 40%;
+    height: 30%;
+    right: 0px;
+    position: absolute;
+    background-color: white;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.options {
+    width: 50%;
+    font-size: large;
+    position: relative;
+    height: 50%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.optionsContainer {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 425px) {
+    .fightMenu {
+        width: 40%;
+        height: 30%;
+    }
+
+    .options {
+        font-size: 14px;
+    }
+}
