@@ -19,7 +19,6 @@
 
 @media (max-width: 425px) {
     .battleground {
-        height: 100%;
         width: 100vw;
     }
 }
