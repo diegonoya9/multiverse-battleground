@@ -1,0 +1,97 @@
+.battleground {
+    background-image: url('../../assets/img/battleground-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.battlegroundImg {
+    height: 100vh;
+    width: auto;
+    margin: auto;
+}
+
+/* Define la animación */
+@keyframes attack-move {
+    0% {
+        transform: translateX(-50px) translateY(0) scale(0.5);
+        opacity: 1;
+    }
+
+    33% {
+        transform: translateX(50px) translateY(-50px) scale(0.3);
+        opacity: 0.7;
+    }
+
+    66% {
+        transform: translateX(100px) translateY(-100px) scale(0.2);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateX(150px) translateY(-150px) scale(0.1);
+        opacity: 0;
+    }
+}
+
+/* Aplica la animación al elemento de la imagen */
+.attack-animation {
+    animation-name: attack-move;
+    animation-duration: 1s;
+    /* Duración de la animación */
+    animation-timing-function: ease-out;
+    /* Función de temporización de la animación */
+    animation-iteration-count: 1;
+    /* Número de veces que se repetirá la animación */
+    animation-fill-mode: forwards;
+    /* El elemento conservará los estilos del último frame después de la animación */
+}
+
+/* Define la animación inversa */
+@keyframes enemy-attack-move {
+    0% {
+        transform: translateX(150px) translateY(-150px) scale(0.1);
+        opacity: 0;
+    }
+
+    33% {
+        transform: translateX(100px) translateY(-100px) scale(0.2);
+        opacity: 0.4;
+    }
+
+    66% {
+        transform: translateX(50px) translateY(-50px) scale(0.4);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(0) translateY(0) scale(0.5);
+        opacity: 1;
+    }
+}
+
+/* Aplica la animación al elemento de la imagen del ataque enemigo */
+.enemy-attack-animation {
+    animation-name: enemy-attack-move;
+    animation-duration: 1s;
+    /* Duración de la animación */
+    animation-timing-function: ease-out;
+    /* Función de temporización de la animación */
+    animation-iteration-count: 1;
+    /* Número de veces que se repetirá la animación */
+    animation-fill-mode: forwards;
+    /* El elemento conservará los estilos del último frame después de la animación */
+}
+
+
+@media (max-width: 425px) {
+    .battleground {
+        width: 100vw;
+    }
+}

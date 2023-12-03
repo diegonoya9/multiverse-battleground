@@ -1,11 +1,13 @@
 import classes from './Battleground.module.css'
 import Fighter from './Fighter'
-import FightMenu from './UI/FightMenu'
+import FightMenu from '../UI/FightMenu'
 import { useEffect, useState } from 'react'
 
 const Battleground = () => {
     const [turn, setTurn] = useState("user")
     const [battleEnded, setBattleEnded] = useState({ finished: false, winner: null })
+    const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
+    const [menuActive, setMenuActive] = useState(true)
     const [user, setUser] = useState({
         name: "Red",
         objects: [
@@ -65,6 +67,12 @@ const Battleground = () => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
                 if (enemyFighter && enemyFighter.currentHP > 0) {
+                    setMenuActive(false)
+                    setAttack((prevState) => {
+                        let newState = { ...prevState }
+                        newState.active = true
+                        return newState
+                    })
                     let result = enemyFighter.currentHP - option.damage;
                     if (result <= 0) {
                         setBattleEnded((prevState) => {
@@ -85,6 +93,15 @@ const Battleground = () => {
                             return newState
                         })
                     }
+                    const wait = () => {
+                        setTimeout(() => {
+                            setTurn("enemy")
+                            //setTurn("user")
+                            // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
+                        }, 3000); // 3000 milisegundos = 3 segundos
+                    };
+                    wait()
+
                 }
             }
             if (selectedOption === "objects") {
@@ -103,12 +120,18 @@ const Battleground = () => {
                     })
                     return newUser
                 })
+                setTurn("enemy")
             }
-            setTurn("enemy")
+
         }
     }
     useEffect(() => {
         if (turn === "enemy" && !battleEnded.finished) {
+            setAttack((prevState) => {
+                let newState = { ...prevState }
+                newState.active = true
+                return newState
+            })
             let randomMove = Math.floor(Math.random() * 4)
             let damage = enemyFighter.moves[randomMove].damage
             if (userFighter && userFighter.currentHP > 0) {
@@ -137,7 +160,22 @@ const Battleground = () => {
                     return newState
                 })
             }
-            setTurn("user")
+            const wait = () => {
+                setTimeout(() => {
+                    setAttack((prevState) => {
+                        let newState = { ...prevState }
+                        newState.active = false
+                        return newState
+                    })
+                    setMenuActive(true)
+                    setTurn("user")
+                    // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
+                }, 1100); // 3000 milisegundos = 3 segundos
+            };
+
+            // Llama a la función para empezar a esperar
+            wait();
+
         }
     }, [turn])
     useEffect(() => {
@@ -203,13 +241,15 @@ const Battleground = () => {
     }
     return (
         <div className={classes.battleground}>
+            {attack.active && turn === "user" && <img className={classes["attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "enemy" && <img className={classes["enemy-attack-animation"]} src={attack.src} />}
             {battleEnded.finished && <div>
                 <h1>{battleEnded.winner} WON</h1>
                 <input type="button" onClick={() => restartGame()} value="Fight again" />
             </div>}
             {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user"></Fighter>}
             {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}
-            {!battleEnded.finished && <FightMenu user={user} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
+            {!battleEnded.finished && menuActive && <FightMenu user={user} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
 
         </div>
     )

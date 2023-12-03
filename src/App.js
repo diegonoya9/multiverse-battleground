@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Battleground from './components/Battleground';
+import Battleground from './components/Fights/Battleground';
 
 function App() {
   return (
