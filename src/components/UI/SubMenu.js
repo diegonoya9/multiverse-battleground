@@ -5,12 +5,12 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption }) => {
     useEffect(() => {
         switch (selectedOption) {
             case "attacks":
-                let pokemon = user.pokemons.filter((pokemon) => {
-                    if (pokemon.active) {
-                        return pokemon
+                let fighter = user.fighters.filter((fighter) => {
+                    if (fighter.active) {
+                        return fighter
                     }
                 })
-                let moves = pokemon[0].moves
+                let moves = fighter[0].moves
                 setOptionsArray(moves)
                 break
             case "objects":

@@ -1,5 +1,5 @@
 import classes from './Battleground.module.css'
-import Pokemon from './Pokemon'
+import Fighter from './Fighter'
 import FightMenu from './UI/FightMenu'
 import { useEffect, useState } from 'react'
 
@@ -17,7 +17,7 @@ const Battleground = () => {
                 value: 150
             }
         ],
-        pokemons: [{
+        fighters: [{
             name: "Dragonite",
             active: true,
             maxHP: 500,
@@ -58,20 +58,20 @@ const Battleground = () => {
             ]
         }]
     })
-    const [userPokemon, setUserPokemon] = useState()
-    const [enemyPokemon, setEnemyPokemon] = useState()
+    const [userFighter, setUserFighter] = useState()
+    const [enemyFighter, setEnemyFighter] = useState()
     const handleSubMenuOption = (option, selectedOption) => {
         if (selectedOption === "attacks") {
-            if (enemyPokemon && enemyPokemon.currentHP > 0) {
-                const result = enemyPokemon.currentHP - option.damage;
+            if (enemyFighter && enemyFighter.currentHP > 0) {
+                const result = enemyFighter.currentHP - option.damage;
                 if (result <= 0) {
-                    setEnemyPokemon((prevState) => {
+                    setEnemyFighter((prevState) => {
                         let newState = { ...prevState }
                         newState.currentHP = 0
                         return newState
                     })
                 } else {
-                    setEnemyPokemon((prevState) => {
+                    setEnemyFighter((prevState) => {
                         let newState = { ...prevState }
                         newState.currentHP = result
                         return newState
@@ -81,25 +81,25 @@ const Battleground = () => {
             }
         }
         if (selectedOption === "objects") {
-            setUserPokemon((prevState) => {
-                let newPokemon = { ...prevState }
-                newPokemon.currentHP += option.value
-                return newPokemon
+            setUserFighter((prevState) => {
+                let newFighter = { ...prevState }
+                newFighter.currentHP += option.value
+                return newFighter
             })
             setUser((prevState) => {
                 let newUser = { ...prevState }
-                newUser.pokemons.forEach((pokemon) => {
-                    if (pokemon.active) {
-                        pokemon.currentHP += option.value
+                newUser.fighters.forEach((fighter) => {
+                    if (fighter.active) {
+                        fighter.currentHP += option.value
                     }
-                    return pokemon
+                    return fighter
                 })
                 return newUser
             })
         }
     }
     useEffect(() => {
-        setUserPokemon({
+        setUserFighter({
             name: "Mew",
             maxHP: 500,
             currentHP: 200,
@@ -112,7 +112,7 @@ const Battleground = () => {
                 { name: "Hiper Ray", damage: 200 }
             ]
         })
-        setEnemyPokemon({
+        setEnemyFighter({
             name: "Charizard",
             maxHP: 400,
             currentHP: 350,
@@ -128,9 +128,9 @@ const Battleground = () => {
     }, [])
     return (
         <div className={classes.battleground}>
-            {userPokemon && <Pokemon pokemon={userPokemon} user="user"></Pokemon>}
-            {enemyPokemon && <Pokemon pokemon={enemyPokemon} user="enemy"></Pokemon>}
-            <FightMenu user={user} enemyPokemon={enemyPokemon} clickHandler={handleSubMenuOption} ></FightMenu>
+            {userFighter && <Fighter fighter={userFighter} user="user"></Fighter>}
+            {enemyFighter && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}
+            <FightMenu user={user} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>
         </div>
     )
 }

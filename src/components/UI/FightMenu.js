@@ -16,7 +16,7 @@ const FightMenu = ({ user, clickHandler }) => {
                 <ul className={classes.optionsContainer}>
                     <li className={classes.options} onClick={() => toggleSubMenu("attacks")}>Attacks</li>
                     <li className={classes.options} onClick={() => toggleSubMenu("objects")}>Objects</li>
-                    <li className={classes.options} onClick={() => toggleSubMenu("pokemon")}>Pokemon</li>
+                    <li className={classes.options} onClick={() => toggleSubMenu("fighter")}>Fighter</li>
                     <li className={classes.options} onClick={() => toggleSubMenu("run")}>Run</li>
                 </ul>
             }

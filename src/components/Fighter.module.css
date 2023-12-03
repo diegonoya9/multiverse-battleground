@@ -1,4 +1,4 @@
-.pokemonImage {
+.fighterImage {
     width: 100%;
     /* La imagen ocupará el 100% del ancho del contenedor */
     height: auto;
@@ -8,25 +8,25 @@
     max-width: 100%;
 }
 
-.pokemonWrapper {
+.fighterWrapper {
     width: 25%;
     /* Establece el ancho máximo deseado */
     margin: 0 auto;
     position: absolute;
 }
 
-.userPokemonWrapper {
+.userFighterWrapper {
     bottom: 2rem;
     left: 2rem;
 }
 
-.enemyPokemonWrapper {
+.enemyFighterWrapper {
     top: 2rem;
     right: 2rem;
 }
 
 @media(max-height: 500px) {
-    .pokemonWrapper {
+    .fighterWrapper {
         width: 100px;
     }
 }
