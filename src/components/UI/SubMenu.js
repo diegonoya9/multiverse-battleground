@@ -1,6 +1,6 @@
 import classes from './SubMenu.module.css'
 import { useState, useEffect } from 'react'
-const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter }) => {
+const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, setUserFighter }) => {
     const [optionsArray, setOptionsArray] = useState()
     useEffect(() => {
         switch (selectedOption) {
@@ -20,7 +20,13 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                 setOptionsArray(user.fighters)
         }
     }, [selectedOption])
-    const cambiar = (element) => {
+    const changeFighter = (element) => {
+        setUserFighter((prevState) => {
+            prevState.active = false;
+            element.active = true;
+            console.log('estado anterior: ', prevState, 'nuevo estado: ', element)
+            return (element)
+        })
         userFighter = element
         return element
     }
@@ -31,7 +37,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                 return <li key={x.name + i} className={classes.moves} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li>
             }
             )}
-            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.fighters} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); cambiar(x); console.log(x.name, userFighter) }}>{x.name}</li> })}
+            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.fighters} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); changeFighter(x); console.log(x.name, userFighter) }}>{x.name}</li> })}
 
             <div className={classes.attack}></div>
         </ul>
