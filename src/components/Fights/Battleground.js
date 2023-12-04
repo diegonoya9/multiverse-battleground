@@ -8,6 +8,9 @@ const Battleground = () => {
     const [battleEnded, setBattleEnded] = useState({ finished: false, winner: null })
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
+    const changeUserFighter = (fighter) => {
+        setUserFighter(fighter)
+    }
     const [user, setUser] = useState({
         name: "Red",
         objects: [
@@ -249,7 +252,7 @@ const Battleground = () => {
             </div>}
             {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user"></Fighter>}
             {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}
-            {!battleEnded.finished && menuActive && <FightMenu user={user} setUserFighter={setUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
+            {!battleEnded.finished && menuActive && <FightMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
 
         </div>
     )

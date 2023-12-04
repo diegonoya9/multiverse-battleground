@@ -20,7 +20,7 @@
 /* Define la animación */
 @keyframes attack-move {
     0% {
-        transform: translateX(-50px) translateY(0) scale(0.5);
+        transform: translateX(0) translateY(0) scale(0.4);
         opacity: 1;
     }
 
