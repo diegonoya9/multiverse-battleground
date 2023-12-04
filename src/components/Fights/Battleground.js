@@ -21,7 +21,8 @@ const Battleground = () => {
             }
         ],
         fighters: [{
-            name: "Dragonite",
+            name: "Charizard",
+            img: './assets/img/pokemon2.png',
             active: false,
             maxHP: 500,
             currentHP: 200,
@@ -35,6 +36,7 @@ const Battleground = () => {
             ]
         }, {
             name: "Goku",
+            img: './assets/img/goku.png',
             maxHP: 500,
             active: true,
             currentHP: 500,
@@ -48,6 +50,7 @@ const Battleground = () => {
             ]
         }, {
             name: "Mew",
+            img: './assets/img/pokemon.png',
             maxHP: 500,
             active: false,
             currentHP: 200,

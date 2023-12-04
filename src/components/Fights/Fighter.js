@@ -6,7 +6,7 @@ const Fighter = ({ user, fighter }) => {
         <div className={user === "user" ? `${classes.userFighterWrapper} ${classes.fighterWrapper}` : `${classes.enemyFighterWrapper} ${classes.fighterWrapper}`}>
             <LifeBar currentHP={fighter.currentHP} maxHP={fighter.maxHP}></LifeBar>
             <div className={user === "user" ? classes.userFighter : classes.enemyFighter}>
-                <img src={user === "user" ? './assets/img/goku.png' : './assets/img/pokemon.png'} className={classes.fighterImage} />
+                <img src={user === "user" ? `${fighter.img}` : './assets/img/pokemon.png'} className={classes.fighterImage} />
             </div>
         </div>
     )
