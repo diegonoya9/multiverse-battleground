@@ -1,6 +1,6 @@
 import classes from './SubMenu.module.css'
 import { useState, useEffect } from 'react'
-const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption }) => {
+const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter }) => {
     const [optionsArray, setOptionsArray] = useState()
     useEffect(() => {
         switch (selectedOption) {
@@ -16,9 +16,14 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption }) => {
             case "objects":
                 setOptionsArray(user.objects)
                 break
+            case "fighters":
+                setOptionsArray(user.fighters)
         }
     }, [selectedOption])
-
+    const cambiar = (element) => {
+        userFighter = element
+        return element
+    }
     return (
         <ul className={classes.movesContainer} >
             {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.moves} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li> })}
@@ -26,6 +31,8 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption }) => {
                 return <li key={x.name + i} className={classes.moves} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li>
             }
             )}
+            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.fighters} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); cambiar(x); console.log(x.name, userFighter) }}>{x.name}</li> })}
+
             <div className={classes.attack}></div>
         </ul>
     )

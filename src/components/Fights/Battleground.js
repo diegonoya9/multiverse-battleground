@@ -249,7 +249,7 @@ const Battleground = () => {
             </div>}
             {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user"></Fighter>}
             {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}
-            {!battleEnded.finished && menuActive && <FightMenu user={user} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
+            {!battleEnded.finished && menuActive && <FightMenu user={user} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
 
         </div>
     )
