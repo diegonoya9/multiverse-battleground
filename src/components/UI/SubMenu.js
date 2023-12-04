@@ -1,6 +1,6 @@
 import classes from './SubMenu.module.css'
 import { useState, useEffect } from 'react'
-const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, setUserFighter }) => {
+const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, changeUserFighter }) => {
     const [optionsArray, setOptionsArray] = useState()
     useEffect(() => {
         switch (selectedOption) {
@@ -21,7 +21,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
         }
     }, [selectedOption])
     const changeFighter = (element) => {
-        setUserFighter((prevState) => {
+        changeUserFighter((prevState) => {
             prevState.active = false;
             element.active = true;
             console.log('estado anterior: ', prevState, 'nuevo estado: ', element)
