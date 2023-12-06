@@ -92,6 +92,11 @@ const Battleground = () => {
                             newState.currentHP = 0
                             return newState
                         })
+                        setAttack((prevState) => { /*AGREGUE esto para que no siga tirando el fuego una vez que pierde el enemigo */
+                            let newState = { ...prevState }
+                            newState.active = false
+                            return newState
+                        })
                     } else {
                         setEnemyFighter((prevState) => {
                             let newState = { ...prevState }
