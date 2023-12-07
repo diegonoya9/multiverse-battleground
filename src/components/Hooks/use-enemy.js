@@ -9,10 +9,10 @@ const useEnemy = () => {
         level: 13,
         currentXP: 500,
         moves: [
-            { name: "Quick Attack", damage: 50 },
-            { name: "Punch", damage: 150 },
-            { name: "Thunderbolt", damage: 40 },
-            { name: "Hiper Ray", damage: 200 }
+            { name: "Quick Attack", damage: 350 },
+            { name: "Punch", damage: 3150 },
+            { name: "Thunderbolt", damage: 340 },
+            { name: "Hiper Ray", damage: 3200 }
         ]
     }
     const damageEnemy = (damage) => {

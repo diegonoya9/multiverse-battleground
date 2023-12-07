@@ -6,7 +6,7 @@ import useUser from '../Hooks/use-user'
 import useBattleState from '../Hooks/use-battleState'
 import useEnemy from '../Hooks/use-enemy'
 
-const Battleground = () => {
+const Battleground = ({ changeActivePage }) => {
     const [turn, setTurn] = useState("user")
     const [battleEnded, setBattleEnded, endBattle] = useBattleState()
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
@@ -45,45 +45,37 @@ const Battleground = () => {
                 healUserFighter(option.value)
                 setTurn("enemy")
             }
-
         }
     }
     useEffect(() => {
         if (turn === "enemy" && !battleEnded.finished) {
-            setAttack((prevState) => {
-                let newState = { ...prevState }
-                newState.active = true
-                return newState
-            })
-            let randomMove = Math.floor(Math.random() * 4)
-            let damage = enemyFighter.moves[randomMove].damage
-            let result = userFighter.currentHP - damage;
-            if (result <= 0) {
-                result = 0
-                endBattle('enemy', true)
-            }
-            damageUserFighter(damage)
             const wait = () => {
                 setTimeout(() => {
+                    if (result <= 0) {
+                        result = 0
+                        endBattle('enemy', true)
+                    }
+                    setMenuActive(true)
                     setAttack((prevState) => {
                         let newState = { ...prevState }
                         newState.active = false
                         return newState
                     })
-                    setMenuActive(true)
                     setTurn("user")
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
-                }, 100); // 3000 milisegundos = 3 segundos
+                }, 1000); // 3000 milisegundos = 3 segundos
             };
-            if (result !== 0) {
-                // Llama a la función para empezar a esperar
-                wait();
-            } else {
-                setTurn('user')
-            }
+            let randomMove = Math.floor(Math.random() * 4)
+            let damage = enemyFighter.moves[randomMove].damage
+            let result = userFighter.currentHP - damage;
+            setAttack((prevState) => {
+                let newState = { ...prevState }
+                newState.active = true
+                return newState
+            })
+            damageUserFighter(damage)
+            wait();
         }
-        setMenuActive(true)
-        setTurn('user')
     }, [turn])
     const restartGame = () => {
         restartPlayerFightersHP()
@@ -100,7 +92,7 @@ const Battleground = () => {
             </div>}
             {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user"></Fighter>}
             {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}
-            {!battleEnded.finished && menuActive && <FightMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} ></FightMenu>}
+            {!battleEnded.finished && menuActive && <FightMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption} changeActivePage={changeActivePage} ></FightMenu>}
 
         </div>
     )

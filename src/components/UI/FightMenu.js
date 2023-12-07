@@ -3,7 +3,7 @@ import SubMenu from './SubMenu'
 import { useState } from 'react'
 
 
-const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter }) => {
+const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, changeActivePage }) => {
     const [subMenuActive, setSubMenuActive] = useState(false)
     const [selectedOption, setSelectedOption] = useState("")
     const toggleSubMenu = (option) => {
@@ -17,7 +17,7 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter }) => {
                     <li className={classes.options} onClick={() => toggleSubMenu("attacks")}>Attacks</li>
                     <li className={classes.options} onClick={() => toggleSubMenu("objects")}>Objects</li>
                     <li className={classes.options} onClick={() => toggleSubMenu("fighters")}>Fighter</li>
-                    <li className={classes.options} onClick={() => toggleSubMenu("run")}>Run</li>
+                    <li className={classes.options} onClick={() => changeActivePage(1)}>Run</li>
                 </ul>
             }
         </div >
