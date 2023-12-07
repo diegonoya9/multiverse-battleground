@@ -24,15 +24,13 @@ const Battleground = () => {
                         return newState
                     })
                     let result = enemyFighter.currentHP - option.damage;
-                    damageEnemy(result)
+                    damageEnemy(option.damage)
                     if (result <= 0) {
                         endBattle('user', true)
                     }
                     const wait = () => {
                         setTimeout(() => {
                             setTurn("enemy")
-                            //setTurn("user")
-                            // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
                     if (result !== 0) {

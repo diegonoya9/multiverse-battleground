@@ -59,9 +59,6 @@ const useUser = () => {
         }]
     })
     useEffect(() => {
-        console.log(userFighter)
-    }, [])
-    useEffect(() => {
         setUserFighter((prevState) => {
             let newFighter = {}
             if (user) {
@@ -101,7 +98,7 @@ const useUser = () => {
     }
     const damageUserFighter = (damage) => {
         let result
-        if (damage > userFighter.currentHP) {
+        if (damage <= userFighter.currentHP) {
             result = userFighter.currentHP - damage
         } else {
             result = 0

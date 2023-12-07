@@ -17,7 +17,8 @@ const useEnemy = () => {
     }
     const damageEnemy = (damage) => {
         let newCurrentHP
-        if (enemyFighter.currentHP < damage) {
+        console.log(damage)
+        if (enemyFighter.currentHP >= damage) {
             newCurrentHP = enemyFighter.currentHP - damage
         } else {
             newCurrentHP = 0
