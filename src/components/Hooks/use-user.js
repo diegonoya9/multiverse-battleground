@@ -124,8 +124,6 @@ const useUser = () => {
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)
     }
-
-
     return [user, changeUserFighter, userFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter]
 }
 

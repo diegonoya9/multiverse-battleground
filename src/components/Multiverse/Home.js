@@ -2,7 +2,7 @@ import { useState } from "react"
 import Multiverse from "./Multiverse"
 import Battleground from "../Fights/Battleground"
 const Home = () => {
-    const [userPage, setUserPage] = useState(1)
+    const [userPage, setUserPage] = useState(2)
     const changeActivePage = (page) => {
         setUserPage(page)
     }

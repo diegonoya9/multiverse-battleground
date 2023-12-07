@@ -4,7 +4,6 @@ import FightMenu from '../UI/FightMenu'
 import { useEffect, useState } from 'react'
 import useUser from '../Hooks/use-user'
 import useBattleState from '../Hooks/use-battleState'
-import useEnemy from '../Hooks/use-enemy'
 
 const Battleground = ({ changeActivePage }) => {
     const [turn, setTurn] = useState("user")
@@ -12,7 +11,7 @@ const Battleground = ({ changeActivePage }) => {
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
     const [user, changeUserFighter, userFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter] = useUser()
-    const [enemyFighter, damageEnemy, restartEnemyFighter] = useEnemy()
+    const [enemy, changeEnemyFighter, enemyFighter, restartEnemyFighter, healEnemgyFighter, damageEnemy] = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
