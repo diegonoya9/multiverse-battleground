@@ -36,7 +36,7 @@ const useEnemy = () => {
         setEnemyFighter(fighterInit)
     }, [])
 
-    return [enemyFighter, setEnemyFighter, damageEnemy]
+    return [enemyFighter, damageEnemy, restartEnemyFighter]
 }
 
 export default useEnemy

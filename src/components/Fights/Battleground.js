@@ -2,7 +2,7 @@ import classes from './Battleground.module.css'
 import Fighter from './Fighter'
 import FightMenu from '../UI/FightMenu'
 import { useEffect, useState } from 'react'
-import usePlayers from '../Hooks/use-players'
+import useUser from '../Hooks/use-user'
 import useBattleState from '../Hooks/use-battleState'
 import useEnemy from '../Hooks/use-enemy'
 
@@ -11,8 +11,8 @@ const Battleground = () => {
     const [battleEnded, setBattleEnded, endBattle] = useBattleState()
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
-    const [user, setUser, changeUserFighter, userFighter, setUserFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter] = usePlayers()
-    const [enemyFighter, setEnemyFighter, damageEnemy, restartEnemyFighter] = useEnemy()
+    const [user, changeUserFighter, userFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter] = useUser()
+    const [enemyFighter, damageEnemy, restartEnemyFighter] = useEnemy()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
@@ -44,11 +44,6 @@ const Battleground = () => {
                 }
             }
             if (selectedOption === "objects") {
-                setUserFighter((prevState) => {
-                    let newFighter = { ...prevState }
-                    newFighter.currentHP += option.value
-                    return newFighter
-                })
                 healUserFighter(option.value)
                 setTurn("enemy")
             }
@@ -64,25 +59,12 @@ const Battleground = () => {
             })
             let randomMove = Math.floor(Math.random() * 4)
             let damage = enemyFighter.moves[randomMove].damage
-            let result
-            if (userFighter && userFighter.currentHP > 0) {
-                result = userFighter.currentHP - damage;
-                if (result <= 0) {
-                    result = 0
-                    endBattle('enemy', true)
-                }
-                setUser((prevState) => {
-                    let newState = { ...prevState }
-                    newState.fighters.forEach((fighter) => {
-                        if (fighter.active) {
-                            fighter.currentHP = result
-                        }
-                    })
-                    return newState
-                })
-                console.log(result)
-                damageUserFighter(result)
+            let result = userFighter.currentHP - damage;
+            if (result <= 0) {
+                result = 0
+                endBattle('enemy', true)
             }
+            damageUserFighter(damage)
             const wait = () => {
                 setTimeout(() => {
                     setAttack((prevState) => {

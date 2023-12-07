@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const usePlayers = () => {
+const useUser = () => {
     const [userFighter, setUserFighter] = useState()
     const [user, setUser] = useState({
         name: "Red",
@@ -59,6 +59,9 @@ const usePlayers = () => {
         }]
     })
     useEffect(() => {
+        console.log(userFighter)
+    }, [])
+    useEffect(() => {
         setUserFighter((prevState) => {
             let newFighter = {}
             if (user) {
@@ -96,19 +99,37 @@ const usePlayers = () => {
             return newUser
         })
     }
-    const damageUserFighter = (result) => {
+    const damageUserFighter = (damage) => {
+        let result
+        if (damage > userFighter.currentHP) {
+            result = userFighter.currentHP - damage
+        } else {
+            result = 0
+        }
         setUserFighter((prevState) => {
             let newState = { ...prevState }
             newState.currentHP = result
             return newState
         })
+
+        setUser((prevState) => {
+            let newState = { ...prevState }
+            newState.fighters.forEach((fighter) => {
+                if (fighter.active) {
+                    fighter.currentHP = result
+                }
+            })
+            return newState
+        })
     }
+
+
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)
     }
 
 
-    return [user, setUser, changeUserFighter, userFighter, setUserFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter]
+    return [user, changeUserFighter, userFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter]
 }
 
-export default usePlayers
+export default useUser
