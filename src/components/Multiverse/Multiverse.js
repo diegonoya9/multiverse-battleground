@@ -1,4 +1,4 @@
-import { useStatet } from "react";
+import { useState } from "react";
 const Multiverse = ({ setUserPage }) => {
 
     return (

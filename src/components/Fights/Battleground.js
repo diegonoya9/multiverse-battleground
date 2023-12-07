@@ -2,73 +2,17 @@ import classes from './Battleground.module.css'
 import Fighter from './Fighter'
 import FightMenu from '../UI/FightMenu'
 import { useEffect, useState } from 'react'
+import usePlayers from '../Hooks/use-players'
+import useBattleState from '../Hooks/use-battleState'
+import useEnemy from '../Hooks/use-enemy'
 
 const Battleground = () => {
     const [turn, setTurn] = useState("user")
-    const [battleEnded, setBattleEnded] = useState({ finished: false, winner: null })
+    const [battleEnded, setBattleEnded, endBattle] = useBattleState()
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
-    const changeUserFighter = (fighter) => {
-        setUserFighter(fighter)
-    }
-    const [user, setUser] = useState({
-        name: "Red",
-        objects: [
-            {
-                name: "potion",
-                value: 50
-            },
-            {
-                name: "maxPotion",
-                value: 150
-            }
-        ],
-        fighters: [{
-            name: "Charizard",
-            img: './assets/img/pokemon2.png',
-            active: false,
-            maxHP: 500,
-            currentHP: 200,
-            currentXP: 200,
-            level: 15,
-            moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
-            ]
-        }, {
-            name: "Goku",
-            img: './assets/img/goku.png',
-            maxHP: 500,
-            active: true,
-            currentHP: 500,
-            currentXP: 200,
-            level: 15,
-            moves: [
-                { name: "Kame Hame Ha", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Kick", damage: 40 },
-                { name: "Bite", damage: 200 }
-            ]
-        }, {
-            name: "Mew",
-            img: './assets/img/pokemon.png',
-            maxHP: 500,
-            active: false,
-            currentHP: 200,
-            currentXP: 200,
-            level: 15,
-            moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
-            ]
-        }]
-    })
-    const [userFighter, setUserFighter] = useState()
-    const [enemyFighter, setEnemyFighter] = useState()
+    const [user, setUser, changeUserFighter, userFighter, setUserFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter] = usePlayers()
+    const [enemyFighter, setEnemyFighter, damageEnemy, restartEnemyFighter] = useEnemy()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
@@ -80,29 +24,9 @@ const Battleground = () => {
                         return newState
                     })
                     let result = enemyFighter.currentHP - option.damage;
+                    damageEnemy(result)
                     if (result <= 0) {
-                        setBattleEnded((prevState) => {
-                            let newState = { ...prevState }
-                            newState.finished = true
-                            newState.winner = "user"
-                            return newState
-                        })
-                        setEnemyFighter((prevState) => {
-                            let newState = { ...prevState }
-                            newState.currentHP = 0
-                            return newState
-                        })
-                        setAttack((prevState) => { /*AGREGUE esto para que no siga tirando el fuego una vez que pierde el enemigo */
-                            let newState = { ...prevState }
-                            newState.active = false
-                            return newState
-                        })
-                    } else {
-                        setEnemyFighter((prevState) => {
-                            let newState = { ...prevState }
-                            newState.currentHP = result
-                            return newState
-                        })
+                        endBattle('user', true)
                     }
                     const wait = () => {
                         setTimeout(() => {
@@ -111,7 +35,11 @@ const Battleground = () => {
                             // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
-                    wait()
+                    if (result !== 0) {
+                        wait()
+                    } else {
+                        setMenuActive(true)
+                    }
 
                 }
             }
@@ -121,16 +49,7 @@ const Battleground = () => {
                     newFighter.currentHP += option.value
                     return newFighter
                 })
-                setUser((prevState) => {
-                    let newUser = { ...prevState }
-                    newUser.fighters.forEach((fighter) => {
-                        if (fighter.active) {
-                            fighter.currentHP += option.value
-                        }
-                        return fighter
-                    })
-                    return newUser
-                })
+                healUserFighter(option.value)
                 setTurn("enemy")
             }
 
@@ -145,16 +64,12 @@ const Battleground = () => {
             })
             let randomMove = Math.floor(Math.random() * 4)
             let damage = enemyFighter.moves[randomMove].damage
+            let result
             if (userFighter && userFighter.currentHP > 0) {
-                let result = userFighter.currentHP - damage;
+                result = userFighter.currentHP - damage;
                 if (result <= 0) {
                     result = 0
-                    setBattleEnded((prevState) => {
-                        let newState = { ...prevState }
-                        newState.finished = true
-                        newState.winner = "enemy"
-                        return newState
-                    })
+                    endBattle('enemy', true)
                 }
                 setUser((prevState) => {
                     let newState = { ...prevState }
@@ -165,11 +80,8 @@ const Battleground = () => {
                     })
                     return newState
                 })
-                setUserFighter((prevState) => {
-                    let newState = { ...prevState }
-                    newState.currentHP = result
-                    return newState
-                })
+                console.log(result)
+                damageUserFighter(result)
             }
             const wait = () => {
                 setTimeout(() => {
@@ -181,74 +93,22 @@ const Battleground = () => {
                     setMenuActive(true)
                     setTurn("user")
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
-                }, 1100); // 3000 milisegundos = 3 segundos
+                }, 100); // 3000 milisegundos = 3 segundos
             };
-
-            // Llama a la función para empezar a esperar
-            wait();
-
-        }
-    }, [turn])
-    useEffect(() => {
-        setUserFighter((prevState) => {
-            let newFighter = {}
-            if (user) {
-                newFighter = user.fighters.filter((fighter) => {
-                    if (fighter.active) {
-                        return fighter
-                    }
-                })
-                return newFighter[0]
+            if (result !== 0) {
+                // Llama a la función para empezar a esperar
+                wait();
+            } else {
+                setTurn('user')
             }
-        })
-    }, [user])
-    useEffect(() => {
-        setEnemyFighter({
-            name: "Charizard",
-            maxHP: 400,
-            currentHP: 400,
-            level: 13,
-            currentXP: 500,
-            moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
-            ]
-        })
-    }, [])
+        }
+        setMenuActive(true)
+        setTurn('user')
+    }, [turn])
     const restartGame = () => {
-        setBattleEnded({ finished: false, winner: null })
-        /* Hago esto para que pueda seguir peleando, pero no va a ser la lógica final*/
-        setUserFighter((prevState) => {
-            let newFighter = { ...prevState }
-            console.log(newFighter.maxHP)
-            newFighter.currentHP = newFighter.maxHP
-            return newFighter
-        })
-        setUser((prevState) => {
-            let newUser = { ...prevState }
-            newUser.fighters.forEach((fighter) => {
-                if (fighter.active) {
-                    fighter.currentHP = fighter.maxHP
-                }
-                return fighter
-            })
-            return newUser
-        })
-        setEnemyFighter({
-            name: "Charizard",
-            maxHP: 400,
-            currentHP: 400,
-            level: 13,
-            currentXP: 500,
-            moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
-            ]
-        })
+        restartPlayerFightersHP()
+        restartEnemyFighter()
+        endBattle(null, false)
     }
     return (
         <div className={classes.battleground}>
