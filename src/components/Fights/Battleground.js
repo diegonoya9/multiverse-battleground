@@ -13,9 +13,20 @@ const Battleground = ({ changeActivePage }) => {
     const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser } = useUser()
     const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
+        console.log(option)
         if (turn === "user") {
             if (selectedOption === "attacks") {
                 if (enemyFighter && enemyFighter.currentHP > 0) {
+                    const wait = () => {
+                        setTimeout(() => {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = false
+                                return newState
+                            })
+                            setTurn("enemy")
+                        }, 3000); // 3000 milisegundos = 3 segundos
+                    };
                     setMenuActive(false)
                     setAttack((prevState) => {
                         let newState = { ...prevState }
@@ -29,20 +40,6 @@ const Battleground = ({ changeActivePage }) => {
                             attackUser(action)
                         }
                     })
-                    const wait = () => {
-                        setTimeout(() => {
-                            setAttack((prevState) => {
-                                let newState = { ...prevState }
-                                newState.active = false
-                                return newState
-                            })
-                            if (enemyFighter.currentHP <= 0) {
-                                endBattle('user', true)
-                            } else {
-                                setTurn("enemy")
-                            }
-                        }, 3000); // 3000 milisegundos = 3 segundos
-                    };
                     wait()
                 }
             }
@@ -56,9 +53,6 @@ const Battleground = ({ changeActivePage }) => {
         if (turn === "enemy" && !battleEnded.finished) {
             const wait = () => {
                 setTimeout(() => {
-                    if (userFighter.currentHP <= 0) {
-                        endBattle('enemy', true)
-                    }
                     setMenuActive(true)
                     setAttack((prevState) => {
                         let newState = { ...prevState }
@@ -86,9 +80,16 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [turn])
     useEffect(() => {
-        console.log(userFighter)
-    }, [userFighter])
+        if (enemyFighter && enemyFighter.currentHP === 0) {
+            endBattle("user", true)
+        }
+        if (userFighter && userFighter.currentHP === 0) {
+            endBattle("enemy", true)
+        }
+    }, [userFighter, enemyFighter])
     const restartGame = () => {
+        setTurn("user")
+        setMenuActive(true)
         restartUserFightersHP()
         restartEnemyFighter()
         endBattle(null, false)

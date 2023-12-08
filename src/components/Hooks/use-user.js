@@ -20,6 +20,7 @@ const useUser = () => {
             active: false,
             maxHP: 500,
             currentHP: 200,
+            attack: 100,
             currentXP: 200,
             level: 15,
             moves: [
@@ -32,6 +33,7 @@ const useUser = () => {
             name: "Goku",
             img: './assets/img/goku.png',
             maxHP: 500,
+            attack: 100,
             active: true,
             currentHP: 500,
             currentXP: 200,
@@ -46,6 +48,7 @@ const useUser = () => {
             name: "Mew",
             img: './assets/img/pokemon.png',
             maxHP: 500,
+            attack: 100,
             active: false,
             currentHP: 200,
             currentXP: 200,
@@ -59,7 +62,7 @@ const useUser = () => {
         }]
     })
     useEffect(() => {
-        setUserFighter((prevState) => {
+        setUserFighter(() => {
             let newFighter = {}
             if (user) {
                 newFighter = user.fighters.filter((fighter) => {
@@ -85,7 +88,6 @@ const useUser = () => {
     }
     const restartUserFightersHP = () => {
         setUser((prevState) => {
-
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
                 if (fighter.active) {
@@ -97,26 +99,21 @@ const useUser = () => {
         })
     }
     const attackUser = (attack) => {
-        setUserFighter((prevState) => {
-            let newState = { ...prevState }
-            newState[attack.field] += attack.value
-            if (newState[attack.field] < 0) {
-                newState[attack.field] = 0
-            }
-            return newState
-        })
         setUser((prevState) => {
-            let newState = { ...prevState }
-            newState.fighters.forEach((fighter) => {
-                if (fighter.active) {
-                    fighter[attack.field] += attack.value
-                    if (fighter[attack.field] < 0) {
-                        fighter[attack.field] = 0
+            let newState = {
+                ...prevState,
+                fighters: prevState.fighters.map((fighter) => {
+                    if (fighter.active) {
+                        return {
+                            ...fighter,
+                            [attack.field]: Math.max(0, fighter[attack.field] + attack.value),
+                        };
                     }
-                }
-            })
-            return newState
-        })
+                    return fighter;
+                }),
+            };
+            return newState;
+        });
     }
 
 
