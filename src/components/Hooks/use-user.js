@@ -23,10 +23,10 @@ const useUser = () => {
             currentXP: 200,
             level: 15,
             moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
+                { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
+                { name: "Punch", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 100 }] },
+                { name: "Def Up", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
+                { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] }
             ]
         }, {
             name: "Goku",
@@ -37,10 +37,10 @@ const useUser = () => {
             currentXP: 200,
             level: 15,
             moves: [
-                { name: "Kame Hame Ha", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Kick", damage: 40 },
-                { name: "Bite", damage: 400 }
+                { name: "Kame Hame Ha", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
+                { name: "Kaioken", actions: [{ inflictedOn: "user", field: "attack", value: 50 }] },
+                { name: "Kaioken(X2)", actions: [{ inflictedOn: "user", field: "attack", value: 100 }] },
+                { name: "Bite", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] }
             ]
         }, {
             name: "Mew",
@@ -51,10 +51,10 @@ const useUser = () => {
             currentXP: 200,
             level: 15,
             moves: [
-                { name: "Quick Attack", damage: 50 },
-                { name: "Punch", damage: 150 },
-                { name: "Thunderbolt", damage: 40 },
-                { name: "Hiper Ray", damage: 200 }
+                { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
+                { name: "Punch", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 100 }] },
+                { name: "Def Up", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
+                { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] }
             ]
         }]
     })
