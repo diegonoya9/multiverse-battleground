@@ -6,22 +6,21 @@ const useUser = () => {
     const [user, setUser] = useState(userModel)
     const levelUpFighter = (currentXP) => {
         setUser((prevState) => {
-            let newState = {
+            return {
                 ...prevState,
                 fighters: prevState.fighters.map((fighter) => {
                     if (fighter.active) {
                         return {
                             ...fighter,
-                            ["level"]: fighter.level + 1,
-                            ["currentXP"]: currentXP,
+                            level: fighter.level + 1,
+                            currentXP,
                         };
                     }
                     return fighter;
                 }),
             };
-            return newState;
         });
-    }
+    };
     useEffect(() => {
         setUserFighter(() => {
             let newFighter = {}

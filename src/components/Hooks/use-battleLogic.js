@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useUser from "./use-user";
 const useBattleLogic = () => {
     const [turn, setTurn] = useState("user")
@@ -89,7 +89,7 @@ const useBattleLogic = () => {
             wait();
         }
     }
-    return { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, attackEnemy, changeUserFighter, healUserFighter, attackUser, levelUpFighter }
+    return { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter }
 }
 
 export default useBattleLogic

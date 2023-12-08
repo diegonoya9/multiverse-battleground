@@ -1,14 +1,13 @@
 import classes from './Battleground.module.css'
 import Fighter from './Fighter'
 import FightMenu from '../UI/FightMenu'
-import { useEffect, useState } from 'react'
-import useUser from '../Hooks/use-user'
+import { memo, useEffect, useState } from 'react'
 import useBattleState from '../Hooks/use-battleState'
 import fightersLevelsModel from '../../model/fightersLevelsModel.js'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 
 const Battleground = ({ changeActivePage }) => {
-    const { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, attackEnemy, changeUserFighter, healUserFighter, attackUser, levelUpFighter } = useBattleLogic()
+    const { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter } = useBattleLogic()
     const [fightersLevels] = useState(fightersLevelsModel)
     const { battleEnded, endBattle } = useBattleState()
     const [showLevelUp, setShowLevelUp] = useState(false);
@@ -70,4 +69,4 @@ const Battleground = ({ changeActivePage }) => {
     )
 }
 
-export default Battleground
+export default memo(Battleground)
