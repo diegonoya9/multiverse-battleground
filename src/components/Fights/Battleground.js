@@ -4,13 +4,16 @@ import FightMenu from '../UI/FightMenu'
 import { useEffect, useState } from 'react'
 import useUser from '../Hooks/use-user'
 import useBattleState from '../Hooks/use-battleState'
+import fightersLevelsModel from '../../model/fightersLevelsModel.js'
 
 const Battleground = ({ changeActivePage }) => {
     const [turn, setTurn] = useState("user")
+    const [fightersLevels] = useState(fightersLevelsModel)
     const { battleEnded, endBattle } = useBattleState()
+    const [showLevelUp, setShowLevelUp] = useState(false);
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
-    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser } = useUser()
+    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser()
     const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -86,15 +89,29 @@ const Battleground = ({ changeActivePage }) => {
             endBattle("enemy", true)
         }
     }, [userFighter, enemyFighter])
+    useEffect(() => {
+        if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
+            let newCurrentXP = userFighter.currentXP + 100
+            fightersLevels.forEach((figtherLevel) => {
+                if (figtherLevel.fighterId === userFighter.fighterId && figtherLevel.level > userFighter.level && figtherLevel.minXp < newCurrentXP) {
+                    console.log("newCurrentXP" + newCurrentXP)
+                    levelUpFighter(newCurrentXP)
+                    setShowLevelUp(true)
+                }
+            })
+        }
+    }, [battleEnded, userFighter])
     const restartGame = () => {
+        endBattle(null, false)
+        setShowLevelUp(false)
         setTurn("user")
         setMenuActive(true)
         restartUserFightersHP()
         restartEnemyFighter()
-        endBattle(null, false)
     }
     return (
         <div className={classes.battleground}>
+            {showLevelUp && <h1>Tu luchador subió de nivel</h1>}
             {attack.active && turn === "user" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {attack.active && turn === "enemy" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {battleEnded.finished && <div>
