@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+}
+
+.fighterContainer {
+    width: 300px;
+    height: 300px;
+    color: black;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fighterName {
+    margin-bottom: 10px;
+    /* Ajusta según sea necesario */
+}
+
+.fighterImg {
+    width: 60%;
+    height: auto;
+    max-height: 100%;
+}
