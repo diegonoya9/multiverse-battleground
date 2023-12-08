@@ -5,12 +5,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
     useEffect(() => {
         switch (selectedOption) {
             case "attacks":
-                let fighter = user.fighters.filter((fighter) => {
-                    if (fighter.active) {
-                        return fighter
-                    }
-                })
-                let moves = fighter[0].moves
+                let moves = userFighter[0].moves
                 setOptionsArray(moves)
                 break
             case "objects":
@@ -18,6 +13,8 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                 break
             case "fighters":
                 setOptionsArray(user.fighters)
+                break
+            default: break
         }
     }, [selectedOption])
     const changeFighter = (element) => {

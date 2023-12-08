@@ -69,9 +69,7 @@ const useUser = () => {
             let newFighter = {}
             if (user) {
                 newFighter = user.fighters.filter((fighter) => {
-                    if (fighter.active) {
-                        return fighter
-                    }
+                    return fighter.active
                 })
                 return newFighter[0]
             }

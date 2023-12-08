@@ -7,7 +7,7 @@ const Fighter = ({ user, fighter }) => {
             <h3 style={{ color: "white" }}>{fighter.name}</h3>
             <LifeBar currentHP={fighter.currentHP} maxHP={fighter.maxHP}></LifeBar>
             <div className={user === "user" ? classes.userFighter : classes.enemyFighter}>
-                <img src={user === "user" ? `${fighter.imgBack}` : `${fighter.imgFront}`} className={classes.fighterImage} />
+                <img alt="fighter" src={user === "user" ? `${fighter.imgBack}` : `${fighter.imgFront}`} className={classes.fighterImage} />
             </div>
         </div >
     )

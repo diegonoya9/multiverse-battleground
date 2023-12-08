@@ -95,8 +95,8 @@ const Battleground = ({ changeActivePage }) => {
     }
     return (
         <div className={classes.battleground}>
-            {attack.active && turn === "user" && <img className={classes["attack-animation"]} src={attack.src} />}
-            {attack.active && turn === "enemy" && <img className={classes["enemy-attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "user" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "enemy" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {battleEnded.finished && <div>
                 <h1>{battleEnded.winner} WON</h1>
                 <input type="button" onClick={() => restartGame()} value="Fight again" />
