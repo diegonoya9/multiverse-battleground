@@ -8,7 +8,7 @@ import fightersLevelsModel from '../../model/fightersLevelsModel.js'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 
 const Battleground = ({ changeActivePage }) => {
-    const { turn, setTurn, enemyAI } = useBattleLogic()
+    const { turn, setTurn, enemyAI, userLogic } = useBattleLogic()
     const [fightersLevels] = useState(fightersLevelsModel)
     const { battleEnded, endBattle } = useBattleState()
     const [showLevelUp, setShowLevelUp] = useState(false);
@@ -18,47 +18,7 @@ const Battleground = ({ changeActivePage }) => {
     const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
-            if (selectedOption === "attacks") {
-                if (enemyFighter && enemyFighter.currentHP > 0) {
-                    const wait = () => {
-                        setTimeout(() => {
-                            setAttack((prevState) => {
-                                let newState = { ...prevState }
-                                newState.active = false
-                                return newState
-                            })
-                            setTurn("enemy")
-                        }, 3000); // 3000 milisegundos = 3 segundos
-                    };
-                    setMenuActive(false)
-                    option.actions.forEach((action) => {
-                        if (action.inflictedOn === "enemy") {
-                            setAttack((prevState) => {
-                                let newState = { ...prevState }
-                                newState.active = true
-                                newState.inflictedOn = "enemy"
-                                newState.src = "./assets/img/fire.png"
-                                return newState
-                            })
-                            attackEnemy(action)
-                        } else {
-                            setAttack((prevState) => {
-                                let newState = { ...prevState }
-                                newState.active = true
-                                newState.inflictedOn = "user"
-                                newState.src = "./assets/img/aura.png"
-                                return newState
-                            })
-                            attackUser(action)
-                        }
-                    })
-                    wait()
-                }
-            }
-            if (selectedOption === "objects") {
-                healUserFighter(option.value)
-                setTurn("enemy")
-            }
+            userLogic(selectedOption, enemyFighter, setAttack, setMenuActive, option, attackEnemy, attackUser, healUserFighter)
         }
     }
     useEffect(() => {

@@ -1,6 +1,51 @@
 import { useState, useEffect } from "react";
 const useBattleLogic = () => {
     const [turn, setTurn] = useState("user")
+    const userLogic = (selectedOption, enemyFighter, setAttack, setMenuActive, option, attackEnemy, attackUser, healUserFighter) => {
+        if (turn === "user") {
+            if (selectedOption === "attacks") {
+                if (enemyFighter && enemyFighter.currentHP > 0) {
+                    const wait = () => {
+                        setTimeout(() => {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = false
+                                return newState
+                            })
+                            setTurn("enemy")
+                        }, 3000); // 3000 milisegundos = 3 segundos
+                    };
+                    setMenuActive(false)
+                    option.actions.forEach((action) => {
+                        if (action.inflictedOn === "enemy") {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = true
+                                newState.inflictedOn = "enemy"
+                                newState.src = "./assets/img/fire.png"
+                                return newState
+                            })
+                            attackEnemy(action)
+                        } else {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = true
+                                newState.inflictedOn = "user"
+                                newState.src = "./assets/img/aura.png"
+                                return newState
+                            })
+                            attackUser(action)
+                        }
+                    })
+                    wait()
+                }
+            }
+            if (selectedOption === "objects") {
+                healUserFighter(option.value)
+                setTurn("enemy")
+            }
+        }
+    }
     const enemyAI = (battleEnded, setAttack, setMenuActive, userFighter, enemyFighter, attackUser, attackEnemy) => {
         if (turn === "enemy" && !battleEnded.finished) {
             const wait = () => {
@@ -40,7 +85,7 @@ const useBattleLogic = () => {
             wait();
         }
     }
-    return { turn, setTurn, enemyAI }
+    return { turn, setTurn, enemyAI, userLogic }
 }
 
 export default useBattleLogic
