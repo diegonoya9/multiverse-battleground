@@ -13,7 +13,6 @@ const Battleground = ({ changeActivePage }) => {
     const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser } = useUser()
     const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
-        console.log(option)
         if (turn === "user") {
             if (selectedOption === "attacks") {
                 if (enemyFighter && enemyFighter.currentHP > 0) {

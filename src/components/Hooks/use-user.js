@@ -16,8 +16,9 @@ const useUser = () => {
         ],
         fighters: [{
             name: "Charizard",
-            img: './assets/img/pokemon2.png',
-            active: false,
+            imgFront: './assets/img/charizard-front.png',
+            imgBack: './assets/img/charizard-back.png',
+            active: true,
             maxHP: 500,
             currentHP: 200,
             attack: 100,
@@ -31,10 +32,11 @@ const useUser = () => {
             ]
         }, {
             name: "Goku",
-            img: './assets/img/goku.png',
+            imgBack: './assets/img/goku.png',
+            imgFront: './assets/img/goku-front.png',
             maxHP: 500,
             attack: 100,
-            active: true,
+            active: false,
             currentHP: 500,
             currentXP: 200,
             level: 15,
@@ -46,7 +48,8 @@ const useUser = () => {
             ]
         }, {
             name: "Mew",
-            img: './assets/img/pokemon.png',
+            imgFront: './assets/img/pokemon.png',
+            imgBack: './assets/img/pokemon.png',
             maxHP: 500,
             attack: 100,
             active: false,
