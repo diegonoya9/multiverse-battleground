@@ -2,8 +2,8 @@ import { useState } from "react";
 import useUser from "./use-user";
 const useBattleLogic = () => {
     const [turn, setTurn] = useState("user")
-    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser()
-    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
+    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser("user")
+    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {

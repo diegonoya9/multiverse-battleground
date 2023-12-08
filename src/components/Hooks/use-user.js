@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import userModel from '../../model/userModel.js'
 
-const useUser = () => {
+const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
-    const [user, setUser] = useState(userModel)
+    const [user, setUser] = useState(userModel(origin))
     const levelUpFighter = (currentXP) => {
         setUser((prevState) => {
             return {

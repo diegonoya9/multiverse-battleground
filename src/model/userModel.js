@@ -1,4 +1,17 @@
-const userModel = () => {
+const userModel = (origin) => {
+    let activeArray = []
+    if (origin === "user") {
+        activeArray = [true, false, false, false]
+    } else {
+        let randomValue = Math.round(Math.random() * 3)
+        for (let i = 0; i < 4; i++) {
+            if (i === randomValue) {
+                activeArray.push(true)
+            } else {
+                activeArray.push(false)
+            }
+        }
+    }
     return ({
         name: "Red",
         objects: [
@@ -18,7 +31,7 @@ const userModel = () => {
             fighterId: 1,
             imgFront: './assets/img/charizard-front.gif',
             imgBack: './assets/img/charizard-back.png',
-            active: true,
+            active: activeArray[0],
             maxHP: 500,
             currentHP: 500,
             attack: 100,
@@ -47,7 +60,7 @@ const userModel = () => {
             specialDefense: 250,
             accuracy: 95,
             status: "nothing",
-            active: false,
+            active: activeArray[1],
             currentHP: 600,
             currentXP: 200,
             level: 23,
@@ -69,7 +82,7 @@ const userModel = () => {
             specialDefense: 500,
             accuracy: 100,
             status: "nothing",
-            active: false,
+            active: activeArray[2],
             currentHP: 500,
             currentXP: 200,
             level: 30,
@@ -92,7 +105,7 @@ const userModel = () => {
             specialDefense: 500,
             accuracy: 100,
             status: "nothing",
-            active: false,
+            active: activeArray[3],
             currentHP: 500,
             currentXP: 200,
             level: 10,
