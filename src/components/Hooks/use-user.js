@@ -7,10 +7,12 @@ const useUser = () => {
         objects: [
             {
                 name: "potion",
+                img: './assets/img/potion.png',
                 value: 50
             },
             {
                 name: "maxPotion",
+                img: './assets/img/potion.png',
                 value: 150
             }
         ],
