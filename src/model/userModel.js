@@ -31,7 +31,7 @@ const userModel = () => {
             level: 1,
             moves: [
                 { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -50 }] },
-                { name: "Punch", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 100 }] },
+                { name: "Punch", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -100 }] },
                 { name: "Def Up", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
                 { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -550 }] }
             ]

@@ -11,7 +11,7 @@ const Battleground = ({ changeActivePage }) => {
     const [fightersLevels] = useState(fightersLevelsModel)
     const { battleEnded, endBattle } = useBattleState()
     const [showLevelUp, setShowLevelUp] = useState(false);
-    const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
+    const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const [menuActive, setMenuActive] = useState(true)
     const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser()
     const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
@@ -30,15 +30,24 @@ const Battleground = ({ changeActivePage }) => {
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
                     setMenuActive(false)
-                    setAttack((prevState) => {
-                        let newState = { ...prevState }
-                        newState.active = true
-                        return newState
-                    })
                     option.actions.forEach((action) => {
                         if (action.inflictedOn === "enemy") {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = true
+                                newState.inflictedOn = "enemy"
+                                newState.src = "./assets/img/fire.png"
+                                return newState
+                            })
                             attackEnemy(action)
                         } else {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = true
+                                newState.inflictedOn = "user"
+                                newState.src = "./assets/img/aura.png"
+                                return newState
+                            })
                             attackUser(action)
                         }
                     })
@@ -66,15 +75,24 @@ const Battleground = ({ changeActivePage }) => {
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
             let randomMove = Math.floor(Math.random() * 4)
-            setAttack((prevState) => {
-                let newState = { ...prevState }
-                newState.active = true
-                return newState
-            })
             enemyFighter.moves[randomMove].actions.forEach((action) => {
                 if (action.inflictedOn === "enemy") {
+                    setAttack((prevState) => {
+                        let newState = { ...prevState }
+                        newState.active = true
+                        newState.inflictedOn = "user"
+                        newState.src = "./assets/img/fire.png"
+                        return newState
+                    })
                     attackUser(action)
                 } else {
+                    setAttack((prevState) => {
+                        let newState = { ...prevState }
+                        newState.active = true
+                        newState.inflictedOn = "enemy"
+                        newState.src = "./assets/img/aura.png"
+                        return newState
+                    })
                     attackEnemy(action)
                 }
             })
@@ -112,8 +130,10 @@ const Battleground = ({ changeActivePage }) => {
     return (
         <div className={classes.battleground}>
             {showLevelUp && <h1>Tu luchador subió de nivel</h1>}
-            {attack.active && turn === "user" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
-            {attack.active && turn === "enemy" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
+            {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             {battleEnded.finished && <div>
                 <h1>{battleEnded.winner} WON</h1>
                 <input type="button" onClick={() => restartGame()} value="Fight again" />
