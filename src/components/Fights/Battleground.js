@@ -8,22 +8,19 @@ import fightersLevelsModel from '../../model/fightersLevelsModel.js'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 
 const Battleground = ({ changeActivePage }) => {
-    const { turn, setTurn, enemyAI, userLogic } = useBattleLogic()
+    const { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, attackEnemy, changeUserFighter, healUserFighter, attackUser, levelUpFighter } = useBattleLogic()
     const [fightersLevels] = useState(fightersLevelsModel)
     const { battleEnded, endBattle } = useBattleState()
     const [showLevelUp, setShowLevelUp] = useState(false);
-    const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const [menuActive, setMenuActive] = useState(true)
-    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser()
-    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
-            userLogic(selectedOption, enemyFighter, setAttack, setMenuActive, option, attackEnemy, attackUser, healUserFighter)
+            userLogic(option, selectedOption, setMenuActive)
         }
     }
     useEffect(() => {
         if (turn === "enemy" && !battleEnded.finished) {
-            enemyAI(battleEnded, setAttack, setMenuActive, userFighter, enemyFighter, attackUser, attackEnemy)
+            enemyAI(setMenuActive, battleEnded)
         }
     }, [turn])
     useEffect(() => {
@@ -39,7 +36,6 @@ const Battleground = ({ changeActivePage }) => {
             let newCurrentXP = userFighter.currentXP + 100
             fightersLevels.forEach((figtherLevel) => {
                 if (figtherLevel.fighterId === userFighter.fighterId && figtherLevel.level > userFighter.level && figtherLevel.minXp < newCurrentXP) {
-                    console.log("newCurrentXP" + newCurrentXP)
                     levelUpFighter(newCurrentXP)
                     setShowLevelUp(true)
                 }
@@ -53,6 +49,7 @@ const Battleground = ({ changeActivePage }) => {
         setMenuActive(true)
         restartUserFightersHP()
         restartEnemyFighter()
+        changeActivePage(1)
     }
     return (
         <div className={classes.battleground}>
@@ -63,7 +60,7 @@ const Battleground = ({ changeActivePage }) => {
             {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             {battleEnded.finished && <div>
                 <h1>{battleEnded.winner} WON</h1>
-                <input type="button" onClick={() => restartGame()} value="Fight again" />
+                <input type="button" onClick={() => restartGame()} value="Main Menu" />
             </div>}
             {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user"></Fighter>}
             {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}

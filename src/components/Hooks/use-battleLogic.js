@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import useUser from "./use-user";
 const useBattleLogic = () => {
     const [turn, setTurn] = useState("user")
-    const userLogic = (selectedOption, enemyFighter, setAttack, setMenuActive, option, attackEnemy, attackUser, healUserFighter) => {
+    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser()
+    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
+    const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
+    const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
                 if (enemyFighter && enemyFighter.currentHP > 0) {
@@ -46,7 +50,7 @@ const useBattleLogic = () => {
             }
         }
     }
-    const enemyAI = (battleEnded, setAttack, setMenuActive, userFighter, enemyFighter, attackUser, attackEnemy) => {
+    const enemyAI = (setMenuActive, battleEnded) => {
         if (turn === "enemy" && !battleEnded.finished) {
             const wait = () => {
                 setTimeout(() => {
@@ -85,7 +89,7 @@ const useBattleLogic = () => {
             wait();
         }
     }
-    return { turn, setTurn, enemyAI, userLogic }
+    return { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, attackEnemy, changeUserFighter, healUserFighter, attackUser, levelUpFighter }
 }
 
 export default useBattleLogic
