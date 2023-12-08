@@ -1,12 +1,19 @@
-.movesContainer {
+.optionsContainer {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
     width: 100%;
-    list-style: none;
     padding: 0;
-    position: relative;
+    margin: 0;
 }
 
-.moves {
+.options {
+    width: 50%;
+    font-size: large;
+    position: relative;
+    height: 50%;
     list-style: none;
-    width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -27,13 +27,13 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
         return element
     }
     return (
-        <ul className={classes.movesContainer} >
-            {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.moves} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li> })}
+        <ul className={classes.optionsContainer} >
+            {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li> })}
             {optionsArray && selectedOption === "objects" && optionsArray.map((x, i) => {
-                return <li key={x.name + i} className={classes.moves} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li>
+                return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}</li>
             }
             )}
-            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.fighters} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); changeFighter(x); console.log(x.name, userFighter) }}>{x.name}</li> })}
+            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); changeFighter(x); console.log(x.name, userFighter) }}>{x.name}</li> })}
 
             <div className={classes.attack}></div>
         </ul>
