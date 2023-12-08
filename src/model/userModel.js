@@ -16,7 +16,7 @@ const userModel = () => {
         fighters: [{
             name: "Charizard",
             fighterId: 1,
-            imgFront: './assets/img/charizard-front.png',
+            imgFront: './assets/img/charizard-front.gif',
             imgBack: './assets/img/charizard-back.png',
             active: true,
             maxHP: 500,
