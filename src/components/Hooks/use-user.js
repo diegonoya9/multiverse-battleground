@@ -38,7 +38,12 @@ const useUser = () => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
                 if (fighter.active) {
-                    fighter.currentHP += value
+                    const cure = fighter.currentHP += value
+                    if (cure && cure <= fighter.maxHP) {
+
+                        fighter.currentHP += value
+                    }
+                    fighter.currentHP = fighter.maxHP
                 }
                 return fighter
             })
