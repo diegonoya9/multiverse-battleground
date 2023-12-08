@@ -5,7 +5,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
     useEffect(() => {
         switch (selectedOption) {
             case "attacks":
-                let moves = userFighter[0].moves
+                let moves = userFighter.moves
                 setOptionsArray(moves)
                 break
             case "objects":
@@ -21,7 +21,6 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
         changeUserFighter((prevState) => {
             prevState.active = false;
             element.active = true;
-            console.log('estado anterior: ', prevState, 'nuevo estado: ', element)
             return (element)
         })
         userFighter = element

@@ -30,10 +30,10 @@ const useUser = () => {
             currentXP: 200,
             level: 15,
             moves: [
-                { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
+                { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -50 }] },
                 { name: "Punch", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 100 }] },
                 { name: "Def Up", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
-                { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] }
+                { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -50 }] }
             ]
         }, {
             name: "Goku",
@@ -72,10 +72,10 @@ const useUser = () => {
             currentXP: 200,
             level: 30,
             moves: [
-                { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
+                { name: "Quick Attack", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -150 }] },
                 { name: "Sand Throw", actions: [{ inflictedOn: "enemy", field: "accuracy", value: -20 }, { inflictedOn: "enemy", field: "specialDefense", value: -20 }] },
                 { name: "Def Up", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
-                { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] }
+                { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -250 }] }
             ]
         }]
     })
