@@ -37,10 +37,10 @@ const useUser = () => {
             currentXP: 200,
             level: 15,
             moves: [
-                { name: "Kame Hame Ha", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
+                { name: "Kame Hame Ha", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -50 }] },
                 { name: "Kaioken", actions: [{ inflictedOn: "user", field: "attack", value: 50 }] },
                 { name: "Kaioken(X2)", actions: [{ inflictedOn: "user", field: "attack", value: 100 }] },
-                { name: "Bite", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 500 }] }
+                { name: "Bite", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -500 }] }
             ]
         }, {
             name: "Mew",
@@ -96,24 +96,23 @@ const useUser = () => {
             return newUser
         })
     }
-    const damageUserFighter = (damage) => {
-        let result
-        if (damage <= userFighter.currentHP) {
-            result = userFighter.currentHP - damage
-        } else {
-            result = 0
-        }
+    const attackUser = (attack) => {
         setUserFighter((prevState) => {
             let newState = { ...prevState }
-            newState.currentHP = result
+            newState[attack.field] += attack.value
+            if (newState[attack.field] < 0) {
+                newState[attack.field] = 0
+            }
             return newState
         })
-
         setUser((prevState) => {
             let newState = { ...prevState }
             newState.fighters.forEach((fighter) => {
                 if (fighter.active) {
-                    fighter.currentHP = result
+                    fighter[attack.field] += attack.value
+                    if (fighter[attack.field] < 0) {
+                        fighter[attack.field] = 0
+                    }
                 }
             })
             return newState
@@ -124,7 +123,7 @@ const useUser = () => {
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)
     }
-    return { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, damageUserFighter }
+    return { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser }
 }
 
 export default useUser

@@ -10,8 +10,8 @@ const Battleground = ({ changeActivePage }) => {
     const { battleEnded, endBattle } = useBattleState()
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
-    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, damageUserFighter } = useUser()
-    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, damageUserFighter: damageEnemy } = useUser()
+    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser } = useUser()
+    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
@@ -22,8 +22,13 @@ const Battleground = ({ changeActivePage }) => {
                         newState.active = true
                         return newState
                     })
-                    let result = enemyFighter.currentHP - option.actions[0].value
-                    damageEnemy(option.actions[0].value)
+                    option.actions.forEach((action) => {
+                        if (action.inflictedOn === "enemy") {
+                            attackEnemy(action)
+                        } else {
+                            attackUser(action)
+                        }
+                    })
                     const wait = () => {
                         setTimeout(() => {
                             setAttack((prevState) => {
@@ -31,12 +36,11 @@ const Battleground = ({ changeActivePage }) => {
                                 newState.active = false
                                 return newState
                             })
-                            if (result <= 0) {
+                            if (enemyFighter.currentHP <= 0) {
                                 endBattle('user', true)
                             } else {
                                 setTurn("enemy")
                             }
-                            console.log(battleEnded)
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
                     wait()
@@ -52,8 +56,7 @@ const Battleground = ({ changeActivePage }) => {
         if (turn === "enemy" && !battleEnded.finished) {
             const wait = () => {
                 setTimeout(() => {
-                    if (result <= 0) {
-                        result = 0
+                    if (userFighter.currentHP <= 0) {
                         endBattle('enemy', true)
                     }
                     setMenuActive(true)
@@ -67,25 +70,29 @@ const Battleground = ({ changeActivePage }) => {
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
             let randomMove = Math.floor(Math.random() * 4)
-            let damage = enemyFighter.moves[randomMove].actions[0].value
-            let result = userFighter.currentHP - damage;
             setAttack((prevState) => {
                 let newState = { ...prevState }
                 newState.active = true
                 return newState
             })
-            damageUserFighter(damage)
+            enemyFighter.moves[randomMove].actions.forEach((action) => {
+                if (action.inflictedOn === "enemy") {
+                    attackUser(action)
+                } else {
+                    attackEnemy(action)
+                }
+            })
             wait();
         }
     }, [turn])
+    useEffect(() => {
+        console.log(userFighter)
+    }, [userFighter])
     const restartGame = () => {
         restartUserFightersHP()
         restartEnemyFighter()
         endBattle(null, false)
     }
-    useEffect(() => {
-        console.log(battleEnded)
-    }, [battleEnded])
     return (
         <div className={classes.battleground}>
             {attack.active && turn === "user" && <img className={classes["attack-animation"]} src={attack.src} />}
