@@ -67,7 +67,7 @@ const useUser = () => {
             specialDefense: 500,
             accuracy: 100,
             status: "nothing",
-            active: true,
+            active: false,
             currentHP: 500,
             currentXP: 200,
             level: 30,
@@ -76,6 +76,28 @@ const useUser = () => {
                 { name: "Sand Throw", actions: [{ inflictedOn: "enemy", field: "accuracy", value: -20 }, { inflictedOn: "enemy", field: "specialDefense", value: -20 }] },
                 { name: "Def Up", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
                 { name: "Hiper Ray", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -250 }] }
+            ]
+        },
+        {
+            name: "Batman",
+            imgFront: './assets/img/batman-front.png',
+            imgBack: './assets/img/batman-back.png',
+            maxHP: 500,
+            attack: 100,
+            specialAttak: 350,
+            defense: 50,
+            specialDefense: 500,
+            accuracy: 100,
+            status: "nothing",
+            active: true,
+            currentHP: 500,
+            currentXP: 200,
+            level: 10,
+            moves: [
+                { name: "Boomerang Throw", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -150 }] },
+                { name: "I'm BATMAN", actions: [{ inflictedOn: "enemy", field: "accuracy", value: -30 }, { inflictedOn: "enemy", field: "specialDefense", value: -20 }] },
+                { name: "Cape Cover", actions: [{ inflictedOn: "user", field: "defense", value: 30 }] },
+                { name: "Karate Moves", actions: [{ inflictedOn: "enemy", field: "currentHP", value: -250 }] }
             ]
         }]
     })
