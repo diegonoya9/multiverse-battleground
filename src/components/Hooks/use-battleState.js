@@ -10,7 +10,7 @@ const useBattleState = () => {
             return newState
         })
     }
-    return [battleEnded, setBattleEnded, endBattle]
+    return { battleEnded, endBattle }
 }
 
 export default useBattleState

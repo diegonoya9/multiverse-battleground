@@ -11,6 +11,10 @@
     position: relative;
 }
 
+h1 {
+    color: white
+}
+
 .battlegroundImg {
     height: 100vh;
     width: auto;

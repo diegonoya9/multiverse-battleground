@@ -40,7 +40,7 @@ const useUser = () => {
                 { name: "Kame Hame Ha", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] },
                 { name: "Kaioken", actions: [{ inflictedOn: "user", field: "attack", value: 50 }] },
                 { name: "Kaioken(X2)", actions: [{ inflictedOn: "user", field: "attack", value: 100 }] },
-                { name: "Bite", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 50 }] }
+                { name: "Bite", actions: [{ inflictedOn: "enemy", field: "currentHP", value: 500 }] }
             ]
         }, {
             name: "Mew",
@@ -83,7 +83,7 @@ const useUser = () => {
             return newUser
         })
     }
-    const restartPlayerFightersHP = () => {
+    const restartUserFightersHP = () => {
         setUser((prevState) => {
 
             let newUser = { ...prevState }
@@ -124,7 +124,7 @@ const useUser = () => {
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)
     }
-    return [user, changeUserFighter, userFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter]
+    return { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, damageUserFighter }
 }
 
 export default useUser

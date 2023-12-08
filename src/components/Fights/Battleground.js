@@ -7,11 +7,11 @@ import useBattleState from '../Hooks/use-battleState'
 
 const Battleground = ({ changeActivePage }) => {
     const [turn, setTurn] = useState("user")
-    const [battleEnded, setBattleEnded, endBattle] = useBattleState()
+    const { battleEnded, endBattle } = useBattleState()
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png" })
     const [menuActive, setMenuActive] = useState(true)
-    const [user, changeUserFighter, userFighter, restartPlayerFightersHP, healUserFighter, damageUserFighter] = useUser()
-    const [enemy, changeEnemyFighter, enemyFighter, restartEnemyFighter, healEnemgyFighter, damageEnemy] = useUser()
+    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, damageUserFighter } = useUser()
+    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, damageUserFighter: damageEnemy } = useUser()
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
@@ -22,22 +22,24 @@ const Battleground = ({ changeActivePage }) => {
                         newState.active = true
                         return newState
                     })
-                    let result = enemyFighter.currentHP - option.damage;
-                    damageEnemy(option.damage)
-                    if (result <= 0) {
-                        endBattle('user', true)
-                    }
+                    let result = enemyFighter.currentHP - option.actions[0].value
+                    damageEnemy(option.actions[0].value)
                     const wait = () => {
                         setTimeout(() => {
-                            setTurn("enemy")
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = false
+                                return newState
+                            })
+                            if (result <= 0) {
+                                endBattle('user', true)
+                            } else {
+                                setTurn("enemy")
+                            }
+                            console.log(battleEnded)
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
-                    if (result !== 0) {
-                        wait()
-                    } else {
-                        setMenuActive(true)
-                    }
-
+                    wait()
                 }
             }
             if (selectedOption === "objects") {
@@ -65,7 +67,7 @@ const Battleground = ({ changeActivePage }) => {
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
             let randomMove = Math.floor(Math.random() * 4)
-            let damage = enemyFighter.moves[randomMove].damage
+            let damage = enemyFighter.moves[randomMove].actions[0].value
             let result = userFighter.currentHP - damage;
             setAttack((prevState) => {
                 let newState = { ...prevState }
@@ -77,10 +79,13 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [turn])
     const restartGame = () => {
-        restartPlayerFightersHP()
+        restartUserFightersHP()
         restartEnemyFighter()
         endBattle(null, false)
     }
+    useEffect(() => {
+        console.log(battleEnded)
+    }, [battleEnded])
     return (
         <div className={classes.battleground}>
             {attack.active && turn === "user" && <img className={classes["attack-animation"]} src={attack.src} />}
