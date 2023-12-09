@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import useUser from "./use-user";
 import useBattleState from './use-battleState'
-import fightersLevelsModel from '../../model/fightersLevelsModel.js'
+
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle } = useBattleState()
-    const [fightersLevels] = useState(fightersLevelsModel)
+    const [fightersLevels, setFightersLevels] = useState()
     const [turn, setTurn] = useState("user")
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
     const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
@@ -118,6 +118,13 @@ const useBattleLogic = (setShowLevelUp) => {
             levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user")
         }
     }, [battleEnded, userFighter])
+    useEffect(() => {
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fightersLevels.json')
+            .then(response => response.json())
+            .then(data => {
+                setFightersLevels(data)
+            })
+    }, [])
     return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle }
 }
 
