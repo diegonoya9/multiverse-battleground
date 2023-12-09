@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
-import userModel from '../../model/userModel.js'
 
 const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
-    const [user, setUser] = useState(userModel(origin))
+    const [user, setUser] = useState()
     const levelUpFighter = (currentXP) => {
         setUser((prevState) => {
             return {
@@ -78,7 +77,30 @@ const useUser = (origin) => {
             return newState;
         });
     }
-
+    useEffect(() => {
+        console.log('se ejecuta el fetch a la base')
+        fetch('https://react-http-d74bc-default-rtdb.firebaseio.com/user.json')
+            .then(response => response.json())
+            .then(data => {
+                let activeArray = []
+                if (origin === "user") {
+                    activeArray = [true, false, false, false]
+                } else {
+                    let randomValue = Math.round(Math.random() * 3)
+                    for (let i = 0; i < 4; i++) {
+                        if (i === randomValue) {
+                            activeArray.push(true)
+                        } else {
+                            activeArray.push(false)
+                        }
+                    }
+                }
+                data.fighters.forEach((fighter, index) => {
+                    fighter.active = activeArray[index]
+                })
+                setUser(data)
+            })
+    }, [])
 
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)

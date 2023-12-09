@@ -1,7 +1,6 @@
 import classes from "./FightersPage.module.css"
 
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
-    console.log(user)
     return (<div>
         <button value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container}>

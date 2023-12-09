@@ -50,11 +50,7 @@ const Battleground = ({ changeActivePage }) => {
         restartEnemyFighter()
         changeActivePage(1)
     }
-    useEffect(() => {
-        fetch('https://react-http-d74bc-default-rtdb.firebaseio.com/user.json')
-            .then(response => response.json())
-            .then(data => console.log(data))
-    })
+
     return (
         <div className={classes.battleground}>
             {showLevelUp && <h1>Tu luchador subió de nivel</h1>}
