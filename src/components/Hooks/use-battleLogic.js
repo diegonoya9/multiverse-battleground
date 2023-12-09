@@ -2,12 +2,13 @@ import { useState } from "react";
 import useUser from "./use-user";
 const useBattleLogic = () => {
     const [turn, setTurn] = useState("user")
-    const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter } = useUser("user")
-    const { userFighter: enemyFighter, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
+    const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
+    const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
+                reduceFighterMP(option.name)
                 if (enemyFighter && enemyFighter.currentHP > 0) {
                     const wait = () => {
                         setTimeout(() => {

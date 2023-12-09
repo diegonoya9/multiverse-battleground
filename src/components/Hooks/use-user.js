@@ -3,6 +3,25 @@ import { useState, useEffect } from "react"
 const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
     const [user, setUser] = useState()
+    const reduceFighterMP = (attack) => {
+        setUser((prevState) => {
+            let newUser = { ...prevState }
+            let newFighters = newUser.fighters.map((fighter) => {
+                if (fighter.active) {
+                    fighter.moves.forEach((move, index) => {
+                        if (move.name === attack) {
+                            fighter.moves[index].MP -= 1
+                        }
+                    })
+                }
+                return fighter
+            })
+            return {
+                ...prevState,
+                fighters: newFighters
+            };
+        });
+    }
     const levelUpFighter = (currentXP) => {
         setUser((prevState) => {
             return {
@@ -93,7 +112,7 @@ const useUser = (origin) => {
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)
     }
-    return { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter }
+    return { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP }
 }
 
 export default useUser
