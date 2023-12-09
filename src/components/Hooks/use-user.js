@@ -42,7 +42,7 @@ const useUser = (origin) => {
             user.fighters.forEach(fighter => {
                 if (fighter.active) {
                     fighter.currentXP = currentXP
-                    fighter.level += 1
+                    fighter.level = newLevel
                 }
             })
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/user.json", {

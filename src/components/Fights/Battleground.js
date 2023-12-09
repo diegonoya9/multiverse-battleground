@@ -33,13 +33,14 @@ const Battleground = ({ changeActivePage }) => {
     useEffect(() => {
         if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
             let newCurrentXP = userFighter.currentXP + 100
-            console.log(fightersLevels)
+            let newLevel = userFighter.level
             fightersLevels.forEach((fighterLevel) => {
                 if (fighterLevel.fighterId === userFighter.fighterId && fighterLevel.level > userFighter.level && fighterLevel.minXp < newCurrentXP) {
-                    levelUpFighter(newCurrentXP, fighterLevel.level)
+                    newLevel = fighterLevel.level
                     setShowLevelUp(true)
                 }
             })
+            levelUpFighter(newCurrentXP, newLevel)
         }
     }, [battleEnded, userFighter])
     const restartGame = () => {
