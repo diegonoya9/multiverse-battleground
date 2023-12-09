@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useUser from "./use-user";
-const useBattleLogic = () => {
+import useBattleState from './use-battleState'
+import fightersLevelsModel from '../../model/fightersLevelsModel.js'
+const useBattleLogic = (setShowLevelUp) => {
+    const { battleEnded, endBattle } = useBattleState()
+    const [fightersLevels] = useState(fightersLevelsModel)
     const [turn, setTurn] = useState("user")
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
     const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
@@ -51,8 +55,11 @@ const useBattleLogic = () => {
                 }
             }
             if (selectedOption === "objects") {
-                healUserFighter(option.value)
+                healUserFighter(option)
                 setTurn("enemy")
+            }
+            if (option === "run") {
+                endBattle("ran", true)
             }
         }
     }
@@ -95,7 +102,23 @@ const useBattleLogic = () => {
             wait();
         }
     }
-    return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter, changeEnemyFighter }
+    useEffect(() => {
+        if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
+            let newCurrentXP = userFighter.currentXP + 100
+            let newLevel = userFighter.level
+            fightersLevels.forEach((fighterLevel) => {
+                if (fighterLevel.fighterId === userFighter.fighterId && fighterLevel.level > userFighter.level && fighterLevel.minXp < newCurrentXP) {
+                    newLevel = fighterLevel.level
+                    setShowLevelUp(true)
+                }
+            })
+            levelUpFighter(newCurrentXP, newLevel, battleEnded.winner === "user")
+        }
+        if (battleEnded.finished && battleEnded.winner !== "user" && userFighter) {
+            levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user")
+        }
+    }, [battleEnded, userFighter])
+    return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle }
 }
 
 export default useBattleLogic

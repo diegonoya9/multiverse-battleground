@@ -22,20 +22,22 @@ const useUser = (origin) => {
             };
         });
     }
-    const levelUpFighter = (currentXP, newLevel) => {
+    const levelUpFighter = (currentXP, newLevel, won) => {
         if (user) {
             let newUser = user
-            newUser.fighters.forEach(fighter => {
-                if (fighter.active) {
-                    fighter.currentXP = currentXP
-                    fighter.level = newLevel
-                }
-            })
-            newUser.objects.forEach((object) => {
-                if (object.name === "money") {
-                    object.quantity += 100
-                }
-            })
+            if (won) {
+                newUser.fighters.forEach(fighter => {
+                    if (fighter.active) {
+                        fighter.currentXP = currentXP
+                        fighter.level = newLevel
+                    }
+                })
+                newUser.objects.forEach((object) => {
+                    if (object.name === "money") {
+                        object.quantity += 100
+                    }
+                })
+            }
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/user.json", {
                 method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                 headers: {
@@ -57,19 +59,25 @@ const useUser = (origin) => {
             }
         })
     }, [user])
-    const healUserFighter = (value) => {
+    const healUserFighter = (option) => {
         setUser((prevState) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
                 if (fighter.active) {
-                    const cure = fighter.currentHP += value
+                    const cure = fighter.currentHP += option.value
                     if (cure && cure <= fighter.maxHP) {
 
-                        fighter.currentHP += value
+                        fighter.currentHP += option.value
                     }
                     fighter.currentHP = fighter.maxHP
                 }
                 return fighter
+            })
+            newUser.objects.forEach((object) => {
+                if (object.name === option.name) {
+                    object.quantity -= 1
+                }
+                return object
             })
             return newUser
         })
@@ -82,7 +90,6 @@ const useUser = (origin) => {
                 fighters: prevState.fighters.map((fighter) => {
                     if (fighter.active) {
                         if (attack.field === "currentHP") {
-                            console.log(newValue)
                             if (attack.attackType === "normal") {
                                 newValue.value = Math.min(attack.value + (0.5 * fighter.defense), attack.value * 0.5)
                             } else {
