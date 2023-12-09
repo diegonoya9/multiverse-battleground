@@ -28,7 +28,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
     }
     return (
         <ul className={classes.optionsContainer} >
-            {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}:{x.MP}</li> })}
+            {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}:{x.currentMP}/{x.MP}</li> })}
             {optionsArray && selectedOption === "objects" && optionsArray.map((x, i) => {
                 return x.category === "battleItem" && <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}><div>{x.name}:{x.quantity}<img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></div></li>
             }

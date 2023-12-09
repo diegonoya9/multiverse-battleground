@@ -10,7 +10,7 @@ const useUser = (origin) => {
                 if (fighter.active) {
                     fighter.moves.forEach((move, index) => {
                         if (move.name === attack) {
-                            fighter.moves[index].MP -= 1
+                            fighter.moves[index].currentMP -= 1
                         }
                     })
                 }
@@ -23,21 +23,6 @@ const useUser = (origin) => {
         });
     }
     const levelUpFighter = (currentXP, newLevel) => {
-        /*setUser((prevState) => {
-            return {
-                ...prevState,
-                fighters: prevState.fighters.map((fighter) => {
-                    if (fighter.active) {
-                        return {
-                            ...fighter,
-                            level: fighter.level + 1,
-                            currentXP,
-                        };
-                    }
-                    return fighter;
-                }),
-            };
-        });*/
         if (user) {
             user.fighters.forEach(fighter => {
                 if (fighter.active) {
@@ -120,6 +105,10 @@ const useUser = (origin) => {
                 }
                 data.fighters.forEach((fighter, index) => {
                     fighter.active = activeArray[index]
+                    fighter.currentHP = fighter.maxHP
+                    fighter.moves.forEach((move) => {
+                        move.currentMP = move.MP
+                    })
                 })
                 setUser(data)
             })
