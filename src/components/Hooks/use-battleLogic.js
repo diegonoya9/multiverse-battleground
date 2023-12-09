@@ -30,6 +30,11 @@ const useBattleLogic = () => {
                                 newState.src = "./assets/img/fire.png"
                                 return newState
                             })
+                            if (action.attackType === "normal") {
+                                action.value -= userFighter.attack
+                            } else {
+                                action.value -= userFighter.specialAttack
+                            }
                             attackEnemy(action)
                         } else {
                             setAttack((prevState) => {

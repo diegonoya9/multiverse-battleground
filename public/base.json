@@ -68,7 +68,7 @@
                     }
                 ],
                 "name": "Charizard",
-                "specialAttak": 150,
+                "specialAttack": 150,
                 "specialDefense": 30
             },
             {
@@ -137,7 +137,7 @@
                     }
                 ],
                 "name": "Goku",
-                "specialAttak": 250,
+                "specialAttack": 250,
                 "specialDefense": 250
             },
             {
@@ -213,7 +213,7 @@
                     }
                 ],
                 "name": "Mew",
-                "specialAttak": 350,
+                "specialAttack": 350,
                 "specialDefense": 500
             },
             {
@@ -289,7 +289,7 @@
                     }
                 ],
                 "name": "Batman",
-                "specialAttak": 350,
+                "specialAttack": 350,
                 "specialDefense": 500
             }
         ],
