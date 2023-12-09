@@ -24,10 +24,16 @@ const useUser = (origin) => {
     }
     const levelUpFighter = (currentXP, newLevel) => {
         if (user) {
-            user.fighters.forEach(fighter => {
+            let newUser = user
+            newUser.fighters.forEach(fighter => {
                 if (fighter.active) {
                     fighter.currentXP = currentXP
                     fighter.level = newLevel
+                }
+            })
+            newUser.objects.forEach((object) => {
+                if (object.name === "money") {
+                    object.quantity += 100
                 }
             })
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/user.json", {
@@ -35,7 +41,7 @@ const useUser = (origin) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(user),
+                body: JSON.stringify(newUser),
             })
 
         }

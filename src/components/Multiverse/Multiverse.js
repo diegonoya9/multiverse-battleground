@@ -15,7 +15,7 @@ const Multiverse = ({ changeActivePage }) => {
             let newMoney = user.objects.filter((object) => {
                 return object.name === "money"
             })
-            setMoney(newMoney[0].value)
+            setMoney(newMoney[0].quantity)
         }
     }, [user])
     return (
