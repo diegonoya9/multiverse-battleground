@@ -4,13 +4,27 @@
         "objects": [
             {
                 "name": "potion",
+                "type": "consumable",
+                "category": "battleItem",
+                "quantity": 50,
                 "img": "./assets/img/potion.png",
                 "value": 50
             },
             {
                 "name": "maxPotion",
+                "type": "consumable",
+                "category": "battleItem",
+                "quantity": 50,
                 "img": "./assets/img/potion.png",
                 "value": 150
+            },
+            {
+                "name": "money",
+                "type": "consumable",
+                "category": "userItem",
+                "quantity": 500,
+                "img": "./assets/img/potion.png",
+                "value": 500
             }
         ],
         "fighters": [
