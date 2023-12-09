@@ -12,7 +12,6 @@ const Multiverse = ({ changeActivePage }) => {
     const [money, setMoney] = useState()
     useEffect(() => {
         if (user) {
-            console.log(user.objects)
             let newMoney = user.objects.filter((object) => {
                 return object.name === "money"
             })
