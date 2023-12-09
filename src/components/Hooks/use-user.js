@@ -22,8 +22,8 @@ const useUser = (origin) => {
             };
         });
     }
-    const levelUpFighter = (currentXP) => {
-        setUser((prevState) => {
+    const levelUpFighter = (currentXP, newLevel) => {
+        /*setUser((prevState) => {
             return {
                 ...prevState,
                 fighters: prevState.fighters.map((fighter) => {
@@ -37,7 +37,23 @@ const useUser = (origin) => {
                     return fighter;
                 }),
             };
-        });
+        });*/
+        if (user) {
+            user.fighters.forEach(fighter => {
+                if (fighter.active) {
+                    fighter.currentXP = currentXP
+                    fighter.level += 1
+                }
+            })
+            fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/user.json", {
+                method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user),
+            })
+
+        }
     };
     useEffect(() => {
         setUserFighter(() => {
@@ -85,7 +101,7 @@ const useUser = (origin) => {
         });
     }
     useEffect(() => {
-        fetch('https://react-http-d74bc-default-rtdb.firebaseio.com/user.json')
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/user.json')
             .then(response => response.json())
             .then(data => {
                 let activeArray = []
