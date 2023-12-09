@@ -2,8 +2,8 @@ import { useState } from "react";
 import useUser from "./use-user";
 const useBattleLogic = () => {
     const [turn, setTurn] = useState("user")
-    const { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter } = useUser("user")
-    const { userFighter: enemyFighter, restartUserFightersHP: restartEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
+    const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter } = useUser("user")
+    const { userFighter: enemyFighter, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
@@ -89,7 +89,7 @@ const useBattleLogic = () => {
             wait();
         }
     }
-    return { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter }
+    return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter, changeEnemyFighter }
 }
 
 export default useBattleLogic

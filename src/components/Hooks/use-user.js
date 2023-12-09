@@ -48,18 +48,6 @@ const useUser = (origin) => {
             return newUser
         })
     }
-    const restartUserFightersHP = () => {
-        setUser((prevState) => {
-            let newUser = { ...prevState }
-            newUser.fighters.forEach((fighter) => {
-                if (fighter.active) {
-                    fighter.currentHP = fighter.maxHP
-                }
-                return fighter
-            })
-            return newUser
-        })
-    }
     const attackUser = (attack) => {
         setUser((prevState) => {
             let newState = {
@@ -78,14 +66,14 @@ const useUser = (origin) => {
         });
     }
     useEffect(() => {
-        console.log('se ejecuta el fetch a la base')
         fetch('https://react-http-d74bc-default-rtdb.firebaseio.com/user.json')
             .then(response => response.json())
             .then(data => {
                 let activeArray = []
                 if (origin === "user") {
                     activeArray = [true, false, false, false]
-                } else {
+                }
+                if (origin === "enemy") {
                     let randomValue = Math.round(Math.random() * 3)
                     for (let i = 0; i < 4; i++) {
                         if (i === randomValue) {
@@ -105,7 +93,7 @@ const useUser = (origin) => {
     const changeUserFighter = (fighter) => {
         setUserFighter(fighter)
     }
-    return { user, changeUserFighter, userFighter, restartUserFightersHP, healUserFighter, attackUser, levelUpFighter }
+    return { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter }
 }
 
 export default useUser

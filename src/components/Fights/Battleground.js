@@ -7,7 +7,7 @@ import fightersLevelsModel from '../../model/fightersLevelsModel.js'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 
 const Battleground = ({ changeActivePage }) => {
-    const { turn, setTurn, enemyAI, userLogic, attack, restartUserFightersHP, restartEnemyFighter, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter } = useBattleLogic()
+    const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, levelUpFighter, changeEnemyFighter } = useBattleLogic()
     const [fightersLevels] = useState(fightersLevelsModel)
     const { battleEnded, endBattle } = useBattleState()
     const [showLevelUp, setShowLevelUp] = useState(false);
@@ -33,7 +33,7 @@ const Battleground = ({ changeActivePage }) => {
     useEffect(() => {
         if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
             let newCurrentXP = userFighter.currentXP + 100
-            fightersLevels.forEach((figtherLevel) => {
+            fightersLevelsModel.forEach((figtherLevel) => {
                 if (figtherLevel.fighterId === userFighter.fighterId && figtherLevel.level > userFighter.level && figtherLevel.minXp < newCurrentXP) {
                     levelUpFighter(newCurrentXP)
                     setShowLevelUp(true)
@@ -44,10 +44,7 @@ const Battleground = ({ changeActivePage }) => {
     const restartGame = () => {
         endBattle(null, false)
         setShowLevelUp(false)
-        setTurn("user")
-        setMenuActive(true)
-        restartUserFightersHP()
-        restartEnemyFighter()
+        changeEnemyFighter()
         changeActivePage(1)
     }
 

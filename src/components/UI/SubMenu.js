@@ -33,7 +33,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                 return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}>{x.name}<img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></li>
             }
             )}
-            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); changeFighter(x); console.log(x.name, userFighter) }}>{x.name}<img alt="fighter mini" src={x.imgFront} className={classes.miniImgMenu} /></li> })}
+            {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => { return <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); changeFighter(x); }}>{x.name}<img alt="fighter mini" src={x.imgFront} className={classes.miniImgMenu} /></li> })}
 
             <div className={classes.attack}></div>
         </ul>
