@@ -3,8 +3,15 @@ import Multiverse from "./Multiverse"
 import Battleground from "../Fights/Battleground"
 
 const Home = () => {
-
-    const [activePage, setActivePage] = useState(2)
+    const [activePage, setActivePage] = useState(() => {
+        if (process.env.NODE_ENV === 'production') {
+            // Código específico para el entorno de desarrollo
+            return 1
+        } else if (process.env.NODE_ENV === 'development') {
+            // Código específico para el entorno de producción
+            return 2
+        }
+    })
     const changeActivePage = (page) => {
         setActivePage(page)
     }

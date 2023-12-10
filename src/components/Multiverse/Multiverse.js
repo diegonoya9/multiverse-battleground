@@ -29,7 +29,7 @@ const Multiverse = ({ changeActivePage }) => {
         <div>
             {multiverseActivePage === "mainMenu" && user &&
                 <div>
-                    <ReactAudioPlayer src={musicFile} /*autoPlay*/ controls style={audioStyle} />
+                    <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
                     <h1 className={classes.h1}>Welcome {user.name}</h1>
                     <h2 className={classes.h2}>You have {money} pesos</h2>
                     <input type="submit" onClick={(e) => { changeActivePage(2); }} value={'Fight'} />
