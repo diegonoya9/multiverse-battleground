@@ -45,7 +45,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 let newState = { ...prevState }
                                 newState.active = true
                                 newState.inflictedOn = "user"
-                                newState.src = "./assets/img/aura.png"
+                                newState.src = "./assets/img/aura.gif"
                                 return newState
                             })
                             attackUser(action)
@@ -93,7 +93,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         let newState = { ...prevState }
                         newState.active = true
                         newState.inflictedOn = "enemy"
-                        newState.src = "./assets/img/aura.png"
+                        newState.src = "./assets/img/aura.gif"
                         return newState
                     })
                     attackEnemy(action)

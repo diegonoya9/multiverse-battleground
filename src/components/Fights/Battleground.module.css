@@ -46,6 +46,12 @@ h1 {
 
 /* Aplica la animación al elemento de la imagen */
 .attack-animation {
+    position: absolute;
+    bottom: 15vh;
+    left: 20vw;
+    width: 20%;
+    height: auto;
+
     animation-name: attack-move;
     animation-duration: 1s;
     /* Duración de la animación */
@@ -82,6 +88,11 @@ h1 {
 
 /* Aplica la animación al elemento de la imagen del ataque enemigo */
 .enemy-attack-animation {
+    position: absolute;
+    top: 30vh;
+    right: 20vw;
+    width: 20%;
+    height: auto;
     animation-name: enemy-attack-move;
     animation-duration: 1s;
     /* Duración de la animación */
@@ -104,10 +115,10 @@ h1 {
 
 .enemyPowerUp {
     position: absolute;
-    height: 150px;
-    width: 150px;
-    top: 120px;
-    right: 20px;
+    height: 200px;
+    width: 200px;
+    top: 15vh;
+    right: -2vw;
     z-index: 9999;
 }
 
