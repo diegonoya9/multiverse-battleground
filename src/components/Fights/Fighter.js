@@ -1,6 +1,7 @@
 import classes from './Fighter.module.css'
 import LifeBar from '../UI/LifeBar'
 
+
 const Fighter = ({ user, fighter }) => {
     return (
         <div className={user === "user" ? `${classes.userFighterWrapper} ${classes.fighterWrapper}` : `${classes.enemyFighterWrapper} ${classes.fighterWrapper}`}>

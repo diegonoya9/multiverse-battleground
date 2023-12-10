@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react"
+import { memo, useState, useEffect } from "react"
 import FightersPage from "./FightersPage.js"
 import useUser from "../Hooks/use-user.js"
 import classes from './Multiverse.module.css'
 
+import ReactAudioPlayer from 'react-audio-player';
+import musicFile from "../../assets/sounds/music/FourHorsemen.WAV"
+
 const Multiverse = ({ changeActivePage }) => {
+    const audioStyle = {
+        display: 'none', // Oculta el reproductor de audio visualmente
+    };
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
     const changeMultiverseActivePage = (activePage) => {
         setMultiverseActivePage(activePage)
@@ -22,6 +28,7 @@ const Multiverse = ({ changeActivePage }) => {
         <div>
             {multiverseActivePage === "mainMenu" && user &&
                 <div>
+                    <ReactAudioPlayer src={musicFile} /*autoPlay*/ controls style={audioStyle} />
                     <h1 className={classes.h1}>Welcome {user.name}</h1>
                     <h2 className={classes.h2}>You have {money} pesos</h2>
                     <input type="submit" onClick={(e) => { changeActivePage(2); }} value={'Fight'} />
@@ -34,4 +41,4 @@ const Multiverse = ({ changeActivePage }) => {
         </div>
     )
 }
-export default Multiverse
+export default memo(Multiverse)
