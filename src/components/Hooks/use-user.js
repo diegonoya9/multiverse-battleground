@@ -38,7 +38,15 @@ const useUser = (origin) => {
                     }
                 })
             }
-            fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/user.json", {
+            let activeUser
+            if (process.env.NODE_ENV === 'production') {
+                // Código específico para el entorno de desarrollo
+                activeUser = 2
+            } else if (process.env.NODE_ENV === 'development') {
+                // Código específico para el entorno de producción
+                activeUser = 1
+            }
+            fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                 method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                 headers: {
                     'Content-Type': 'application/json',
