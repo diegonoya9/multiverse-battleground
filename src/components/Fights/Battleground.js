@@ -3,8 +3,13 @@ import Fighter from './Fighter'
 import FightMenu from '../UI/FightMenu'
 import { memo, useEffect, useState } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
+import ReactAudioPlayer from 'react-audio-player';
+import musicFile from '../../assets/sounds/music/master.mp3';
 
 const Battleground = ({ changeActivePage }) => {
+    const audioStyle = {
+        display: 'none', // Oculta el reproductor de audio visualmente
+    };
     const [showLevelUp, setShowLevelUp] = useState(false);
     const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
@@ -36,6 +41,7 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div className={classes.battleground}>
+            <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {showLevelUp && <h1>Tu {userFighter.name} subió de nivel</h1>}
             {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
