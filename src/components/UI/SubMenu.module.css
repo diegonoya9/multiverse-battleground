@@ -23,7 +23,7 @@
     height: 25px;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 765px) {
 
     .options {
         font-size: 10px;
