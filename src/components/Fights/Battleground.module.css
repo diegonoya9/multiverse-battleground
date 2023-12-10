@@ -106,19 +106,19 @@ h1 {
 
 .userPowerUp {
     position: absolute;
-    height: 200px;
-    width: 200px;
-    bottom: 0px;
-    left: 0px;
+    height: 250px;
+    width: 225px;
+    bottom: -15px;
+    left: -45px;
     z-index: 9999;
 }
 
 .enemyPowerUp {
     position: absolute;
-    height: 200px;
-    width: 200px;
-    top: 15vh;
-    right: -2vw;
+    height: 250px;
+    width: 225px;
+    top: 45px;
+    right: -5px;
     z-index: 9999;
 }
 

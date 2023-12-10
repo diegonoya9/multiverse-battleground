@@ -1,13 +1,23 @@
 .fighterImage {
     width: auto;
     /* La imagen ocupará el 100% del ancho del contenedor */
-    height: 60%;
+    height: 115px;
     /* Mantiene la proporción de aspecto original */
     display: block;
     /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
-    max-width: 80%;
+    max-width: 100%;
     /* transform: scaleX(-1) */
     /*Da vuelta la imagen del luchador, pero hay que buscar imagenes que miren para el mismo lado*/
+}
+
+.userFighter {
+    display: flex;
+    justify-content: center;
+}
+
+.enemyFighter {
+    display: flex;
+    justify-content: center;
 }
 
 .fighterWrapper {
@@ -19,13 +29,13 @@
 }
 
 .userFighterWrapper {
-    bottom: 2rem;
-    left: 2rem;
+    bottom: 55px;
+    left: 15px;
 }
 
 .enemyFighterWrapper {
-    top: 2rem;
-    right: 1rem;
+    top: 25px;
+    right: 55px;
 }
 
 @media(max-height: 765px) {
