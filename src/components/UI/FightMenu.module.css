@@ -32,11 +32,11 @@
 
 @media (max-width: 425px) {
     .fightMenu {
-        width: 40%;
-        height: 30%;
+        width: 50%;
+        height: 20%;
     }
 
     .options {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
