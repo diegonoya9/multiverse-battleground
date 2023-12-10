@@ -299,26 +299,65 @@
             {
                 "category": "battleItem",
                 "img": "./assets/img/potion.png",
-                "name": "potion",
+                "name": "Potion",
                 "quantity": 50,
                 "type": "consumable",
-                "value": 50
+                "actions": [
+                    {
+                        "field": "currentHP",
+                        "inflictedOn": "user",
+                        "value": 50
+                    }
+                ]
             },
             {
                 "category": "battleItem",
                 "img": "./assets/img/potion.png",
-                "name": "maxPotion",
+                "name": "Super Potion",
                 "quantity": 50,
                 "type": "consumable",
-                "value": 150
+                "actions": [
+                    {
+                        "field": "currentHP",
+                        "inflictedOn": "user",
+                        "value": 150
+                    }
+                ]
+            },
+            {
+                "category": "battleItem",
+                "img": "./assets/img/milanesa.png",
+                "name": "Milanesa",
+                "quantity": 50,
+                "type": "consumable",
+                "actions": [
+                    {
+                        "field": "defense",
+                        "inflictedOn": "user",
+                        "value": 150
+                    }
+                ]
+            },
+            {
+                "category": "battleItem",
+                "img": "./assets/img/hardBoiledEgg.png",
+                "name": "Hard Boiled Egg",
+                "quantity": 50,
+                "type": "consumable",
+                "actions": [
+                    {
+                        "field": "attack",
+                        "inflictedOn": "user",
+                        "value": 100
+                    }
+                ]
             },
             {
                 "category": "userItem",
                 "img": "./assets/img/potion.png",
                 "name": "money",
                 "quantity": 500,
-                "type": "consumable",
-                "value": 500
+                "type": "consumable"
             }
         ]
     },

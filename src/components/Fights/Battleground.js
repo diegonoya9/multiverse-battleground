@@ -31,7 +31,14 @@ const Battleground = ({ changeActivePage }) => {
             endBattle("enemy", true)
         }
     }, [userFighter, enemyFighter])
+    useEffect(() => {
+        if (user) {
+            // Inicia la reproducción del audio después de que el componente se monta
+            const audio = document.getElementById('audioPlayer');
+            audio.play();
 
+        }
+    }, [user]);
     const restartGame = () => {
         endBattle(null, false)
         setShowLevelUp(false)
@@ -41,7 +48,7 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div className={classes.battleground}>
-            <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+            <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
             {showLevelUp && <h1>Tu {userFighter.name} subió de nivel</h1>}
             {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}

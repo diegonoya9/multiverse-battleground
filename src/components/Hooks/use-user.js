@@ -64,12 +64,15 @@ const useUser = (origin) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
                 if (fighter.active) {
-                    const cure = fighter.currentHP += option.value
-                    if (cure && cure <= fighter.maxHP) {
-
-                        fighter.currentHP += option.value
-                    }
-                    fighter.currentHP = fighter.maxHP
+                    option.actions.forEach((action) => {
+                        let result
+                        if (action.field === "currentHP" && ((fighter.currentHP + action.value) > fighter.maxHP)) {
+                            result = fighter.maxHP
+                        } else {
+                            result = Math.ceil(fighter[action.field] + action.value)
+                        }
+                        fighter[action.field] = result
+                    })
                 }
                 return fighter
             })
