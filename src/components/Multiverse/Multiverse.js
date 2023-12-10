@@ -5,7 +5,7 @@ import useUser from "../Hooks/use-user.js"
 import classes from './Multiverse.module.css'
 
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/FourHorsemen.WAV"
+import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
 
 const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {

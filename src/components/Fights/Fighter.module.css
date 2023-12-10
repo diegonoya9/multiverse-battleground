@@ -27,7 +27,7 @@
     right: 2rem;
 }
 
-@media(max-height: 500px) {
+@media(max-height: 765px) {
     .fighterWrapper {
         width: 100px;
     }
