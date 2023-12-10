@@ -3,14 +3,14 @@ import classes from "./FightersPage.module.css"
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
     return (<div>
         <button value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
-        <div className={classes.container}>
+        <div className={classes.container} >
             {user &&
                 user.fighters.map((fighter) => {
                     return (
                         <div className={classes.fighterContainer} key={fighter.id}>
                             <span className={classes.fighterName}>{fighter.name}</span>
                             <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
-                            <div className={classes.divStats} >
+                            <div className={classes.divStats} key={`${fighter.id}stats`}>
                                 <span className={classes.spanStats}>LEVEL:{fighter.level}</span>
                                 <span className={classes.spanStats}>MAX HP:{fighter.maxHP}</span>
                                 <span className={classes.spanStats}>CURRENT XP:{fighter.currentXP}</span>

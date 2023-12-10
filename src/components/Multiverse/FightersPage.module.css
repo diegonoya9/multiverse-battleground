@@ -6,7 +6,7 @@
 
 .fighterContainer {
     width: 45%;
-    height: 300px;
+    height: auto;
     color: black;
     border: 2px solid black;
     display: flex;
@@ -14,24 +14,28 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
+    max-height: 50%;
+    margin-top: 3rem;
 }
 
 .fighterName {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     align-self: auto;
+    font-weight: bold;
     /* Ajusta según sea necesario */
 }
 
 .fighterImg {
     width: auto;
     height: auto;
-    max-height: 65%;
+    max-height: 45%;
 }
 
 .divStats {
     display: flex;
     flex-wrap: wrap;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .spanStats {
