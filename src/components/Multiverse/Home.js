@@ -17,7 +17,6 @@ const Home = () => {
     }
     return (
         <div>
-
             {activePage && activePage === 1 && <Multiverse changeActivePage={changeActivePage}></Multiverse>}
             {activePage && activePage === 2 && <Battleground changeActivePage={changeActivePage}></Battleground>}
         </div>

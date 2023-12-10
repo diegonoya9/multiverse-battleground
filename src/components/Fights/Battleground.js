@@ -31,14 +31,6 @@ const Battleground = ({ changeActivePage }) => {
             endBattle("enemy", true)
         }
     }, [userFighter, enemyFighter])
-    useEffect(() => {
-        if (user) {
-            // Inicia la reproducción del audio después de que el componente se monta
-            const audio = document.getElementById('audioPlayer');
-            audio.play();
-
-        }
-    }, [user]);
     const restartGame = () => {
         endBattle(null, false)
         setShowLevelUp(false)

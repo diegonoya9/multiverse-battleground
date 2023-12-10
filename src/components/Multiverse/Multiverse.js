@@ -25,11 +25,17 @@ const Multiverse = ({ changeActivePage }) => {
             setMoney(newMoney[0].quantity)
         }
     }, [user])
+    useEffect(() => {
+        const audio = document.getElementById('audioPlayer');
+        if (audio) {
+            audio.play()
+        }
+    }, [])
     return (
         <div>
             {multiverseActivePage === "mainMenu" && user &&
                 <div>
-                    <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+                    <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
                     <h1 className={classes.h1}>Welcome {user.name}</h1>
                     <h2 className={classes.h2}>You have {money} pesos</h2>
                     <input type="submit" onClick={(e) => { changeActivePage(2); }} value={'Fight'} />
