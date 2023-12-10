@@ -111,7 +111,15 @@ const useUser = (origin) => {
         });
     }
     useEffect(() => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/user.json')
+        let activeUser
+        if (process.env.NODE_ENV === 'production') {
+            // Código específico para el entorno de desarrollo
+            activeUser = 2
+        } else if (process.env.NODE_ENV === 'development') {
+            // Código específico para el entorno de producción
+            activeUser = 1
+        }
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
             .then(response => response.json())
             .then(data => {
                 let activeArray = []

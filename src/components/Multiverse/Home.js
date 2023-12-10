@@ -13,15 +13,7 @@ const Home = () => {
         console.log('Adventure started!');
         setShowModal(false);
     };
-    const [activePage, setActivePage] = useState(() => {
-        if (process.env.NODE_ENV === 'production') {
-            // Código específico para el entorno de desarrollo
-            return 1
-        } else if (process.env.NODE_ENV === 'development') {
-            // Código específico para el entorno de producción
-            return 1
-        }
-    })
+    const [activePage, setActivePage] = useState(1)
     const changeActivePage = (page) => {
         setActivePage(page)
     }
