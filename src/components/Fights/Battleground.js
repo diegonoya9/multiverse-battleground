@@ -91,19 +91,21 @@ const Battleground = ({ changeActivePage }) => {
     return (
         <div className={classes.battleground}>
             <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
+            {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes.enemyAttack} src={attack.src} />}
+            {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes.userAttack} src={attack.src} />}
             {showLevelUp && <h1>Tu {userFighter.name} subió de nivel</h1>}
-            {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
-            {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
-            {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
-            {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             {battleEnded.finished && <div>
                 {battleEnded.winner === "user" && user && <h1>{user.name} WON</h1>}
                 {battleEnded.winner === "enemy" && <h1>Enemy WON</h1>}
                 {battleEnded.winner === "ran" && user && <h1>{user.name} ran away</h1>}
                 <input type="button" onClick={() => restartGame()} value="Main Menu" />
             </div>}
-            {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user"></Fighter>}
-            {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy"></Fighter>}
+            {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user">
+                {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
+            </Fighter>}
+            {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy">
+                {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
+            </Fighter>}
             {!battleEnded.finished && menuActive && <FightMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
         </div>

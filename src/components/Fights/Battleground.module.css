@@ -46,11 +46,10 @@ h1 {
 
 /* Aplica la animación al elemento de la imagen */
 .attack-animation {
+    height: 15%;
     position: absolute;
-    bottom: 15vh;
-    left: 20vw;
-    width: 20%;
-    height: auto;
+    bottom: 25%;
+    left: 25%;
 
     animation-name: attack-move;
     animation-duration: 1s;
@@ -104,21 +103,41 @@ h1 {
     /* El elemento conservará los estilos del último frame después de la animación */
 }
 
+.enemyAttack {
+    height: 10%;
+    position: absolute;
+    top: 30%;
+    right: 30%;
+}
+
+.userAttack {
+    height: 15%;
+    position: absolute;
+    bottom: 25%;
+    left: 25%;
+}
+
 .userPowerUp {
     position: absolute;
-    height: 250px;
-    width: 225px;
-    bottom: -15px;
-    left: -45px;
+    width: auto;
+    margin-top: -91px;
+    /* La imagen ocupará el 100% del ancho del contenedor */
+    height: 275px;
+    /* Mantiene la proporción de aspecto original */
+    display: block;
+    /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
     z-index: 9999;
 }
 
 .enemyPowerUp {
     position: absolute;
-    height: 250px;
-    width: 225px;
-    top: 45px;
-    right: -5px;
+    width: auto;
+    margin-top: -91px;
+    /* La imagen ocupará el 100% del ancho del contenedor */
+    height: 275px;
+    /* Mantiene la proporción de aspecto original */
+    display: block;
+    /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
     z-index: 9999;
 }
 
