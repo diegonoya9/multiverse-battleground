@@ -144,6 +144,19 @@ const useUser = (origin) => {
                             }
                         }
                     }
+                    if (origin === "enemy") {
+                        let totalLevel = 0
+                        let totalFighters = 0
+                        data.fighters.forEach((fighter) => {
+                            totalFighters++
+                            totalLevel += fighter.level
+                        })
+                        console.log(totalFighters)
+                        let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
+                        data.fighters.forEach((fighter) => {
+                            fighter.level = averageLevel
+                        })
+                    }
                     let newFighters = data.fighters.map((fighter, index) => {
                         fightersLevels.forEach((fighterLevel) => {
                             if (fighterLevel.fighterId === fighter.fighterId && fighterLevel.level === fighter.level) {

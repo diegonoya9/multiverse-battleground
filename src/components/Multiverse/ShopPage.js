@@ -76,7 +76,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         } else {
             console.log('not enough money')
         }
-        //console.log(user)
     }
     useEffect(() => {
         let activeUser
