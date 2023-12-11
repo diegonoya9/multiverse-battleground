@@ -49,7 +49,16 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 let newObject = objects.filter((object) => {
                     return object.name === id
                 })
-                newUser.objects.push(newObject[0])
+                let addedQuantity = false
+                newUser.objects.forEach((object) => {
+                    if (object.name === newObject[0].name) {
+                        object.quantity++
+                        addedQuantity = true
+                    }
+                })
+                if (!addedQuantity) {
+                    newUser.objects.push(newObject[0])
+                }
                 newUser.objects.forEach((object) => {
                     if (object.name === "money") {
                         object.quantity = newMoney[0].quantity
