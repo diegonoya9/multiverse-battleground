@@ -104,7 +104,9 @@ const useBattleLogic = (setShowLevelUp) => {
     }
     useEffect(() => {
         if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
-            let newCurrentXP = userFighter.currentXP + 100
+            console.log(userFighter.currentXP)
+            let newCurrentXP = userFighter.currentXP + (enemyFighter.level * 100)
+            console.log(newCurrentXP)
             let newLevel = userFighter.level
             fightersLevels.forEach((fighterLevel) => {
                 if (fighterLevel.fighterId === userFighter.fighterId && fighterLevel.level > userFighter.level && fighterLevel.minXp < newCurrentXP) {
