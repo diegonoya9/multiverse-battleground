@@ -1,7 +1,7 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState } from "react";
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
+import musicFile from "../../assets/sounds/music/AndWeDieYoung.WAV"
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const [fighters, setFighters] = useState()
@@ -114,7 +114,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then((data) => { setFighters(data) })
     }, [])
     return (<div>
-        <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+        <ReactAudioPlayer src={musicFile} /*autoPlay*/ controls style={audioStyle} />
         {user && <h1 className={classes.h1}>Current money:{user.objects.map((object) => {
             if (object.name === "money") {
                 return object.quantity
