@@ -24,22 +24,34 @@ h1 {
 /* Define la animación */
 @keyframes attack-move {
     0% {
-        transform: translateX(0) translateY(0) scale(0.4);
+        bottom: 25%;
+        left: 25%;
         opacity: 1;
     }
 
+    22% {
+        opacity: 0;
+    }
+
     33% {
-        transform: translateX(50px) translateY(-50px) scale(0.3);
-        opacity: 0.7;
+        bottom: 35%;
+        left: 35%;
+        opacity: 1;
+    }
+
+    44% {
+        opacity: 0;
     }
 
     66% {
-        transform: translateX(100px) translateY(-100px) scale(0.2);
-        opacity: 0.4;
+        bottom: 55%;
+        left: 55%;
+        opacity: 1;
     }
 
     100% {
-        transform: translateX(150px) translateY(-150px) scale(0.1);
+        bottom: 55%;
+        left: 55%;
         opacity: 0;
     }
 }
@@ -48,9 +60,6 @@ h1 {
 .attack-animation {
     height: 15%;
     position: absolute;
-    bottom: 25%;
-    left: 25%;
-
     animation-name: attack-move;
     animation-duration: 1s;
     /* Duración de la animación */
@@ -65,33 +74,42 @@ h1 {
 /* Define la animación inversa */
 @keyframes enemy-attack-move {
     0% {
-        transform: translateX(150px) translateY(-150px) scale(0.1);
+        bottom: 55%;
+        left: 55%;
+        opacity: 1;
+    }
+
+    22% {
         opacity: 0;
     }
 
     33% {
-        transform: translateX(100px) translateY(-100px) scale(0.2);
-        opacity: 0.4;
+        bottom: 55%;
+        left: 55%;
+        opacity: 1;
+    }
+
+    44% {
+        opacity: 0;
     }
 
     66% {
-        transform: translateX(50px) translateY(-50px) scale(0.4);
-        opacity: 0.7;
+        bottom: 35%;
+        left: 35%;
+        opacity: 1;
     }
 
     100% {
-        transform: translateX(0) translateY(0) scale(0.5);
-        opacity: 1;
+        bottom: 25%;
+        left: 25%;
+        opacity: 0;
     }
 }
 
 /* Aplica la animación al elemento de la imagen del ataque enemigo */
 .enemy-attack-animation {
+    height: 15%;
     position: absolute;
-    top: 30vh;
-    right: 20vw;
-    width: 20%;
-    height: auto;
     animation-name: enemy-attack-move;
     animation-duration: 1s;
     /* Duración de la animación */

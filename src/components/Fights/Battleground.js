@@ -91,8 +91,8 @@ const Battleground = ({ changeActivePage }) => {
     return (
         <div className={classes.battleground}>
             <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
-            {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes.enemyAttack} src={attack.src} />}
-            {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes.userAttack} src={attack.src} />}
+            {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {showLevelUp && <h1>Tu {userFighter.name} subió de nivel</h1>}
             {battleEnded.finished && <div>
                 {battleEnded.winner === "user" && user && <h1>{user.name} WON</h1>}
