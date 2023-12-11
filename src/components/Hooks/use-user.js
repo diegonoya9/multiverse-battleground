@@ -159,7 +159,7 @@ const useUser = (origin) => {
                             totalLevel += fighter.level
                         })
                         //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
-                        let averageLevel = Math.ceil(Math.max((totalLevel / totalFighters), 100))
+                        let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
                         data.fighters.forEach((fighter) => {
                             fighter.level = averageLevel
                         })
