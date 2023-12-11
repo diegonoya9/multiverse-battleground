@@ -37,6 +37,59 @@ const Battleground = ({ changeActivePage }) => {
         changeEnemyFighter()
         changeActivePage(1)
     }
+    const calculateXp = (level) => {
+        // Ajuste para que al llegar al nivel 99 se necesiten 5,000,000 de experiencia
+        if (level <= 99) {
+            return level * (level * 100);
+        }
+
+        // Resto de los niveles
+        return level * 5000;
+    };
+    const generateLevels = () => {
+        let levels = [];
+        for (let fighterId = 1; fighterId <= 4; fighterId++) {
+            for (let level = 1; level <= 100; level++) {
+                const xp = calculateXp(level);
+                let attack = Math.floor(Math.random() * 25) + level * 5 + 10;
+                let specialAttack = Math.floor(Math.random() * 30) + level * 5 + 10;
+                let defense = Math.floor(Math.random() * 52) + level * 5 + 10;
+                let specialDefense = Math.floor(Math.random() * 40) + level * 5 + 10;
+                let maxHp = Math.floor(Math.random() * 400) + level * 100 + 100;
+                let accuracy = Math.floor(Math.random() * 40) + level + 10;
+
+
+                // Adjust max values for level 100
+                attack += 90 * (level - 1);
+                specialAttack += 90 * (level - 1);
+                defense += 90 * (level - 1);
+                specialDefense += 90 * (level - 1);
+                maxHp += 900 * (level - 1);
+
+
+                const levelData = {
+                    fighterId,
+                    level,
+                    minXp: xp,
+                    attack,
+                    specialAttack,
+                    defense,
+                    specialDefense,
+                    maxHp,
+                    accuracy,
+                };
+
+                levels.push(levelData);
+            }
+        }
+        console.log(levels)
+
+        console.log('Datos guardados en level.json');
+    };
+    useEffect(() => {
+        // Llamada a la función para generar y guardar los niveles
+        generateLevels();
+    }, []);
 
     return (
         <div className={classes.battleground}>
