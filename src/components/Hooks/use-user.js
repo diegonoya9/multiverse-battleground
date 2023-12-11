@@ -138,7 +138,7 @@ const useUser = (origin) => {
                         activeArray = [true, false, false, false]
                     }
                     if (origin === "enemy") {
-                        let randomValue = Math.round(Math.random() * data.fighters.length)
+                        let randomValue = Math.round(Math.random() * (data.fighters.length - 1))
                         for (let i = 0; i < data.fighters.length; i++) {
                             if (data.fighters.length > 1) {
                                 if (i === randomValue) {
