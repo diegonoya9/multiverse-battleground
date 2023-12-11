@@ -8,9 +8,9 @@ const Home = () => {
     const [showModal, setShowModal] = useState(true);
 
     const handleStartAdventure = () => {
-        console.log(showModal)
+        //console.log(showModal)
         // Aquí puedes añadir lógica para iniciar la aventura
-        console.log('Adventure started!');
+        //console.log('Adventure started!');
         setShowModal(false);
     };
     const [activePage, setActivePage] = useState(1)

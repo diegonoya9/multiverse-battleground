@@ -3,17 +3,17 @@
         "1": {
             "fighters": [
                 {
-                    "accuracy": 65,
+                    "extraAccuracy": 65,
                     "active": true,
-                    "attack": 100,
+                    "extraAttack": 100,
                     "currentHP": 1,
                     "currentXP": 601,
-                    "defense": 50,
+                    "extraDefense": 50,
                     "fighterId": 1,
                     "imgBack": "./assets/img/charizard-back.png",
                     "imgFront": "./assets/img/charizard-front.gif",
                     "level": 1,
-                    "maxHP": 500,
+                    "extraMaxHP": 500,
                     "moves": [
                         {
                             "MP": 20,
@@ -69,21 +69,21 @@
                         }
                     ],
                     "name": "Charizard",
-                    "specialAttack": 150,
-                    "specialDefense": 30
+                    "extraSpecialAttack": 150,
+                    "extraSpecialDefense": 30
                 },
                 {
-                    "accuracy": 95,
+                    "extraAccuracy": 95,
                     "active": false,
-                    "attack": 150,
+                    "extraAttack": 150,
                     "currentHP": 600,
-                    "defense": 100,
+                    "extraDefense": 100,
                     "fighterId": 2,
                     "currentXP": 1,
                     "imgBack": "./assets/img/goku.png",
                     "imgFront": "./assets/img/goku-front.png",
                     "level": 1,
-                    "maxHP": 600,
+                    "extraMaxHP": 600,
                     "moves": [
                         {
                             "MP": 20,
@@ -139,21 +139,21 @@
                         }
                     ],
                     "name": "Goku",
-                    "specialAttack": 250,
-                    "specialDefense": 250
+                    "extraSpecialAttack": 250,
+                    "extraSpecialDefense": 250
                 },
                 {
-                    "accuracy": 100,
+                    "extraAccuracy": 100,
                     "active": false,
-                    "attack": 100,
+                    "extraAttack": 100,
                     "currentHP": 500,
                     "currentXP": 1,
-                    "defense": 50,
+                    "extraDefense": 50,
                     "fighterId": 3,
                     "imgBack": "./assets/img/mew-back.png",
                     "imgFront": "./assets/img/mew-front.png",
                     "level": 1,
-                    "maxHP": 500,
+                    "extraMaxHP": 500,
                     "moves": [
                         {
                             "MP": 20,
@@ -215,8 +215,8 @@
                         }
                     ],
                     "name": "Mew",
-                    "specialAttack": 350,
-                    "specialDefense": 500
+                    "extraSpecialAttack": 350,
+                    "extraSpecialDefense": 500
                 },
                 {
                     "accuracy": 100,
@@ -365,17 +365,17 @@
         "2": {
             "fighters": [
                 {
-                    "accuracy": 65,
+                    "extraAccuracy": 65,
                     "active": true,
-                    "attack": 100,
-                    "currentHP": 1,
+                    "extraAttack": 100,
+                    "extraCurrentHP": 1,
                     "currentXP": 601,
-                    "defense": 50,
+                    "extraDefense": 50,
                     "fighterId": 1,
                     "imgBack": "./assets/img/charizard-back.png",
                     "imgFront": "./assets/img/charizard-front.gif",
                     "level": 1,
-                    "maxHP": 500,
+                    "extraMaxHP": 500,
                     "moves": [
                         {
                             "MP": 20,
@@ -431,8 +431,8 @@
                         }
                     ],
                     "name": "Charizard",
-                    "specialAttack": 150,
-                    "specialDefense": 30
+                    "extraSpecialAttack": 150,
+                    "extraSpecialDefense": 30
                 }
             ],
             "name": "Ameo",

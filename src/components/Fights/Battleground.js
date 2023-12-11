@@ -82,9 +82,6 @@ const Battleground = ({ changeActivePage }) => {
                 levels.push(levelData);
             }
         }
-        console.log(levels)
-
-        console.log('Datos guardados en level.json');
     };
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles

@@ -13,7 +13,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         let newMoney = user.objects.filter((object) => {
             return object.name === "money"
         })
-        console.log(newMoney)
+        // console.log(newMoney)
         if (newMoney[0].quantity >= price) {
             newMoney[0].quantity -= price;
             let newUser = user
@@ -76,7 +76,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         } else {
             console.log('not enough money')
         }
-        console.log(user)
+        //console.log(user)
     }
     useEffect(() => {
         let activeUser
@@ -90,7 +90,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setUser(data)
             })
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/gameObjects.json')

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
     const [user, setUser] = useState()
+    const [fightersLevels, setFightersLevels] = useState()
+    const [addedBaseStats, setAddedBaseStats] = useState(false)
     const reduceFighterMP = (attack) => {
         setUser((prevState) => {
             let newUser = { ...prevState }
@@ -57,15 +59,12 @@ const useUser = (origin) => {
         }
     };
     useEffect(() => {
-        setUserFighter(() => {
-            let newFighter = {}
-            if (user) {
-                newFighter = user.fighters.filter((fighter) => {
-                    return fighter.active
-                })
-                return newFighter[0]
-            }
-        })
+        if (user && fightersLevels) {
+            let newFighter = user.fighters.filter((fighter) => {
+                return fighter.active
+            })
+            setUserFighter(newFighter[0])
+        }
     }, [user])
     const healUserFighter = (option) => {
         setUser((prevState) => {
@@ -102,9 +101,9 @@ const useUser = (origin) => {
                     if (fighter.active) {
                         if (attack.field === "currentHP") {
                             if (attack.attackType === "normal") {
-                                newValue.value = Math.min(attack.value + (0.5 * fighter.defense), attack.value * 0.5)
+                                newValue.value = Math.round(Math.min(attack.value + (0.5 * fighter.defense), attack.value * 0.5))
                             } else {
-                                newValue.value = Math.min(attack.value + (0.5 * fighter.specialDefense), attack.value * 0.5)
+                                newValue.value = Math.round(Math.min(attack.value + (0.5 * fighter.specialDefense), attack.value * 0.5))
                             }
                         }
                         return {
@@ -119,39 +118,63 @@ const useUser = (origin) => {
         });
     }
     useEffect(() => {
-        let activeUser
-        if (process.env.NODE_ENV === 'production') {
-            // Código específico para el entorno de desarrollo
-            activeUser = 2
-        } else if (process.env.NODE_ENV === 'development') {
-            // Código específico para el entorno de producción
-            activeUser = 1
-        }
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
-            .then(response => response.json())
-            .then(data => {
-                let activeArray = []
-                if (origin === "user") {
-                    activeArray = [true, false, false, false]
-                }
-                if (origin === "enemy") {
-                    let randomValue = Math.round(Math.random() * 3)
-                    for (let i = 0; i < 4; i++) {
-                        if (i === randomValue) {
-                            activeArray.push(true)
-                        } else {
-                            activeArray.push(false)
+        if (fightersLevels) {
+            let activeUser
+            if (process.env.NODE_ENV === 'production') {
+                // Código específico para el entorno de desarrollo
+                activeUser = 2
+            } else if (process.env.NODE_ENV === 'development') {
+                // Código específico para el entorno de producción
+                activeUser = 1
+            }
+            fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+                .then(response => response.json())
+                .then(data => {
+                    let activeArray = []
+                    if (origin === "user") {
+                        activeArray = [true, false, false, false]
+                    }
+                    if (origin === "enemy") {
+                        let randomValue = Math.round(Math.random() * 3)
+                        for (let i = 0; i < 4; i++) {
+                            if (i === randomValue) {
+                                activeArray.push(true)
+                            } else {
+                                activeArray.push(false)
+                            }
                         }
                     }
-                }
-                data.fighters.forEach((fighter, index) => {
-                    fighter.active = activeArray[index]
-                    fighter.currentHP = fighter.maxHP
-                    fighter.moves.forEach((move) => {
-                        move.currentMP = move.MP
+                    let newFighters = data.fighters.map((fighter, index) => {
+                        fightersLevels.forEach((fighterLevel) => {
+                            if (fighterLevel.fighterId === fighter.fighterId && fighterLevel.level === fighter.level) {
+                                fighter = {
+                                    ...fighter,
+                                    attack: fighterLevel.attack,
+                                    specialAttack: fighterLevel.specialAttack,
+                                    specialDefense: fighterLevel.specialDefense,
+                                    defense: fighterLevel.defense,
+                                    maxHP: fighterLevel.maxHp,
+                                    currentHP: fighterLevel.maxHp
+                                }
+                            }
+                        })
+                        fighter.active = activeArray[index]
+                        //fighter.currentHP = fighter.maxHP
+                        fighter.moves.forEach((move) => {
+                            move.currentMP = move.MP
+                        })
+                        return fighter
                     })
+                    data.fighters = newFighters
+                    setUser(data)
                 })
-                setUser(data)
+        }
+    }, [fightersLevels])
+    useEffect(() => {
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fightersLevels.json')
+            .then(response => response.json())
+            .then(data => {
+                setFightersLevels(data)
             })
     }, [])
 
