@@ -4,7 +4,7 @@ import ObjectsPage from "./ObjectsPage.js"
 import classes from './Multiverse.module.css'
 import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
+import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 
 const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
