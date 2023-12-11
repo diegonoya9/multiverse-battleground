@@ -47,7 +47,52 @@ const Multiverse = ({ changeActivePage }) => {
             .then(data => { setUser(data) })
     }, [multiverseActivePage])
     return (
-        <div>
+        <div className={classes.container}>
+            {multiverseActivePage === 'mainMenu' && user && (
+                <div className={`${classes.mainMenu} ${classes.container}`}>
+                    <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
+                    <h1 className={classes.h1}>Welcome {user.name}</h1>
+                    <h2 className={classes.h2}>You have {money} pesos</h2>
+                    <input
+                        type="submit"
+                        onClick={(e) => {
+                            changeActivePage(2);
+                        }}
+                        className={`${classes.fightButton} ${classes.menuButton}`}
+                        value={'Fight'}
+                    />
+                    <input
+                        type="submit"
+                        onClick={(e) => {
+                            changeMultiverseActivePage('fighters');
+                        }}
+                        className={`${classes.fightersButton} ${classes.menuButton}`}
+                        value={'Fighters'}
+                    />
+                    <input
+                        type="submit"
+                        onClick={(e) => {
+                            changeMultiverseActivePage('bag');
+                        }}
+                        className={`${classes.bagButton} ${classes.menuButton}`}
+                        value={'Bag'}
+                    />
+                    <input
+                        type="submit"
+                        onClick={(e) => {
+                            changeMultiverseActivePage('shop');
+                        }}
+                        className={`${classes.shopButton} ${classes.menuButton}`}
+                        value={'Shop'}
+                    />
+                </div>
+            )}
+            {multiverseActivePage === "fighters" && <FightersPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
+            {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
+            {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
+        </div>
+
+        /*<div>
             {multiverseActivePage === "mainMenu" && user &&
                 <div>
                     <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
@@ -62,7 +107,7 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "fighters" && <FightersPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
-        </div>
+        </div>*/
     )
 }
 export default memo(Multiverse)
