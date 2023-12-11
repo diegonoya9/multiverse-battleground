@@ -127,6 +127,9 @@ const useUser = (origin) => {
                 // Código específico para el entorno de producción
                 activeUser = 1
             }
+            if (origin === "enemy") {
+                activeUser = 1
+            }
             fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
                 .then(response => response.json())
                 .then(data => {
@@ -151,7 +154,6 @@ const useUser = (origin) => {
                             totalFighters++
                             totalLevel += fighter.level
                         })
-                        console.log(totalFighters)
                         let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
                         data.fighters.forEach((fighter) => {
                             fighter.level = averageLevel
