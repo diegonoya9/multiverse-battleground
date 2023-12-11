@@ -29,9 +29,7 @@ h1 {
         opacity: 1;
     }
 
-    22% {
-        opacity: 0;
-    }
+
 
     33% {
         bottom: 35%;
@@ -39,9 +37,7 @@ h1 {
         opacity: 1;
     }
 
-    44% {
-        opacity: 0;
-    }
+
 
     66% {
         bottom: 55%;
@@ -79,18 +75,11 @@ h1 {
         opacity: 1;
     }
 
-    22% {
-        opacity: 0;
-    }
 
     33% {
         bottom: 55%;
         left: 55%;
         opacity: 1;
-    }
-
-    44% {
-        opacity: 0;
     }
 
     66% {
