@@ -17,6 +17,7 @@
                     "moves": [
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -30,6 +31,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -43,6 +45,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "defense",
@@ -56,6 +59,7 @@
                         },
                         {
                             "MP": 1,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -87,6 +91,7 @@
                     "moves": [
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -100,6 +105,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "attack",
@@ -113,6 +119,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "attack",
@@ -126,6 +133,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -157,6 +165,7 @@
                     "moves": [
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -170,6 +179,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "accuracy",
@@ -189,6 +199,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "defense",
@@ -202,6 +213,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -233,6 +245,7 @@
                     "moves": [
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -246,6 +259,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/moneyThrow.gif",
                             "actions": [
                                 {
                                     "field": "accuracy",
@@ -265,6 +279,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "defense",
@@ -278,6 +293,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -379,6 +395,7 @@
                     "moves": [
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -392,6 +409,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -405,6 +423,7 @@
                         },
                         {
                             "MP": 20,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "defense",
@@ -418,6 +437,7 @@
                         },
                         {
                             "MP": 1,
+                            "img": "./assets/img/2eSd.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -4994,6 +5014,7 @@
             "moves": [
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5007,6 +5028,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5020,6 +5042,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "defense",
@@ -5033,6 +5056,7 @@
                 },
                 {
                     "MP": 1,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5065,6 +5089,7 @@
             "moves": [
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5078,6 +5103,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "attack",
@@ -5091,6 +5117,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "attack",
@@ -5104,6 +5131,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5136,6 +5164,7 @@
             "moves": [
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5149,6 +5178,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "accuracy",
@@ -5168,6 +5198,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "defense",
@@ -5181,6 +5212,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5213,6 +5245,7 @@
             "moves": [
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5226,6 +5259,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/moneyThrow.gif",
                     "actions": [
                         {
                             "field": "accuracy",
@@ -5245,6 +5279,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "defense",
@@ -5258,6 +5293,7 @@
                 },
                 {
                     "MP": 20,
+                    "img": "./assets/img/2eSd.gif",
                     "actions": [
                         {
                             "field": "currentHP",

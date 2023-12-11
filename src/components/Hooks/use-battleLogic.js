@@ -31,9 +31,10 @@ const useBattleLogic = (setShowLevelUp) => {
                                 let newState = { ...prevState }
                                 newState.active = true
                                 newState.inflictedOn = "enemy"
-                                newState.src = "./assets/img/fire.png"
+                                newState.src = option.img
                                 return newState
                             })
+
                             if (action.attackType === "normal") {
                                 action.value -= userFighter.attack
                             } else {
@@ -45,7 +46,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 let newState = { ...prevState }
                                 newState.active = true
                                 newState.inflictedOn = "user"
-                                newState.src = "./assets/img/aura.gif"
+                                newState.src = option.img
                                 return newState
                             })
                             attackUser(action)
@@ -77,14 +78,16 @@ const useBattleLogic = (setShowLevelUp) => {
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
-            let randomMove = Math.floor(Math.random() * 4)
+            const randomMove = Math.floor(Math.random() * 3)
+            console.log(randomMove)
+            console.log(enemyFighter.moves[1])
             enemyFighter.moves[randomMove].actions.forEach((action) => {
                 if (action.inflictedOn === "enemy") {
                     setAttack((prevState) => {
                         let newState = { ...prevState }
                         newState.active = true
                         newState.inflictedOn = "user"
-                        newState.src = "./assets/img/fire.png"
+                        newState.src = enemyFighter.moves[randomMove].img
                         return newState
                     })
                     attackUser(action)
@@ -93,7 +96,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         let newState = { ...prevState }
                         newState.active = true
                         newState.inflictedOn = "enemy"
-                        newState.src = "./assets/img/aura.gif"
+                        newState.src = enemyFighter.moves[randomMove].img
                         return newState
                     })
                     attackEnemy(action)
