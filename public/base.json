@@ -31,7 +31,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/redSlash.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -133,7 +133,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/blueSlash.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -245,7 +245,7 @@
                     "moves": [
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/redSlash.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -262,7 +262,7 @@
                             "img": "./assets/img/moneyThrow.gif",
                             "actions": [
                                 {
-                                    "field": "accuracy",
+                                    "field": "defense",
                                     "inflictedOn": "enemy",
                                     "attackType": "normal",
                                     "value": -30
@@ -293,7 +293,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/multipleSlash.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -409,7 +409,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/redSlash.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -5014,7 +5014,7 @@
             "moves": [
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/fire.png",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5024,11 +5024,11 @@
                         }
                     ],
                     "currentMP": 19,
-                    "name": "Quick Attack"
+                    "name": "Flame"
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/redSlash.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5042,7 +5042,7 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/aura.gif",
                     "actions": [
                         {
                             "field": "defense",
@@ -5131,7 +5131,7 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/blueSlash.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5245,7 +5245,7 @@
             "moves": [
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/redSlash.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5262,7 +5262,7 @@
                     "img": "./assets/img/moneyThrow.gif",
                     "actions": [
                         {
-                            "field": "accuracy",
+                            "field": "defense",
                             "inflictedOn": "enemy",
                             "attackType": "normal",
                             "value": -30
@@ -5293,7 +5293,7 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/multipleSlash.gif",
                     "actions": [
                         {
                             "field": "currentHP",
