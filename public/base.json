@@ -509,7 +509,8 @@
             "img": "./assets/img/potion.png",
             "name": "Potion",
             "id": 1,
-            "quantity": 50,
+            "price": 100,
+            "quantity": 1,
             "type": "consumable",
             "actions": [
                 {
@@ -524,7 +525,8 @@
             "category": "battleItem",
             "img": "./assets/img/potion.png",
             "name": "Super Potion",
-            "quantity": 50,
+            "quantity": 1,
+            "price": 100,
             "type": "consumable",
             "actions": [
                 {
@@ -539,7 +541,8 @@
             "category": "battleItem",
             "img": "./assets/img/milanesa.png",
             "name": "Milanesa",
-            "quantity": 50,
+            "quantity": 1,
+            "price": 100,
             "type": "consumable",
             "actions": [
                 {
@@ -554,7 +557,8 @@
             "category": "battleItem",
             "img": "./assets/img/hardBoiledEgg.png",
             "name": "Huevo Duro",
-            "quantity": 50,
+            "quantity": 1,
+            "price": 100,
             "type": "consumable",
             "actions": [
                 {
@@ -4972,6 +4976,304 @@
             "specialDefense": 9425,
             "maxHp": 99466,
             "accuracy": 141
+        }
+    ],
+    "fighters": [
+        {
+            "accuracy": 65,
+            "active": true,
+            "attack": 100,
+            "currentHP": 1,
+            "currentXP": 601,
+            "defense": 50,
+            "fighterId": 1,
+            "imgBack": "./assets/img/charizard-back.png",
+            "imgFront": "./assets/img/charizard-front.gif",
+            "level": 1,
+            "maxHP": 500,
+            "moves": [
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -50
+                        }
+                    ],
+                    "currentMP": 19,
+                    "name": "Quick Attack"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -100
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Punch"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "defense",
+                            "inflictedOn": "user",
+                            "attackType": "normal",
+                            "value": 30
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Def Up"
+                },
+                {
+                    "MP": 1,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "special",
+                            "value": -300
+                        }
+                    ],
+                    "currentMP": 6,
+                    "name": "Hiper Ray"
+                }
+            ],
+            "price": 100,
+            "name": "Charizard",
+            "specialAttack": 150,
+            "specialDefense": 30
+        },
+        {
+            "accuracy": 95,
+            "active": false,
+            "attack": 150,
+            "currentHP": 600,
+            "defense": 100,
+            "fighterId": 2,
+            "currentXP": 1,
+            "imgBack": "./assets/img/goku.png",
+            "imgFront": "./assets/img/goku-front.png",
+            "level": 1,
+            "maxHP": 600,
+            "moves": [
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "special",
+                            "value": -50
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Kame Hame Ha"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "attack",
+                            "inflictedOn": "user",
+                            "attackType": "special",
+                            "value": 50
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Kaioken"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "attack",
+                            "inflictedOn": "user",
+                            "attackType": "special",
+                            "value": 100
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Kaioken(X2)"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -500
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Bite"
+                }
+            ],
+            "price": 100,
+            "name": "Goku",
+            "specialAttack": 250,
+            "specialDefense": 250
+        },
+        {
+            "accuracy": 100,
+            "active": false,
+            "attack": 100,
+            "currentHP": 500,
+            "currentXP": 1,
+            "defense": 50,
+            "fighterId": 3,
+            "imgBack": "./assets/img/mew-back.png",
+            "imgFront": "./assets/img/mew-front.png",
+            "level": 1,
+            "maxHP": 500,
+            "moves": [
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -150
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Quick Attack"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "accuracy",
+                            "inflictedOn": "enemy",
+                            "attackType": "special",
+                            "value": -20
+                        },
+                        {
+                            "field": "specialDefense",
+                            "inflictedOn": "enemy",
+                            "attackType": "special",
+                            "value": -20
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Sand Throw"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "defense",
+                            "inflictedOn": "user",
+                            "attackType": "special",
+                            "value": 30
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Def Up"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "special",
+                            "value": -250
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Hiper Ray"
+                }
+            ],
+            "name": "Mew",
+            "price": 100,
+            "specialAttack": 350,
+            "specialDefense": 500
+        },
+        {
+            "accuracy": 100,
+            "active": false,
+            "attack": 100,
+            "currentHP": 500,
+            "currentXP": 1,
+            "defense": 50,
+            "fighterId": 4,
+            "imgBack": "./assets/img/batman-back.png",
+            "imgFront": "./assets/img/batman-front.png",
+            "level": 1,
+            "maxHP": 500,
+            "moves": [
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -150
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Boomerang Throw"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "accuracy",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -30
+                        },
+                        {
+                            "field": "specialDefense",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -20
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "I'm BATMAN"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "defense",
+                            "inflictedOn": "user",
+                            "attackType": "normal",
+                            "value": 30
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Cape Cover"
+                },
+                {
+                    "MP": 20,
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
+                            "attackType": "normal",
+                            "value": -250
+                        }
+                    ],
+                    "currentMP": 20,
+                    "name": "Karate Moves"
+                }
+            ],
+            "name": "Batman",
+            "price": 100,
+            "specialAttack": 350,
+            "specialDefense": 500
         }
     ]
 }

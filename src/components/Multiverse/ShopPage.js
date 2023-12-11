@@ -1,0 +1,151 @@
+import classes from "./ShopPage.module.css"
+import { memo, useEffect, useState } from "react";
+import ReactAudioPlayer from 'react-audio-player';
+import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
+const ShopPage = ({ changeMultiverseActivePage }) => {
+    const [objects, setObjects] = useState()
+    const [fighters, setFighters] = useState()
+    const [user, setUser] = useState()
+    const audioStyle = {
+        display: 'none',
+    };
+    const buy = (id, price, type) => {
+        let newMoney = user.objects.filter((object) => {
+            return object.name === "money"
+        })
+        console.log(newMoney)
+        if (newMoney[0].quantity >= price) {
+            newMoney[0].quantity -= price;
+            let newUser = user
+            if (type === "fighter") {
+                let newFighter = fighters.filter((fighter) => {
+                    return fighter.fighterId === id
+                })
+                newUser.fighters.push(newFighter[0])
+                newUser.objects.forEach((object) => {
+                    if (object.name === "money") {
+                        object.quantity = newMoney[0].quantity
+                    }
+                    return object
+                })
+                setUser(newUser)
+                let activeUser
+                if (process.env.NODE_ENV === 'production') {
+                    // Código específico para el entorno de desarrollo
+                    activeUser = 2
+                } else if (process.env.NODE_ENV === 'development') {
+                    // Código específico para el entorno de producción
+                    activeUser = 1
+                }
+                fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+                    method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newUser),
+                })
+            }
+            if (type === "object") {
+                let newObject = objects.filter((object) => {
+                    return object.name === id
+                })
+                newUser.objects.push(newObject[0])
+                newUser.objects.forEach((object) => {
+                    if (object.name === "money") {
+                        object.quantity = newMoney[0].quantity
+                    }
+                    return object
+                })
+                setUser(newUser)
+                let activeUser
+                if (process.env.NODE_ENV === 'production') {
+                    // Código específico para el entorno de desarrollo
+                    activeUser = 2
+                } else if (process.env.NODE_ENV === 'development') {
+                    // Código específico para el entorno de producción
+                    activeUser = 1
+                }
+                fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+                    method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newUser),
+                })
+            }
+        } else {
+            console.log('not enough money')
+        }
+        console.log(user)
+    }
+    useEffect(() => {
+        let activeUser
+        if (process.env.NODE_ENV === 'production') {
+            // Código específico para el entorno de desarrollo
+            activeUser = 2
+        } else if (process.env.NODE_ENV === 'development') {
+            // Código específico para el entorno de producción
+            activeUser = 1
+        }
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setUser(data)
+            })
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/gameObjects.json')
+            .then((response) => response.json())
+            .then((objectsList) => {
+                objectsList = objectsList.filter((object) => {
+                    return object.name !== "money"
+                })
+                setObjects(objectsList)
+            })
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fighters.json')
+            .then((response) => response.json())
+            .then((data) => { setFighters(data) })
+    }, [])
+    return (<div>
+        <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+        <button value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+        {user && <h1 className={classes.h1}>Current money:{user.objects.map((object) => {
+            if (object.name === "money") {
+                return object.quantity
+            }
+        })}</h1>}
+        {objects && <div><h1 className={classes.h1}>OBJECTS:</h1><div className={classes.container} >
+            {objects &&
+                objects.map((object) => {
+                    return (
+                        <div className={classes.objectContainer} key={object.name}>
+                            <span className={classes.objectName}>{object.name}</span>
+                            <img alt="object" src={object.img} className={classes.objectImg} />
+                            <span className={classes.objectName}>Price: {object.price}</span>
+                            <button onClick={() => buy(object.name, object.price, "object")}>BUY</button>
+                        </div>
+                    );
+                })}
+        </div>
+        </div>
+        }
+        {fighters && <div><h1 className={classes.h1}>FIGHTERS:</h1><div className={classes.container} >
+            {fighters &&
+                fighters.map((fighter) => {
+                    return (
+                        <div className={classes.objectContainer} key={fighter.fighterId}><h1>FIGHTERS:</h1>
+                            <span className={classes.objectName}>{fighter.name}</span>
+                            <img alt="fighter" src={fighter.imgFront} className={classes.objectImg} />
+                            <span className={classes.objectName}>Price: {fighter.price}</span>
+                            <button onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</button>
+                        </div>
+                    );
+                })}
+        </div>
+        </div>
+        }
+    </div>
+    );
+
+}
+
+export default memo(ShopPage)
