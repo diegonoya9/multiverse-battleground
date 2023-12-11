@@ -585,7 +585,7 @@
             "specialAttack": 16,
             "defense": 16,
             "specialDefense": 30,
-            "maxHp": 379,
+            "maxHp": 1200,
             "accuracy": 40
         },
         {
@@ -1685,7 +1685,7 @@
             "specialAttack": 20,
             "defense": 39,
             "specialDefense": 29,
-            "maxHp": 345,
+            "maxHp": 1208,
             "accuracy": 31
         },
         {
@@ -2785,7 +2785,7 @@
             "specialAttack": 39,
             "defense": 23,
             "specialDefense": 35,
-            "maxHp": 418,
+            "maxHp": 1300,
             "accuracy": 38
         },
         {
@@ -3885,7 +3885,7 @@
             "specialAttack": 15,
             "defense": 64,
             "specialDefense": 24,
-            "maxHp": 247,
+            "maxHp": 1347,
             "accuracy": 21
         },
         {
