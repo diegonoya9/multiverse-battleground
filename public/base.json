@@ -17,17 +17,17 @@
                     "moves": [
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/fire.png",
                             "actions": [
                                 {
                                     "field": "currentHP",
                                     "inflictedOn": "enemy",
-                                    "attackType": "normal",
+                                    "attackType": "special",
                                     "value": -50
                                 }
                             ],
                             "currentMP": 19,
-                            "name": "Quick Attack"
+                            "name": "Flame"
                         },
                         {
                             "MP": 20,
@@ -59,7 +59,7 @@
                         },
                         {
                             "MP": 1,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/ray.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -91,7 +91,7 @@
                     "moves": [
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/energyBall.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -105,7 +105,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/aura.gif",
                             "actions": [
                                 {
                                     "field": "attack",
@@ -119,7 +119,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/aura.gif",
                             "actions": [
                                 {
                                     "field": "attack",
@@ -165,7 +165,7 @@
                     "moves": [
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/lightsBall.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -175,11 +175,11 @@
                                 }
                             ],
                             "currentMP": 20,
-                            "name": "Quick Attack"
+                            "name": "Energy Ball"
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/cloud.gif",
                             "actions": [
                                 {
                                     "field": "accuracy",
@@ -195,7 +195,7 @@
                                 }
                             ],
                             "currentMP": 20,
-                            "name": "Sand Throw"
+                            "name": "Smoke Throw"
                         },
                         {
                             "MP": 20,
@@ -213,7 +213,7 @@
                         },
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/ray.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -395,17 +395,17 @@
                     "moves": [
                         {
                             "MP": 20,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/fire.png",
                             "actions": [
                                 {
                                     "field": "currentHP",
                                     "inflictedOn": "enemy",
-                                    "attackType": "normal",
+                                    "attackType": "special",
                                     "value": -50
                                 }
                             ],
                             "currentMP": 19,
-                            "name": "Quick Attack"
+                            "name": "Flame"
                         },
                         {
                             "MP": 20,
@@ -437,7 +437,7 @@
                         },
                         {
                             "MP": 1,
-                            "img": "./assets/img/2eSd.gif",
+                            "img": "./assets/img/ray.gif",
                             "actions": [
                                 {
                                     "field": "currentHP",
@@ -5056,7 +5056,7 @@
                 },
                 {
                     "MP": 1,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/ray.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5089,7 +5089,7 @@
             "moves": [
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/energyBall.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5103,7 +5103,7 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/aura.gif",
                     "actions": [
                         {
                             "field": "attack",
@@ -5117,7 +5117,7 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/aura.gif",
                     "actions": [
                         {
                             "field": "attack",
@@ -5164,7 +5164,7 @@
             "moves": [
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/lightsBall.gif",
                     "actions": [
                         {
                             "field": "currentHP",
@@ -5174,11 +5174,11 @@
                         }
                     ],
                     "currentMP": 20,
-                    "name": "Quick Attack"
+                    "name": "Energy Ball"
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/cloud.gif",
                     "actions": [
                         {
                             "field": "accuracy",
@@ -5194,11 +5194,11 @@
                         }
                     ],
                     "currentMP": 20,
-                    "name": "Sand Throw"
+                    "name": "Smoke Throw"
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/5Xyg.gif",
                     "actions": [
                         {
                             "field": "defense",
@@ -5212,7 +5212,7 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/2eSd.gif",
+                    "img": "./assets/img/ray.gif",
                     "actions": [
                         {
                             "field": "currentHP",
