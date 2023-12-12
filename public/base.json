@@ -3,6 +3,7 @@
         "1": {
             "fighters": [
                 {
+                    "userFighterId": 1,
                     "extraAccuracy": 65,
                     "active": true,
                     "extraAttack": 100,
@@ -77,6 +78,7 @@
                     "extraSpecialDefense": 30
                 },
                 {
+                    "userFighterId": 2,
                     "extraAccuracy": 95,
                     "active": false,
                     "extraAttack": 150,
@@ -151,6 +153,7 @@
                     "extraSpecialDefense": 250
                 },
                 {
+                    "userFighterId": 3,
                     "extraAccuracy": 100,
                     "active": false,
                     "extraAttack": 100,
@@ -231,7 +234,8 @@
                     "extraSpecialDefense": 500
                 },
                 {
-                    "accuracy": 100,
+                    "userFighterId": 4,
+                    "extraAccuracy": 100,
                     "active": false,
                     "attack": 100,
                     "currentHP": 500,
@@ -381,6 +385,7 @@
         "2": {
             "fighters": [
                 {
+                    "userFighterId": 1,
                     "extraAccuracy": 65,
                     "active": true,
                     "extraAttack": 100,

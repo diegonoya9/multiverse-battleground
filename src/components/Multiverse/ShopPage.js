@@ -1,7 +1,7 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState } from "react";
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
+import musicFile from "../../assets/sounds/music/AndWeDieYoung.WAV"
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const [fighters, setFighters] = useState()
@@ -115,36 +115,41 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     }, [])
     return (<div>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
-        <button value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         {user && <h1 className={classes.h1}>Current money:{user.objects.map((object) => {
             if (object.name === "money") {
                 return object.quantity
             }
         })}</h1>}
-        {objects && <div><h1 className={classes.h1}>OBJECTS:</h1><div className={classes.container} >
+        <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+        <h1 className={classes.h1}>OBJECTS:</h1>
+        {objects && <div className={classes.container} >
             {objects &&
                 objects.map((object) => {
                     return (
                         <div className={classes.objectContainer} key={object.name}>
                             <span className={classes.objectName}>{object.name}</span>
-                            <img alt="object" src={object.img} className={classes.objectImg} />
+                            <div className={classes.imageContainer}>
+                                <img alt="object" src={object.img} className={classes.objectImg} />
+                            </div>
                             <span className={classes.objectName}>Price: {object.price}</span>
-                            <button onClick={() => buy(object.name, object.price, "object")}>BUY</button>
+                            <button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>BUY</button>
                         </div>
                     );
                 })}
         </div>
-        </div>
+
         }
         {fighters && <div><h1 className={classes.h1}>FIGHTERS:</h1><div className={classes.container} >
             {fighters &&
                 fighters.map((fighter) => {
                     return (
-                        <div className={classes.objectContainer} key={fighter.fighterId}><h1>FIGHTERS:</h1>
+                        <div className={classes.objectContainer} key={fighter.fighterId}>
                             <span className={classes.objectName}>{fighter.name}</span>
-                            <img alt="fighter" src={fighter.imgFront} className={classes.objectImg} />
+                            <div className={classes.imageContainer}>
+                                <img alt="fighter" src={fighter.imgFront} className={classes.objectImg} />
+                            </div>
                             <span className={classes.objectName}>Price: {fighter.price}</span>
-                            <button onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</button>
+                            <button className={classes.buyButton} onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</button>
                         </div>
                     );
                 })}

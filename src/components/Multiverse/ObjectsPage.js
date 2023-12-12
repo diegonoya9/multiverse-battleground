@@ -6,16 +6,18 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     const audioStyle = {
         display: 'none',
     };
-    return (<div>
+    return (<div >
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
-        <button value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+        <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container} >
             {user &&
                 user.objects.map((object) => {
                     return (
                         <div className={classes.objectContainer} key={object.name}>
                             <span className={classes.objectName}>{object.name}</span>
-                            <img alt="fighter" src={object.img} className={classes.objectImg} />
+                            <div className={classes.imageContainer}>
+                                <img alt="fighter" src={object.img} className={classes.objectImg} />
+                            </div>
                             <span className={classes.objectName}>Quantity:{object.quantity}</span>
                         </div>
                     );
