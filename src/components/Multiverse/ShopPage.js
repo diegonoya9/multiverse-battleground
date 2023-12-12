@@ -6,6 +6,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
+    const [showModal, setShowModal] = useState(false)
     const audioStyle = {
         display: 'none',
     };
@@ -81,6 +82,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     },
                     body: JSON.stringify(newUser),
                 })
+                setShowModal(true)
             }
         } else {
             console.log('not enough money')
@@ -120,6 +122,16 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 return object.quantity
             }
         })}</h1>}
+        {showModal && <div className={classes.modalWrapper}>
+            <div className={classes.modalContainer}>
+                <div className={classes.modalContent}>
+                    <h1 style={{ color: '#ff4500' }}>Purchase confirmed!</h1>
+                    <button className={classes.modalButton} onClick={() => setShowModal(false)}>
+                        Keep Buying
+                    </button>
+                </div>
+            </div>
+        </div>}
         <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <h1 className={classes.h1}>OBJECTS:</h1>
         {objects && <div className={classes.container} >
