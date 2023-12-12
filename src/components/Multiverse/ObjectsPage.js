@@ -6,7 +6,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     const audioStyle = {
         display: 'none',
     };
-    return (<div>
+    return (<div >
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container} >

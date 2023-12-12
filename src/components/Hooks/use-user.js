@@ -94,7 +94,7 @@ const useUser = (origin) => {
     }
     const attackUser = (attack) => {
         setUser((prevState) => {
-            let newValue = attack
+            let newValue = { ...attack }
             let newState = {
                 ...prevState,
                 fighters: prevState.fighters.map((fighter) => {
