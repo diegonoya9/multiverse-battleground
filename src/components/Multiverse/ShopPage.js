@@ -114,7 +114,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then((data) => { setFighters(data) })
     }, [])
     return (<div>
-        <ReactAudioPlayer src={musicFile} /*autoPlay*/ controls style={audioStyle} />
+        <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         {user && <h1 className={classes.h1}>Current money:{user.objects.map((object) => {
             if (object.name === "money") {
                 return object.quantity
