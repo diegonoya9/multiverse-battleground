@@ -25,7 +25,9 @@ const useBattleLogic = (setShowLevelUp) => {
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
                     setMenuActive(false)
+                    console.log(option)
                     option.actions.forEach((action) => {
+                        let newAction = { ...action }
                         if (action.inflictedOn === "enemy") {
                             setAttack((prevState) => {
                                 let newState = { ...prevState }
@@ -36,11 +38,11 @@ const useBattleLogic = (setShowLevelUp) => {
                             })
 
                             if (action.attackType === "normal") {
-                                action.value -= userFighter.attack
+                                newAction.value -= userFighter.attack
                             } else {
-                                action.value -= userFighter.specialAttack
+                                newAction.value -= userFighter.specialAttack
                             }
-                            attackEnemy(action)
+                            attackEnemy(newAction)
                         } else {
                             setAttack((prevState) => {
                                 let newState = { ...prevState }
@@ -49,7 +51,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 newState.src = option.img
                                 return newState
                             })
-                            attackUser(action)
+                            attackUser(newAction)
                         }
                     })
                     wait()
