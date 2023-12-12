@@ -6,6 +6,7 @@
                     "userFighterId": 1,
                     "extraAccuracy": 65,
                     "active": true,
+                    "inParty": true,
                     "extraAttack": 100,
                     "currentHP": 1,
                     "currentXP": 601,
@@ -80,6 +81,7 @@
                 {
                     "userFighterId": 2,
                     "extraAccuracy": 95,
+                    "inParty": true,
                     "active": false,
                     "extraAttack": 150,
                     "currentHP": 600,
@@ -155,6 +157,7 @@
                 {
                     "userFighterId": 3,
                     "extraAccuracy": 100,
+                    "inParty": true,
                     "active": false,
                     "extraAttack": 100,
                     "currentHP": 500,
@@ -236,6 +239,7 @@
                 {
                     "userFighterId": 4,
                     "extraAccuracy": 100,
+                    "inParty": true,
                     "active": false,
                     "attack": 100,
                     "currentHP": 500,
@@ -387,6 +391,7 @@
                 {
                     "userFighterId": 1,
                     "extraAccuracy": 65,
+                    "inParty": true,
                     "active": true,
                     "extraAttack": 100,
                     "extraCurrentHP": 1,
@@ -5007,6 +5012,7 @@
         {
             "accuracy": 65,
             "active": true,
+            "inParty": false,
             "attack": 100,
             "currentHP": 1,
             "currentXP": 601,
@@ -5082,6 +5088,7 @@
         {
             "accuracy": 95,
             "active": false,
+            "inParty": true,
             "attack": 150,
             "currentHP": 600,
             "defense": 100,
@@ -5157,6 +5164,7 @@
         {
             "accuracy": 100,
             "active": false,
+            "inParty": true,
             "attack": 100,
             "currentHP": 500,
             "currentXP": 1,
@@ -5238,6 +5246,7 @@
         {
             "accuracy": 100,
             "active": false,
+            "inParty": true,
             "attack": 100,
             "currentHP": 500,
             "currentXP": 1,
