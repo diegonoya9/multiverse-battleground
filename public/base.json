@@ -5088,7 +5088,7 @@
         {
             "accuracy": 95,
             "active": false,
-            "inParty": true,
+            "inParty": false,
             "attack": 150,
             "currentHP": 600,
             "defense": 100,
@@ -5164,7 +5164,7 @@
         {
             "accuracy": 100,
             "active": false,
-            "inParty": true,
+            "inParty": false,
             "attack": 100,
             "currentHP": 500,
             "currentXP": 1,
@@ -5246,7 +5246,7 @@
         {
             "accuracy": 100,
             "active": false,
-            "inParty": true,
+            "inParty": false,
             "attack": 100,
             "currentHP": 500,
             "currentXP": 1,
