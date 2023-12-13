@@ -1,12 +1,16 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState } from "react";
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/AndWeDieYoung.WAV"
+import Modal from "../UI/Modal";
+import musicFile from "../../assets/sounds/music/OverNow.WAV"
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
     const [showModal, setShowModal] = useState(false)
+    const closeModal = () => {
+        setShowModal(false)
+    }
     const audioStyle = {
         display: 'none',
     };
@@ -14,7 +18,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         let newMoney = user.objects.filter((object) => {
             return object.name === "money"
         })
-        // console.log(newMoney)
         if (newMoney[0].quantity >= price) {
             newMoney[0].quantity -= price;
             let newUser = user
@@ -100,7 +103,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
             .then(response => response.json())
             .then(data => {
-                //console.log(data)
                 setUser(data)
             })
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/gameObjects.json')
@@ -122,16 +124,12 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 return object.quantity
             }
         })}</h1>}
-        {showModal && <div className={classes.modalWrapper}>
-            <div className={classes.modalContainer}>
-                <div className={classes.modalContent}>
-                    <h1 style={{ color: '#ff4500' }}>Purchase confirmed!</h1>
-                    <button className={classes.modalButton} onClick={() => setShowModal(false)}>
-                        Keep Buying
-                    </button>
-                </div>
-            </div>
-        </div>}
+        {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
+            <h1 style={{ color: 'white' }}>Purchase confirmed!</h1>
+            <button className={classes.modalButton} onClick={() => setShowModal(false)}>
+                Keep Buying
+            </button>
+        </Modal>}
         <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <h1 className={classes.h1}>OBJECTS:</h1>
         {objects && <div className={classes.container} >

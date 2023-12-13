@@ -1,5 +1,6 @@
 import classes from "./FightersPage.module.css"
-import { useState } from "react";
+import ReactAudioPlayer from 'react-audio-player';
+import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const [fighterParty, setFighterParty] = useState('b')
     const setParty = (userFighterId) => {
@@ -49,6 +50,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 user.fighters.map((fighter) => {
                     return (
                         <div className={classes.fighterContainer} key={fighter.id}>
+                            <ReactAudioPlayer src={musicFile} autoPlay controls />
                             <span className={classes.fighterName}>{fighter.name}</span>
                             <div className={classes.imageContainer}>
                                 <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />

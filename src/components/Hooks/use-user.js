@@ -66,12 +66,13 @@ const useUser = (origin) => {
             setUserFighter(newFighter[0])
         }
     }, [user])
-    const healUserFighter = (option) => {
+    const healUserFighter = ({ ...option }) => {
+        let newOption = option
         setUser((prevState) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
                 if (fighter.active) {
-                    option.actions.forEach((action) => {
+                    newOption.actions.forEach((action) => {
                         let result
                         if (action.field === "currentHP" && ((fighter.currentHP + action.value) > fighter.maxHP)) {
                             result = fighter.maxHP
@@ -84,7 +85,7 @@ const useUser = (origin) => {
                 return fighter
             })
             newUser.objects.forEach((object) => {
-                if (object.name === option.name) {
+                if (object.name === newOption.name) {
                     object.quantity -= 1
                 }
                 return object
