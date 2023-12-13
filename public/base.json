@@ -5973,7 +5973,158 @@
         }
     ],
     "users": [
-        null,
+        {
+            "fighters": [
+                {
+                    "active": true,
+                    "currentHP": 1,
+                    "currentXP": 601,
+                    "extraAccuracy": 65,
+                    "accuracy": 65,
+                    "extraAttack": 100,
+                    "extraDefense": 50,
+                    "extraMaxHP": 500,
+                    "extraSpecialAttack": 150,
+                    "extraSpecialDefense": 30,
+                    "fighterId": 1,
+                    "imgBack": "./assets/img/charizard-back.png",
+                    "imgFront": "./assets/img/charizard-front.gif",
+                    "inParty": true,
+                    "level": 1,
+                    "moves": [
+                        {
+                            "MP": 20,
+                            "actions": [
+                                {
+                                    "attackType": "special",
+                                    "field": "currentHP",
+                                    "inflictedOn": "enemy",
+                                    "value": -50
+                                }
+                            ],
+                            "currentMP": 19,
+                            "img": "./assets/img/fire.png",
+                            "name": "Flame"
+                        },
+                        {
+                            "MP": 20,
+                            "actions": [
+                                {
+                                    "attackType": "normal",
+                                    "field": "currentHP",
+                                    "inflictedOn": "enemy",
+                                    "value": -100
+                                }
+                            ],
+                            "currentMP": 20,
+                            "img": "./assets/img/redSlash.gif",
+                            "name": "Punch"
+                        },
+                        {
+                            "MP": 20,
+                            "actions": [
+                                {
+                                    "attackType": "normal",
+                                    "field": "defense",
+                                    "inflictedOn": "user",
+                                    "value": 30
+                                }
+                            ],
+                            "currentMP": 20,
+                            "img": "./assets/img/2eSd.gif",
+                            "name": "Def Up"
+                        },
+                        {
+                            "MP": 1,
+                            "actions": [
+                                {
+                                    "attackType": "special",
+                                    "field": "currentHP",
+                                    "inflictedOn": "enemy",
+                                    "value": -300
+                                }
+                            ],
+                            "currentMP": 6,
+                            "img": "./assets/img/ray.gif",
+                            "name": "Hiper Ray"
+                        }
+                    ],
+                    "name": "Charizard",
+                    "userFighterId": 1
+                }
+            ],
+            "name": "NegroPocket",
+            "objects": [
+                {
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "user",
+                            "value": 50
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Heals the user 50 HP",
+                    "img": "./assets/img/potion.png",
+                    "name": "Potion",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "user",
+                            "value": 150
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Heals the user 150 HP",
+                    "img": "./assets/img/potion.png",
+                    "name": "Super Potion",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "actions": [
+                        {
+                            "field": "defense",
+                            "inflictedOn": "user",
+                            "value": 150
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Increases user defense by 150",
+                    "img": "./assets/img/milanesa.png",
+                    "name": "Milanesa",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "actions": [
+                        {
+                            "field": "attack",
+                            "inflictedOn": "user",
+                            "value": 100
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Increases user attack by 100",
+                    "img": "./assets/img/hardBoiledEgg.png",
+                    "name": "Huevo Duro",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "category": "userItem",
+                    "img": "./assets/img/potion.png",
+                    "name": "money",
+                    "quantity": 500,
+                    "type": "consumable"
+                }
+            ],
+            "userId": 0
+        },
         {
             "fighters": [
                 {
@@ -6520,6 +6671,158 @@
                 }
             ],
             "userId": 2
+        },
+        {
+            "fighters": [
+                {
+                    "active": true,
+                    "currentHP": 1,
+                    "currentXP": 601,
+                    "extraAccuracy": 65,
+                    "accuracy": 65,
+                    "extraAttack": 100,
+                    "extraDefense": 50,
+                    "extraMaxHP": 500,
+                    "extraSpecialAttack": 150,
+                    "extraSpecialDefense": 30,
+                    "fighterId": 1,
+                    "imgBack": "./assets/img/charizard-back.png",
+                    "imgFront": "./assets/img/charizard-front.gif",
+                    "inParty": true,
+                    "level": 1,
+                    "moves": [
+                        {
+                            "MP": 20,
+                            "actions": [
+                                {
+                                    "attackType": "special",
+                                    "field": "currentHP",
+                                    "inflictedOn": "enemy",
+                                    "value": -50
+                                }
+                            ],
+                            "currentMP": 19,
+                            "img": "./assets/img/fire.png",
+                            "name": "Flame"
+                        },
+                        {
+                            "MP": 20,
+                            "actions": [
+                                {
+                                    "attackType": "normal",
+                                    "field": "currentHP",
+                                    "inflictedOn": "enemy",
+                                    "value": -100
+                                }
+                            ],
+                            "currentMP": 20,
+                            "img": "./assets/img/redSlash.gif",
+                            "name": "Punch"
+                        },
+                        {
+                            "MP": 20,
+                            "actions": [
+                                {
+                                    "attackType": "normal",
+                                    "field": "defense",
+                                    "inflictedOn": "user",
+                                    "value": 30
+                                }
+                            ],
+                            "currentMP": 20,
+                            "img": "./assets/img/2eSd.gif",
+                            "name": "Def Up"
+                        },
+                        {
+                            "MP": 1,
+                            "actions": [
+                                {
+                                    "attackType": "special",
+                                    "field": "currentHP",
+                                    "inflictedOn": "enemy",
+                                    "value": -300
+                                }
+                            ],
+                            "currentMP": 6,
+                            "img": "./assets/img/ray.gif",
+                            "name": "Hiper Ray"
+                        }
+                    ],
+                    "name": "Charizard",
+                    "userFighterId": 1
+                }
+            ],
+            "name": "Facu",
+            "objects": [
+                {
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "user",
+                            "value": 50
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Heals the user 50 HP",
+                    "img": "./assets/img/potion.png",
+                    "name": "Potion",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "actions": [
+                        {
+                            "field": "currentHP",
+                            "inflictedOn": "user",
+                            "value": 150
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Heals the user 150 HP",
+                    "img": "./assets/img/potion.png",
+                    "name": "Super Potion",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "actions": [
+                        {
+                            "field": "defense",
+                            "inflictedOn": "user",
+                            "value": 150
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Increases user defense by 150",
+                    "img": "./assets/img/milanesa.png",
+                    "name": "Milanesa",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "actions": [
+                        {
+                            "field": "attack",
+                            "inflictedOn": "user",
+                            "value": 100
+                        }
+                    ],
+                    "category": "battleItem",
+                    "description": "Increases user attack by 100",
+                    "img": "./assets/img/hardBoiledEgg.png",
+                    "name": "Huevo Duro",
+                    "quantity": 50,
+                    "type": "consumable"
+                },
+                {
+                    "category": "userItem",
+                    "img": "./assets/img/potion.png",
+                    "name": "money",
+                    "quantity": 500,
+                    "type": "consumable"
+                }
+            ],
+            "userId": 3
         }
     ]
 }
