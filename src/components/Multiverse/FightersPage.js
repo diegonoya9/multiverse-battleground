@@ -21,6 +21,8 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                                 <span className={classes.spanStats}>DEFENSE:{fighter.defense}</span>
                                 <span className={classes.spanStats}>SPECIAL DEFENSE:{fighter.specialDefense}</span>
                                 <span className={classes.spanStats}>ACCURACY:{fighter.accuracy}</span>
+                                <button type="submit">Agregar a la partida</button >
+                                <button type="submit">Primer turno</button>
                             </div>
                         </div>
                     );
