@@ -156,7 +156,8 @@ const useUser = (origin) => {
                                                 specialDefense: fighterLevel.specialDefense,
                                                 defense: fighterLevel.defense,
                                                 maxHP: fighterLevel.maxHp,
-                                                currentHP: fighterLevel.maxHp
+                                                currentHP: fighterLevel.maxHp,
+                                                accuracy: fighterLevel.accuracy
                                             }
                                         }
                                     })
@@ -184,7 +185,8 @@ const useUser = (origin) => {
                                         specialDefense: fighterLevel.specialDefense,
                                         defense: fighterLevel.defense,
                                         maxHP: fighterLevel.maxHp,
-                                        currentHP: fighterLevel.maxHp
+                                        currentHP: fighterLevel.maxHp,
+                                        accuracy: fighterLevel.accuracy
                                     }
                                 }
                             })
