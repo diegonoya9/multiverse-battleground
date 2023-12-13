@@ -28,47 +28,55 @@ const useBattleLogic = (setShowLevelUp) => {
             if (selectedOption === "attacks") {
                 reduceFighterMP(option.name)
                 if (enemyFighter && enemyFighter.currentHP > 0) {
-                    const wait = () => {
+                    const wait = (attackHit) => {
                         setTimeout(() => {
                             setAttack((prevState) => {
                                 let newState = { ...prevState }
                                 newState.active = false
                                 return newState
                             })
-                            handleModalState(`${userFighter.name} used ${option.name}`, "enemy")
+                            if (attackHit) {
+                                handleModalState(`${userFighter.name} used ${option.name}`, "enemy")
+                            } else {
+                                handleModalState(`${userFighter.name} missed`, "enemy")
+                            }
                             // setTurn("enemy")
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
-                    setMenuActive(false)
-                    option.actions.forEach((action) => {
-                        let newAction = { ...action }
-                        if (action.inflictedOn === "enemy") {
-                            setAttack((prevState) => {
-                                let newState = { ...prevState }
-                                newState.active = true
-                                newState.inflictedOn = "enemy"
-                                newState.src = option.img
-                                return newState
-                            })
+                    let randomNumber = Math.random() * 100
+                    let attackHit = userFighter.accuracy >= randomNumber
+                    if (attackHit) {
+                        setMenuActive(false)
+                        option.actions.forEach((action) => {
+                            let newAction = { ...action }
+                            if (action.inflictedOn === "enemy") {
+                                setAttack((prevState) => {
+                                    let newState = { ...prevState }
+                                    newState.active = true
+                                    newState.inflictedOn = "enemy"
+                                    newState.src = option.img
+                                    return newState
+                                })
 
-                            if (action.attackType === "normal") {
-                                newAction.value -= userFighter.attack
+                                if (action.attackType === "normal") {
+                                    newAction.value -= userFighter.attack
+                                } else {
+                                    newAction.value -= userFighter.specialAttack
+                                }
+                                attackEnemy(newAction)
                             } else {
-                                newAction.value -= userFighter.specialAttack
+                                setAttack((prevState) => {
+                                    let newState = { ...prevState }
+                                    newState.active = true
+                                    newState.inflictedOn = "user"
+                                    newState.src = option.img
+                                    return newState
+                                })
+                                attackUser(newAction)
                             }
-                            attackEnemy(newAction)
-                        } else {
-                            setAttack((prevState) => {
-                                let newState = { ...prevState }
-                                newState.active = true
-                                newState.inflictedOn = "user"
-                                newState.src = option.img
-                                return newState
-                            })
-                            attackUser(newAction)
-                        }
-                    })
-                    wait()
+                        })
+                    }
+                    wait(attackHit)
                 }
             }
             if (selectedOption === "objects") {
@@ -83,7 +91,7 @@ const useBattleLogic = (setShowLevelUp) => {
     const enemyAI = (setMenuActive, battleEnded) => {
         if (turn === "enemy" && !battleEnded.finished) {
             const randomMove = Math.floor(Math.random() * 3)
-            const wait = () => {
+            const wait = (attackHit) => {
                 setTimeout(() => {
                     setMenuActive(true)
                     setAttack((prevState) => {
@@ -91,32 +99,40 @@ const useBattleLogic = (setShowLevelUp) => {
                         newState.active = false
                         return newState
                     })
-                    handleModalState(`${user.name} used ${enemyFighter.moves[randomMove].name}`, "user")
+                    if (attackHit) {
+                        handleModalState(`${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
+                    } else {
+                        handleModalState(`${user.name} missed`, "user")
+                    }
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
-            enemyFighter.moves[randomMove].actions.forEach((action) => {
-                if (action.inflictedOn === "enemy") {
-                    setAttack((prevState) => {
-                        let newState = { ...prevState }
-                        newState.active = true
-                        newState.inflictedOn = "user"
-                        newState.src = enemyFighter.moves[randomMove].img
-                        return newState
-                    })
-                    attackUser(action)
-                } else {
-                    setAttack((prevState) => {
-                        let newState = { ...prevState }
-                        newState.active = true
-                        newState.inflictedOn = "enemy"
-                        newState.src = enemyFighter.moves[randomMove].img
-                        return newState
-                    })
-                    attackEnemy(action)
-                }
-            })
-            wait();
+            let randomNumber = Math.random() * 100
+            let attackHit = userFighter.accuracy >= randomNumber
+            if (attackHit) {
+                enemyFighter.moves[randomMove].actions.forEach((action) => {
+                    if (action.inflictedOn === "enemy") {
+                        setAttack((prevState) => {
+                            let newState = { ...prevState }
+                            newState.active = true
+                            newState.inflictedOn = "user"
+                            newState.src = enemyFighter.moves[randomMove].img
+                            return newState
+                        })
+                        attackUser(action)
+                    } else {
+                        setAttack((prevState) => {
+                            let newState = { ...prevState }
+                            newState.active = true
+                            newState.inflictedOn = "enemy"
+                            newState.src = enemyFighter.moves[randomMove].img
+                            return newState
+                        })
+                        attackEnemy(action)
+                    }
+                })
+            }
+            wait(attackHit);
         }
     }
     useEffect(() => {
