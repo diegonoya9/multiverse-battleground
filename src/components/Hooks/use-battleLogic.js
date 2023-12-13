@@ -4,11 +4,25 @@ import useBattleState from './use-battleState'
 
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle } = useBattleState()
+    const [showModal, setShowModal] = useState(false)
+    const [modalContent, setModalContent] = useState()
     const [fightersLevels, setFightersLevels] = useState()
     const [turn, setTurn] = useState("user")
+    const [nextTurn, setNextTurn] = useState()
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
     const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
+    const onCloseModal = () => {
+        setShowModal(false)
+        setTurn(nextTurn)
+    }
+    const handleModalState = (modalContent, nexTurn) => {
+        if (modalContent) {
+            setModalContent(modalContent)
+            setShowModal(true)
+            setNextTurn(nexTurn)
+        }
+    }
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
@@ -21,7 +35,8 @@ const useBattleLogic = (setShowLevelUp) => {
                                 newState.active = false
                                 return newState
                             })
-                            setTurn("enemy")
+                            handleModalState(`${userFighter.name} used ${option.name}`, "enemy")
+                            // setTurn("enemy")
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
                     setMenuActive(false)
@@ -58,7 +73,7 @@ const useBattleLogic = (setShowLevelUp) => {
             }
             if (selectedOption === "objects") {
                 healUserFighter(option)
-                setTurn("enemy")
+                handleModalState(`${user.name} used ${option.name}`, "enemy")
             }
             if (option === "run") {
                 endBattle("ran", true)
@@ -67,6 +82,7 @@ const useBattleLogic = (setShowLevelUp) => {
     }
     const enemyAI = (setMenuActive, battleEnded) => {
         if (turn === "enemy" && !battleEnded.finished) {
+            const randomMove = Math.floor(Math.random() * 3)
             const wait = () => {
                 setTimeout(() => {
                     setMenuActive(true)
@@ -75,11 +91,10 @@ const useBattleLogic = (setShowLevelUp) => {
                         newState.active = false
                         return newState
                     })
-                    setTurn("user")
+                    handleModalState(`${user.name} used ${enemyFighter.moves[randomMove].name}`, "user")
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
-            const randomMove = Math.floor(Math.random() * 3)
             enemyFighter.moves[randomMove].actions.forEach((action) => {
                 if (action.inflictedOn === "enemy") {
                     setAttack((prevState) => {
@@ -127,7 +142,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle }
+    return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent }
 }
 
 export default useBattleLogic

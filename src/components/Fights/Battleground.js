@@ -5,13 +5,14 @@ import { memo, useEffect, useState } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from '../../assets/sounds/music/master.mp3';
+import Modal from '../UI/Modal.js'
 
 const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
     const [showLevelUp, setShowLevelUp] = useState(false);
-    const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle } = useBattleLogic(setShowLevelUp)
+    const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -91,6 +92,7 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div className={classes.battleground}>
+            {showModal && <Modal onClose={onCloseModal} color="white">{modalContent}</Modal>}
             <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
             {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
