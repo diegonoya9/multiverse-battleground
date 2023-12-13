@@ -1,10 +1,13 @@
 import classes from "./ShopPage.module.css"
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, useContext } from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
 import musicFile from "../../assets/sounds/music/OverNow.WAV"
+import { MyContext } from "../../context/MyContext";
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
+    const { userContext } = useContext(MyContext);
+    let activeUser = userContext.idUsuario
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
     const [showModal, setShowModal] = useState(false)
@@ -33,14 +36,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     return object
                 })
                 setUser(newUser)
-                let activeUser
-                if (process.env.NODE_ENV === 'production') {
-                    // Código específico para el entorno de desarrollo
-                    activeUser = 2
-                } else if (process.env.NODE_ENV === 'development') {
-                    // Código específico para el entorno de producción
-                    activeUser = 1
-                }
                 fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                     method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
@@ -70,14 +65,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     return object
                 })
                 setUser(newUser)
-                let activeUser
-                if (process.env.NODE_ENV === 'production') {
-                    // Código específico para el entorno de desarrollo
-                    activeUser = 2
-                } else if (process.env.NODE_ENV === 'development') {
-                    // Código específico para el entorno de producción
-                    activeUser = 1
-                }
                 fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                     method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
@@ -92,14 +79,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         }
     }
     useEffect(() => {
-        let activeUser
-        if (process.env.NODE_ENV === 'production') {
-            // Código específico para el entorno de desarrollo
-            activeUser = 2
-        } else if (process.env.NODE_ENV === 'development') {
-            // Código específico para el entorno de producción
-            activeUser = 1
-        }
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
             .then(response => response.json())
             .then(data => {

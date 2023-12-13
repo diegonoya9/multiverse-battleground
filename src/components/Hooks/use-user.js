@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react"
-
+import { useState, useEffect, useContext } from "react"
+import { MyContext } from '../../context/MyContext';
 const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
     const [user, setUser] = useState()
     const [fightersLevels, setFightersLevels] = useState()
     const [addedBaseStats, setAddedBaseStats] = useState(false)
+    const { userContext, setUserId } = useContext(MyContext);
+    let activeUser = userContext.idUsuario
     const reduceFighterMP = (attack) => {
         setUser((prevState) => {
             let newUser = { ...prevState }
@@ -39,14 +41,6 @@ const useUser = (origin) => {
                         object.quantity += 100
                     }
                 })
-            }
-            let activeUser
-            if (process.env.NODE_ENV === 'production') {
-                // Código específico para el entorno de desarrollo
-                activeUser = 2
-            } else if (process.env.NODE_ENV === 'development') {
-                // Código específico para el entorno de producción
-                activeUser = 1
             }
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                 method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
@@ -120,14 +114,6 @@ const useUser = (origin) => {
     }
     useEffect(() => {
         if (fightersLevels) {
-            let activeUser
-            if (process.env.NODE_ENV === 'production') {
-                // Código específico para el entorno de desarrollo
-                activeUser = 2
-            } else if (process.env.NODE_ENV === 'development') {
-                // Código específico para el entorno de producción
-                activeUser = 1
-            }
             fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
                 .then(response => response.json())
                 .then(data => {

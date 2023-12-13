@@ -1,23 +1,20 @@
-import { memo, useState, useEffect } from "react"
+import { memo, useState, useEffect, useContext } from "react"
 import FightersPage from "./FightersPage.js"
 import ObjectsPage from "./ObjectsPage.js"
+import UsersPage from './UsersPage.js'
 import classes from './Multiverse.module.css'
 import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
+import { MyContext } from '../../context/MyContext';
 
 const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
-    let activeUser
-    if (process.env.NODE_ENV === 'production') {
-        // Código específico para el entorno de desarrollo
-        activeUser = 2
-    } else if (process.env.NODE_ENV === 'development') {
-        // Código específico para el entorno de producción
-        activeUser = 1
-    }
+    const { userContext, setUserId } = useContext(MyContext);
+    let activeUser = userContext.idUsuario
+    console.log(activeUser)
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
     const changeMultiverseActivePage = (activePage) => {
         setMultiverseActivePage(activePage)
@@ -90,12 +87,21 @@ const Multiverse = ({ changeActivePage }) => {
                         className={`${classes.shopButton} ${classes.menuButton}`}
                         value={'Shop'}
                     />
+                    <input
+                        type="submit"
+                        onClick={(e) => {
+                            changeMultiverseActivePage('users');
+                        }}
+                        className={`${classes.shopButton} ${classes.menuButton}`}
+                        value={'Users'}
+                    />
                 </div>
             )}
             {multiverseActivePage === "fighters" && <FightersPage
                 updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
+            {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
         </div>
 
         /*<div>

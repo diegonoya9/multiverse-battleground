@@ -1,10 +1,13 @@
 import classes from "./FightersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
+import { MyContext } from "../../context/MyContext";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showModal, setShowModal] = useState(false)
+    const { userContext, setUserId } = useContext(MyContext);
+    let activeUser = userContext.idUsuario
     const audioStyle = {
         display: 'none',
     };
@@ -31,14 +34,6 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     fighter.inParty = true
                 }
             })
-            let activeUser
-            if (process.env.NODE_ENV === 'production') {
-                // Código específico para el entorno de desarrollo
-                activeUser = 2
-            } else if (process.env.NODE_ENV === 'development') {
-                // Código específico para el entorno de producción
-                activeUser = 1
-            }
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                 method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                 headers: {
@@ -55,14 +50,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 fighter.inParty = false
             }
         })
-        let activeUser
-        if (process.env.NODE_ENV === 'production') {
-            // Código específico para el entorno de desarrollo
-            activeUser = 2
-        } else if (process.env.NODE_ENV === 'development') {
-            // Código específico para el entorno de producción
-            activeUser = 1
-        }
+
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
@@ -81,14 +69,6 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 fighter.active = false
             }
         })
-        let activeUser
-        if (process.env.NODE_ENV === 'production') {
-            // Código específico para el entorno de desarrollo
-            activeUser = 2
-        } else if (process.env.NODE_ENV === 'development') {
-            // Código específico para el entorno de producción
-            activeUser = 1
-        }
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
@@ -126,7 +106,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                                     :
                                     <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
                                 }
-                                <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>Primer turno</button>
+                                <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
                             </div>
                         </div>
                     );
