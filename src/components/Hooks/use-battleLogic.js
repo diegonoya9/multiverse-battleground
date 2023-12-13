@@ -25,7 +25,6 @@ const useBattleLogic = (setShowLevelUp) => {
                         }, 3000); // 3000 milisegundos = 3 segundos
                     };
                     setMenuActive(false)
-                    console.log(option)
                     option.actions.forEach((action) => {
                         let newAction = { ...action }
                         if (action.inflictedOn === "enemy") {
@@ -81,8 +80,6 @@ const useBattleLogic = (setShowLevelUp) => {
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
             const randomMove = Math.floor(Math.random() * 3)
-            console.log(randomMove)
-            console.log(enemyFighter.moves[1])
             enemyFighter.moves[randomMove].actions.forEach((action) => {
                 if (action.inflictedOn === "enemy") {
                     setAttack((prevState) => {
@@ -109,9 +106,7 @@ const useBattleLogic = (setShowLevelUp) => {
     }
     useEffect(() => {
         if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
-            console.log(userFighter.currentXP)
             let newCurrentXP = userFighter.currentXP + (enemyFighter.level * 100)
-            console.log(newCurrentXP)
             let newLevel = userFighter.level
             fightersLevels.forEach((fighterLevel) => {
                 if (fighterLevel.fighterId === userFighter.fighterId && fighterLevel.level > userFighter.level && fighterLevel.minXp < newCurrentXP) {
