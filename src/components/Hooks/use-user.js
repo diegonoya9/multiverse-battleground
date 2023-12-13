@@ -128,9 +128,6 @@ const useUser = (origin) => {
                 // Código específico para el entorno de producción
                 activeUser = 1
             }
-            if (origin === "enemy") {
-                activeUser = 2
-            }
             fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
                 .then(response => response.json())
                 .then(data => {
