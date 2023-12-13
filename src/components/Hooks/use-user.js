@@ -58,11 +58,12 @@ const useUser = (origin) => {
                 return fighter.active
             })
             setUserFighter(newFighter[0])
+            //console.log(user)
         }
     }, [user])
     const healUserFighter = ({ ...option }) => {
         let newOption = option
-        console.log(option)
+        // console.log(option)
         setUser((prevState) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {

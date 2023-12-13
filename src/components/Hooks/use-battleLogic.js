@@ -10,7 +10,7 @@ const useBattleLogic = (setShowLevelUp) => {
     const [turn, setTurn] = useState("user")
     const [nextTurn, setNextTurn] = useState()
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
-    const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
+    const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy, healUserFighter: healEnemyFighter } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const onCloseModal = () => {
         setShowModal(false)
@@ -111,6 +111,7 @@ const useBattleLogic = (setShowLevelUp) => {
             let attackHit = userFighter.accuracy >= randomNumber
             if (attackHit) {
                 enemyFighter.moves[randomMove].actions.forEach((action) => {
+                    let newAction = { ...action }
                     if (action.inflictedOn === "enemy") {
                         setAttack((prevState) => {
                             let newState = { ...prevState }
@@ -119,7 +120,12 @@ const useBattleLogic = (setShowLevelUp) => {
                             newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
-                        attackUser(action)
+                        if (action.attackType === "normal") {
+                            newAction.value -= enemyFighter.attack
+                        } else {
+                            newAction.value -= enemyFighter.specialAttack
+                        }
+                        attackUser(newAction)
                     } else {
                         setAttack((prevState) => {
                             let newState = { ...prevState }

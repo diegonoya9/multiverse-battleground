@@ -69,7 +69,6 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 fighter.active = false
             }
         })
-        console.log(newUser)
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
