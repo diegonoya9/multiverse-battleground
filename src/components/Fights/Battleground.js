@@ -49,7 +49,8 @@ const Battleground = ({ changeActivePage }) => {
     };
     const generateLevels = () => {
         let levels = [];
-        for (let fighterId = 5; fighterId <= 5; fighterId++) {
+        for (let fighterId = 1; fighterId <= 5; fighterId++) {
+            let prevAccuracy = 50
             for (let level = 1; level <= 100; level++) {
                 const xp = calculateXp(level);
                 let attack = Math.floor(Math.random() * 45) + level * 5 + 10;
@@ -57,8 +58,8 @@ const Battleground = ({ changeActivePage }) => {
                 let defense = Math.floor(Math.random() * 42) + level * 5 + 10;
                 let specialDefense = Math.floor(Math.random() * 30) + level * 5 + 10;
                 let maxHp = Math.floor(Math.random() * 500) + level * 100 + 100;
-                let accuracy = Math.floor(Math.random() * 40) + level + 10;
-
+                let accuracy = Math.max(Math.floor(Math.random() * 40) + level + 10, prevAccuracy);
+                prevAccuracy = accuracy
 
                 // Adjust max values for level 100
                 attack += 90 * (level - 1);

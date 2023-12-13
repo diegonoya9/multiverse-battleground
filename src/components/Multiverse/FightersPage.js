@@ -6,7 +6,7 @@ import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 import { MyContext } from "../../context/MyContext";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showModal, setShowModal] = useState(false)
-    const { userContext, setUserId } = useContext(MyContext);
+    const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     const audioStyle = {
         display: 'none',
@@ -62,13 +62,14 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     }
     const setFirstFighter = (userFighterId) => {
         let newUser = user
-        newUser.fighters.forEach((fighter, index) => {
+        newUser.fighters.forEach((fighter) => {
             if (fighter.userFighterId === userFighterId) {
                 fighter.active = true
             } else {
                 fighter.active = false
             }
         })
+        console.log(newUser)
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
