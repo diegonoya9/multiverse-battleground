@@ -1,12 +1,16 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState } from "react";
 import ReactAudioPlayer from 'react-audio-player';
+import Modal from "../UI/Modal";
 import musicFile from "../../assets/sounds/music/OverNow.WAV"
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
     const [showModal, setShowModal] = useState(false)
+    const closeModal = () => {
+        setShowModal(false)
+    }
     const audioStyle = {
         display: 'none',
     };
@@ -120,16 +124,12 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 return object.quantity
             }
         })}</h1>}
-        {showModal && <div className={classes.modalWrapper}>
-            <div className={classes.modalContainer}>
-                <div className={classes.modalContent}>
-                    <h1 style={{ color: '#ff4500' }}>Purchase confirmed!</h1>
-                    <button className={classes.modalButton} onClick={() => setShowModal(false)}>
-                        Keep Buying
-                    </button>
-                </div>
-            </div>
-        </div>}
+        {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
+            <h1 style={{ color: 'white' }}>Purchase confirmed!</h1>
+            <button className={classes.modalButton} onClick={() => setShowModal(false)}>
+                Keep Buying
+            </button>
+        </Modal>}
         <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <h1 className={classes.h1}>OBJECTS:</h1>
         {objects && <div className={classes.container} >
