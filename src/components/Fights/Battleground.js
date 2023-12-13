@@ -4,7 +4,7 @@ import FightMenu from '../UI/FightMenu'
 import { memo, useEffect, useState } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from '../../assets/sounds/music/master.mp3';
+import musicFile from '../../assets/sounds/music/AndWeDieYoung.mp3';
 import Modal from '../UI/Modal.js'
 
 const Battleground = ({ changeActivePage }) => {
