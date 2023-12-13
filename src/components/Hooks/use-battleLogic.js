@@ -109,7 +109,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 }, 1000); // 3000 milisegundos = 3 segundos
             };
             let randomNumber = Math.random() * 100
-            let attackHit = userFighter.accuracy >= randomNumber
+            let attackHit = enemyFighter.accuracy >= randomNumber
             if (attackHit) {
                 enemyFighter.moves[randomMove].actions.forEach((action) => {
                     let newAction = { ...action }
