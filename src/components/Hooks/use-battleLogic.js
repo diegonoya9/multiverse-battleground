@@ -45,8 +45,8 @@ const useBattleLogic = (setShowLevelUp) => {
                     };
                     let randomNumber = Math.random() * 100
                     let attackHit = userFighter.accuracy >= randomNumber
+                    setMenuActive(false)
                     if (attackHit) {
-                        setMenuActive(false)
                         option.actions.forEach((action) => {
                             let newAction = { ...action }
                             if (action.inflictedOn === "enemy") {
