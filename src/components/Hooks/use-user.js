@@ -135,9 +135,6 @@ const useUser = (origin) => {
                 .then(response => response.json())
                 .then(data => {
                     let activeArray = []
-                    if (origin === "user") {
-                        activeArray = [true, false, false, false]
-                    }
                     if (origin === "enemy") {
                         let randomValue = Math.round(Math.random() * (data.fighters.length - 1))
                         for (let i = 0; i < data.fighters.length; i++) {
@@ -179,7 +176,9 @@ const useUser = (origin) => {
                                 }
                             }
                         })
-                        fighter.active = activeArray[index]
+                        if (user === "enemy") {
+                            fighter.active = activeArray[index]
+                        }
                         //fighter.currentHP = fighter.maxHP
                         fighter.moves.forEach((move) => {
                             move.currentMP = move.MP
