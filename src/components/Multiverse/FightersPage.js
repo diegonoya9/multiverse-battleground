@@ -3,7 +3,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
 import { useState } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
-const FightersPage = ({ user, changeMultiverseActivePage }) => {
+const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showModal, setShowModal] = useState(false)
     const audioStyle = {
         display: 'none',
@@ -11,7 +11,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const closeModal = () => {
         setShowModal(false)
     }
-    const setParty = (userFighterId) => {
+    const addToParty = (userFighterId) => {
         let newUser = user
         let cant = 0
         let cantExceeded = false
@@ -45,22 +45,69 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(newUser),
-            })
+            }).then(() => updateUser())
         }
     }
+    const removeFromParty = (userFighterId) => {
+        let newUser = user
+        newUser.fighters.forEach((fighter, index) => {
+            if (fighter.userFighterId === userFighterId) {
+                fighter.inParty = false
+            }
+        })
+        let activeUser
+        if (process.env.NODE_ENV === 'production') {
+            // Código específico para el entorno de desarrollo
+            activeUser = 2
+        } else if (process.env.NODE_ENV === 'development') {
+            // Código específico para el entorno de producción
+            activeUser = 1
+        }
+        fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+            method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newUser),
+        }).then(() => updateUser())
 
+    }
+    const setFirstFighter = (userFighterId) => {
+        let newUser = user
+        newUser.fighters.forEach((fighter, index) => {
+            if (fighter.userFighterId === userFighterId) {
+                fighter.active = true
+            } else {
+                fighter.active = false
+            }
+        })
+        let activeUser
+        if (process.env.NODE_ENV === 'production') {
+            // Código específico para el entorno de desarrollo
+            activeUser = 2
+        } else if (process.env.NODE_ENV === 'development') {
+            // Código específico para el entorno de producción
+            activeUser = 1
+        }
+        fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+            method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newUser),
+        }).then(() => updateUser())
+    }
     return (<div>
 
 
-        <button className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+
+        <button key="backToMenu" className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
-            {showModal && <Modal onClose={closeModal} color="white">
-                <h1>No se puede bro.. máximo 4</h1></Modal>}
             {user &&
                 user.fighters.map((fighter) => {
                     return (
-                        <div className={classes.fighterContainer} key={fighter.id}>
+                        <div className={`${classes.fighterContainer} ${fighter.active && classes.active}`} key={fighter.id} >
                             <span className={classes.fighterName}>{fighter.name}</span>
                             <div className={classes.imageContainer}>
                                 <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
@@ -74,13 +121,19 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                                 <span className={classes.spanStats}>DEFENSE:{fighter.defense}</span>
                                 <span className={classes.spanStats}>SPECIAL DEFENSE:{fighter.specialDefense}</span>
                                 <span className={classes.spanStats}>ACCURACY:{fighter.accuracy}</span>
-                                <button type="submit" onClick={() => { setParty(fighter.userFighterId) }}>Agregar a la partida</button >
-                                <button type="submit" onClick={() => { console.log(fighter.active) }}>Primer turno</button>
+                                {fighter.inParty ?
+                                    <button type="submit" onClick={() => { removeFromParty(fighter.userFighterId) }}>Remove from party</button >
+                                    :
+                                    <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
+                                }
+                                <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>Primer turno</button>
                             </div>
                         </div>
                     );
                 })}
         </div>
+        {showModal && <Modal onClose={closeModal} color="white">
+            <h1>No se puede bro.. máximo 4</h1></Modal>}
     </div>
     );
 

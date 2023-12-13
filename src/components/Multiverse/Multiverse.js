@@ -32,6 +32,11 @@ const Multiverse = ({ changeActivePage }) => {
             setMoney(newMoney[0].quantity)
         }
     }, [user])
+    const updateUser = () => {
+        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+            .then(response => response.json())
+            .then(data => { setUser(data) })
+    }
     useEffect(() => {
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
             .then(response => response.json())
@@ -87,7 +92,8 @@ const Multiverse = ({ changeActivePage }) => {
                     />
                 </div>
             )}
-            {multiverseActivePage === "fighters" && <FightersPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
+            {multiverseActivePage === "fighters" && <FightersPage
+                updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
         </div>
