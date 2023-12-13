@@ -5156,7 +5156,7 @@
                     "name": "Bite"
                 }
             ],
-            "price": 100,
+            "price": 2500,
             "name": "Goku",
             "specialAttack": 250,
             "specialDefense": 250
@@ -5239,7 +5239,7 @@
                 }
             ],
             "name": "Mew",
-            "price": 100,
+            "price": 500,
             "specialAttack": 350,
             "specialDefense": 500
         },
@@ -5321,7 +5321,7 @@
                 }
             ],
             "name": "Batman",
-            "price": 100,
+            "price": 1500,
             "specialAttack": 350,
             "specialDefense": 500
         }
