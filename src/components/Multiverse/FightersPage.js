@@ -1,5 +1,6 @@
 import classes from "./FightersPage.module.css"
-
+import ReactAudioPlayer from 'react-audio-player';
+import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
     return (<div>
         <button className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
@@ -8,6 +9,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 user.fighters.map((fighter) => {
                     return (
                         <div className={classes.fighterContainer} key={fighter.id}>
+                            <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
                             <span className={classes.fighterName}>{fighter.name}</span>
                             <div className={classes.imageContainer}>
                                 <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />

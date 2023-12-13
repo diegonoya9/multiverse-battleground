@@ -1,7 +1,7 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState } from "react";
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/AndWeDieYoung.WAV"
+import musicFile from "../../assets/sounds/music/OverNow.WAV"
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const [fighters, setFighters] = useState()
