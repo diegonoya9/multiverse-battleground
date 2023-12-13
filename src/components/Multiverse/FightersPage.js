@@ -2,7 +2,6 @@ import classes from "./FightersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
-    const [fighterParty, setFighterParty] = useState('b')
     const setParty = (userFighterId) => {
         let newUser = user
         let cant = 0
