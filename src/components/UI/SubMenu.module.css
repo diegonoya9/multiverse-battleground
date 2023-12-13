@@ -7,6 +7,12 @@
     margin: 0;
 }
 
+.divSubMenu {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
 .options {
     width: 50%;
     font-size: large;
