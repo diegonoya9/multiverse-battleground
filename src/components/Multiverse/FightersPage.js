@@ -1,21 +1,30 @@
 import classes from "./FightersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
+import Modal from "../UI/Modal";
+import { useState } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
+    const [showModal, setShowModal] = useState(false)
+    const audioStyle = {
+        display: 'none',
+    };
+    const closeModal = () => {
+        setShowModal(false)
+    }
     const setParty = (userFighterId) => {
         let newUser = user
         let cant = 0
-        let showModal = false
+        let cantExceeded = false
         newUser.fighters.forEach((fighter, index) => {
             if (fighter.inParty) {
                 cant++
             }
             if (cant === 4) {
-                showModal = true
+                cantExceeded = true
             }
         })
-        if (showModal) {
-            console.log('no se puede bro')
+        if (cantExceeded) {
+            setShowModal(true)
         } else {
             newUser.fighters.forEach((fighter, index) => {
                 if (fighter.userFighterId === userFighterId) {
@@ -45,11 +54,13 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
 
         <button className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container} >
+            <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+            {showModal && <Modal onClose={closeModal} color="white">
+                <h1>No se puede bro.. máximo 4</h1></Modal>}
             {user &&
                 user.fighters.map((fighter) => {
                     return (
                         <div className={classes.fighterContainer} key={fighter.id}>
-                            <ReactAudioPlayer src={musicFile} autoPlay controls />
                             <span className={classes.fighterName}>{fighter.name}</span>
                             <div className={classes.imageContainer}>
                                 <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
