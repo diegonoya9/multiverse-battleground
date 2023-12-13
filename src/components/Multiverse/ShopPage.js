@@ -142,6 +142,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                                 <img alt="object" src={object.img} className={classes.objectImg} />
                             </div>
                             <span className={classes.objectName}>Price: {object.price}</span>
+                            <span className={classes.objectName}>Description: {object.description}</span>
                             <button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>BUY</button>
                         </div>
                     );

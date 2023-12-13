@@ -324,6 +324,7 @@
                 {
                     "category": "battleItem",
                     "img": "./assets/img/potion.png",
+                    "description": "Heals the user 50 HP",
                     "name": "Potion",
                     "quantity": 50,
                     "type": "consumable",
@@ -340,6 +341,7 @@
                     "img": "./assets/img/potion.png",
                     "name": "Super Potion",
                     "quantity": 50,
+                    "description": "Heals the user 150 HP",
                     "type": "consumable",
                     "actions": [
                         {
@@ -354,6 +356,7 @@
                     "img": "./assets/img/milanesa.png",
                     "name": "Milanesa",
                     "quantity": 50,
+                    "description": "Increases user defense by 150",
                     "type": "consumable",
                     "actions": [
                         {
@@ -368,6 +371,7 @@
                     "img": "./assets/img/hardBoiledEgg.png",
                     "name": "Huevo Duro",
                     "quantity": 50,
+                    "description": "Increases user attack by 100",
                     "type": "consumable",
                     "actions": [
                         {
@@ -472,6 +476,7 @@
                     "img": "./assets/img/potion.png",
                     "name": "Potion",
                     "quantity": 50,
+                    "description": "Heals the user 50 HP",
                     "type": "consumable",
                     "actions": [
                         {
@@ -486,6 +491,7 @@
                     "img": "./assets/img/potion.png",
                     "name": "Super Potion",
                     "quantity": 50,
+                    "description": "Heals the user 150 HP",
                     "type": "consumable",
                     "actions": [
                         {
@@ -500,6 +506,7 @@
                     "img": "./assets/img/milanesa.png",
                     "name": "Milanesa",
                     "quantity": 50,
+                    "description": "Increases user defense by 150",
                     "type": "consumable",
                     "actions": [
                         {
@@ -514,6 +521,7 @@
                     "img": "./assets/img/hardBoiledEgg.png",
                     "name": "Huevo Duro",
                     "quantity": 50,
+                    "description": "Increases user attack by 100",
                     "type": "consumable",
                     "actions": [
                         {
