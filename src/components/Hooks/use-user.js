@@ -153,7 +153,7 @@ const useUser = (origin) => {
                                 }
                                 let totalLevel = 0
                                 let totalFighters = 0
-                                fightersData.forEach((fighter) => {
+                                data.fighters.forEach((fighter) => {
                                     totalFighters++
                                     totalLevel += fighter.level
                                 })
