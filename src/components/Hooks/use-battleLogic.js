@@ -90,7 +90,7 @@ const useBattleLogic = (setShowLevelUp) => {
     }
     const enemyAI = (setMenuActive, battleEnded) => {
         if (turn === "enemy" && !battleEnded.finished) {
-            const randomMove = Math.floor(Math.random() * 3)
+            const randomMove = Math.floor(Math.random() * 4)
             const wait = (attackHit) => {
                 setTimeout(() => {
                     setMenuActive(true)

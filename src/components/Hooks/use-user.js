@@ -85,7 +85,7 @@ const useUser = (origin) => {
                 }
                 return object
             })
-            console.log(newUser)
+            //console.log(newUser)
             return newUser
         })
     }
