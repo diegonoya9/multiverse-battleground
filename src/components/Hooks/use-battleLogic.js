@@ -41,7 +41,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 handleModalState(`${userFighter.name} missed`, "enemy")
                             }
                             // setTurn("enemy")
-                        }, 3000); // 3000 milisegundos = 3 segundos
+                        }, 1000); // 3000 milisegundos = 3 segundos
                     };
                     let randomNumber = Math.random() * 100
                     let attackHit = userFighter.accuracy >= randomNumber
@@ -102,7 +102,7 @@ const useBattleLogic = (setShowLevelUp) => {
                     if (attackHit) {
                         handleModalState(`${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
                     } else {
-                        handleModalState(`${user.name} missed`, "user")
+                        handleModalState(`${enemyFighter.name} missed`, "user")
                     }
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                 }, 1000); // 3000 milisegundos = 3 segundos
