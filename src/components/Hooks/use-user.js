@@ -71,7 +71,7 @@ const useUser = (origin) => {
                         if (action.field === "currentHP" && ((fighter.currentHP + action.value) > fighter.maxHP)) {
                             result = fighter.maxHP
                         } else {
-                            result = Math.ceil(fighter[action.field] + action.value)
+                            result = Math.ceil(fighter[action.field].value + action.value)
                         }
                         fighter[action.field] = result
                     })
