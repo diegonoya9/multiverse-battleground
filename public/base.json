@@ -6481,17 +6481,17 @@
                 },
                 {
                     "MP": 20,
-                    "img": "./assets/img/michael2.gif",
+                    "img": "./assets/img/ayuwoki.gif",
                     "actions": [
                         {
-                            "field": "defense",
-                            "inflictedOn": "user",
+                            "field": "currentHP",
+                            "inflictedOn": "enemy",
                             "attackType": "normal",
-                            "value": 50
+                            "value": -150
                         }
                     ],
                     "currentMP": 20,
-                    "name": "Dance Moves"
+                    "name": "Ayuwoki"
                 },
                 {
                     "MP": 6,
