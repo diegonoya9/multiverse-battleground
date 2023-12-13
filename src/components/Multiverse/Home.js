@@ -6,7 +6,6 @@ import classes from './Home.module.css'
 
 const Home = () => {
     const [showModal, setShowModal] = useState(true);
-
     const handleStartAdventure = () => {
         setShowModal(false);
     };

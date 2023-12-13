@@ -50,7 +50,7 @@ const Battleground = ({ changeActivePage }) => {
     const generateLevels = () => {
         let levels = [];
         for (let fighterId = 1; fighterId <= 5; fighterId++) {
-            let prevAccuracy = 50
+            let prevAccuracy = 65
             for (let level = 1; level <= 100; level++) {
                 const xp = calculateXp(level);
                 let attack = Math.floor(Math.random() * 45) + level * 5 + 10;
@@ -84,7 +84,7 @@ const Battleground = ({ changeActivePage }) => {
                 levels.push(levelData);
             }
         }
-        //console.log(levels)
+        console.log(levels)
     };
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
