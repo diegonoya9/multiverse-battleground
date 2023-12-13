@@ -1,7 +1,48 @@
 import classes from "./FightersPage.module.css"
-
+import { useState } from "react";
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
+    const [fighterParty, setFighterParty] = useState('b')
+    const setParty = (userFighterId) => {
+        let newUser = user
+        let cant = 0
+        let showModal = false
+        newUser.fighters.forEach((fighter, index) => {
+            if (fighter.inParty) {
+                cant++
+            }
+            if (cant === 4) {
+                showModal = true
+            }
+        })
+        if (showModal) {
+            console.log('no se puede bro')
+        } else {
+            newUser.fighters.forEach((fighter, index) => {
+                if (fighter.userFighterId === userFighterId) {
+                    fighter.inParty = true
+                }
+            })
+            let activeUser
+            if (process.env.NODE_ENV === 'production') {
+                // Código específico para el entorno de desarrollo
+                activeUser = 2
+            } else if (process.env.NODE_ENV === 'development') {
+                // Código específico para el entorno de producción
+                activeUser = 1
+            }
+            fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+                method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser),
+            })
+        }
+    }
+
     return (<div>
+
+
         <button className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container} >
             {user &&
@@ -21,8 +62,8 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                                 <span className={classes.spanStats}>DEFENSE:{fighter.defense}</span>
                                 <span className={classes.spanStats}>SPECIAL DEFENSE:{fighter.specialDefense}</span>
                                 <span className={classes.spanStats}>ACCURACY:{fighter.accuracy}</span>
-                                <button type="submit">Agregar a la partida</button >
-                                <button type="submit">Primer turno</button>
+                                <button type="submit" onClick={() => { setParty(fighter.userFighterId) }}>Agregar a la partida</button >
+                                <button type="submit" onClick={() => { console.log(fighter.active) }}>Primer turno</button>
                             </div>
                         </div>
                     );
