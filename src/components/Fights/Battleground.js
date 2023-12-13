@@ -92,7 +92,7 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div className={classes.battleground}>
-            {showModal && !battleEnded && <Modal onClose={onCloseModal} color="white">{modalContent}</Modal>}
+            {showModal && !battleEnded.finished && <Modal onClose={onCloseModal} color="white">{modalContent}</Modal>}
             <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
             {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
