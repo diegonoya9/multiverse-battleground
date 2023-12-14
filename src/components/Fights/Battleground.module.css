@@ -9,8 +9,6 @@
     display: flex;
     overflow: hidden;
     position: relative;
-    margin-left: -22vw;
-    margin-top: 15vh;
 
     /* Ajuste necesario para corregir la posición */
 }
@@ -22,6 +20,9 @@
         width: 100vh;
         height: 100vw;
         position: relative;
+
+        margin-left: -22vw;
+        margin-top: 15vh;
     }
 }
 
