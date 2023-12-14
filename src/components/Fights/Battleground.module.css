@@ -11,6 +11,21 @@
     position: relative;
 }
 
+/* Estilos para orientación vertical (portrait) */
+@media (orientation: portrait) {
+    .battleground {
+        transform: rotate(90deg);
+        width: 100vh;
+    }
+}
+
+/* Estilos para orientación horizontal (landscape) */
+@media (orientation: landscape) {
+    .battleground {
+        transform: none;
+    }
+}
+
 .divBattleEnded {
     background-color: rgb(221, 210, 210);
     display: flex;
