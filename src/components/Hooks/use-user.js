@@ -125,7 +125,7 @@ const useUser = (origin) => {
                         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fighters.json')
                             .then((response) => response.json())
                             .then((fightersData) => {
-                                let randomValue = Math.floor(Math.random() * (fightersData.length - 1))
+                                let randomValue = Math.floor(Math.random() * (fightersData.length)) + 1
                                 for (let i = 0; i < fightersData.length; i++) {
                                     if (fightersData.length > 1) {
                                         if (i === randomValue) {
@@ -139,7 +139,6 @@ const useUser = (origin) => {
                                 }
                                 let totalLevel = 0
                                 let totalFighters = 0
-                                console.log(data.fighters)
                                 data.fighters.forEach((fighter) => {
                                     if (fighter.inParty) {
                                         totalFighters++
