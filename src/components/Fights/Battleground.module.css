@@ -9,6 +9,10 @@
     display: flex;
     overflow: hidden;
     position: relative;
+    margin-left: -22vw;
+    margin-top: 15vh;
+
+    /* Ajuste necesario para corregir la posición */
 }
 
 /* Estilos para orientación vertical (portrait) */
@@ -16,6 +20,8 @@
     .battleground {
         transform: rotate(90deg);
         width: 100vh;
+        height: 100vw;
+        position: relative;
     }
 }
 
