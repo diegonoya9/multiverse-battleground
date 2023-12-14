@@ -109,27 +109,27 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             body: JSON.stringify(newUser),
         }).then(() => updateUser())
     }
-    return (<div>
+    return (<div className={classes.body}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
                 user.fighters.map((fighter) => {
                     return (
-                        <div className={`${classes.fighterContainer} ${fighter.active && classes.active}`} key={fighter.id} >
-                            <span className={classes.fighterName}>{fighter.name}</span>
-                            <div className={classes.imageContainer}>
+                        <div className={`${classes.fighterContainer} ${classes.card}`} key={fighter.id} >
+                            <div className={` ${classes.imageContainer} ${classes.face} ${classes.front}  ${fighter.active && classes.active}`}>
                                 <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
+                                <h3 className={`${classes.fighterName} ${classes.title} `}>{fighter.name}</h3>
                             </div>
-                            <div className={classes.divStats} key={`${fighter.id}stats`}>
-                                <span className={classes.spanStats}>LEVEL:{fighter.level}</span>
-                                <span className={classes.spanStats}>MAX HP:{fighter.maxHP}</span>
-                                <span className={classes.spanStats}>CURRENT XP:{fighter.currentXP}</span>
-                                <span className={classes.spanStats}>ATTACK:{fighter.attack}</span>
-                                <span className={classes.spanStats}>SPECIAL ATTACK:{fighter.specialAttack}</span>
-                                <span className={classes.spanStats}>DEFENSE:{fighter.defense}</span>
-                                <span className={classes.spanStats}>SPECIAL DEFENSE:{fighter.specialDefense}</span>
-                                <span className={classes.spanStats}>ACCURACY:{fighter.accuracy}</span>
+                            <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${fighter.active && classes.active}`} key={`${fighter.id}stats`}>
+                                <p className={classes.spanStats}>LEVEL:{fighter.level}</p>
+                                <p className={classes.spanStats}>MAX HP:{fighter.maxHP}</p>
+                                <p className={classes.spanStats}>CURRENT XP:{fighter.currentXP}</p>
+                                <p className={classes.spanStats}>ATTACK:{fighter.attack}</p>
+                                <p className={classes.spanStats}>SPECIAL ATTACK:{fighter.specialAttack}</p>
+                                <p className={classes.spanStats}>DEFENSE:{fighter.defense}</p>
+                                <p className={classes.spanStats}>SPECIAL DEFENSE:{fighter.specialDefense}</p>
+                                <p className={classes.spanStats}>ACCURACY:{fighter.accuracy}</p>
                                 {fighter.inParty ?
                                     <button type="submit" onClick={() => { removeFromParty(fighter.userFighterId) }}>Remove from party</button >
                                     :

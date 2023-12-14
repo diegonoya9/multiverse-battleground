@@ -95,7 +95,3 @@
 .card:hover .back {
     transform: perspective(600px) rotateY(360deg);
 }
-
-.active {
-    border: 5px solid #45a049 !important;
-}
