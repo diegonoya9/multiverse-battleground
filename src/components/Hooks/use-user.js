@@ -125,7 +125,8 @@ const useUser = (origin) => {
                         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fighters.json')
                             .then((response) => response.json())
                             .then((fightersData) => {
-                                let randomValue = Math.floor(Math.random() * (fightersData.length)) + 1
+                                let randomValue = Math.floor(Math.random() * (fightersData.length))
+                                console.log(randomValue)
                                 for (let i = 0; i < fightersData.length; i++) {
                                     if (fightersData.length > 1) {
                                         if (i === randomValue) {
