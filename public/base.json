@@ -8130,7 +8130,8 @@
           "name": "Batman",
           "price": 1500,
           "specialAttack": 727,
-          "specialDefense": 719
+          "specialDefense": 719,
+          "userFighterId": 5
         },
         {
           "accuracy": 65,
@@ -8204,6 +8205,7 @@
             }
           ],
           "name": "Vegeta",
+          "userFighterId": 6,
           "price": 2500,
           "specialAttack": 34,
           "specialDefense": 19

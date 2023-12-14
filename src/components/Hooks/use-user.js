@@ -139,6 +139,7 @@ const useUser = (origin) => {
                                 }
                                 let totalLevel = 0
                                 let totalFighters = 0
+                                console.log(data.fighters)
                                 data.fighters.forEach((fighter) => {
                                     if (fighter.inParty) {
                                         totalFighters++
