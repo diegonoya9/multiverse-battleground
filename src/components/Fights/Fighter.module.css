@@ -30,11 +30,11 @@
 
 .userFighterWrapper {
     bottom: 55px;
-    left: 15px;
+    left: 55px;
 }
 
 .enemyFighterWrapper {
-    top: 25px;
+    bottom: 125px;
     right: 55px;
 }
 

@@ -1,8 +1,8 @@
 .fightMenu {
-    bottom: 0px;
+    top: 0px;
     width: 40%;
     height: 30%;
-    right: 0px;
+    left: 0px;
     position: absolute;
     background-color: white;
     border: 2px solid;

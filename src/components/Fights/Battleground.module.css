@@ -1,10 +1,10 @@
 .battleground {
-    background-image: url('../../assets/img/battleground-background.png');
+    background-image: url('../../assets/img/coliseum.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100vh;
-    width: 50%;
+    width: 100vw;
     margin: auto;
     display: flex;
     overflow: hidden;
@@ -43,39 +43,31 @@ h1 {
 }
 
 .battlegroundImg {
-    height: 100vh;
-    width: auto;
+    width: 100vw;
+    height: auto;
     margin: auto;
 }
 
 /* Define la animación */
 @keyframes attack-move {
     0% {
-        bottom: 25%;
-        left: 25%;
+        bottom: 35px;
+        left: 15%;
         opacity: 1;
     }
 
-
-
-    33% {
-        bottom: 35%;
-        left: 35%;
-        opacity: 1;
+    50% {
+        opacity: 0.8;
     }
 
-
-
-    66% {
-        bottom: 55%;
-        left: 55%;
-        opacity: 1;
+    90% {
+        opacity: 0.6;
     }
 
     100% {
-        bottom: 55%;
-        left: 55%;
-        opacity: 0;
+        bottom: 27%;
+        left: 85%;
+        opacity: 0.1;
     }
 }
 
@@ -97,28 +89,23 @@ h1 {
 /* Define la animación inversa */
 @keyframes enemy-attack-move {
     0% {
-        bottom: 55%;
-        left: 55%;
+        bottom: 125px;
+        right: 75px;
         opacity: 1;
     }
 
-
-    33% {
-        bottom: 55%;
-        left: 55%;
-        opacity: 1;
+    50% {
+        opacity: 0.8;
     }
 
-    66% {
-        bottom: 35%;
-        left: 35%;
-        opacity: 1;
+    90% {
+        opacity: 0.6;
     }
 
     100% {
-        bottom: 25%;
-        left: 25%;
-        opacity: 0;
+        bottom: 35px;
+        right: 85%;
+        opacity: 0.1;
     }
 }
 
