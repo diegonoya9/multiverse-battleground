@@ -6,6 +6,7 @@ import classes from './Multiverse.module.css'
 import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
+import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
 
 const Multiverse = ({ changeActivePage }) => {
@@ -54,46 +55,19 @@ const Multiverse = ({ changeActivePage }) => {
                     <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
                     <h1 className={classes.h1}>Welcome {user.name}</h1>
                     <h2 className={classes.h2}>You have {money} pesos</h2>
-                    <input
-                        type="submit"
-                        onClick={(e) => {
-                            changeActivePage(2);
-                        }}
-                        className={`${classes.fightButton} ${classes.menuButton}`}
-                        value={'Fight'}
-                    />
-                    <input
-                        type="submit"
-                        onClick={(e) => {
-                            changeMultiverseActivePage('fighters');
-                        }}
-                        className={`${classes.fightersButton} ${classes.menuButton}`}
-                        value={'Fighters'}
-                    />
-                    <input
-                        type="submit"
-                        onClick={(e) => {
-                            changeMultiverseActivePage('bag');
-                        }}
-                        className={`${classes.bagButton} ${classes.menuButton}`}
-                        value={'Bag'}
-                    />
-                    <input
-                        type="submit"
-                        onClick={(e) => {
-                            changeMultiverseActivePage('shop');
-                        }}
-                        className={`${classes.shopButton} ${classes.menuButton}`}
-                        value={'Shop'}
-                    />
-                    <input
-                        type="submit"
-                        onClick={(e) => {
-                            changeMultiverseActivePage('users');
-                        }}
-                        className={`${classes.shopButton} ${classes.menuButton}`}
-                        value={'Users'}
-                    />
+                    <Button value='Fight' colorType="red" onClick={() => changeActivePage(2)}></Button>
+                    <Button value='Fighters' colorType="brown" onClick={(e) => {
+                        changeMultiverseActivePage('fighters');
+                    }}></Button>
+                    <Button value='Bag' colorType="green" onClick={(e) => {
+                        changeMultiverseActivePage('bag');
+                    }}></Button>
+                    <Button value='Shop' colorType="yellow" onClick={(e) => {
+                        changeMultiverseActivePage('shop');
+                    }}></Button>
+                    <Button value='Users' colorType="blue" onClick={(e) => {
+                        changeMultiverseActivePage('users');
+                    }}></Button>
                 </div>
             )}
             {multiverseActivePage === "fighters" && <FightersPage

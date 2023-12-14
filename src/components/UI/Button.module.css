@@ -1,0 +1,61 @@
+.button {
+    color: #e5e7ec;
+    border: none;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8);
+    /* Ajusta los valores según tus preferencias */
+    margin: 20px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.red {
+    background-color: #ac3315;
+}
+
+.red:hover {
+    background-color: #e95530;
+}
+
+.brown {
+    background-color: #6e5a21;
+}
+
+.brown:hover {
+    background-color: #9b8548;
+}
+
+.green {
+    background-color: #399b0c;
+}
+
+.green:hover {
+    background-color: #6aaf4a;
+}
+
+.lightgreen {
+    background-color: #4CAF50;
+}
+
+.lightgreen:hover {
+    background-color: #45a049;
+}
+
+.yellow {
+    background-color: #ada425;
+}
+
+.yellow:hover {
+    background-color: #afa94e;
+}
+
+.blue {
+    background-color: #2549ad;
+}
+
+.blue:hover {
+    background-color: #526497;
+}

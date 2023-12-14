@@ -3,6 +3,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
 import { useState, useContext } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
+import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showModal, setShowModal] = useState(false)
@@ -109,10 +110,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         }).then(() => updateUser())
     }
     return (<div>
-
-
-
-        <button key="backToMenu" id="backToMenu" className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&

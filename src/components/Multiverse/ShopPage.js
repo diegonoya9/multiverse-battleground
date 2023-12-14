@@ -2,6 +2,7 @@ import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState, useContext } from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
+import Button from "../UI/Button";
 import musicFile from "../../assets/sounds/music/OverNow.WAV"
 import { MyContext } from "../../context/MyContext";
 const ShopPage = ({ changeMultiverseActivePage }) => {
@@ -109,7 +110,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 Keep Buying
             </button>
         </Modal>}
-        <button value="Back to Main Menu" className={classes.backToMainMenuBtn} onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <h1 className={classes.h1}>OBJECTS:</h1>
         {objects && <div className={classes.container} >
             {objects &&

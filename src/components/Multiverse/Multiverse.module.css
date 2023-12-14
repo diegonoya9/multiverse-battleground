@@ -24,6 +24,10 @@
 
 .menuButton {
     color: #e5e7ec;
+    border: none;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8);
+    /* Ajusta los valores según tus preferencias */
+    margin: 20px;
     font-weight: bold;
     padding: 10px 20px;
     margin: 5px;
@@ -35,7 +39,6 @@
 
 .fightButton {
     background-color: #ac3315;
-    border: 2px solid #812008;
 }
 
 .fightButton:hover {
@@ -44,7 +47,6 @@
 
 .fightersButton {
     background-color: #6e5a21;
-    border: 2px solid #473910;
 }
 
 .fightersButton:hover {
@@ -53,7 +55,6 @@
 
 .bagButton {
     background-color: #399b0c;
-    border: 2px solid #2c6d0e;
 }
 
 .bagButton:hover {
@@ -62,11 +63,18 @@
 
 .shopButton {
     background-color: #ada425;
-    border: 2px solid #7e7607;
 }
 
 .shopButton:hover {
     background-color: #afa94e;
+}
+
+.usersButton {
+    background-color: #2549ad;
+}
+
+.usersButton:hover {
+    background-color: #526497;
 }
 
 

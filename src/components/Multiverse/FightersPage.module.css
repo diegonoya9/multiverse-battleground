@@ -43,21 +43,3 @@
 .spanStats {
     font-size: 12px;
 }
-
-.backToMainMenuBtn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.backToMainMenuBtn:hover {
-    background-color: #45a049;
-}
