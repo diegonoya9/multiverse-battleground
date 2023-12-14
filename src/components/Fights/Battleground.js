@@ -147,6 +147,30 @@ const Battleground = ({ changeActivePage }) => {
         //console.log(levels)
     };
     useEffect(() => {
+        const handleOrientationChange = () => {
+            const isHorizontal = window.matchMedia("(orientation: landscape)").matches;
+
+            if (!isHorizontal) {
+                // Rotar la aplicación o aplicar estilos específicos para la orientación vertical
+                document.documentElement.style.transform = "rotate(90deg)";
+            } else {
+                // La orientación es horizontal, no hacer nada o revertir los cambios si es necesario
+                document.documentElement.style.transform = "none";
+            }
+        };
+
+        // Agregar el evento de cambio de orientación
+        window.addEventListener('orientationchange', handleOrientationChange);
+
+        // Llamar a la función para verificar la orientación al cargar la aplicación
+        handleOrientationChange();
+
+        // Limpiar el evento al desmontar el componente
+        return () => {
+            window.removeEventListener('orientationchange', handleOrientationChange);
+        };
+    }, []);
+    useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
         generateLevels();
     }, []);
