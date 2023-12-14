@@ -80,6 +80,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 }
             }
             if (selectedOption === "objects") {
+                setMenuActive(false)
                 healUserFighter(option)
                 handleModalState(`${user.name} used ${option.name}`, "enemy")
             }
