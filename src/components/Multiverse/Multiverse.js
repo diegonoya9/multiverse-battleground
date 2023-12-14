@@ -14,7 +14,6 @@ const Multiverse = ({ changeActivePage }) => {
     };
     const { userContext, setUserId } = useContext(MyContext);
     let activeUser = userContext.idUsuario
-    console.log(activeUser)
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
     const changeMultiverseActivePage = (activePage) => {
         setMultiverseActivePage(activePage)

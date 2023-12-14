@@ -7,11 +7,17 @@ import { MyContext } from "../../context/MyContext";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showModal, setShowModal] = useState(false)
     const { userContext } = useContext(MyContext);
+    const [moves, setMoves] = useState()
+    const [actions, setActions] = useState()
+    const [showMoves, setShowMoves] = useState(false)
+    const [showActions, setShowActions] = useState(false)
     let activeUser = userContext.idUsuario
     const audioStyle = {
         display: 'none',
     };
     const closeModal = () => {
+        setShowActions(false)
+        setShowMoves(false)
         setShowModal(false)
     }
     const addToParty = (userFighterId) => {
@@ -60,6 +66,31 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         }).then(() => updateUser())
 
     }
+    const viewActions = (moveName) => {
+        let actions = []
+        moves.forEach((move) => {
+            if (move.name === moveName) {
+                actions.push(move.actions)
+            }
+        })
+        setActions(actions[0])
+        setShowActions(true)
+        setShowModal(true)
+    }
+    const viewMovements = (userFighterId) => {
+        let newUser = user
+        let moves = []
+        newUser.fighters.forEach((fighter, index) => {
+            if (fighter.userFighterId === userFighterId) {
+                fighter.moves.forEach((move) => {
+                    moves.push(move)
+                })
+            }
+        })
+        setMoves(moves)
+        setShowMoves(true)
+        setShowModal(true)
+    }
     const setFirstFighter = (userFighterId) => {
         let newUser = user
         newUser.fighters.forEach((fighter) => {
@@ -81,7 +112,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
 
 
 
-        <button key="backToMenu" className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
+        <button key="backToMenu" id="backToMenu" className={classes.backToMainMenuBtn} value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }} >Back to Main Menu </button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
@@ -107,14 +138,30 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                                     <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
                                 }
                                 <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
+                                <button type="submit" onClick={() => { viewMovements(fighter.userFighterId) }}>View movements</button>
                             </div>
                         </div>
                     );
                 })}
         </div>
         {showModal && <Modal onClose={closeModal} color="white">
-            <h1>No se puede bro.. máximo 4</h1></Modal>}
-    </div>
+            {showMoves && moves && !showActions && <ul>{moves.map((move) => {
+                return <li key={move.name} onClick={() => { viewActions(move.name) }}>
+                    {move.name}
+                </li>
+            })} </ul>}
+            {showActions && actions &&
+                actions.map((action) => {
+                    return <div key={Math.random()} >
+                        <p>Inflicted on: {action.inflictedOn}</p>
+                        <p>Field: {action.field}</p>
+                        <p>Value: {action.value}</p>
+                    </div>
+                })
+            }
+            {!showMoves && < h1 > No se puede bro.. máximo 4</h1>}
+        </Modal>}
+    </div >
     );
 
 }
