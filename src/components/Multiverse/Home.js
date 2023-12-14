@@ -15,8 +15,8 @@ const Home = () => {
     }
     return (
         <div id="homeDiv" className={classes.homeDiv}>
-            {showModal && <Modal onClose={handleStartAdventure} backgroundColor="rgb(212, 130, 130)"  >
-                <h1 style={{ color: '#ff4500' }}>Welcome to the Multiverse Battleground</h1>
+            {showModal && <Modal onClose={handleStartAdventure} color="white"  >
+                <h1 >Welcome to the Multiverse Battleground</h1>
                 <p style={{ color: '#fff' }}>Get ready for epic battles!</p>
                 <button className={classes.modalButton} onClick={() => handleStartAdventure()}>
                     Start Adventure!

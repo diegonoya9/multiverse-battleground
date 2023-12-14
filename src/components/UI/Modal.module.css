@@ -17,7 +17,9 @@
 }
 
 .modalContent {
-    background: #1a1a1a;
+    background-image: url('../../assets/img/modal-background3.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
