@@ -49,17 +49,77 @@ const Battleground = ({ changeActivePage }) => {
     };
     const generateLevels = () => {
         let levels = [];
-        for (let fighterId = 1; fighterId <= 5; fighterId++) {
+        let fightersInitialValues = [
+            {
+                /* Charizard */
+                attack: 100,
+                defense: 100,
+                specialAttack: 180,
+                specialDefense: 65,
+                maxHp: 250
+            },
+            {
+                /* Goku */
+                attack: 80,
+                defense: 120,
+                specialAttack: 150,
+                specialDefense: 65,
+                maxHp: 100
+            },
+            {
+                /* Mew */
+                attack: 100,
+                defense: 65,
+                specialAttack: 130,
+                specialDefense: 65,
+                maxHp: 150
+            },
+            {
+                /* Batman */
+                attack: 150,
+                defense: 150,
+                specialAttack: 65,
+                specialDefense: 65,
+                maxHp: 300
+            },
+            {
+                /* Michael */
+                attack: 75,
+                defense: 65,
+                specialAttack: 65,
+                specialDefense: 65,
+                maxHp: 200
+            },
+            {
+                /* Vegeta */
+                attack: 65,
+                defense: 120,
+                specialAttack: 65,
+                specialDefense: 120,
+                maxHp: 100
+            },
+        ]
+        for (let fighterId = 1; fighterId <= 6; fighterId++) {
             let prevAccuracy = 65
+            let prevAttack = 10
+            let prevSpecialAttack = 10
+            let prevDefense = 10
+            let prevSpecialDefense = 10
+            let prevMaxHp = 65
             for (let level = 1; level <= 100; level++) {
                 const xp = calculateXp(level);
-                let attack = Math.floor(Math.random() * 45) + level * 5 + 10;
-                let specialAttack = Math.floor(Math.random() * 15) + level * 5 + 10;
-                let defense = Math.floor(Math.random() * 42) + level * 5 + 10;
-                let specialDefense = Math.floor(Math.random() * 30) + level * 5 + 10;
-                let maxHp = Math.floor(Math.random() * 500) + level * 100 + 100;
+                let attack = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].attack) + level * 5 + 10, prevAttack);
+                let specialAttack = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].specialAttack) + level * 5 + 10, prevSpecialAttack);
+                let defense = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].defense) + level * 5 + 10, prevDefense);
+                let specialDefense = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].specialDefense) + level * 5 + 10, prevSpecialDefense);
+                let maxHp = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].maxHp) + level * 100 + 100, prevMaxHp);
                 let accuracy = Math.max(Math.floor(Math.random() * 65) + level + 1, prevAccuracy);
                 prevAccuracy = accuracy
+                prevAttack = attack
+                prevSpecialAttack = specialAttack
+                prevDefense = defense
+                prevSpecialDefense = specialDefense
+                prevMaxHp = maxHp
 
                 // Adjust max values for level 100
                 attack += 90 * (level - 1);
