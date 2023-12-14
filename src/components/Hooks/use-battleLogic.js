@@ -28,6 +28,12 @@ const useBattleLogic = (setShowLevelUp) => {
             if (selectedOption === "attacks") {
                 reduceFighterMP(option.name)
                 if (enemyFighter && enemyFighter.currentHP > 0) {
+                    let randomNumber = Math.random() * 100
+                    let attackHit = userFighter.accuracy >= randomNumber
+                    let timeOut = 2000
+                    if (!attackHit) {
+                        timeOut = 1
+                    }
                     const wait = (attackHit) => {
                         setTimeout(() => {
                             setAttack((prevState) => {
@@ -41,10 +47,9 @@ const useBattleLogic = (setShowLevelUp) => {
                                 handleModalState(`${userFighter.name} missed`, "enemy")
                             }
                             // setTurn("enemy")
-                        }, 1000); // 3000 milisegundos = 3 segundos
+                        }, timeOut); // 3000 milisegundos = 3 segundos
                     };
-                    let randomNumber = Math.random() * 100
-                    let attackHit = userFighter.accuracy >= randomNumber
+
                     setMenuActive(false)
                     if (attackHit) {
                         option.actions.forEach((action) => {
@@ -92,7 +97,12 @@ const useBattleLogic = (setShowLevelUp) => {
     const enemyAI = (setMenuActive, battleEnded) => {
         if (turn === "enemy" && !battleEnded.finished) {
             const randomMove = Math.floor(Math.random() * 4)
-            console.log(randomMove)
+            let randomNumber = Math.random() * 100
+            let attackHit = enemyFighter.accuracy >= randomNumber
+            let timeOut = 2000
+            if (!attackHit) {
+                timeOut = 1
+            }
             const wait = (attackHit) => {
                 setTimeout(() => {
                     setMenuActive(true)
@@ -102,15 +112,14 @@ const useBattleLogic = (setShowLevelUp) => {
                         return newState
                     })
                     if (attackHit) {
-                        handleModalState(`${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
+                        handleModalState(`Enemy ${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
                     } else {
-                        handleModalState(`${enemyFighter.name} missed`, "user")
+                        handleModalState(`Enemy ${enemyFighter.name} missed`, "user")
                     }
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
-                }, 1000); // 3000 milisegundos = 3 segundos
+                }, timeOut); // 3000 milisegundos = 3 segundos
             };
-            let randomNumber = Math.random() * 100
-            let attackHit = enemyFighter.accuracy >= randomNumber
+
             if (attackHit) {
                 enemyFighter.moves[randomMove].actions.forEach((action) => {
                     let newAction = { ...action }

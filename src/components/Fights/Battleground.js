@@ -155,8 +155,8 @@ const Battleground = ({ changeActivePage }) => {
         <div className={classes.battleground}>
             {showModal && !battleEnded.finished && <Modal onClose={onCloseModal} color="white">{modalContent}</Modal>}
             <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
-            {attack.active && turn === "enemy" && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
-            {attack.active && turn === "user" && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && <div className={classes.battleEnded}>
                 {showLevelUp && <div className={classes.divBattleEnded}>Tu {userFighter.name} subió de nivel</div>}
                 {battleEnded.winner === "user" && user && <div className={classes.divBattleEnded}>{user.name} WON</div>}

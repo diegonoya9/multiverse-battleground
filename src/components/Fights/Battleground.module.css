@@ -84,7 +84,7 @@ h1 {
     height: 15%;
     position: absolute;
     animation-name: attack-move;
-    animation-duration: 1s;
+    animation-duration: 2s;
     /* Duración de la animación */
     animation-timing-function: ease-out;
     /* Función de temporización de la animación */
@@ -127,7 +127,7 @@ h1 {
     height: 15%;
     position: absolute;
     animation-name: enemy-attack-move;
-    animation-duration: 1s;
+    animation-duration: 2s;
     /* Duración de la animación */
     animation-timing-function: ease-out;
     /* Función de temporización de la animación */
