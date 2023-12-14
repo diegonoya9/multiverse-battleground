@@ -6,6 +6,7 @@ import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from '../../assets/sounds/music/AndWeDieYoung.WAV';
 import Modal from '../UI/Modal.js'
+import Button from '../UI/Button.js'
 
 const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
@@ -158,11 +159,13 @@ const Battleground = ({ changeActivePage }) => {
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && <div className={classes.battleEnded}>
-                {showLevelUp && <div className={classes.divBattleEnded}>Tu {userFighter.name} subió de nivel</div>}
-                {battleEnded.winner === "user" && user && <div className={classes.divBattleEnded}>{user.name} WON</div>}
-                {battleEnded.winner === "enemy" && <div className={classes.divBattleEnded}>Enemy WON</div>}
-                {battleEnded.winner === "ran" && user && <div className={classes.divBattleEnded}>{user.name} ran away</div>}
-                <input className={classes.endBattleButton} type="button" onClick={() => restartGame()} value="Main Menu" />
+                <Modal color="white" onClose={() => restartGame()}>
+                    {showLevelUp && <h2 >Tu {userFighter.name} subió de nivel</h2>}
+                    {battleEnded.winner === "user" && user && <h2 >{user.name} WON</h2>}
+                    {battleEnded.winner === "enemy" && <h2 >Enemy WON</h2>}
+                    {battleEnded.winner === "ran" && user && <h1>{user.name} ran away</h1>}
+                    <Button colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
+                </Modal>
             </div>}
             {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
