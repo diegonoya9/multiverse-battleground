@@ -5,9 +5,9 @@
     font-family: sans-serif;
 }
 
-.body {
+/* .body {
     background: #282c34;
-}
+} */
 
 .container {
 
@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: #282c34;
+    /* background: #282c34; */
     gap: 1em;
 }
 
@@ -35,6 +35,7 @@
     border-radius: 10px;
     overflow: hidden;
     transition: .5s;
+    background-image: url('../../assets/img/forest.gif');
 }
 
 .card .front {
