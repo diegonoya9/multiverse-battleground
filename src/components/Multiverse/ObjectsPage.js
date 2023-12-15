@@ -20,6 +20,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
                                 <img alt="object" src={object.img} className={classes.objectImg} />
                             </div>
                             <span className={classes.objectName}>Quantity:{object.quantity}</span>
+                            <br />
                             <span className={classes.objectName}>Description:{object.description}</span>
                         </div>
                     );
