@@ -17,6 +17,14 @@
     width: 100%;
 }
 
+.battlegroundColiseum {
+    font-family: 'Merienda', sans-serif !important;
+}
+
+.battlegroundAirport {
+    font-family: 'Black Ops One' !important;
+}
+
 .battlegroundRoute {
     font-family: 'Black Ops One' !important;
 }

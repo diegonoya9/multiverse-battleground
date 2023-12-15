@@ -81,7 +81,17 @@
     background-color: #526497;
 }
 
-.battlegroundAirport {}
+.battlegroundAirport {
+    background-image: url('../../assets/img/metal.jpg');
+    font-family: 'Black Ops One' !important;
+    color: rgb(43, 41, 41) !important;
+    font-size: x-large;
+}
+
+
+.battlegroundAirport:hover {
+    background-image: url('../../assets/img/metal-hover.jpg');
+}
 
 .battlegroundRoute {
     background-image: url('../../assets/img/metal.jpg');
@@ -94,7 +104,10 @@
     background-image: url('../../assets/img/metal-hover.jpg');
 }
 
-.battlegroundColiseum {}
+.battlegroundColiseum {
+    font-family: 'Merienda', sans-serif !important;
+    font-size: x-large;
+}
 
 .battlegroundCiberspace {
     background-image: url('../../assets/img/modal-background3.gif');

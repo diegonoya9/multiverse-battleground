@@ -58,13 +58,17 @@
     }
 }
 
-.battlegroundAirport {}
+.battlegroundAirport {
+    font-family: 'Black Ops One' !important;
+}
 
 .battlegroundRoute {
     font-family: 'Black Ops One' !important;
 }
 
-.battlegroundColiseum {}
+.battlegroundColiseum {
+    font-family: 'Merienda' !important;
+}
 
 .battlegroundCiberspace {
     font-family: 'Orbitron', sans-serif !important;

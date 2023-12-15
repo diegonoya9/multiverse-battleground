@@ -38,6 +38,16 @@ h2.battlegroundRoute {
     font-family: 'Black Ops One', sans-serif !important;
 }
 
+h1.battlegroundColiseum,
+h2.battlegroundColiseum {
+    font-family: 'Merienda', sans-serif !important;
+}
+
+h1.battlegroundAirport,
+h2.battlegroundAirport {
+    font-family: 'Black Ops One', sans-serif !important;
+}
+
 .divBattleEnded {
     background-color: rgb(221, 210, 210);
     display: flex;

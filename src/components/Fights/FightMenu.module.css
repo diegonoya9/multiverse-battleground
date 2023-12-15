@@ -51,7 +51,11 @@
     }
 }
 
-.battlegroundAirport {}
+.battlegroundAirport {
+    background-image: url('../../assets/img/metal.jpg');
+    font-family: 'Black Ops One' !important;
+    color: rgb(43, 41, 41) !important;
+}
 
 .battlegroundRoute {
     background-image: url('../../assets/img/metal.jpg');
@@ -59,7 +63,9 @@
     color: rgb(43, 41, 41) !important;
 }
 
-.battlegroundColiseum {}
+.battlegroundColiseum {
+    font-family: 'Merienda', sans-serif !important;
+}
 
 .battlegroundCiberspace {
     background-image: url('../../assets/img/modal-background3.gif');

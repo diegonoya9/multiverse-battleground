@@ -39,14 +39,19 @@
     /* Puedes personalizar el color de la barra según tus necesidades */
 }
 
-.battlegroundAirport {}
+.battlegroundAirport {
+    font-family: 'Black Ops One' !important;
+    color: black;
+}
 
 .battlegroundRoute {
     font-family: 'Black Ops One' !important;
     color: black;
 }
 
-.battlegroundColiseum {}
+.battlegroundColiseum {
+    font-family: 'Merienda', sans-serif !important;
+}
 
 .battlegroundCiberspace {
     font-family: 'Orbitron', sans-serif !important;
