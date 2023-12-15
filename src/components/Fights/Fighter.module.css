@@ -6,20 +6,33 @@
     display: block;
     /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
     max-width: 100%;
+    z-index: 2;
     /* transform: scaleX(-1) */
     /*Da vuelta la imagen del luchador, pero hay que buscar imagenes que miren para el mismo lado*/
 }
 
 .userFighter {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-content: stretch;
+    flex-wrap: wrap;
 }
 
 .enemyFighter {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-content: stretch;
+    flex-wrap: wrap;
 }
 
+.fighterShadow {
+    background-color: black;
+    clip-path: ellipse(50% 26% at 50% 50%);
+    margin-top: -20px;
+    height: 35px;
+    width: 70px;
+    opacity: 0.5;
+}
 
 .fighterWrapper {
     width: 25%;

@@ -10,6 +10,7 @@ const Fighter = ({ children, user, fighter }) => {
             <div className={user === "user" ? classes.userFighter : classes.enemyFighter}>
                 {children}
                 <img alt="fighter" src={user === "user" ? `${fighter.imgBack}` : `${fighter.imgFront}`} className={classes.fighterImage} />
+                <div className={classes.fighterShadow}>Shadow</div>
             </div>
         </div >
     )
