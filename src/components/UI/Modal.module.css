@@ -2,6 +2,7 @@
 .modalWrapper {
     height: 100%;
     width: 100%;
+    z-index: 9999;
 }
 
 .modalContainer {
@@ -25,16 +26,18 @@
 }
 
 .battlegroundAirport {
-    background-image: url('../../assets/img/modal-background3.gif');
-
+    background-image: url('../../assets/img/menu-background.jpg');
+    color: black !important;
 }
 
 .battlegroundRoute {
-    background-image: url('../../assets/img/modal-background3.gif');
+    background-image: url('../../assets/img/menu-background.jpg');
+    color: black !important;
 }
 
 .battlegroundCiberspace {
     background-image: url('../../assets/img/modal-background3.gif');
+    font-family: 'Orbitron', sans-serif !important;
 }
 
 .battlegroundColiseum {

@@ -57,3 +57,13 @@
         width: 100px;
     }
 }
+
+.battlegroundAirport {}
+
+.battlegroundRoute {}
+
+.battlegroundColiseum {}
+
+.battlegroundCiberspace {
+    font-family: 'Orbitron', sans-serif !important;
+}

@@ -38,3 +38,13 @@
     /* Agregamos una transición de 0.5 segundos */
     /* Puedes personalizar el color de la barra según tus necesidades */
 }
+
+.battlegroundAirport {}
+
+.battlegroundRoute {}
+
+.battlegroundColiseum {}
+
+.battlegroundCiberspace {
+    font-family: 'Orbitron', sans-serif !important;
+}

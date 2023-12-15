@@ -50,3 +50,15 @@
         font-size: 12px;
     }
 }
+
+.battlegroundAirport {}
+
+.battlegroundRoute {}
+
+.battlegroundColiseum {}
+
+.battlegroundCiberspace {
+    background-image: url('../../assets/img/modal-background3.gif');
+    font-family: 'Orbitron', sans-serif !important;
+    color: white;
+}

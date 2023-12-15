@@ -17,6 +17,10 @@
     width: 100%;
 }
 
+.battlegroundCiberspace {
+    font-family: 'Orbitron', sans-serif !important;
+}
+
 .options {
     width: 50%;
     font-size: large;

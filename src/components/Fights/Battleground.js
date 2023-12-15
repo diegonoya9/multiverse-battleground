@@ -190,17 +190,17 @@ const Battleground = ({ changeActivePage }) => {
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
                 <Modal color="white" styleType={battlegroundType} onClose={() => restartGame()}>
-                    {showLevelUp && <h2 >Tu {userFighter.name} subió de nivel</h2>}
-                    {battleEnded.winner === "user" && user && <h2 >{user.name} WON</h2>}
-                    {battleEnded.winner === "enemy" && <h2 >Enemy WON</h2>}
-                    {battleEnded.winner === "ran" && user && <h1>{user.name} ran away</h1>}
-                    <Button colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
+                    {showLevelUp && <h2 className={classes[battlegroundType]}>Tu {userFighter.name} subió de nivel</h2>}
+                    {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{user.name} WON</h2>}
+                    {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>Enemy WON</h2>}
+                    {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{user.name} ran away</h1>}
+                    <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
                 </Modal>
             </div>}
-            {userFighter && !battleEnded.finished && <Fighter fighter={userFighter} user="user">
+            {userFighter && !battleEnded.finished && <Fighter styleType={battlegroundType} fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
             </Fighter>}
-            {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy">
+            {enemyFighter && !battleEnded.finished && <Fighter styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
             {!battleEnded.finished && menuActive && <FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}

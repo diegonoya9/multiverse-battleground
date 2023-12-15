@@ -18,19 +18,19 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, styleTy
     return (<div>
         {subMenuActive ? <SubMenu styleType={styleType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
             <div className={classes.fightMenu}>
-                <div className={classes.fightMenuImg}>
+                <div className={`${classes.fightMenuImg} ${classes[styleType]}`}>
                     <ul className={classes.optionsContainer}>
                         <div className={classes.options}>
-                            <Button completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Attacks" />
+                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Attacks" />
                         </div>
                         <div className={classes.options}>
-                            <Button completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Objects" />
+                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("objects")} value="Objects" />
                         </div>
                         <div className={classes.options}>
-                            <Button completeWidth="true" onClick={() => toggleSubMenu("fighters")} value="Fighters" />
+                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("fighters")} value="Fighters" />
                         </div>
                         <div className={classes.options}>
-                            <Button completeWidth="true" onClick={() => toggleSubMenu("run")} value="Run" />
+                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("run")} value="Run" />
                         </div>
                     </ul>
                 </div>

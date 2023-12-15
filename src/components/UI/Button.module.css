@@ -80,3 +80,22 @@
 .blue:hover {
     background-color: #526497;
 }
+
+.battlegroundAirport {}
+
+.battlegroundRoute {}
+
+.battlegroundColiseum {}
+
+.battlegroundCiberspace {
+    background-image: url('../../assets/img/modal-background3.gif');
+    font-family: 'Orbitron', sans-serif !important;
+    color: white;
+    font-size: x-large;
+}
+
+.battlegroundCiberspace:hover {
+    background-image: url('../../assets/img/modal-background3.gif');
+    font-family: 'Orbitron', sans-serif !important;
+    color: white;
+}

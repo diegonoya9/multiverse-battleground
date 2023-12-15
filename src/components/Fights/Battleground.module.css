@@ -12,20 +12,25 @@
     /* Ajuste necesario para corregir la posición */
 }
 
-.battlegroundAirport {
+div.battlegroundAirport {
     background-image: url('../../assets/img/battleground-background3.png');
 }
 
-.battlegroundRoute {
+div.battlegroundRoute {
     background-image: url('../../assets/img/battleground-background2.png');
 }
 
-.battlegroundColiseum {
+div.battlegroundColiseum {
     background-image: url('../../assets/img/coliseum.gif');
 }
 
-.battlegroundCiberspace {
+div.battlegroundCiberspace {
     background-image: url('../../assets/img/ciberspace.gif');
+}
+
+h1.battlegroundCiberspace,
+h2.battlegroundCiberspace {
+    font-family: 'Orbitron', sans-serif !important;
 }
 
 .divBattleEnded {
