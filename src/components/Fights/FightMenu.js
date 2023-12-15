@@ -1,7 +1,7 @@
 import classes from './FightMenu.module.css'
 import SubMenu from './SubMenu'
 import { useState } from 'react'
-import Button from './Button'
+import Button from '../UI/Button'
 
 
 const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, styleType }) => {

@@ -1,6 +1,6 @@
 import classes from './SubMenu.module.css'
 import { useState, useEffect } from 'react'
-import Modal from './Modal'
+import Modal from '../UI/Modal'
 const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, changeUserFighter, styleType }) => {
     const [optionsArray, setOptionsArray] = useState()
     const [showModal, setShowModal] = useState(true)

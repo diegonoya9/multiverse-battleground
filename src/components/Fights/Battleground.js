@@ -1,6 +1,6 @@
 import classes from './Battleground.module.css'
 import Fighter from './Fighter'
-import FightMenu from '../UI/FightMenu'
+import FightMenu from './FightMenu.js'
 import { memo, useEffect, useState } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';

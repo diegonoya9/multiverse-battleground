@@ -1,5 +1,5 @@
 import classes from './Fighter.module.css'
-import LifeBar from '../UI/LifeBar'
+import LifeBar from './LifeBar'
 
 
 const Fighter = ({ children, user, fighter, styleType }) => {
