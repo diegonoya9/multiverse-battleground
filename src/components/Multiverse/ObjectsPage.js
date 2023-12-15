@@ -7,10 +7,10 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     const audioStyle = {
         display: 'none',
     };
-    return (<div>
+    return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
-        <div className={`${classes.container} ${classes.backgroundImg}`} >
+        <div className={classes.container} >
             {user &&
                 user.objects.map((object) => {
                     return (

@@ -34,6 +34,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     if (object.name === "money") {
                         object.quantity = newMoney[0].quantity
                     }
+                    setShowModal(true)
                     return object
                 })
                 setUser(newUser)
@@ -130,6 +131,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         </div>
 
         }
+
         {fighters && <div><h1 className={classes.h1}>FIGHTERS:</h1><div className={classes.container} >
             {fighters &&
                 fighters.map((fighter) => {
