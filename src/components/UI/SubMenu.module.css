@@ -17,6 +17,10 @@
     width: 100%;
 }
 
+.battlegroundRoute {
+    font-family: 'Black Ops One' !important;
+}
+
 .battlegroundCiberspace {
     font-family: 'Orbitron', sans-serif !important;
 }

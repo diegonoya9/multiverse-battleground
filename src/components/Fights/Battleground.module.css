@@ -13,11 +13,11 @@
 }
 
 div.battlegroundAirport {
-    background-image: url('../../assets/img/battleground-background3.png');
+    background-image: url('../../assets/img/battleground-background2.png');
 }
 
 div.battlegroundRoute {
-    background-image: url('../../assets/img/battleground-background2.png');
+    background-image: url('../../assets/img/battleground-background3.png');
 }
 
 div.battlegroundColiseum {
@@ -31,6 +31,11 @@ div.battlegroundCiberspace {
 h1.battlegroundCiberspace,
 h2.battlegroundCiberspace {
     font-family: 'Orbitron', sans-serif !important;
+}
+
+h1.battlegroundRoute,
+h2.battlegroundRoute {
+    font-family: 'Black Ops One', sans-serif !important;
 }
 
 .divBattleEnded {

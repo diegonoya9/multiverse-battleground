@@ -83,7 +83,16 @@
 
 .battlegroundAirport {}
 
-.battlegroundRoute {}
+.battlegroundRoute {
+    background-image: url('../../assets/img/metal.jpg');
+    font-family: 'Black Ops One' !important;
+    color: rgb(43, 41, 41) !important;
+    font-size: x-large;
+}
+
+.battlegroundRoute:hover {
+    background-image: url('../../assets/img/metal-hover.jpg');
+}
 
 .battlegroundColiseum {}
 

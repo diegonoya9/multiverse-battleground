@@ -41,7 +41,10 @@
 
 .battlegroundAirport {}
 
-.battlegroundRoute {}
+.battlegroundRoute {
+    font-family: 'Black Ops One' !important;
+    color: black;
+}
 
 .battlegroundColiseum {}
 

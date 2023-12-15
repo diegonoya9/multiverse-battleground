@@ -31,8 +31,9 @@
 }
 
 .battlegroundRoute {
-    background-image: url('../../assets/img/menu-background.jpg');
-    color: black !important;
+    background-image: url('../../assets/img/metal.jpg');
+    font-family: 'Black Ops One' !important;
+    color: rgb(43, 41, 41) !important;
 }
 
 .battlegroundCiberspace {

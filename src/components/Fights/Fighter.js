@@ -5,7 +5,7 @@ import LifeBar from '../UI/LifeBar'
 const Fighter = ({ children, user, fighter, styleType }) => {
     return (
         <div className={user === "user" ? `${classes.userFighterWrapper} ${classes.sombra} ${classes.fighterWrapper}` : `${classes.enemyFighterWrapper} ${classes.fighterWrapper}`}>
-            <h3 className={classes[styleType]} style={{ color: "white" }}>{fighter.name}/LVL:{fighter.level}</h3>
+            <h3 className={classes[styleType]} >{fighter.name}/LVL:{fighter.level}</h3>
             <LifeBar styleType={styleType} currentHP={fighter.currentHP} maxHP={fighter.maxHP}></LifeBar>
             <div className={user === "user" ? classes.userFighter : classes.enemyFighter}>
                 {children}

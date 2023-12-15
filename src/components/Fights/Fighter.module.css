@@ -60,7 +60,9 @@
 
 .battlegroundAirport {}
 
-.battlegroundRoute {}
+.battlegroundRoute {
+    font-family: 'Black Ops One' !important;
+}
 
 .battlegroundColiseum {}
 
