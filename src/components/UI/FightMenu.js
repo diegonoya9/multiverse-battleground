@@ -1,6 +1,7 @@
 import classes from './FightMenu.module.css'
 import SubMenu from './SubMenu'
 import { useState } from 'react'
+import Button from './Button'
 
 
 const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, styleType }) => {
@@ -19,10 +20,18 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, styleTy
             <div className={classes.fightMenu}>
                 <div className={classes.fightMenuImg}>
                     <ul className={classes.optionsContainer}>
-                        <li className={classes.options} onClick={() => toggleSubMenu("attacks")}>Attacks</li>
-                        <li className={classes.options} onClick={() => toggleSubMenu("objects")}>Objects</li>
-                        <li className={classes.options} onClick={() => toggleSubMenu("fighters")}>Fighter</li>
-                        <li className={classes.options} onClick={() => toggleSubMenu("run")}>Run</li>
+                        <div className={classes.options}>
+                            <Button completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Attacks" />
+                        </div>
+                        <div className={classes.options}>
+                            <Button completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Objects" />
+                        </div>
+                        <div className={classes.options}>
+                            <Button completeWidth="true" onClick={() => toggleSubMenu("fighters")} value="Fighters" />
+                        </div>
+                        <div className={classes.options}>
+                            <Button completeWidth="true" onClick={() => toggleSubMenu("run")} value="Run" />
+                        </div>
                     </ul>
                 </div>
             </div >
