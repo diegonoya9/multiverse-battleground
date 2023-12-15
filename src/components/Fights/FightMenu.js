@@ -21,16 +21,16 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, styleTy
                 <div className={`${classes.fightMenuImg} ${classes[styleType]}`}>
                     <ul className={classes.optionsContainer}>
                         <div className={classes.options}>
-                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Attacks" />
-                        </div>
-                        <div className={classes.options}>
-                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("objects")} value="Objects" />
-                        </div>
-                        <div className={classes.options}>
                             <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("fighters")} value="Fighters" />
                         </div>
                         <div className={classes.options}>
                             <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("run")} value="Run" />
+                        </div>
+                        <div className={classes.options}>
+                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("attacks")} value="Attacks" />
+                        </div>
+                        <div className={classes.options}>
+                            <Button styleType={styleType} completeWidth="true" onClick={() => toggleSubMenu("objects")} value="Objects" />
                         </div>
                     </ul>
                 </div>
