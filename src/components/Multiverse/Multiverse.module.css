@@ -4,16 +4,10 @@
 .container {
     min-height: 100%;
     width: 100%;
-    background-image: url('../../assets/img/island.gif');
-    object-fit: cover;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 /* Estilos para el menú principal */
 .mainMenu {
-    background-color: #282c34;
     color: white;
 }
 
