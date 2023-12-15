@@ -1,8 +1,11 @@
 import classes from './Button.module.css'
 
-const Button = ({ value, colorType, onClick, completeWidth, styleType }) => {
+const Button = ({ value, colorType, onClick, completeWidth, styleType, children }) => {
     return (
-        <input className={`${classes.button} ${completeWidth && classes.completeWidth} ${classes[styleType]}`} onClick={() => onClick()} value={value} type="button"></input>
+        <div onClick={() => onClick()} className={`${classes.button} ${completeWidth && classes.completeWidth} ${classes[styleType]}`}>
+            {value}
+            {children}
+        </div>
     )
 }
 
