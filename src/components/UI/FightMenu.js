@@ -14,19 +14,19 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter }) => {
             setSubMenuActive(!subMenuActive)
         }
     }
-    return (
-        <div className={classes.fightMenu}>
-            <div className={classes.fightMenuImg}>
-                {subMenuActive ? <SubMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
+    return (<div>
+        {subMenuActive ? <SubMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
+            <div className={classes.fightMenu}>
+                <div className={classes.fightMenuImg}>
                     <ul className={classes.optionsContainer}>
                         <li className={classes.options} onClick={() => toggleSubMenu("attacks")}>Attacks</li>
                         <li className={classes.options} onClick={() => toggleSubMenu("objects")}>Objects</li>
                         <li className={classes.options} onClick={() => toggleSubMenu("fighters")}>Fighter</li>
                         <li className={classes.options} onClick={() => toggleSubMenu("run")}>Run</li>
                     </ul>
-                }
-            </div>
-        </div >
+                </div>
+            </div >
+        }</div>
     )
 }
 

@@ -164,7 +164,6 @@ const Battleground = ({ changeActivePage }) => {
     }
     const selectSong = () => {
         let randomBattleground = Math.floor(Math.random() * songs.length)
-        console.log(songs[randomBattleground].src)
         setSong(songs[randomBattleground].src)
     }
     const selectBattlegroundType = () => {
