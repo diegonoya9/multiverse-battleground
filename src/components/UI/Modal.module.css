@@ -17,13 +17,31 @@
 }
 
 .modalContent {
-    background-image: url('../../assets/img/modal-background3.gif');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
 }
+
+.battlegroundAirport {
+    background-image: url('../../assets/img/modal-background3.gif');
+
+}
+
+.battlegroundRoute {
+    background-image: url('../../assets/img/modal-background3.gif');
+}
+
+.battlegroundCiberspace {
+    background-image: url('../../assets/img/modal-background3.gif');
+}
+
+.battlegroundColiseum {
+    background-image: url('../../assets/img/menu-background.jpg');
+    color: black !important;
+}
+
 
 .modalButton {
     background: #ff4500;

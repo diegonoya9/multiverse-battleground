@@ -24,6 +24,10 @@
     background-image: url('../../assets/img/coliseum.gif');
 }
 
+.battlegroundCiberspace {
+    background-image: url('../../assets/img/ciberspace.gif');
+}
+
 .divBattleEnded {
     background-color: rgb(221, 210, 210);
     display: flex;
@@ -51,9 +55,6 @@
     flex-direction: column;
 }
 
-h1 {
-    color: white
-}
 
 .battlegroundImg {
     width: 100vw;

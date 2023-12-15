@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import classes from './Modal.module.css';
 
-const Modal = ({ onClose, backgroundColor, color, children }) => {
+const Modal = ({ onClose, backgroundColor, color, children, styleType }) => {
     const modalRef = useRef();
 
     const handleClickOutside = (event) => {
@@ -10,7 +10,6 @@ const Modal = ({ onClose, backgroundColor, color, children }) => {
             onClose();
         }
     };
-
     // Agregar un event listener para cerrar el modal haciendo clic fuera de él
     React.useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
@@ -23,7 +22,7 @@ const Modal = ({ onClose, backgroundColor, color, children }) => {
     return (
         <div className={classes.modalWrapper} style={{ backgroundColor, color }}>
             <div className={classes.modalContainer} style={{ color }} >
-                <div className={classes.modalContent} style={{ color }} ref={modalRef}>
+                <div className={`${classes.modalContent} ${classes[styleType]}`} style={{ color }} ref={modalRef}>
                     {children}
                 </div>
             </div>

@@ -21,7 +21,7 @@ const Battleground = ({ changeActivePage }) => {
         // Agrega más canciones según sea necesario
     ];
     const [showLevelUp, setShowLevelUp] = useState(false);
-    const battlegroundTypes = ["battlegroundAirport", "battlegroundRoute", "battlegroundColiseum"]
+    const battlegroundTypes = ["battlegroundAirport", "battlegroundRoute", "battlegroundColiseum", "battlegroundCiberspace"]
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
     const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
@@ -184,12 +184,12 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
-            {showModal && !battleEnded.finished && <Modal onClose={onCloseModal} color="white">{modalContent}</Modal>}
+            {showModal && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
-            {battleEnded.finished && <div className={classes.battleEnded}>
-                <Modal color="white" onClose={() => restartGame()}>
+            {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
+                <Modal color="white" styleType={battlegroundType} onClose={() => restartGame()}>
                     {showLevelUp && <h2 >Tu {userFighter.name} subió de nivel</h2>}
                     {battleEnded.winner === "user" && user && <h2 >{user.name} WON</h2>}
                     {battleEnded.winner === "enemy" && <h2 >Enemy WON</h2>}
@@ -203,7 +203,7 @@ const Battleground = ({ changeActivePage }) => {
             {enemyFighter && !battleEnded.finished && <Fighter fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
-            {!battleEnded.finished && menuActive && <FightMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
+            {!battleEnded.finished && menuActive && <FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
         </div>
     )

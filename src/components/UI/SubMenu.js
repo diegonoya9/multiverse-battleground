@@ -1,7 +1,7 @@
 import classes from './SubMenu.module.css'
 import { useState, useEffect } from 'react'
 import Modal from './Modal'
-const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, changeUserFighter }) => {
+const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, changeUserFighter, styleType }) => {
     const [optionsArray, setOptionsArray] = useState()
     const [showModal, setShowModal] = useState(true)
     useEffect(() => {
@@ -36,7 +36,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
         <div className={classes.divSubMenu}>
             {showModal
                 &&
-                <Modal color="white" backgroundColor="white" onClose={closeModal}>
+                <Modal styleType={styleType} color="white" backgroundColor="white" onClose={closeModal}>
                     <ul className={classes.optionsContainer} >
                         {optionsArray && selectedOption === "objects" && optionsArray.map((x, i) => {
                             return x.category === "battleItem" && <li key={x.name + i} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}><div>{x.name}:{x.quantity}<img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></div></li>
