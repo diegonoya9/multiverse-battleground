@@ -21,8 +21,9 @@
 
 .lifeBarBorder {
     flex-grow: 1;
-    border: 3px solid #000000;
+    border: 3px solid #1c3018;
     height: 50%;
+    border-radius: 4px;
     /* Puedes personalizar el borde según tus necesidades */
     margin: 0 10px;
     /* Ajusta el espacio entre lifeBarBorder y lifeBar según sea necesario */
@@ -31,7 +32,8 @@
 
 .lifeBar {
     height: 1rem;
-    background-color: #4caf50;
+    background-image: url('../../assets/img/green-glow2.gif');
+    background-size: 100% 100%;
     transition: width 0.5s ease;
     /* Agregamos una transición de 0.5 segundos */
     /* Puedes personalizar el color de la barra según tus necesidades */

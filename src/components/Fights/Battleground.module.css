@@ -64,7 +64,7 @@ h1 {
 /* Define la animación */
 @keyframes attack-move {
     0% {
-        bottom: 35px;
+        bottom: 108px;
         left: 15%;
         opacity: 1;
     }
@@ -78,7 +78,7 @@ h1 {
     }
 
     100% {
-        bottom: 27%;
+        bottom: 128px;
         left: 85%;
         opacity: 0.1;
     }
@@ -102,7 +102,7 @@ h1 {
 /* Define la animación inversa */
 @keyframes enemy-attack-move {
     0% {
-        bottom: 125px;
+        bottom: 128px;
         right: 75px;
         opacity: 1;
     }
@@ -116,7 +116,7 @@ h1 {
     }
 
     100% {
-        bottom: 35px;
+        bottom: 108px;
         right: 85%;
         opacity: 0.1;
     }
