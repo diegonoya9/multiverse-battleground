@@ -109,7 +109,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             body: JSON.stringify(newUser),
         }).then(() => updateUser())
     }
-    return (<div className={classes.body}>
+    return (<div className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />

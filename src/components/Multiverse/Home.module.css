@@ -4,7 +4,7 @@
 
 .homeDiv {
     min-height: 100vh;
-    height: auto;
+    height: 100vh;
     width: 100vw;
     background-image: url('../../assets/img/island.gif');
     background-repeat: no-repeat;
