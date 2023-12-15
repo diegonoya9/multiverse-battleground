@@ -126,7 +126,6 @@ const useUser = (origin) => {
                             .then((response) => response.json())
                             .then((fightersData) => {
                                 let randomValue = Math.floor(Math.random() * (fightersData.length))
-                                console.log(randomValue)
                                 for (let i = 0; i < fightersData.length; i++) {
                                     if (fightersData.length > 1) {
                                         if (i === randomValue) {

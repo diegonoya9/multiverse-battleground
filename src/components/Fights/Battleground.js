@@ -4,7 +4,9 @@ import FightMenu from '../UI/FightMenu'
 import { memo, useEffect, useState } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from '../../assets/sounds/music/AndWeDieYoung.WAV';
+import musicFile1 from '../../assets/sounds/music/AndWeDieYoung.WAV';
+import musicFile2 from '../../assets/sounds/music/FourHorsemen.WAV';
+import musicFile3 from '../../assets/sounds/music/OverNow.WAV';
 import Modal from '../UI/Modal.js'
 import Button from '../UI/Button.js'
 
@@ -12,7 +14,16 @@ const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
+    const songs = [
+        { id: 1, title: 'Song 1', src: musicFile1 },
+        { id: 2, title: 'Song 2', src: musicFile2 },
+        { id: 3, title: 'Song 3', src: musicFile3 },
+        // Agrega más canciones según sea necesario
+    ];
     const [showLevelUp, setShowLevelUp] = useState(false);
+    const battlegroundTypes = ["battlegroundAirport", "battlegroundRoute", "battlegroundColiseum"]
+    const [battlegroundType, setBattlegroundType] = useState();
+    const [song, setSong] = useState();
     const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
@@ -147,15 +158,35 @@ const Battleground = ({ changeActivePage }) => {
         }
         //console.log(levels)
     };
+    const selectTheme = () => {
+        selectSong()
+        selectBattlegroundType()
+    }
+    const selectSong = () => {
+        let randomBattleground = Math.floor(Math.random() * songs.length)
+        console.log(songs[randomBattleground].src)
+        setSong(songs[randomBattleground].src)
+    }
+    const selectBattlegroundType = () => {
+        let randomBattleground = Math.floor(Math.random() * battlegroundTypes.length)
+        setBattlegroundType(battlegroundTypes[randomBattleground])
+    }
+    useEffect(() => {
+        const audio = document.getElementById('audioPlayer');
+        if (audio) {
+            audio.play()
+        }
+    }, [song])
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
         generateLevels();
+        selectTheme()
     }, []);
 
     return (
-        <div className={classes.battleground}>
+        <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {showModal && !battleEnded.finished && <Modal onClose={onCloseModal} color="white">{modalContent}</Modal>}
-            <ReactAudioPlayer src={musicFile} id="audioPlayer" autoPlay controls style={audioStyle} />
+            {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && <div className={classes.battleEnded}>

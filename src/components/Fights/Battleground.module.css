@@ -1,5 +1,4 @@
 .battleground {
-    background-image: url('../../assets/img/coliseum.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -13,6 +12,17 @@
     /* Ajuste necesario para corregir la posición */
 }
 
+.battlegroundAirport {
+    background-image: url('../../assets/img/battleground-background3.png');
+}
+
+.battlegroundRoute {
+    background-image: url('../../assets/img/battleground-background2.png');
+}
+
+.battlegroundColiseum {
+    background-image: url('../../assets/img/coliseum.gif');
+}
 
 .divBattleEnded {
     background-color: rgb(221, 210, 210);
