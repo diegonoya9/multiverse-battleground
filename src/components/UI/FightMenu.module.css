@@ -10,6 +10,14 @@
     border-color: black;
 }
 
+.fightMenuImg {
+    height: 100%;
+    width: 100%;
+    background-image: url('../../assets/img/menu-background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 .options {
     width: 50%;
     font-size: large;

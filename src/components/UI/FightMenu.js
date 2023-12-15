@@ -16,14 +16,16 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter }) => {
     }
     return (
         <div className={classes.fightMenu}>
-            {subMenuActive ? <SubMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
-                <ul className={classes.optionsContainer}>
-                    <li className={classes.options} onClick={() => toggleSubMenu("attacks")}>Attacks</li>
-                    <li className={classes.options} onClick={() => toggleSubMenu("objects")}>Objects</li>
-                    <li className={classes.options} onClick={() => toggleSubMenu("fighters")}>Fighter</li>
-                    <li className={classes.options} onClick={() => toggleSubMenu("run")}>Run</li>
-                </ul>
-            }
+            <div className={classes.fightMenuImg}>
+                {subMenuActive ? <SubMenu user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
+                    <ul className={classes.optionsContainer}>
+                        <li className={classes.options} onClick={() => toggleSubMenu("attacks")}>Attacks</li>
+                        <li className={classes.options} onClick={() => toggleSubMenu("objects")}>Objects</li>
+                        <li className={classes.options} onClick={() => toggleSubMenu("fighters")}>Fighter</li>
+                        <li className={classes.options} onClick={() => toggleSubMenu("run")}>Run</li>
+                    </ul>
+                }
+            </div>
         </div >
     )
 }

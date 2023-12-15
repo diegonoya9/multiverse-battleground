@@ -4,7 +4,7 @@ import LifeBar from '../UI/LifeBar'
 
 const Fighter = ({ children, user, fighter }) => {
     return (
-        <div className={user === "user" ? `${classes.userFighterWrapper} ${classes.fighterWrapper}` : `${classes.enemyFighterWrapper} ${classes.fighterWrapper}`}>
+        <div className={user === "user" ? `${classes.userFighterWrapper}  ${classes.sombra} ${classes.fighterWrapper}` : `${classes.enemyFighterWrapper} ${classes.fighterWrapper}`}>
             <h3 style={{ color: "white" }}>{fighter.name}/LVL:{fighter.level}</h3>
             <LifeBar currentHP={fighter.currentHP} maxHP={fighter.maxHP}></LifeBar>
             <div className={user === "user" ? classes.userFighter : classes.enemyFighter}>
