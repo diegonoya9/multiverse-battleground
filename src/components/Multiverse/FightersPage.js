@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
+import FighterCard from "../UI/FighterCard";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showModal, setShowModal] = useState(false)
     const { userContext } = useContext(MyContext);
@@ -146,34 +147,20 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
                 user.fighters.map((fighter, i) => {
-                    return (
-                        <div className={`${classes.fighterContainer} ${classes.card}`} key={fighter.id} >
-                            <div className={` ${classes.imageContainer} ${classes.face} ${classes.front}  ${fighter.active && classes.active}`}>
-                                <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
-                                <h3 className={`${classes.fighterName} ${classes.title} `}>{fighter.name}</h3>
-                            </div>
-                            <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${fighter.active && classes.active}`} key={`${fighter.id}stats`}>
-                                <p className={classes.spanStats}>LEVEL:{fighter.level}</p>
-                                <p className={classes.spanStats}>MAX HP:{fighter.maxHP}</p>
-                                <p className={classes.spanStats}>CURRENT XP:{fighter.currentXP}</p>
-                                <p className={classes.spanStats}>ATTACK:{fighter.attack}</p>
-                                <p className={classes.spanStats}>SPECIAL ATTACK:{fighter.specialAttack}</p>
-                                <p className={classes.spanStats}>DEFENSE:{fighter.defense}</p>
-                                <p className={classes.spanStats}>SPECIAL DEFENSE:{fighter.specialDefense}</p>
-                                <p className={classes.spanStats}>ACCURACY:{fighter.accuracy}</p>
-                                {fighter.inParty ?
-                                    <button type="submit" onClick={() => { removeFromParty(fighter.userFighterId) }}>Remove from party</button >
-                                    :
-                                    <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
-                                }
-                                <button type="submit" onClick={() => {
-                                    deleteFighter(fighter.userFighterId) /*hasta aca llegue por hoy, habria que hacer un patch con el nuevo resultado */
+                    return (<div>
+                        <FighterCard removeFromParty={removeFromParty} addToParty={addToParty} deleteFighter={deleteFighter} setFirstFighter={setFirstFighter} viewMovements={viewMovements} fighter={fighter}></FighterCard>
+                        <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
+                        <button type="submit" onClick={() => { viewMovements(fighter.userFighterId) }}>View movements</button>
+                        {fighter.inParty ?
+                            <button type="submit" onClick={() => { removeFromParty(fighter.userFighterId) }}>Remove from party</button >
+                            :
+                            <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
+                        }
+                        <button type="submit" onClick={() => {
+                            deleteFighter(fighter.userFighterId) /*hasta aca llegue por hoy, habria que hacer un patch con el nuevo resultado */
 
-                                }}>eliminar</button>
-                                <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
-                                <button type="submit" onClick={() => { viewMovements(fighter.userFighterId) }}>View movements</button>
-                            </div>
-                        </div>
+                        }}>eliminar</button>
+                    </div>
                     );
                 })}
         </div>
