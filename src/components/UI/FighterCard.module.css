@@ -20,7 +20,7 @@
 }
 
 .card .front img {
-    position: absolute;
+    position: relative;
     width: 40%;
     height: 50%;
     object-fit: cover;
@@ -29,6 +29,17 @@
 .card .front h3 {
     position: absolute;
     bottom: 0;
+    width: 100%;
+    padding: 10px;
+    height: 45px;
+    color: #fff;
+    background: rgba(0, 0, 0, .4);
+    text-align: center;
+}
+
+.card .front h2 {
+    position: absolute;
+    bottom: 45px;
     width: 100%;
     padding: 10px;
     height: 45px;

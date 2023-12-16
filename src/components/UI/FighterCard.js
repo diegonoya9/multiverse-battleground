@@ -1,12 +1,12 @@
 import classes from './FighterCard.module.css'
 
-const FighterCard = ({ fighter, removeFromParty, addToParty, deleteFighter, setFirstFighter, viewMovements }) => {
+const FighterCard = ({ fighter }) => {
     return (
         <div className={`${classes.fighterContainer} ${classes.card}`} key={fighter.id} >
             <div className={` ${classes.imageContainer} ${classes.face} ${classes.front}  ${fighter.active && classes.active}`}>
                 <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
                 <h3 className={`${classes.fighterName} ${classes.title} `}>{fighter.name}</h3>
-                <p className={classes.spanStats}>LEVEL:{fighter.level}</p>
+                <h2 className={classes.spanStats}>LEVEL:{fighter.level}</h2>
             </div>
             <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${fighter.active && classes.active}`} key={`${fighter.id}stats`}>
                 <p className={classes.spanStats}>MAX HP:{fighter.maxHP}</p>
