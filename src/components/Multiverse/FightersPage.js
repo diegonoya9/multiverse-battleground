@@ -109,12 +109,23 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             body: JSON.stringify(newUser),
         }).then(() => updateUser())
     }
+    const deleteFighter = (userFighterId) => {
+        let newUser = user
+        newUser.fighters = userFighterId
+        fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+            method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newUser),
+        }).then(() => updateUser())
+    }
     return (<div className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
-                user.fighters.map((fighter) => {
+                user.fighters.map((fighter, i) => {
                     return (
                         <div className={`${classes.fighterContainer} ${classes.card}`} key={fighter.id} >
                             <div className={` ${classes.imageContainer} ${classes.face} ${classes.front}  ${fighter.active && classes.active}`}>
@@ -135,6 +146,13 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                                     :
                                     <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
                                 }
+                                <button type="submit" onClick={() => {
+                                    const userDelete = user.fighters
+                                    const deleteId = userDelete[i]
+                                    const result = userDelete.filter(x => x !== deleteId)
+                                    deleteFighter(result) /*hasta aca llegue por hoy, habria que hacer un patch con el nuevo resultado */
+
+                                }}>eliminar</button>
                                 <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
                                 <button type="submit" onClick={() => { viewMovements(fighter.userFighterId) }}>View movements</button>
                             </div>
