@@ -39,6 +39,9 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             newUser.fighters.forEach((fighter, index) => {
                 if (fighter.userFighterId === userFighterId) {
                     fighter.inParty = true
+                    if (cant === 0) {
+                        fighter.active = true
+                    }
                 }
             })
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
@@ -52,12 +55,25 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     }
     const removeFromParty = (userFighterId) => {
         let newUser = user
+        let setNewFirst = false
         newUser.fighters.forEach((fighter, index) => {
             if (fighter.userFighterId === userFighterId) {
                 fighter.inParty = false
+                if (fighter.active) {
+                    fighter.active = false
+                    setNewFirst = true
+                }
             }
         })
-
+        if (setNewFirst) {
+            let firstSetted = false
+            newUser.fighters.forEach((fighter, index) => {
+                if ((fighter.inParty === true) && !firstSetted) {
+                    fighter.active = true
+                    firstSetted = true
+                }
+            })
+        }
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
