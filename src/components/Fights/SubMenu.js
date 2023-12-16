@@ -53,7 +53,12 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                                 </div>
                         })
                         }
-                        {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => { return <li key={x.name + i} className={`${classes.options} ${classes[styleType]}`} onClick={() => { if (x.currentMP > 0) { toggleSubMenu(); clickHandler(x, selectedOption); } }}>{x.name}:{x.currentMP}/{x.MP}</li> })}
+                        {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => {
+                            return <div className={classes.options}>
+                                <Button completeWidth="true" key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { if (x.currentMP > 0) { toggleSubMenu(); clickHandler(x, selectedOption); } }}>{x.name}:{x.currentMP}/{x.MP}</Button>
+                            </div>
+                        })
+                        }
                     </ul>
                 </Modal>
             }
