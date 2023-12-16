@@ -51,7 +51,7 @@ const Multiverse = ({ changeActivePage }) => {
     return (
         <div className={classes.container}>
             {multiverseActivePage === 'mainMenu' && user &&
-                <div className={`${classes.mainMenu} ${classes.backgroundImg}`}>
+                <div className={classes.mainMenu}>
                     <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
                     <div id="divWelcome" className={classes.divWelcome}>
                         <h1 className={classes.h1}>Welcome {user.name}</h1>

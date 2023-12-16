@@ -24,11 +24,20 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         })
         if (newMoney[0].quantity >= price) {
             newMoney[0].quantity -= price;
-            let newUser = user
+            let newUser = { ...user }
             if (type === "fighter") {
                 let newFighter = fighters.filter((fighter) => {
                     return fighter.fighterId === id
                 })
+                let newUserFighterId = -1
+                newUser.fighters.forEach((fighter) => {
+                    if (fighter.userFighterId > newUserFighterId) {
+                        newUserFighterId = fighter.userFighterId
+                    }
+
+                })
+                newFighter[0].userFighterId = newUserFighterId + 1
+                console.log(newUser)
                 newUser.fighters.push(newFighter[0])
                 newUser.objects.forEach((object) => {
                     if (object.name === "money") {
@@ -37,6 +46,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     setShowModal(true)
                     return object
                 })
+                //console.log(newUser)*/
+
                 setUser(newUser)
                 fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                     method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario

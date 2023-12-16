@@ -110,8 +110,12 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         }).then(() => updateUser())
     }
     const deleteFighter = (userFighterId) => {
+        let newFighters = user.fighters.filter((fighter) => {
+            return fighter.userFighterId != userFighterId
+        })
         let newUser = user
-        newUser.fighters = userFighterId
+        newUser.fighters = newFighters
+
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
@@ -147,10 +151,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                                     <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
                                 }
                                 <button type="submit" onClick={() => {
-                                    const userDelete = user.fighters
-                                    const deleteId = userDelete[i]
-                                    const result = userDelete.filter(x => x !== deleteId)
-                                    deleteFighter(result) /*hasta aca llegue por hoy, habria que hacer un patch con el nuevo resultado */
+                                    deleteFighter(fighter.userFighterId) /*hasta aca llegue por hoy, habria que hacer un patch con el nuevo resultado */
 
                                 }}>eliminar</button>
                                 <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
