@@ -5,6 +5,7 @@ import Modal from "../UI/Modal";
 import Button from "../UI/Button";
 import musicFile from "../../assets/sounds/music/OverNow.WAV"
 import { MyContext } from "../../context/MyContext";
+import FighterCard from "../UI/FighterCard";
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const { userContext } = useContext(MyContext);
@@ -147,11 +148,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 fighters.map((fighter) => {
                     return (
                         <div className={classes.objectContainer} key={fighter.fighterId}>
-                            <span className={classes.objectName}>{fighter.name}</span>
-                            <div className={classes.imageContainer}>
-                                <img alt="fighter" src={fighter.imgFront} className={classes.objectImg} />
-                            </div>
-                            <span className={classes.objectName}>Price: {fighter.price}</span>
+                            <FighterCard fighter={fighter}></FighterCard>
+
                             <button className={classes.buyButton} onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</button>
                         </div>
                     );
