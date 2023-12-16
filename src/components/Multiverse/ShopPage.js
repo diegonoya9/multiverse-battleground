@@ -41,6 +41,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     if (object.name === "money") {
                         object.quantity = newMoney[0].quantity
                     }
+                    setShowModal(true)
                     return object
                 })
                 fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
@@ -107,7 +108,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
     }, [])
-    return (<div>
+    return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         {user && <h1 className={classes.h1}>Current money:{user.objects.map((object) => {
             if (object.name === "money") {
@@ -140,6 +141,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         </div>
 
         }
+
         {fighters && <div><h1 className={classes.h1}>FIGHTERS:</h1><div className={classes.container} >
             {fighters &&
                 fighters.map((fighter) => {

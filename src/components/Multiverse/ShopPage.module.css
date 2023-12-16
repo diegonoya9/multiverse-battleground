@@ -19,6 +19,17 @@
 
 }
 
+.backgroundImg {
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    background-image: url('../../assets/img/island.gif');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+
+}
+
 .imageContainer {
     height: 150px;
 }
