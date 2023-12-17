@@ -13,7 +13,7 @@ const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
-    const { userContext, setUserId } = useContext(MyContext);
+    const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
     const changeMultiverseActivePage = (activePage) => {
@@ -42,12 +42,12 @@ const Multiverse = ({ changeActivePage }) => {
         if (audio) {
             audio.play()
         }
-    }, [])
+    }, [activeUser])
     useEffect(() => {
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
             .then(response => response.json())
             .then(data => { setUser(data) })
-    }, [multiverseActivePage])
+    }, [multiverseActivePage, activeUser])
     return (
         <div className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >
             {multiverseActivePage === 'mainMenu' && user &&

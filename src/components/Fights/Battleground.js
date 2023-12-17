@@ -34,8 +34,9 @@ const Battleground = ({ changeActivePage }) => {
     useEffect(() => {
         if (turn === "enemy" && !battleEnded.finished) {
             enemyAI(setMenuActive, battleEnded)
+            console.log('a')
         }
-    }, [turn])
+    }, [turn, battleEnded])
     useEffect(() => {
         if (enemyFighter && enemyFighter.currentHP === 0) {
             endBattle("user", true)

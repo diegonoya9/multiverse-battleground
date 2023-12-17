@@ -1,5 +1,5 @@
 import classes from "./ObjectsPage.module.css"
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
 import Button from "../UI/Button";

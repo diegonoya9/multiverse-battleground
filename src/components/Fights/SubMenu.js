@@ -19,7 +19,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                 break
             default: break
         }
-    }, [selectedOption])
+    }, [selectedOption, userFighter.moves, user.objects, user.fighters])
     const closeModal = () => {
         setShowModal(false)
         toggleSubMenu()

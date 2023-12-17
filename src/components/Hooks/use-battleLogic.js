@@ -10,7 +10,7 @@ const useBattleLogic = (setShowLevelUp) => {
     const [turn, setTurn] = useState("user")
     const [nextTurn, setNextTurn] = useState()
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
-    const { userFighter: enemyFighter, changeUser: changeEnemy, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy, healUserFighter: healEnemyFighter } = useUser("enemy")
+    const { userFighter: enemyFighter, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const onCloseModal = () => {
         setShowModal(false)

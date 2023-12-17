@@ -109,7 +109,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fighters.json')
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
-    }, [])
+    }, [activeUser])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
@@ -117,6 +117,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             if (object.name === "money") {
                 return object.quantity
             }
+            return ''
         })}</h1>}
         {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
             <h1 style={{ color: 'white' }}>Purchase confirmed!</h1>

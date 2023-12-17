@@ -4,7 +4,6 @@ const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
     const [user, setUser] = useState()
     const [fightersLevels, setFightersLevels] = useState()
-    const [addedBaseStats, setAddedBaseStats] = useState(false)
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     const reduceFighterMP = (attack) => {
@@ -60,7 +59,7 @@ const useUser = (origin) => {
             setUserFighter(newFighter[0])
             //console.log(user)
         }
-    }, [user])
+    }, [user, fightersLevels])
     const healUserFighter = ({ ...option }) => {
         let newOption = option
         // console.log(option)
@@ -210,7 +209,7 @@ const useUser = (origin) => {
 
                 })
         }
-    }, [fightersLevels])
+    }, [fightersLevels, activeUser, origin])
     useEffect(() => {
         fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fightersLevels.json')
             .then(response => response.json())

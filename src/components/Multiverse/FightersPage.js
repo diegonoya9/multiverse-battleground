@@ -128,7 +128,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     }
     const deleteFighter = (userFighterId) => {
         let newFighters = user.fighters.filter((fighter) => {
-            return fighter.userFighterId != userFighterId
+            return fighter.userFighterId !== userFighterId
         })
         let newUser = user
         newUser.fighters = newFighters
