@@ -198,10 +198,10 @@ const Battleground = ({ changeActivePage }) => {
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
                 </Modal>
             </div>}
-            {userFighter && !battleEnded.finished && <Fighter styleType={battlegroundType} fighter={userFighter} user="user">
+            {userFighter && !battleEnded.finished && <Fighter turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
             </Fighter>}
-            {enemyFighter && !battleEnded.finished && <Fighter styleType={battlegroundType} fighter={enemyFighter} user="enemy">
+            {enemyFighter && !battleEnded.finished && <Fighter turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
             {!battleEnded.finished && menuActive && <FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}

@@ -2,9 +2,11 @@ import classes from './Fighter.module.css'
 import LifeBar from './LifeBar'
 
 
-const Fighter = ({ children, user, fighter, styleType }) => {
+const Fighter = ({ turn, children, user, fighter, styleType }) => {
+    console.log("turn: " + turn)
+    console.log("user :" + user)
     return (
-        <div className={`${classes.fullContainer} ${user === "user" ? classes.userFighterWrapper : classes.enemyFighterWrapper}`}>
+        <div className={`${classes.fullContainer} ${((turn === "user" && user === "user") || (turn !== "user" && user !== "user")) ? classes.active : classes.notActive} ${user === "user" ? classes.userFighterWrapper : classes.enemyFighterWrapper}`}>
             <div className={`${classes[styleType]} ${classes.headerContainer} ${user === "user" ? classes.userHeader : classes.enemyHeader}`}>
                 <h3 className={`${classes[styleType + 'h3']} ${classes.hp}`} >{fighter.name}/LVL:{fighter.level}</h3>
                 <LifeBar styleType={styleType} currentHP={fighter.currentHP} maxHP={fighter.maxHP}></LifeBar>

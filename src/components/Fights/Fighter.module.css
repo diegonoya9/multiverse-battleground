@@ -1,3 +1,11 @@
+.active {
+    z-index: 3;
+}
+
+.notActive {
+    z-index: 1;
+}
+
 .fighterImage {
     width: auto;
     /* La imagen ocupará el 100% del ancho del contenedor */
