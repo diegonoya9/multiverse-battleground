@@ -146,6 +146,7 @@ h2.battlegroundAirport {
 
 /* Aplica la animación al elemento de la imagen del ataque enemigo */
 .enemy-attack-animation {
+    transform: scaleX(-1);
     z-index: 2;
     height: 15%;
     position: absolute;

@@ -300,15 +300,15 @@
           "MP": 20,
           "actions": [
             {
-              "attackType": "normal",
+              "attackType": "special",
               "field": "currentHP",
               "inflictedOn": "enemy",
-              "value": -250
+              "value": -350
             }
           ],
           "currentMP": 20,
-          "img": "./assets/img/multipleSlash.gif",
-          "name": "Karate Moves"
+          "img": "./assets/img/bat.gif",
+          "name": "BatiBat"
         }
       ],
       "name": "Batman",
@@ -8123,15 +8123,15 @@
               "MP": 20,
               "actions": [
                 {
-                  "attackType": "normal",
+                  "attackType": "special",
                   "field": "currentHP",
                   "inflictedOn": "enemy",
-                  "value": -250
+                  "value": -350
                 }
               ],
               "currentMP": 18,
-              "img": "./assets/img/multipleSlash.gif",
-              "name": "Karate Moves"
+              "img": "./assets/img/bat.gif",
+              "name": "BatiBat"
             }
           ],
           "name": "Batman",
@@ -9062,15 +9062,15 @@
               "MP": 20,
               "actions": [
                 {
-                  "attackType": "normal",
+                  "attackType": "special",
                   "field": "currentHP",
                   "inflictedOn": "enemy",
-                  "value": -250
+                  "value": -350
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/multipleSlash.gif",
-              "name": "Karate Moves"
+              "img": "./assets/img/bat.gif",
+              "name": "BatiBat"
             }
           ],
           "name": "Batman",
