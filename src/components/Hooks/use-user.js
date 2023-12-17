@@ -99,9 +99,9 @@ const useUser = (origin) => {
                     if (fighter.active) {
                         if (newValue.field === "currentHP") {
                             if (newValue.attackType === "normal") {
-                                newValue.value = Math.round(Math.min(newValue.value + (0.5 * fighter.defense), newValue.value * 0.5))
+                                newValue.value = Math.round(Math.min(newValue.value + fighter.defense, newValue.value * 0.8))
                             } else {
-                                newValue.value = Math.round(Math.min(newValue.value + (0.5 * fighter.specialDefense), newValue.value * 0.5))
+                                newValue.value = Math.round(Math.min(newValue.value + fighter.specialDefense, newValue.value * 0.8))
                             }
                         }
                         return {
