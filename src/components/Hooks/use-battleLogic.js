@@ -79,6 +79,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
+                                setUserAttacked("userPowerUp")
                                 attackUser(newAction)
                             }
                         })
@@ -142,6 +143,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         }
                         attackUser(newAction)
                     } else {
+                        setUserAttacked("enemyPowerUp")
                         setAttack((prevState) => {
                             let newState = { ...prevState }
                             newState.active = true
