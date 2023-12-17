@@ -39,7 +39,6 @@
     /* Establece el ancho máximo deseado */
     margin: 0 auto;
     height: auto;
-    position: absolute;
 }
 
 .userFighterWrapper {
@@ -58,18 +57,76 @@
     }
 }
 
-.battlegroundAirport {
+
+.headerContainer {
+    align-items: center;
+    background-size: 100% 100%;
+    padding: 10% 10%;
+}
+
+.battlegroundAirporth3 {
     font-family: 'Black Ops One' !important;
+    color: rgb(0, 0, 0) !important;
+    font-size: small;
+}
+
+.battlegroundRouteh3 {
+    font-family: 'Black Ops One' !important;
+    color: rgb(0, 0, 0) !important;
+    font-size: small;
+}
+
+.battlegroundColiseumh3 {
+    font-family: 'Merienda', sans-serif !important;
+    font-size: small;
+}
+
+.battlegroundCiberspaceh3 {
+    font-family: 'Orbitron', sans-serif !important;
+    color: white;
+    font-size: small;
+}
+
+.battlegroundAirport {
+    background-image: url('../../assets/img/metal.jpg');
+    font-family: 'Black Ops One' !important;
+    color: rgb(0, 0, 0) !important;
+    font-size: x-large;
 }
 
 .battlegroundRoute {
+    background-image: url('../../assets/img/metal.jpg');
     font-family: 'Black Ops One' !important;
+    color: rgb(0, 0, 0) !important;
+    font-size: x-large;
 }
 
 .battlegroundColiseum {
-    font-family: 'Merienda' !important;
+    background-image: url('../../assets/img/menu-background.jpg');
+    font-family: 'Merienda', sans-serif !important;
+    font-size: x-large;
 }
 
 .battlegroundCiberspace {
+    background-image: url('../../assets/img/modal-background3.gif');
     font-family: 'Orbitron', sans-serif !important;
+    color: white;
+    font-size: x-large;
 }
+
+.fullContainer {
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.hp {
+    text-wrap: nowrap;
+}
+
+.enemyHeader {}
+
+.userHeader {}

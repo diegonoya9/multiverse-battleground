@@ -5,9 +5,9 @@
 }
 
 .hp {
-    color: white;
-    background-color: grey;
+    color: rgb(0, 0, 0);
     width: 100%;
+    font-size: medium;
     /* Ajusta el espacio entre hp y lifeBarWrapper según sea necesario */
 }
 
@@ -55,4 +55,5 @@
 
 .battlegroundCiberspace {
     font-family: 'Orbitron', sans-serif !important;
+    color: white;
 }
