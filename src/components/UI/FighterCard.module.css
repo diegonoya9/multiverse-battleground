@@ -25,7 +25,6 @@
 
 .card .front img {
     position: relative;
-    width: 40%;
     height: 50%;
     object-fit: cover;
 }
@@ -87,5 +86,4 @@
 
 .active {
     border: 5px solid #459da0 !important;
-
 }

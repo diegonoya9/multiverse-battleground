@@ -24,18 +24,14 @@
 }
 
 .card .front {
-    display: flex;
     transform: perspective(600px) rotateY(0deg);
     box-shadow: 0 5px 10px #000;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .card .front img {
+    padding-top: 15px;
     position: relative;
-    width: 40%;
-    height: auto;
+    height: 40%;
     object-fit: cover;
 }
 
