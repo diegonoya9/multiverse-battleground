@@ -5,7 +5,7 @@ const useUser = (origin) => {
     const [user, setUser] = useState()
     const [fightersLevels, setFightersLevels] = useState()
     const [addedBaseStats, setAddedBaseStats] = useState(false)
-    const { userContext, setUserId } = useContext(MyContext);
+    const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     const reduceFighterMP = (attack) => {
         setUser((prevState) => {

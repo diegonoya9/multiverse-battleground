@@ -110,7 +110,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         setShowModal(true)
     }
     const setFirstFighter = (userFighterId) => {
-        let newUser = user
+        let newUser = { ...user }
         newUser.fighters.forEach((fighter) => {
             if (fighter.userFighterId === userFighterId) {
                 fighter.active = true
@@ -147,19 +147,16 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
                 user.fighters.map((fighter, i) => {
-                    return (<div>
-                        <FighterCard removeFromParty={removeFromParty} addToParty={addToParty} deleteFighter={deleteFighter} setFirstFighter={setFirstFighter} viewMovements={viewMovements} fighter={fighter}></FighterCard>
-                        <button type="submit" onClick={() => { setFirstFighter(fighter.userFighterId) }}>First in battle</button>
-                        <button type="submit" onClick={() => { viewMovements(fighter.userFighterId) }}>View movements</button>
+                    return (<div className={classes.fighterContainer}>
+                        <FighterCard fighter={fighter}></FighterCard>
+                        <Button onClick={() => { setFirstFighter(fighter.userFighterId) }} value="First in battle"></Button>
+                        <Button onClick={() => { viewMovements(fighter.userFighterId) }} value="View movements"></Button>
                         {fighter.inParty ?
-                            <button type="submit" onClick={() => { removeFromParty(fighter.userFighterId) }}>Remove from party</button >
+                            <Button onClick={() => { removeFromParty(fighter.userFighterId) }} value="Remove from party"></Button>
                             :
-                            <button type="submit" onClick={() => { addToParty(fighter.userFighterId) }}>Add to party</button >
+                            <Button onClick={() => { addToParty(fighter.userFighterId) }} value="Add to party"></Button>
                         }
-                        <button type="submit" onClick={() => {
-                            deleteFighter(fighter.userFighterId) /*hasta aca llegue por hoy, habria que hacer un patch con el nuevo resultado */
-
-                        }}>eliminar</button>
+                        <Button onClick={() => { deleteFighter(fighter.userFighterId) }} value="Sell Fighter"></Button>
                     </div>
                     );
                 })}
