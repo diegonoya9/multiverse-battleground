@@ -80,23 +80,6 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
             {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
         </div>
-
-        /*<div>
-            {multiverseActivePage === "mainMenu" && user &&
-                <div>
-                    <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
-                    <h1 className={classes.h1}>Welcome {user.name}</h1>
-                    <h2 className={classes.h2}>You have {money} pesos</h2>
-                    <input type="submit" onClick={(e) => { changeActivePage(2); }} value={'Fight'} />
-                    <input type="submit" onClick={(e) => { changeMultiverseActivePage("fighters") }} value={'Fighters'} />
-                    <input type="submit" onClick={(e) => { changeMultiverseActivePage("bag") }} value={'Bag'} />
-                    <input type="submit" onClick={(e) => { changeMultiverseActivePage("shop") }} value={'Shop'} />
-                </div>
-            }
-            {multiverseActivePage === "fighters" && <FightersPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
-            {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
-            {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
-        </div>*/
     )
 }
 export default memo(Multiverse)
