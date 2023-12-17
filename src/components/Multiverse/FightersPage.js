@@ -161,16 +161,18 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     );
                 })}
         </div>
-        {showModal && <Modal onClose={closeModal} color="white">
+        {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {showMoves && moves && !showActions && <ul>{moves.map((move) => {
-                return <li key={move.name} onClick={() => { viewActions(move.name) }}>
+                return <Button key={move.name} onClick={() => { viewActions(move.name) }}>
                     {move.name}
-                </li>
+                </Button>
             })} </ul>}
             {showActions && actions &&
-                actions.map((action) => {
+                actions.map((action, index) => {
                     return <div key={Math.random()} >
+                        <p>Action: {index + 1}</p>
                         <p>Inflicted on: {action.inflictedOn}</p>
+                        <p>Type: {action.attackType}</p>
                         <p>Field: {action.field}</p>
                         <p>Value: {action.value}</p>
                     </div>
