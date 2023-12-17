@@ -7737,11 +7737,11 @@
             {
               "field": "currentHP",
               "inflictedOn": "user",
-              "value": 50
+              "value": 2000
             }
           ],
           "category": "battleItem",
-          "description": "Heals the user 50 HP",
+          "description": "Heals the user 2000 HP",
           "img": "./assets/img/potion.png",
           "name": "Potion",
           "quantity": 50,
@@ -7752,11 +7752,11 @@
             {
               "field": "currentHP",
               "inflictedOn": "user",
-              "value": 150
+              "value": 5000
             }
           ],
           "category": "battleItem",
-          "description": "Heals the user 150 HP",
+          "description": "Heals the user 5000 HP",
           "img": "./assets/img/potion.png",
           "name": "Super Potion",
           "quantity": 50,
@@ -7794,7 +7794,7 @@
         },
         {
           "category": "userItem",
-          "img": "./assets/img/potion.png",
+          "img": "./assets/img/money.png",
           "name": "money",
           "quantity": 100,
           "type": "consumable"
@@ -8609,11 +8609,11 @@
             {
               "field": "currentHP",
               "inflictedOn": "user",
-              "value": 50
+              "value": 2000
             }
           ],
           "category": "battleItem",
-          "description": "Heals the user 50 HP",
+          "description": "Heals the user 2000 HP",
           "img": "./assets/img/potion.png",
           "name": "Potion",
           "quantity": 49,
@@ -8624,11 +8624,11 @@
             {
               "field": "currentHP",
               "inflictedOn": "user",
-              "value": 150
+              "value": 5000
             }
           ],
           "category": "battleItem",
-          "description": "Heals the user 150 HP",
+          "description": "Heals the user 5000 HP",
           "img": "./assets/img/potion.png",
           "name": "Super Potion",
           "quantity": 49,
@@ -8666,7 +8666,7 @@
         },
         {
           "category": "userItem",
-          "img": "./assets/img/potion.png",
+          "img": "./assets/img/money.png",
           "name": "money",
           "quantity": 300,
           "type": "consumable"
@@ -9164,11 +9164,11 @@
             {
               "field": "currentHP",
               "inflictedOn": "user",
-              "value": 50
+              "value": 2000
             }
           ],
           "category": "battleItem",
-          "description": "Heals the user 50 HP",
+          "description": "Heals the user 2000 HP",
           "img": "./assets/img/potion.png",
           "name": "Potion",
           "quantity": 50,
@@ -9179,11 +9179,11 @@
             {
               "field": "currentHP",
               "inflictedOn": "user",
-              "value": 150
+              "value": 5000
             }
           ],
           "category": "battleItem",
-          "description": "Heals the user 150 HP",
+          "description": "Heals the user 5000 HP",
           "img": "./assets/img/potion.png",
           "name": "Super Potion",
           "quantity": 39,
@@ -9221,7 +9221,7 @@
         },
         {
           "category": "userItem",
-          "img": "./assets/img/potion.png",
+          "img": "./assets/img/money.png",
           "name": "money",
           "quantity": 3900,
           "type": "consumable"
