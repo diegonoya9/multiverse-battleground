@@ -6,6 +6,7 @@ import Button from "../UI/Button";
 import musicFile from "../../assets/sounds/music/OverNow.WAV"
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
+import ObjectCard from "../UI/ObjectCard";
 const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const { userContext } = useContext(MyContext);
@@ -111,7 +112,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     }, [])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
-        {user && <h1 className={classes.h1}>Current money:{user.objects.map((object) => {
+        {user && <h1 className={classes.divBackground}>Current money:{user.objects.map((object) => {
             if (object.name === "money") {
                 return object.quantity
             }
@@ -123,19 +124,14 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             </button>
         </Modal>}
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
-        <h1 className={classes.h1}>OBJECTS:</h1>
+        <h1 className={classes.divBackground}>OBJECTS:</h1>
         {objects && <div className={classes.container} >
             {objects &&
                 objects.map((object) => {
                     return (
                         <div className={classes.objectContainer} key={object.name}>
-                            <span className={classes.objectName}>{object.name}</span>
-                            <div className={classes.imageContainer}>
-                                <img alt="object" src={object.img} className={classes.objectImg} />
-                            </div>
-                            <span className={classes.objectName}>Price: {object.price}</span>
-                            <span className={classes.objectName}>Description: {object.description}</span>
-                            <button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>BUY</button>
+                            <ObjectCard object={object}></ObjectCard>
+                            <Button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>BUY</Button>
                         </div>
                     );
                 })}
@@ -143,14 +139,13 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
 
         }
 
-        {fighters && <div><h1 className={classes.h1}>FIGHTERS:</h1><div className={classes.container} >
+        {fighters && <div><h1 className={classes.divBackground}>FIGHTERS:</h1><div className={classes.container} >
             {fighters &&
                 fighters.map((fighter) => {
                     return (
                         <div className={classes.objectContainer} key={fighter.fighterId}>
                             <FighterCard fighter={fighter}></FighterCard>
-
-                            <button className={classes.buyButton} onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</button>
+                            <Button className={classes.buyButton} onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</Button>
                         </div>
                     );
                 })}

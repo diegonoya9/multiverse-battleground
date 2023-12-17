@@ -1,11 +1,15 @@
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 10px;
-    max-width: 1200px;
-    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    /* background: #282c34; */
+    gap: 1em;
+    margin-left: 25px;
 }
+
 
 .backgroundImg {
     min-height: 100vh;
@@ -19,10 +23,9 @@
 }
 
 .objectContainer {
-    background-color: #f0f0f0;
-    padding: 10px;
-    text-align: center;
-    height: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .imageContainer {

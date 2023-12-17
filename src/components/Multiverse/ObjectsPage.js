@@ -3,6 +3,7 @@ import { memo, useEffect, useState } from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
 import Button from "../UI/Button";
+import ObjectCard from "../UI/ObjectCard";
 const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     const audioStyle = {
         display: 'none',
@@ -14,14 +15,9 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
             {user &&
                 user.objects.map((object) => {
                     return (
+                        object.name !== "money" &&
                         <div className={classes.objectContainer} key={object.name}>
-                            <span className={classes.objectName}>{object.name}</span>
-                            <div className={classes.imageContainer}>
-                                <img alt="object" src={object.img} className={classes.objectImg} />
-                            </div>
-                            <span className={classes.objectName}>Quantity:{object.quantity}</span>
-                            <br />
-                            <span className={classes.objectName}>Description:{object.description}</span>
+                            <ObjectCard object={object}></ObjectCard>
                         </div>
                     );
                 })}
