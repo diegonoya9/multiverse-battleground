@@ -207,11 +207,11 @@
               "attackType": "special",
               "field": "defense",
               "inflictedOn": "user",
-              "value": 30
+              "value": 300
             }
           ],
           "currentMP": 20,
-          "img": "./assets/img/5Xyg.gif",
+          "img": "./assets/img/petals.gif",
           "name": "Def Up"
         },
         {
@@ -8029,11 +8029,11 @@
                   "attackType": "special",
                   "field": "defense",
                   "inflictedOn": "user",
-                  "value": 30
+                  "value": 300
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/2eSd.gif",
+              "img": "./assets/img/petals.gif",
               "name": "Def Up"
             },
             {
@@ -8891,11 +8891,11 @@
                   "attackType": "special",
                   "field": "defense",
                   "inflictedOn": "user",
-                  "value": 30
+                  "value": 300
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/5Xyg.gif",
+              "img": "./assets/img/petals.gif",
               "name": "Def Up"
             },
             {
