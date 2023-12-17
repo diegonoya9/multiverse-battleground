@@ -7077,11 +7077,11 @@
         {
           "field": "currentHP",
           "inflictedOn": "user",
-          "value": 50
+          "value": 2000
         }
       ],
       "category": "battleItem",
-      "description": "Heals the user 50 HP",
+      "description": "Heals the user 2000 HP",
       "id": 1,
       "img": "./assets/img/potion.png",
       "name": "Potion",
@@ -7094,11 +7094,11 @@
         {
           "field": "currentHP",
           "inflictedOn": "user",
-          "value": 150
+          "value": 5000
         }
       ],
       "category": "battleItem",
-      "description": "Heals the user 150 HP",
+      "description": "Heals the user 5000 HP",
       "id": 2,
       "img": "./assets/img/potion.png",
       "name": "Super Potion",
@@ -7132,7 +7132,7 @@
         }
       ],
       "category": "battleItem",
-      "description": "Increases user attack by 50",
+      "description": "Increases user attack by 100",
       "id": 4,
       "img": "./assets/img/hardBoiledEgg.png",
       "name": "Huevo Duro",
@@ -7163,6 +7163,23 @@
       "price": 100,
       "quantity": 1,
       "type": "consumable"
+    },
+    {
+      "actions": [
+        {
+          "field": "specialAttack",
+          "inflictedOn": "user",
+          "value": 150
+        }
+      ],
+      "category": "battleItem",
+      "description": "Increase special attack by 150",
+      "id": 6,
+      "img": "./assets/img/coffee.png",
+      "name": "Coffee",
+      "price": 100,
+      "quantity": 1,
+      "type": "consumable"
     }
   ],
   "users": [
@@ -7171,8 +7188,10 @@
         {
           "accuracy": 65,
           "active": true,
-          "currentHP": 1,
-          "currentXP": 601,
+          "attack": 398,
+          "currentHP": 0,
+          "currentXP": 901,
+          "defense": 289,
           "extraAccuracy": 65,
           "extraAttack": 100,
           "extraDefense": 50,
@@ -7183,7 +7202,8 @@
           "imgBack": "./assets/img/charizard-back.png",
           "imgFront": "./assets/img/charizard-front.gif",
           "inParty": true,
-          "level": 1,
+          "level": 3,
+          "maxHP": 2311,
           "moves": [
             {
               "MP": 20,
@@ -7195,7 +7215,7 @@
                   "value": -50
                 }
               ],
-              "currentMP": 19,
+              "currentMP": 16,
               "img": "./assets/img/fire.png",
               "name": "Flame"
             },
@@ -7209,7 +7229,7 @@
                   "value": -100
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 17,
               "img": "./assets/img/redSlash.gif",
               "name": "Punch"
             },
@@ -7237,13 +7257,477 @@
                   "value": -300
                 }
               ],
-              "currentMP": 6,
+              "currentMP": 0,
               "img": "./assets/img/ray.gif",
               "name": "Hiper Ray"
             }
           ],
           "name": "Charizard",
+          "specialAttack": 364,
+          "specialDefense": 265,
           "userFighterId": 1
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 100,
+          "currentHP": 1,
+          "currentXP": 100,
+          "defense": 50,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 500,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 19,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 150,
+          "specialDefense": 30,
+          "userFighterId": 7
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 100,
+          "currentHP": 1,
+          "currentXP": 100,
+          "defense": 50,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 500,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 19,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 150,
+          "specialDefense": 30,
+          "userFighterId": 7
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 100,
+          "currentHP": 1,
+          "currentXP": 100,
+          "defense": 50,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 500,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 19,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 150,
+          "specialDefense": 30,
+          "userFighterId": 7
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 100,
+          "currentHP": 1,
+          "currentXP": 100,
+          "defense": 50,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 500,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 19,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 150,
+          "specialDefense": 30,
+          "userFighterId": 7
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 100,
+          "currentHP": 1,
+          "currentXP": 100,
+          "defense": 50,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 500,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 19,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 150,
+          "specialDefense": 30,
+          "userFighterId": 7
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 100,
+          "currentHP": 1,
+          "currentXP": 100,
+          "defense": 50,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 500,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 19,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 150,
+          "specialDefense": 30,
+          "userFighterId": 7
         }
       ],
       "name": "NegroPocket",
@@ -7305,14 +7789,14 @@
           "description": "Increases user attack by 100",
           "img": "./assets/img/hardBoiledEgg.png",
           "name": "Huevo Duro",
-          "quantity": 50,
+          "quantity": 49,
           "type": "consumable"
         },
         {
           "category": "userItem",
           "img": "./assets/img/potion.png",
           "name": "money",
-          "quantity": 500,
+          "quantity": 100,
           "type": "consumable"
         }
       ],
@@ -7323,10 +7807,10 @@
         {
           "accuracy": 65,
           "active": false,
-          "attack": 49,
-          "currentHP": 323,
-          "currentXP": 601,
-          "defense": 73,
+          "attack": 478,
+          "currentHP": 4361,
+          "currentXP": 2601,
+          "defense": 477,
           "extraAccuracy": 65,
           "extraAttack": 100,
           "extraDefense": 50,
@@ -7336,9 +7820,9 @@
           "fighterId": 1,
           "imgBack": "./assets/img/charizard-back.png",
           "imgFront": "./assets/img/charizard-front.gif",
-          "inParty": true,
-          "level": 1,
-          "maxHP": 323,
+          "inParty": false,
+          "level": 5,
+          "maxHP": 4361,
           "moves": [
             {
               "MP": 20,
@@ -7398,17 +7882,17 @@
             }
           ],
           "name": "Charizard",
-          "specialAttack": 72,
-          "specialDefense": 38,
+          "specialAttack": 561,
+          "specialDefense": 445,
           "userFighterId": 1
         },
         {
-          "accuracy": 65,
-          "active": true,
-          "attack": 1369,
-          "currentHP": 3348,
-          "currentXP": 3401,
-          "defense": 486,
+          "accuracy": 66,
+          "active": false,
+          "attack": 751,
+          "currentHP": 7283,
+          "currentXP": 6901,
+          "defense": 781,
           "extraAccuracy": 95,
           "extraAttack": 150,
           "extraDefense": 100,
@@ -7418,9 +7902,9 @@
           "fighterId": 2,
           "imgBack": "./assets/img/goku.png",
           "imgFront": "./assets/img/goku-front.png",
-          "inParty": true,
-          "level": 5,
-          "maxHP": 4204,
+          "inParty": false,
+          "level": 8,
+          "maxHP": 7283,
           "moves": [
             {
               "MP": 20,
@@ -7432,7 +7916,7 @@
                   "value": -50
                 }
               ],
-              "currentMP": 18,
+              "currentMP": 20,
               "img": "./assets/img/energyBall.gif",
               "name": "Kame Hame Ha"
             },
@@ -7460,7 +7944,7 @@
                   "value": 300
                 }
               ],
-              "currentMP": 17,
+              "currentMP": 20,
               "img": "./assets/img/aura.gif",
               "name": "Kaioken(X2)"
             },
@@ -7474,19 +7958,19 @@
                   "value": -500
                 }
               ],
-              "currentMP": 18,
+              "currentMP": 20,
               "img": "./assets/img/blueSlash.gif",
               "name": "Bite"
             }
           ],
           "name": "Goku",
-          "specialAttack": 518,
-          "specialDefense": 448,
+          "specialAttack": 788,
+          "specialDefense": 728,
           "userFighterId": 2
         },
         {
           "accuracy": 65,
-          "active": false,
+          "active": true,
           "attack": 107,
           "currentHP": 222,
           "currentXP": 1,
@@ -7575,17 +8059,17 @@
         {
           "accuracy": 65,
           "active": false,
-          "attack": 162,
-          "currentHP": 262,
-          "currentXP": 1,
-          "defense": 30,
+          "attack": 342,
+          "currentHP": 2464,
+          "currentXP": 1101,
+          "defense": 342,
           "extraAccuracy": 100,
           "fighterId": 4,
           "imgBack": "./assets/img/batman-back.png",
           "imgFront": "./assets/img/batman-front.png",
-          "inParty": true,
-          "level": 1,
-          "maxHP": 262,
+          "inParty": false,
+          "level": 3,
+          "maxHP": 2464,
           "moves": [
             {
               "MP": 20,
@@ -7651,181 +8135,23 @@
             }
           ],
           "name": "Batman",
-          "specialAttack": 32,
-          "specialDefense": 32,
+          "specialAttack": 267,
+          "specialDefense": 250,
           "userFighterId": 4
-        }
-      ],
-      "name": "Red",
-      "objects": [
-        {
-          "actions": [
-            {
-              "field": "currentHP",
-              "inflictedOn": "user",
-              "value": 50
-            }
-          ],
-          "category": "battleItem",
-          "description": "Heals the user 50 HP",
-          "img": "./assets/img/potion.png",
-          "name": "Potion",
-          "quantity": 50,
-          "type": "consumable"
         },
-        {
-          "actions": [
-            {
-              "field": "currentHP",
-              "inflictedOn": "user",
-              "value": 150
-            }
-          ],
-          "category": "battleItem",
-          "description": "Heals the user 150 HP",
-          "img": "./assets/img/potion.png",
-          "name": "Super Potion",
-          "quantity": 50,
-          "type": "consumable"
-        },
-        {
-          "actions": [
-            {
-              "field": "defense",
-              "inflictedOn": "user",
-              "value": 150
-            }
-          ],
-          "category": "battleItem",
-          "description": "Increases user defense by 150",
-          "img": "./assets/img/milanesa.png",
-          "name": "Milanesa",
-          "quantity": 50,
-          "type": "consumable"
-        },
-        {
-          "actions": [
-            {
-              "field": "attack",
-              "inflictedOn": "user",
-              "value": 100
-            }
-          ],
-          "category": "battleItem",
-          "description": "Increases user attack by 100",
-          "img": "./assets/img/hardBoiledEgg.png",
-          "name": "Huevo Duro",
-          "quantity": 47,
-          "type": "consumable"
-        },
-        {
-          "category": "userItem",
-          "img": "./assets/img/potion.png",
-          "name": "money",
-          "quantity": 2400,
-          "type": "consumable"
-        }
-      ],
-      "userId": 1
-    },
-    {
-      "fighters": [
         {
           "accuracy": 65,
           "active": false,
-          "attack": 757,
-          "currentHP": 7223,
-          "currentXP": 6801,
-          "defense": 747,
-          "extraAccuracy": 65,
-          "extraAttack": 100,
-          "extraCurrentHP": 1,
-          "extraDefense": 50,
-          "extraMaxHP": 500,
-          "extraSpecialAttack": 150,
-          "extraSpecialDefense": 30,
-          "fighterId": 1,
-          "imgBack": "./assets/img/charizard-back.png",
-          "imgFront": "./assets/img/charizard-front.gif",
-          "inParty": false,
-          "level": 8,
-          "maxHP": 7223,
-          "moves": [
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "special",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -50
-                }
-              ],
-              "currentMP": 20,
-              "img": "./assets/img/fire.png",
-              "name": "Flame"
-            },
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -100
-                }
-              ],
-              "currentMP": 20,
-              "img": "./assets/img/redSlash.gif",
-              "name": "Punch"
-            },
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "defense",
-                  "inflictedOn": "user",
-                  "value": 30
-                }
-              ],
-              "currentMP": 20,
-              "img": "./assets/img/2eSd.gif",
-              "name": "Def Up"
-            },
-            {
-              "MP": 1,
-              "actions": [
-                {
-                  "attackType": "special",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -300
-                }
-              ],
-              "currentMP": 1,
-              "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
-            }
-          ],
-          "name": "Charizard",
-          "specialAttack": 831,
-          "specialDefense": 730,
-          "userFighterId": 1
-        },
-        {
-          "accuracy": 68,
-          "active": false,
-          "attack": 844,
-          "currentHP": 8216,
-          "currentXP": 9400,
-          "defense": 811,
+          "attack": 72,
+          "currentHP": 273,
+          "currentXP": 100,
+          "defense": 64,
           "fighterId": 5,
           "imgBack": "./assets/img/michael3.gif",
           "imgFront": "./assets/img/michael-front.gif",
-          "inParty": true,
-          "level": 9,
-          "maxHP": 8216,
+          "inParty": false,
+          "level": 1,
+          "maxHP": 273,
           "moves": [
             {
               "MP": 20,
@@ -7886,13 +8212,633 @@
           ],
           "name": "Michael",
           "price": 100,
-          "specialAttack": 825,
-          "specialDefense": 800,
-          "userFighterId": 2
+          "specialAttack": 41,
+          "specialDefense": 70,
+          "userFighterId": 7
         },
         {
           "accuracy": 65,
           "active": false,
+          "attack": 72,
+          "currentHP": 273,
+          "currentXP": 100,
+          "defense": 64,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 273,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 41,
+          "specialDefense": 70,
+          "userFighterId": 8
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 72,
+          "currentHP": 273,
+          "currentXP": 100,
+          "defense": 64,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 273,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 41,
+          "specialDefense": 70,
+          "userFighterId": 9
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 72,
+          "currentHP": 273,
+          "currentXP": 100,
+          "defense": 64,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 273,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 41,
+          "specialDefense": 70,
+          "userFighterId": 12
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 72,
+          "currentHP": 273,
+          "currentXP": 100,
+          "defense": 64,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 273,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 41,
+          "specialDefense": 70,
+          "userFighterId": 12
+        },
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 72,
+          "currentHP": 273,
+          "currentXP": 100,
+          "defense": 64,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 1,
+          "maxHP": 273,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 41,
+          "specialDefense": 70,
+          "userFighterId": 12
+        }
+      ],
+      "name": "Red",
+      "objects": [
+        {
+          "actions": [
+            {
+              "field": "currentHP",
+              "inflictedOn": "user",
+              "value": 50
+            }
+          ],
+          "category": "battleItem",
+          "description": "Heals the user 50 HP",
+          "img": "./assets/img/potion.png",
+          "name": "Potion",
+          "quantity": 49,
+          "type": "consumable"
+        },
+        {
+          "actions": [
+            {
+              "field": "currentHP",
+              "inflictedOn": "user",
+              "value": 150
+            }
+          ],
+          "category": "battleItem",
+          "description": "Heals the user 150 HP",
+          "img": "./assets/img/potion.png",
+          "name": "Super Potion",
+          "quantity": 49,
+          "type": "consumable"
+        },
+        {
+          "actions": [
+            {
+              "field": "defense",
+              "inflictedOn": "user",
+              "value": 150
+            }
+          ],
+          "category": "battleItem",
+          "description": "Increases user defense by 150",
+          "img": "./assets/img/milanesa.png",
+          "name": "Milanesa",
+          "quantity": 48,
+          "type": "consumable"
+        },
+        {
+          "actions": [
+            {
+              "field": "attack",
+              "inflictedOn": "user",
+              "value": 100
+            }
+          ],
+          "category": "battleItem",
+          "description": "Increases user attack by 100",
+          "img": "./assets/img/hardBoiledEgg.png",
+          "name": "Huevo Duro",
+          "quantity": 44,
+          "type": "consumable"
+        },
+        {
+          "category": "userItem",
+          "img": "./assets/img/potion.png",
+          "name": "money",
+          "quantity": 0,
+          "type": "consumable"
+        }
+      ],
+      "userId": 1
+    },
+    {
+      "fighters": [
+        {
+          "accuracy": 65,
+          "active": false,
+          "attack": 962,
+          "currentHP": 9294,
+          "currentXP": 11201,
+          "defense": 944,
+          "extraAccuracy": 65,
+          "extraAttack": 100,
+          "extraCurrentHP": 1,
+          "extraDefense": 50,
+          "extraMaxHP": 500,
+          "extraSpecialAttack": 150,
+          "extraSpecialDefense": 30,
+          "fighterId": 1,
+          "imgBack": "./assets/img/charizard-back.png",
+          "imgFront": "./assets/img/charizard-front.gif",
+          "inParty": false,
+          "level": 10,
+          "maxHP": 9294,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "special",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -50
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/fire.png",
+              "name": "Flame"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Punch"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "defense",
+                  "inflictedOn": "user",
+                  "value": 30
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/2eSd.gif",
+              "name": "Def Up"
+            },
+            {
+              "MP": 1,
+              "actions": [
+                {
+                  "attackType": "special",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 1,
+              "img": "./assets/img/ray.gif",
+              "name": "Hiper Ray"
+            }
+          ],
+          "name": "Charizard",
+          "specialAttack": 1011,
+          "specialDefense": 919,
+          "userFighterId": 1
+        },
+        {
+          "accuracy": 68,
+          "active": false,
+          "attack": 1024,
+          "currentHP": 10200,
+          "currentXP": 13800,
+          "defense": 1016,
+          "fighterId": 5,
+          "imgBack": "./assets/img/michael3.gif",
+          "imgFront": "./assets/img/michael-front.gif",
+          "inParty": false,
+          "level": 11,
+          "maxHP": 10200,
+          "moves": [
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/redSlash.gif",
+              "name": "Front kick"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "specialDefense",
+                  "inflictedOn": "user",
+                  "value": 100
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/5Xyg.gif",
+              "name": "Shine"
+            },
+            {
+              "MP": 20,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -150
+                }
+              ],
+              "currentMP": 20,
+              "img": "./assets/img/ayuwoki.gif",
+              "name": "Ayuwoki"
+            },
+            {
+              "MP": 6,
+              "actions": [
+                {
+                  "attackType": "normal",
+                  "field": "currentHP",
+                  "inflictedOn": "enemy",
+                  "value": -300
+                }
+              ],
+              "currentMP": 6,
+              "img": "./assets/img/moonWalk.gif",
+              "name": "Moon Walk"
+            }
+          ],
+          "name": "Michael",
+          "price": 100,
+          "specialAttack": 1022,
+          "specialDefense": 1027,
+          "userFighterId": 2
+        },
+        {
+          "accuracy": 65,
+          "active": true,
           "attack": 737,
           "currentHP": 7224,
           "currentXP": 8001,
@@ -7900,7 +8846,7 @@
           "fighterId": 3,
           "imgBack": "./assets/img/mew-back.png",
           "imgFront": "./assets/img/mew-front.png",
-          "inParty": false,
+          "inParty": true,
           "level": 8,
           "maxHP": 7224,
           "moves": [
@@ -7934,7 +8880,7 @@
                   "value": -20
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 19,
               "img": "./assets/img/cloud.gif",
               "name": "Smoke Throw"
             },
@@ -7976,14 +8922,14 @@
         {
           "accuracy": 69,
           "active": false,
-          "attack": 1471,
-          "currentHP": 6497,
-          "currentXP": 12701,
-          "defense": 248,
+          "attack": 1021,
+          "currentHP": 10217,
+          "currentXP": 13801,
+          "defense": 1070,
           "fighterId": 2,
           "imgBack": "./assets/img/goku.png",
           "imgFront": "./assets/img/goku-front.png",
-          "inParty": true,
+          "inParty": false,
           "level": 11,
           "maxHP": 10217,
           "moves": [
@@ -7997,7 +8943,7 @@
                   "value": -50
                 }
               ],
-              "currentMP": 17,
+              "currentMP": 20,
               "img": "./assets/img/energyBall.gif",
               "name": "Kame Hame Ha"
             },
@@ -8011,7 +8957,7 @@
                   "value": 150
                 }
               ],
-              "currentMP": 18,
+              "currentMP": 20,
               "img": "./assets/img/aura.gif",
               "name": "Kaioken"
             },
@@ -8025,7 +8971,7 @@
                   "value": 300
                 }
               ],
-              "currentMP": 19,
+              "currentMP": 20,
               "img": "./assets/img/aura.gif",
               "name": "Kaioken(X2)"
             },
@@ -8039,7 +8985,7 @@
                   "value": -500
                 }
               ],
-              "currentMP": 16,
+              "currentMP": 20,
               "img": "./assets/img/blueSlash.gif",
               "name": "Bite"
             }
@@ -8047,22 +8993,22 @@
           "name": "Goku",
           "price": 2500,
           "specialAttack": 1092,
-          "specialDefense": 212,
+          "specialDefense": 1024,
           "userFighterId": 4
         },
         {
           "accuracy": 65,
           "active": false,
-          "attack": 792,
-          "currentHP": 7309,
-          "currentXP": 8001,
-          "defense": 823,
+          "attack": 882,
+          "currentHP": 8405,
+          "currentXP": 9001,
+          "defense": 913,
           "fighterId": 4,
           "imgBack": "./assets/img/batman-back.png",
           "imgFront": "./assets/img/batman-front.png",
-          "inParty": true,
-          "level": 8,
-          "maxHP": 7309,
+          "inParty": false,
+          "level": 9,
+          "maxHP": 8405,
           "moves": [
             {
               "MP": 20,
@@ -8129,23 +9075,23 @@
           ],
           "name": "Batman",
           "price": 1500,
-          "specialAttack": 727,
-          "specialDefense": 719,
+          "specialAttack": 817,
+          "specialDefense": 830,
           "userFighterId": 5
         },
         {
           "accuracy": 65,
-          "active": true,
-          "attack": 22,
-          "currentHP": 0,
-          "currentXP": 1,
-          "defense": 104,
+          "active": false,
+          "attack": 361,
+          "currentHP": 3248,
+          "currentXP": 1601,
+          "defense": 377,
           "fighterId": 6,
           "imgBack": "./assets/img/vegeta-back.gif",
           "imgFront": "./assets/img/vegeta-front.gif",
-          "inParty": true,
-          "level": 1,
-          "maxHP": 208,
+          "inParty": false,
+          "level": 4,
+          "maxHP": 3248,
           "moves": [
             {
               "MP": 20,
@@ -8157,7 +9103,7 @@
                   "value": -50
                 }
               ],
-              "currentMP": 18,
+              "currentMP": 20,
               "img": "./assets/img/blueSlash.gif",
               "name": "Punch"
             },
@@ -8199,16 +9145,16 @@
                   "value": -200
                 }
               ],
-              "currentMP": 17,
+              "currentMP": 20,
               "img": "./assets/img/ray.gif",
               "name": "Final Blast"
             }
           ],
           "name": "Vegeta",
-          "userFighterId": 6,
           "price": 2500,
-          "specialAttack": 34,
-          "specialDefense": 19
+          "specialAttack": 356,
+          "specialDefense": 367,
+          "userFighterId": 6
         }
       ],
       "name": "Ameo",
@@ -8240,7 +9186,7 @@
           "description": "Heals the user 150 HP",
           "img": "./assets/img/potion.png",
           "name": "Super Potion",
-          "quantity": 42,
+          "quantity": 41,
           "type": "consumable"
         },
         {
@@ -8270,251 +9216,18 @@
           "description": "Increases user attack by 100",
           "img": "./assets/img/hardBoiledEgg.png",
           "name": "Huevo Duro",
-          "quantity": 22,
+          "quantity": 21,
           "type": "consumable"
         },
         {
           "category": "userItem",
           "img": "./assets/img/potion.png",
           "name": "money",
-          "quantity": 1200,
+          "quantity": 2700,
           "type": "consumable"
         }
       ],
       "userId": 2
-    },
-    {
-      "fighters": [
-        {
-          "accuracy": 65,
-          "active": true,
-          "attack": 111,
-          "currentHP": 1437,
-          "currentXP": 701,
-          "defense": 110,
-          "extraAccuracy": 65,
-          "extraAttack": 100,
-          "extraDefense": 50,
-          "extraMaxHP": 500,
-          "extraSpecialAttack": 150,
-          "extraSpecialDefense": 30,
-          "fighterId": 1,
-          "imgBack": "./assets/img/charizard-back.png",
-          "imgFront": "./assets/img/charizard-front.gif",
-          "inParty": true,
-          "level": 2,
-          "maxHP": 1437,
-          "moves": [
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "special",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -50
-                }
-              ],
-              "currentMP": 20,
-              "img": "./assets/img/fire.png",
-              "name": "Flame"
-            },
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -100
-                }
-              ],
-              "currentMP": 20,
-              "img": "./assets/img/redSlash.gif",
-              "name": "Punch"
-            },
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "defense",
-                  "inflictedOn": "user",
-                  "value": 30
-                }
-              ],
-              "currentMP": 20,
-              "img": "./assets/img/2eSd.gif",
-              "name": "Def Up"
-            },
-            {
-              "MP": 1,
-              "actions": [
-                {
-                  "attackType": "special",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -300
-                }
-              ],
-              "currentMP": 1,
-              "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
-            }
-          ],
-          "name": "Charizard",
-          "specialAttack": 114,
-          "specialDefense": 125,
-          "userFighterId": 1
-        },
-        {
-          "accuracy": 65,
-          "active": false,
-          "attack": 37,
-          "currentHP": 0,
-          "currentXP": 100,
-          "defense": 51,
-          "fighterId": 5,
-          "imgBack": "./assets/img/michael3.gif",
-          "imgFront": "./assets/img/michael-front.gif",
-          "inParty": false,
-          "level": 1,
-          "maxHP": 283,
-          "moves": [
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -150
-                }
-              ],
-              "currentMP": 19,
-              "img": "./assets/img/redSlash.gif",
-              "name": "Front kick"
-            },
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "specialDefense",
-                  "inflictedOn": "user",
-                  "value": 100
-                }
-              ],
-              "currentMP": 19,
-              "img": "./assets/img/5Xyg.gif",
-              "name": "Shine"
-            },
-            {
-              "MP": 20,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -150
-                }
-              ],
-              "currentMP": 17,
-              "img": "./assets/img/ayuwoki.gif",
-              "name": "Ayuwoki"
-            },
-            {
-              "MP": 6,
-              "actions": [
-                {
-                  "attackType": "normal",
-                  "field": "currentHP",
-                  "inflictedOn": "enemy",
-                  "value": -300
-                }
-              ],
-              "currentMP": 4,
-              "img": "./assets/img/moonWalk.gif",
-              "name": "Moon Walk"
-            }
-          ],
-          "name": "Michael",
-          "price": 100,
-          "specialAttack": 28,
-          "specialDefense": 21
-        }
-      ],
-      "name": "Facu",
-      "objects": [
-        {
-          "actions": [
-            {
-              "field": "currentHP",
-              "inflictedOn": "user",
-              "value": 50
-            }
-          ],
-          "category": "battleItem",
-          "description": "Heals the user 50 HP",
-          "img": "./assets/img/potion.png",
-          "name": "Potion",
-          "quantity": 50,
-          "type": "consumable"
-        },
-        {
-          "actions": [
-            {
-              "field": "currentHP",
-              "inflictedOn": "user",
-              "value": 150
-            }
-          ],
-          "category": "battleItem",
-          "description": "Heals the user 150 HP",
-          "img": "./assets/img/potion.png",
-          "name": "Super Potion",
-          "quantity": 50,
-          "type": "consumable"
-        },
-        {
-          "actions": [
-            {
-              "field": "defense",
-              "inflictedOn": "user",
-              "value": 150
-            }
-          ],
-          "category": "battleItem",
-          "description": "Increases user defense by 150",
-          "img": "./assets/img/milanesa.png",
-          "name": "Milanesa",
-          "quantity": 50,
-          "type": "consumable"
-        },
-        {
-          "actions": [
-            {
-              "field": "attack",
-              "inflictedOn": "user",
-              "value": 100
-            }
-          ],
-          "category": "battleItem",
-          "description": "Increases user attack by 100",
-          "img": "./assets/img/hardBoiledEgg.png",
-          "name": "Huevo Duro",
-          "quantity": 50,
-          "type": "consumable"
-        },
-        {
-          "category": "userItem",
-          "img": "./assets/img/potion.png",
-          "name": "money",
-          "quantity": 500,
-          "type": "consumable"
-        }
-      ],
-      "userId": 3
     }
   ]
 }
