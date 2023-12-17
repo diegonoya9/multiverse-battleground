@@ -33,6 +33,60 @@
     flex-wrap: wrap;
 }
 
+@keyframes userAttackMove {
+    0% {
+        left: 10%;
+    }
+
+    50% {
+        left: 15%;
+    }
+
+    100% {
+        left: 10%
+    }
+}
+
+/* Aplica la animación al elemento de la imagen del ataque enemigo */
+.userAttack {
+    animation-name: userAttackMove;
+    animation-duration: .3s;
+    /* Duración de la animación */
+    animation-timing-function: ease-out;
+    /* Función de temporización de la animación */
+    animation-iteration-count: 1;
+    /* Número de veces que se repetirá la animación */
+    animation-fill-mode: forwards;
+    /* El elemento conservará los estilos del último frame después de la animación */
+}
+
+@keyframes enemyAttackMove {
+    0% {
+        right: 10%;
+    }
+
+    50% {
+        right: 15%;
+    }
+
+    100% {
+        right: 10%
+    }
+}
+
+/* Aplica la animación al elemento de la imagen del ataque enemigo */
+.enemyAttack {
+    animation-name: enemyAttackMove;
+    animation-duration: .3s;
+    /* Duración de la animación */
+    animation-timing-function: ease-out;
+    /* Función de temporización de la animación */
+    animation-iteration-count: 1;
+    /* Número de veces que se repetirá la animación */
+    animation-fill-mode: forwards;
+    /* El elemento conservará los estilos del último frame después de la animación */
+}
+
 .fighterShadow {
     background-color: black;
     clip-path: ellipse(50% 26% at 50% 50%);

@@ -5,6 +5,7 @@ import useBattleState from './use-battleState'
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle } = useBattleState()
     const [showModal, setShowModal] = useState(false)
+    const [userAttacked, setUserAttacked] = useState(false)
     const [modalContent, setModalContent] = useState()
     const [fightersLevels, setFightersLevels] = useState()
     const [turn, setTurn] = useState("user")
@@ -41,6 +42,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 newState.active = false
                                 return newState
                             })
+                            setUserAttacked(false)
                             if (attackHit) {
                                 handleModalState(`${userFighter.name} used ${option.name}`, "enemy")
                             } else {
@@ -62,7 +64,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
-
+                                setUserAttacked("user")
                                 if (action.attackType === "normal") {
                                     newAction.value -= userFighter.attack
                                 } else {
@@ -111,6 +113,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         newState.active = false
                         return newState
                     })
+                    setUserAttacked(false)
                     if (attackHit) {
                         handleModalState(`Enemy ${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
                     } else {
@@ -131,6 +134,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
+                        setUserAttacked("enemy")
                         if (action.attackType === "normal") {
                             newAction.value -= enemyFighter.attack
                         } else {
@@ -175,7 +179,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent }
+    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent }
 }
 
 export default useBattleLogic

@@ -20,11 +20,11 @@ const Battleground = ({ changeActivePage }) => {
         { id: 3, title: 'Song 3', src: musicFile3 },
         // Agrega más canciones según sea necesario
     ];
-    const [showLevelUp, setShowLevelUp] = useState(false);
+    const [showLevelUp, setShowLevelUp] = useState(false)
     const battlegroundTypes = ["battlegroundAirport", "battlegroundRoute", "battlegroundColiseum", "battlegroundCiberspace"]
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
-    const { turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
+    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -181,7 +181,6 @@ const Battleground = ({ changeActivePage }) => {
         generateLevels();
         selectTheme()
     }, []);
-
     return (
         <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {showModal && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
@@ -197,10 +196,10 @@ const Battleground = ({ changeActivePage }) => {
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
                 </Modal>
             </div>}
-            {userFighter && !battleEnded.finished && <Fighter turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
+            {userFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
             </Fighter>}
-            {enemyFighter && !battleEnded.finished && <Fighter turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
+            {enemyFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
             {!battleEnded.finished && menuActive && <FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
