@@ -13,6 +13,8 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [actions, setActions] = useState()
     const [showMoves, setShowMoves] = useState(false)
     const [showActions, setShowActions] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
+    const [userFighterId, setUserFighterId] = useState(false)
     let activeUser = userContext.idUsuario
     const audioStyle = {
         display: 'none',
@@ -21,6 +23,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         setShowActions(false)
         setShowMoves(false)
         setShowModal(false)
+        setShowConfirm(false)
     }
     const addToParty = (userFighterId) => {
         let newUser = user
@@ -127,12 +130,18 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         }).then(() => updateUser())
     }
     const deleteFighter = (userFighterId) => {
+        setUserFighterId(userFighterId)
+        setShowConfirm(true)
+        setShowModal(true)
+    }
+    const deleteUserFighter = (userFighterId) => {
         let newFighters = user.fighters.filter((fighter) => {
             return fighter.userFighterId !== userFighterId
         })
         let newUser = user
         newUser.fighters = newFighters
-
+        setShowModal(false)
+        setShowConfirm(false)
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
@@ -162,7 +171,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 })}
         </div>
         {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
-            {showMoves && moves && !showActions && <ul>{moves.map((move) => {
+            {showMoves && moves && !showConfirm && !showActions && <ul>{moves.map((move) => {
                 return <Button key={move.name} onClick={() => { viewActions(move.name) }}>
                     {move.name}
                 </Button>
@@ -178,7 +187,11 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     </div>
                 })
             }
-            {!showMoves && < h1 > No se puede bro.. máximo 4</h1>}
+            {!showMoves && !showConfirm && < h1 > No se puede bro.. máximo 4</h1>}
+            {showConfirm && <div>
+                <h3>Are you sure you want to sell this fighter?</h3>
+                <Button onClick={() => deleteUserFighter(userFighterId)}>Sell</Button>
+            </div>}
         </Modal>}
     </div >
     );
