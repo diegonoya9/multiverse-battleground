@@ -49,7 +49,7 @@ const Multiverse = ({ changeActivePage }) => {
             .then(data => { setUser(data) })
     }, [multiverseActivePage])
     return (
-        <div className={classes.container}>
+        <div className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >
             {multiverseActivePage === 'mainMenu' && user &&
                 <div className={classes.mainMenu}>
                     <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
@@ -79,7 +79,7 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
             {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
-        </div>
+        </div >
     )
 }
 export default memo(Multiverse)

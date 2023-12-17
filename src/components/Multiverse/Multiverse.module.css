@@ -2,15 +2,12 @@
 
 /* Estilos generales */
 .container {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    width: 100vw;
-    margin: auto;
-    display: flex;
+    min-height: 100%;
+    width: 100%;
+}
+
+.notScrollable {
     overflow: hidden;
-    position: relative;
 }
 
 .btnContainer {
