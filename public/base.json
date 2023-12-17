@@ -101,7 +101,7 @@
             }
           ],
           "currentMP": 20,
-          "img": "./assets/img/energyBall.gif",
+          "img": "./assets/img/kameha.gif",
           "name": "Kame Hame Ha"
         },
         {
@@ -7917,7 +7917,7 @@
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/energyBall.gif",
+              "img": "./assets/img/kameha.gif",
               "name": "Kame Hame Ha"
             },
             {
@@ -7970,11 +7970,11 @@
         },
         {
           "accuracy": 65,
-          "active": true,
-          "attack": 107,
-          "currentHP": 222,
-          "currentXP": 1,
-          "defense": 36,
+          "active": false,
+          "attack": 197,
+          "currentHP": 1322,
+          "currentXP": 401,
+          "defense": 144,
           "extraAccuracy": 100,
           "extraAttack": 100,
           "extraDefense": 50,
@@ -7985,8 +7985,8 @@
           "imgBack": "./assets/img/mew-back.png",
           "imgFront": "./assets/img/mew-front.png",
           "inParty": true,
-          "level": 1,
-          "maxHP": 222,
+          "level": 2,
+          "maxHP": 1322,
           "moves": [
             {
               "MP": 20,
@@ -8052,22 +8052,22 @@
             }
           ],
           "name": "Mew",
-          "specialAttack": 43,
-          "specialDefense": 16,
+          "specialAttack": 167,
+          "specialDefense": 114,
           "userFighterId": 3
         },
         {
           "accuracy": 65,
-          "active": false,
+          "active": true,
           "attack": 342,
-          "currentHP": 2464,
-          "currentXP": 1101,
-          "defense": 342,
+          "currentHP": 1369,
+          "currentXP": 1401,
+          "defense": 372,
           "extraAccuracy": 100,
           "fighterId": 4,
           "imgBack": "./assets/img/batman-back.png",
           "imgFront": "./assets/img/batman-front.png",
-          "inParty": false,
+          "inParty": true,
           "level": 3,
           "maxHP": 2464,
           "moves": [
@@ -8081,7 +8081,7 @@
                   "value": -150
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 18,
               "img": "./assets/img/redSlash.gif",
               "name": "Boomerang Throw"
             },
@@ -8115,7 +8115,7 @@
                   "value": 30
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 19,
               "img": "./assets/img/2eSd.gif",
               "name": "Cape Cover"
             },
@@ -8129,7 +8129,7 @@
                   "value": -250
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 18,
               "img": "./assets/img/multipleSlash.gif",
               "name": "Karate Moves"
             }
@@ -8661,14 +8661,14 @@
           "description": "Increases user attack by 100",
           "img": "./assets/img/hardBoiledEgg.png",
           "name": "Huevo Duro",
-          "quantity": 44,
+          "quantity": 43,
           "type": "consumable"
         },
         {
           "category": "userItem",
           "img": "./assets/img/potion.png",
           "name": "money",
-          "quantity": 0,
+          "quantity": 300,
           "type": "consumable"
         }
       ],
@@ -8838,7 +8838,7 @@
         },
         {
           "accuracy": 65,
-          "active": true,
+          "active": false,
           "attack": 737,
           "currentHP": 7224,
           "currentXP": 8001,
@@ -8846,7 +8846,7 @@
           "fighterId": 3,
           "imgBack": "./assets/img/mew-back.png",
           "imgFront": "./assets/img/mew-front.png",
-          "inParty": true,
+          "inParty": false,
           "level": 8,
           "maxHP": 7224,
           "moves": [
@@ -8880,7 +8880,7 @@
                   "value": -20
                 }
               ],
-              "currentMP": 19,
+              "currentMP": 20,
               "img": "./assets/img/cloud.gif",
               "name": "Smoke Throw"
             },
@@ -8929,7 +8929,7 @@
           "fighterId": 2,
           "imgBack": "./assets/img/goku.png",
           "imgFront": "./assets/img/goku-front.png",
-          "inParty": false,
+          "inParty": true,
           "level": 11,
           "maxHP": 10217,
           "moves": [
@@ -8944,7 +8944,7 @@
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/energyBall.gif",
+              "img": "./assets/img/kameha.gif",
               "name": "Kame Hame Ha"
             },
             {
@@ -9080,18 +9080,18 @@
           "userFighterId": 5
         },
         {
-          "accuracy": 65,
-          "active": false,
-          "attack": 361,
-          "currentHP": 3248,
-          "currentXP": 1601,
-          "defense": 377,
+          "accuracy": 70,
+          "active": true,
+          "attack": 919,
+          "currentHP": 5471,
+          "currentXP": 11601,
+          "defense": 972,
           "fighterId": 6,
           "imgBack": "./assets/img/vegeta-back.gif",
           "imgFront": "./assets/img/vegeta-front.gif",
-          "inParty": false,
-          "level": 4,
-          "maxHP": 3248,
+          "inParty": true,
+          "level": 10,
+          "maxHP": 9268,
           "moves": [
             {
               "MP": 20,
@@ -9131,7 +9131,7 @@
                   "value": 300
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 17,
               "img": "./assets/img/aura.gif",
               "name": "Sp Power Up"
             },
@@ -9145,15 +9145,15 @@
                   "value": -200
                 }
               ],
-              "currentMP": 20,
+              "currentMP": 11,
               "img": "./assets/img/ray.gif",
               "name": "Final Blast"
             }
           ],
           "name": "Vegeta",
           "price": 2500,
-          "specialAttack": 356,
-          "specialDefense": 367,
+          "specialAttack": 1531,
+          "specialDefense": 919,
           "userFighterId": 6
         }
       ],
@@ -9186,7 +9186,7 @@
           "description": "Heals the user 150 HP",
           "img": "./assets/img/potion.png",
           "name": "Super Potion",
-          "quantity": 41,
+          "quantity": 39,
           "type": "consumable"
         },
         {
@@ -9223,7 +9223,7 @@
           "category": "userItem",
           "img": "./assets/img/potion.png",
           "name": "money",
-          "quantity": 2700,
+          "quantity": 3900,
           "type": "consumable"
         }
       ],

@@ -3,8 +3,6 @@ import LifeBar from './LifeBar'
 
 
 const Fighter = ({ turn, children, user, fighter, styleType }) => {
-    console.log("turn: " + turn)
-    console.log("user :" + user)
     return (
         <div className={`${classes.fullContainer} ${((turn === "user" && user === "user") || (turn !== "user" && user !== "user")) ? classes.active : classes.notActive} ${user === "user" ? classes.userFighterWrapper : classes.enemyFighterWrapper}`}>
             <div className={`${classes[styleType]} ${classes.headerContainer} ${user === "user" ? classes.userHeader : classes.enemyHeader}`}>

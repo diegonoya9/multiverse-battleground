@@ -34,7 +34,6 @@ const Battleground = ({ changeActivePage }) => {
     useEffect(() => {
         if (turn === "enemy" && !battleEnded.finished) {
             enemyAI(setMenuActive, battleEnded)
-            console.log('a')
         }
     }, [turn, battleEnded])
     useEffect(() => {

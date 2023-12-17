@@ -132,7 +132,7 @@
 }
 
 .hp {
-    text-wrap: nowrap;
+    text-wrap: nowrap !important;
 }
 
 .enemyHeader {}
