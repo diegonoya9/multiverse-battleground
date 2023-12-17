@@ -38,18 +38,18 @@
     width: 25%;
     /* Establece el ancho máximo deseado */
     margin: 0 auto;
-    height: 35vh;
+    height: auto;
     position: absolute;
 }
 
 .userFighterWrapper {
-    bottom: 105px;
-    left: 55px;
+    bottom: 35px;
+    left: 10%;
 }
 
 .enemyFighterWrapper {
-    bottom: 125px;
-    right: 55px;
+    bottom: 35px;
+    right: 10%;
 }
 
 @media(max-height: 765px) {
