@@ -224,7 +224,6 @@ const useUser = (origin) => {
     }, [])
 
     const changeUserFighter = (fighter) => {
-        console.log(fighter)
         setUser((prevValue) => {
             let newValue = { ...prevValue }
             let newFighters = newValue.fighters
