@@ -7,7 +7,6 @@ import ReactAudioPlayer from 'react-audio-player';
 import musicFile1 from '../../assets/sounds/music/AndWeDieYoung.WAV';
 import musicFile2 from '../../assets/sounds/music/FourHorsemen.WAV';
 import musicFile3 from '../../assets/sounds/music/OverNow.WAV';
-import musicFile4 from '../../assets/sounds/SFX/Ha.mp3';
 import Modal from '../UI/Modal.js'
 import Button from '../UI/Button.js'
 
@@ -25,6 +24,7 @@ const Battleground = ({ changeActivePage }) => {
     const battlegroundTypes = ["battlegroundAirport", "battlegroundRoute", "battlegroundColiseum", "battlegroundCiberspace"]
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
+    const [Sfx, setSfx] = useState();
     const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
@@ -167,6 +167,9 @@ const Battleground = ({ changeActivePage }) => {
         let randomBattleground = Math.floor(Math.random() * songs.length)
         setSong(songs[randomBattleground].src)
     }
+    const handleSfxEnded = () => {
+        setSfx(false)
+    }
     const selectBattlegroundType = () => {
         let randomBattleground = Math.floor(Math.random() * battlegroundTypes.length)
         setBattlegroundType(battlegroundTypes[randomBattleground])
@@ -178,31 +181,34 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [song])
     useEffect(() => {
+        const audioSfx = document.getElementById('audioSfxPlayer');
         if (userAttacked === "user") {
-            const audioSfx = document.getElementById('audioSfxPlayer');
             if (audioSfx) {
-                audioSfx.play()
+                setSfx('/assets/sounds/SFX/Ha.mp3')
             }
         }
         if (userAttacked === "userPowerUp") {
-            const audioSfx = document.getElementById('audioSfxPlayer');
             if (audioSfx) {
-                audioSfx.play()
+                setSfx('/assets/sounds/SFX/Ha.mp3')
             }
         }
         if (userAttacked === "enemy") {
-            const audioSfx = document.getElementById('audioSfxPlayer');
             if (audioSfx) {
-                audioSfx.play()
+                setSfx('/assets/sounds/SFX/Ha.mp3')
             }
         }
         if (userAttacked === "enemyPowerUp") {
-            const audioSfx = document.getElementById('audioSfxPlayer');
             if (audioSfx) {
-                audioSfx.play()
+                setSfx('/assets/sounds/SFX/Ha.mp3')
             }
         }
     }, [userAttacked])
+    useEffect(() => {
+        const audioSfx = document.getElementById('audioSfxPlayer');
+        if (Sfx) {
+            audioSfx.play()
+        }
+    }, [Sfx])
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
         generateLevels();
@@ -212,7 +218,7 @@ const Battleground = ({ changeActivePage }) => {
         <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {showModal && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
-            {song && <ReactAudioPlayer src={`${musicFile4}`} id="audioSfxPlayer" controls style={audioStyle} />}
+            {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} id="audioSfxPlayer" controls style={audioStyle} />}
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
