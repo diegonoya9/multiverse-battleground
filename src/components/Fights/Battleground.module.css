@@ -122,7 +122,7 @@ h2.battlegroundAirport {
 /* Define la animación */
 @keyframes attack-move {
     0% {
-        bottom: 55px;
+        bottom: 18%;
         left: 15%;
         opacity: 1;
     }
@@ -136,7 +136,7 @@ h2.battlegroundAirport {
     }
 
     100% {
-        bottom: 55px;
+        bottom: 18%;
         left: 85%;
         opacity: 0.1;
     }
@@ -145,7 +145,7 @@ h2.battlegroundAirport {
 /* Aplica la animación al elemento de la imagen */
 .attack-animation {
     z-index: 2;
-    height: 90px;
+    height: 40%;
     position: absolute;
     animation-name: attack-move;
     animation-duration: 2s;
@@ -161,7 +161,7 @@ h2.battlegroundAirport {
 /* Define la animación inversa */
 @keyframes enemy-attack-move {
     0% {
-        bottom: 55px;
+        bottom: 18%;
         right: 75px;
         opacity: 1;
     }
@@ -175,7 +175,7 @@ h2.battlegroundAirport {
     }
 
     100% {
-        bottom: 55px;
+        bottom: 18%;
         right: 85%;
         opacity: 0.1;
     }
@@ -185,7 +185,7 @@ h2.battlegroundAirport {
 .enemy-attack-animation {
     transform: scaleX(-1);
     z-index: 2;
-    height: 15%;
+    height: 40%;
     position: absolute;
     animation-name: enemy-attack-move;
     animation-duration: 2s;

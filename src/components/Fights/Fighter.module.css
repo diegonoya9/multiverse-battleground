@@ -9,7 +9,7 @@
 .fighterImage {
     width: auto;
     /* La imagen ocupará el 100% del ancho del contenedor */
-    height: 115px;
+    height: 175px;
     /* Mantiene la proporción de aspecto original */
     display: block;
     /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
@@ -89,27 +89,27 @@
 
 .fighterShadow {
     background-color: black;
-    clip-path: ellipse(50% 26% at 50% 50%);
-    margin-top: -22px;
-    height: 35px;
-    width: 70px;
+    clip-path: ellipse(50% 18% at 50% 50%);
+    margin-top: -35px;
+    height: 65px;
+    width: 250px;
     opacity: 0.5;
 }
 
 .fighterWrapper {
-    width: 25%;
+    width: 55%;
     /* Establece el ancho máximo deseado */
     margin: 0 auto;
     height: auto;
 }
 
 .userFighterWrapper {
-    bottom: 35px;
+    bottom: 10%;
     left: 10%;
 }
 
 .enemyFighterWrapper {
-    bottom: 35px;
+    bottom: 10%;
     right: 10%;
 }
 

@@ -5,7 +5,7 @@ import LifeBar from './LifeBar'
 const Fighter = ({ turn, children, user, fighter, styleType, userAttacked }) => {
     return (
         <div className={`${classes.fullContainer} ${userAttacked === "user" && user === "user" ? classes.userAttack : userAttacked === "enemy" && user === "enemy" && classes.enemyAttack} ${((turn === "user" && user === "user") || (turn !== "user" && user !== "user")) ? classes.active : classes.notActive} ${user === "user" ? classes.userFighterWrapper : classes.enemyFighterWrapper}`}>
-            {/*} <div className={`${classes[styleType]} ${classes.headerContainer} ${user === "user" ? classes.userHeader : classes.enemyHeader}`}>
+            {/* descomentar si queremos la barra de vida arriba del luchador } <div className={`${classes[styleType]} ${classes.headerContainer} ${user === "user" ? classes.userHeader : classes.enemyHeader}`}>
                 <h3 className={`${classes[styleType + 'h3']} ${classes.hp}`} >{fighter.name}/LVL:{fighter.level}</h3>
                 <LifeBar styleType={styleType} currentHP={fighter.currentHP} maxHP={fighter.maxHP}></LifeBar>
     </div>*/}
