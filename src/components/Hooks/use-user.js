@@ -104,8 +104,10 @@ const useUser = (origin) => {
                             }
                         }
                         if (newValue.field === "currentHP" && newValue.inflictedOn === "user") {
-                            if (fighter[newValue.field] + newValue.value > fighter.maxHP) {
+                            if ((fighter.currentHP + (newValue.value * fighter.maxHP)) > fighter.maxHP) {
                                 newValue.value = fighter.maxHP - fighter.currentHP
+                            } else {
+                                newValue.value = (newValue.value * fighter.maxHP)
                             }
                         }
                         return {
