@@ -21,6 +21,7 @@ const Battleground = ({ changeActivePage }) => {
         // Agrega más canciones según sea necesario
     ];
     const [showLevelUp, setShowLevelUp] = useState(false)
+    const [showSelectFighter, setShowSelectFighter] = useState(false)
     const battlegroundTypes = ["battlegroundAirport", "battlegroundRoute", "battlegroundColiseum", "battlegroundCiberspace"]
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
@@ -42,7 +43,17 @@ const Battleground = ({ changeActivePage }) => {
             endBattle("user", true)
         }
         if (userFighter && userFighter.currentHP === 0) {
-            endBattle("enemy", true)
+            let cant = 0
+            user.fighters.forEach((fighter) => {
+                if (fighter.inParty && fighter.currentHP > 0) {
+                    cant++
+                }
+            })
+            if (cant > 0) {
+                setShowSelectFighter(true)
+            } else {
+                endBattle("enemy", true)
+            }
         }
     }, [userFighter, enemyFighter])
     const restartGame = () => {
@@ -216,7 +227,7 @@ const Battleground = ({ changeActivePage }) => {
     }, []);
     return (
         <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
-            {showModal && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
+            {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
             {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} id="audioSfxPlayer" controls style={audioStyle} />}
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
@@ -230,15 +241,20 @@ const Battleground = ({ changeActivePage }) => {
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
                 </Modal>
             </div>}
-            {userFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
+            {showSelectFighter && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {
+                return fighter.inParty && fighter.currentHP > 0 && <div className={classes.options} >
+                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
+                </div>
+            })}</Modal>}
+            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
             </Fighter>}
             {enemyFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
-            {!battleEnded.finished && menuActive && <FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
+            {!battleEnded.finished && menuActive && userFighter && userFighter.currentHP > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
-        </div>
+        </div >
     )
 }
 

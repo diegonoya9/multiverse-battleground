@@ -46,10 +46,10 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                                 </div>
                         }
                         )}
-                        {optionsArray && selectedOption === "fighters" && optionsArray.map((x, i) => {
-                            return x.inParty &&
+                        {optionsArray && selectedOption === "fighters" && optionsArray.map((fighter, i) => {
+                            return fighter.inParty && fighter.currentHP > 0 &&
                                 <div className={classes.options} >
-                                    <Button completeWidth="true" key={x.name + i} value={x.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); changeFighter(x); }}><img alt="fighter mini" src={x.imgFront} className={classes.miniImgMenu} /></Button>
+                                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(fighter, selectedOption); changeFighter(fighter); }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
                                 </div>
                         })
                         }
