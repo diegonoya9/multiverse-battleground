@@ -24,15 +24,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
         setShowModal(false)
         toggleSubMenu()
     }
-    const changeFighter = (element) => {
-        changeUserFighter((prevState) => {
-            prevState.active = false;
-            element.active = true;
-            return (element)
-        })
-        userFighter = element
-        return element
-    }
+
     return (
         <div className={classes.divSubMenu}>
             {showModal
@@ -49,7 +41,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                         {optionsArray && selectedOption === "fighters" && optionsArray.map((fighter, i) => {
                             return fighter.inParty && fighter.currentHP > 0 &&
                                 <div className={classes.options} >
-                                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(fighter, selectedOption); changeFighter(fighter); }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
+                                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(fighter, selectedOption); changeUserFighter(fighter); }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
                                 </div>
                         })
                         }
