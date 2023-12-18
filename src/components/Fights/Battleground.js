@@ -122,8 +122,16 @@ const Battleground = ({ changeActivePage }) => {
                 specialDefense: 120,
                 maxHp: 100
             },
+            {
+                /* Ikki */
+                attack: 85,
+                defense: 120,
+                specialAttack: 95,
+                specialDefense: 120,
+                maxHp: 100
+            }
         ]
-        for (let fighterId = 1; fighterId <= 6; fighterId++) {
+        for (let fighterId = 1; fighterId <= 7; fighterId++) {
             let prevAccuracy = 65
             let prevAttack = 10
             let prevSpecialAttack = 10
@@ -235,7 +243,7 @@ const Battleground = ({ changeActivePage }) => {
     }, [Sfx])
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
-        generateLevels();
+        //generateLevels();
         selectTheme()
     }, []);
     return (
