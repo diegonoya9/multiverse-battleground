@@ -268,15 +268,13 @@ const Battleground = ({ changeActivePage }) => {
                     <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
                 </div>
             })}</Modal>}
-            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
-                {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
+            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} attack={attack} fighter={userFighter} user="user">
             </Fighter>}
             {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <div className={`${classes.userHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
                 <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
             </div>
             }
-            {enemyFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
-                {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
+            {enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
             </Fighter>}
             {enemyFighter && !battleEnded.finished && <div className={`${classes.enemyHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
                 <LifeBar fighter={enemyFighter} styleType={battlegroundType}></LifeBar>

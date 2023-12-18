@@ -51,6 +51,7 @@
 .userAttack {
     animation-name: userAttackMove;
     animation-duration: .3s;
+    height: 35%;
     /* Duración de la animación */
     animation-timing-function: ease-out;
     /* Función de temporización de la animación */
@@ -58,6 +59,17 @@
     /* Número de veces que se repetirá la animación */
     animation-fill-mode: forwards;
     /* El elemento conservará los estilos del último frame después de la animación */
+}
+
+.userPowerUp {
+    position: absolute;
+    width: auto;
+    margin-bottom: -55px;
+    /* bottom: 0; */
+    /* margin-top: -134px; */
+    height: 185%;
+    display: block;
+    z-index: 9999;
 }
 
 @keyframes enemyAttackMove {
