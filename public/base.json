@@ -518,7 +518,7 @@
             }
           ],
           "currentMP": 20,
-          "img": "./assets/img/redSlash.gif",
+          "img": "./assets/img/lightBeam.gif",
           "name": "Puño Fantasma"
         },
         {
@@ -526,13 +526,13 @@
           "actions": [
             {
               "attackType": "normal",
-              "field": "defense",
+              "field": "currentHP",
               "inflictedOn": "user",
-              "value": 500
+              "value": 5000
             }
           ],
           "currentMP": 20,
-          "img": "./assets/img/aura.gif",
+          "img": "./assets/img/resurgir.gif",
           "name": "Resurgir"
         },
         {
@@ -546,7 +546,7 @@
             }
           ],
           "currentMP": 6,
-          "img": "./assets/img/ray.gif",
+          "img": "./assets/img/electric-aura.gif",
           "name": "7mo Sentido"
         }
       ],
@@ -9393,7 +9393,7 @@
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/redSlash.gif",
+              "img": "./assets/img/lightBeam.gif",
               "name": "Puño Fantasma"
             },
             {
@@ -9401,13 +9401,13 @@
               "actions": [
                 {
                   "attackType": "normal",
-                  "field": "defense",
+                  "field": "currentHP",
                   "inflictedOn": "user",
-                  "value": 500
+                  "value": 5000
                 }
               ],
               "currentMP": 20,
-              "img": "./assets/img/aura.gif",
+              "img": "./assets/img/resurgir.gif",
               "name": "Resurgir"
             },
             {
@@ -9421,7 +9421,7 @@
                 }
               ],
               "currentMP": 6,
-              "img": "./assets/img/ray.gif",
+              "img": "./assets/img/electric-aura.gif",
               "name": "7mo Sentido"
             }
           ],

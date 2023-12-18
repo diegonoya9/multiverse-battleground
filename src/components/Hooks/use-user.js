@@ -91,16 +91,22 @@ const useUser = (origin) => {
     }
     const attackUser = ({ ...attack }) => {
         let newValue = attack
+        console.log(newValue)
         setUser((prevState) => {
             let newState = {
                 ...prevState,
                 fighters: prevState.fighters.map((fighter) => {
                     if (fighter.active) {
-                        if (newValue.field === "currentHP") {
+                        if (newValue.field === "currentHP" && newValue.inflictedOn === "enemy") {
                             if (newValue.attackType === "normal") {
                                 newValue.value = Math.round(Math.min(newValue.value + fighter.defense, newValue.value * 0.8))
                             } else {
                                 newValue.value = Math.round(Math.min(newValue.value + fighter.specialDefense, newValue.value * 0.8))
+                            }
+                        }
+                        if (newValue.field === "currentHP" && newValue.inflictedOn === "user") {
+                            if (fighter[newValue.field] + newValue.value > fighter.maxHP) {
+                                newValue.value = fighter.maxHP - fighter.currentHP
                             }
                         }
                         return {
