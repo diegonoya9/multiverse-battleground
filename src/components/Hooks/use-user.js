@@ -224,7 +224,19 @@ const useUser = (origin) => {
     }, [])
 
     const changeUserFighter = (fighter) => {
-        setUserFighter(fighter)
+        setUser((prevValue) => {
+            let newValue = { ...prevValue }
+            let newFighters = newValue.fighters
+            newFighters.forEach((newFighter) => {
+                if (newFighter.userFighterId !== fighter.userFighterId) {
+                    newFighter.active = false
+                } else {
+                    newFighter.active = true
+                }
+            })
+            newValue.fighters = newFighters
+            return newValue
+        })
     }
     return { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP }
 }

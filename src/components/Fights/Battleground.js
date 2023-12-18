@@ -262,7 +262,7 @@ const Battleground = ({ changeActivePage }) => {
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
                 </Modal>
             </div>}
-            {showSelectFighter && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {
+            {showSelectFighter && userFighter.currentHP === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {
                 return fighter.inParty && fighter.currentHP > 0 && <div className={classes.options} >
                     <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
                 </div>

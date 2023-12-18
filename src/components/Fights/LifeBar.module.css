@@ -22,7 +22,7 @@
 
 .lifeBarBorder {
     flex-grow: 1;
-    border: 3px solid #0d130c;
+    background-color: rgb(66, 64, 64);
     height: 50%;
     border-radius: 4px;
     /* Puedes personalizar el borde según tus necesidades */
@@ -36,6 +36,7 @@
     background-image: url('../../assets/img/green-glow2.gif');
     background-size: 100% 100%;
     transition: width 0.5s ease;
+    border-radius: 4px;
     /* Agregamos una transición de 0.5 segundos */
     /* Puedes personalizar el color de la barra según tus necesidades */
 }
