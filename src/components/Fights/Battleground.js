@@ -9,6 +9,7 @@ import musicFile2 from '../../assets/sounds/music/FourHorsemen.WAV';
 import musicFile3 from '../../assets/sounds/music/OverNow.WAV';
 import Modal from '../UI/Modal.js'
 import Button from '../UI/Button.js'
+import LifeBar from './LifeBar'
 
 const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
@@ -270,9 +271,16 @@ const Battleground = ({ changeActivePage }) => {
             {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
             </Fighter>}
+            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <div className={`${classes.userHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
+                <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
+            </div>
+            }
             {enemyFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
+            {enemyFighter && !battleEnded.finished && <div className={`${classes.enemyHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
+                <LifeBar fighter={enemyFighter} styleType={battlegroundType}></LifeBar>
+            </div>}
             {!battleEnded.finished && menuActive && userFighter && userFighter.currentHP > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
         </div >

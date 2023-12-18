@@ -120,12 +120,6 @@
 }
 
 
-.headerContainer {
-    align-items: center;
-    background-size: 100% 100%;
-    padding: 10% 10%;
-}
-
 .battlegroundAirporth3 {
     font-family: 'Black Ops One' !important;
     color: rgb(0, 0, 0) !important;
@@ -184,11 +178,3 @@
     align-content: center;
     align-items: center;
 }
-
-.hp {
-    text-wrap: nowrap !important;
-}
-
-.enemyHeader {}
-
-.userHeader {}

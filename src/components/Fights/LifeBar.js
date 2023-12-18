@@ -1,11 +1,11 @@
 import classes from './LifeBar.module.css'
 
-const LifeBar = ({ currentHP, maxHP, styleType }) => {
+const LifeBar = ({ styleType, fighter }) => {
     return (
         <div className={classes.lifeBarContainer}>
-            <div className={`${classes.hp} ${classes[styleType]}`}>{`${currentHP} / ${maxHP}`}</div>
+            <div className={`${classes.hp} ${classes[styleType]}`}>{`${fighter.name}  Lvl:${fighter.level}  HP: ${fighter.currentHP} / ${fighter.maxHP}`}</div>
             <div className={classes.lifeBarBorder}>
-                <div className={classes.lifeBar} style={{ width: `${(currentHP * 100) / maxHP}%` }}>
+                <div className={classes.lifeBar} style={{ width: `${(fighter.currentHP * 100) / fighter.maxHP}%` }}>
                 </div>
             </div>
         </div>
