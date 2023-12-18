@@ -193,24 +193,37 @@ const Battleground = ({ changeActivePage }) => {
     }, [song])
     useEffect(() => {
         const audioSfx = document.getElementById('audioSfxPlayer');
-        if (userAttacked === "user") {
+        let audio = '/assets/sounds/SFX/Ha.mp3'
+        if (userAttacked.active === "user") {
             if (audioSfx) {
-                setSfx('/assets/sounds/SFX/Ha.mp3')
+                if (userAttacked.Sfx) {
+                    audio = userAttacked.Sfx
+                }
+                setSfx(audio)
             }
         }
-        if (userAttacked === "userPowerUp") {
+        if (userAttacked.active === "userPowerUp") {
             if (audioSfx) {
-                setSfx('/assets/sounds/SFX/Ha.mp3')
+                if (userAttacked.Sfx) {
+                    audio = userAttacked.Sfx
+                }
+                setSfx(audio)
             }
         }
-        if (userAttacked === "enemy") {
+        if (userAttacked.active === "enemy") {
             if (audioSfx) {
-                setSfx('/assets/sounds/SFX/Ha.mp3')
+                if (userAttacked.Sfx) {
+                    audio = userAttacked.Sfx
+                }
+                setSfx(audio)
             }
         }
-        if (userAttacked === "enemyPowerUp") {
+        if (userAttacked.active === "enemyPowerUp") {
             if (audioSfx) {
-                setSfx('/assets/sounds/SFX/Ha.mp3')
+                if (userAttacked.Sfx) {
+                    audio = userAttacked.Sfx
+                }
+                setSfx(audio)
             }
         }
     }, [userAttacked])
@@ -246,10 +259,10 @@ const Battleground = ({ changeActivePage }) => {
                     <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
                 </div>
             })}</Modal>}
-            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
+            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} fighter={userFighter} user="user">
                 {attack.active && turn === "user" && attack.inflictedOn === "user" && <img alt="userAttack" className={classes.userPowerUp} src={attack.src} />}
             </Fighter>}
-            {enemyFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
+            {enemyFighter && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 {attack.active && turn === "enemy" && attack.inflictedOn === "enemy" && <img alt="enemyAttack" className={classes.enemyPowerUp} src={attack.src} />}
             </Fighter>}
             {!battleEnded.finished && menuActive && userFighter && userFighter.currentHP > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}

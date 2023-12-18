@@ -5,7 +5,7 @@ import useBattleState from './use-battleState'
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle } = useBattleState()
     const [showModal, setShowModal] = useState(false)
-    const [userAttacked, setUserAttacked] = useState(false)
+    const [userAttacked, setUserAttacked] = useState({ "active": false, "Sfx": '' })
     const [modalContent, setModalContent] = useState()
     const [fightersLevels, setFightersLevels] = useState()
     const [turn, setTurn] = useState("user")
@@ -42,7 +42,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 newState.active = false
                                 return newState
                             })
-                            setUserAttacked(false)
+                            setUserAttacked({ "active": false, "Sfx": '' })
                             if (attackHit) {
                                 handleModalState(`${userFighter.name} used ${option.name}`, "enemy")
                             } else {
@@ -64,7 +64,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
-                                setUserAttacked("user")
+                                setUserAttacked({ "active": "user", "Sfx": option.Sfx })
                                 if (action.attackType === "normal") {
                                     newAction.value -= userFighter.attack
                                 } else {
@@ -79,7 +79,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
-                                setUserAttacked("userPowerUp")
+                                setUserAttacked({ "active": "userPowerUp", "Sfx": option.Sfx })
                                 attackUser(newAction)
                             }
                         })
@@ -114,7 +114,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         newState.active = false
                         return newState
                     })
-                    setUserAttacked(false)
+                    setUserAttacked({ "active": false, "Sfx": '' })
                     if (attackHit) {
                         handleModalState(`Enemy ${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
                     } else {
@@ -135,7 +135,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
-                        setUserAttacked("enemy")
+                        setUserAttacked({ "active": "enemy", "Sfx": enemyFighter.moves[randomMove].Sfx })
                         if (action.attackType === "normal") {
                             newAction.value -= enemyFighter.attack
                         } else {
@@ -143,7 +143,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         }
                         attackUser(newAction)
                     } else {
-                        setUserAttacked("enemyPowerUp")
+                        setUserAttacked({ "active": "enemyPowerUp", "Sfx": enemyFighter.moves[randomMove].Sfx })
                         setAttack((prevState) => {
                             let newState = { ...prevState }
                             newState.active = true
