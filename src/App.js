@@ -9,7 +9,7 @@ function App() {
   return (
     <MyContextProvider value={userContextValue}>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Mochiy+Pop+One&family=Dhurjati&family=Black+Ops+One&family=Orbitron&display=swap" rel="stylesheet" />
       <div className="App">
         <Home></Home>

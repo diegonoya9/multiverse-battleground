@@ -33,7 +33,6 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
     return (<div>
         {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
             <h1 style={{ color: 'white' }}>Player selected</h1>
-
         </Modal>}
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
@@ -41,7 +40,7 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
             {users &&
                 users.map((user) => {
                     return (
-                        <div className={`${classes.fighterContainer} `} key={user.id} >
+                        <div className={`${classes.fighterContainer} `} key={user.userId} >
                             {user.name}
                             <Button colorType="blue" onClick={() => setActiveUser(user.userId)} value="Choose user"></Button>
                         </div>

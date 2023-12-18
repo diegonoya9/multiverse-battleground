@@ -91,7 +91,6 @@ const useUser = (origin) => {
     }
     const attackUser = ({ ...attack }) => {
         let newValue = attack
-        console.log(newValue)
         setUser((prevState) => {
             let newState = {
                 ...prevState,

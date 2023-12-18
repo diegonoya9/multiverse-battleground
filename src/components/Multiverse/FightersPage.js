@@ -156,7 +156,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
                 user.fighters.map((fighter, i) => {
-                    return (<div className={classes.fighterContainer}>
+                    return (<div className={classes.fighterContainer} key={fighter.userFighterId}>
                         <FighterCard fighter={fighter}></FighterCard>
                         <Button onClick={() => { setFirstFighter(fighter.userFighterId) }} value="First in battle"></Button>
                         <Button onClick={() => { viewMovements(fighter.userFighterId) }} value="View movements"></Button>
