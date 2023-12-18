@@ -428,6 +428,7 @@
       "moves": [
         {
           "MP": 20,
+          "Sfx": "/assets/sounds/SFX/VegetaHa.mp3",
           "actions": [
             {
               "attackType": "normal",
@@ -10062,6 +10063,7 @@
           "moves": [
             {
               "MP": 20,
+              "Sfx": "/assets/sounds/SFX/VegetaHa.mp3",
               "actions": [
                 {
                   "attackType": "normal",
