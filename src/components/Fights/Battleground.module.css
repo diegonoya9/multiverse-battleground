@@ -191,3 +191,11 @@ h2.battlegroundAirport {
         width: 100vw;
     }
 }
+
+.options {
+    height: 100px;
+}
+
+.miniImgMenu {
+    height: 60px;
+}
