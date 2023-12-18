@@ -37,5 +37,11 @@
 }
 
 .title {
+
     text-transform: capitalize;
+}
+
+.fighterPrice {
+    display: flex;
+    display: none;
 }

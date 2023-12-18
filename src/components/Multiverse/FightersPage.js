@@ -7,6 +7,13 @@ import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
+    const priceTags = document.querySelectorAll(".fighterPriceBlock")
+    priceTags.forEach(tag => {
+        tag.style.display = "none"
+    });;
+
+
+
     const [showModal, setShowModal] = useState(false)
     const { userContext } = useContext(MyContext);
     const [moves, setMoves] = useState()
