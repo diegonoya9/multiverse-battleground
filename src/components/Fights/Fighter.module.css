@@ -13,7 +13,6 @@
     /* Mantiene la proporción de aspecto original */
     display: block;
     /* Elimina espacio adicional por defecto en la parte inferior de la imagen */
-    max-width: 100%;
     z-index: 2;
     /* transform: scaleX(-1) */
     /*Da vuelta la imagen del luchador, pero hay que buscar imagenes que miren para el mismo lado*/
