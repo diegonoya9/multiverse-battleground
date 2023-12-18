@@ -26,7 +26,8 @@
           ],
           "currentMP": 19,
           "img": "./assets/img/fire.png",
-          "name": "Flame"
+          "name": "Flame",
+          "Sfx": "/assets/sounds/SFX/CharizardFlame.mp3"
         },
         {
           "MP": 20,
@@ -40,7 +41,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/redSlash.gif",
-          "name": "Punch"
+          "name": "Punch",
+          "Sfx": "/assets/sounds/SFX/CharizardPunch.mp3"
         },
         {
           "MP": 20,
@@ -54,7 +56,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/aura.gif",
-          "name": "Def Up"
+          "name": "Def Up",
+          "Sfx": "/assets/sounds/SFX/CharizardDefUp.mp3"
         },
         {
           "MP": 1,
@@ -68,7 +71,8 @@
           ],
           "currentMP": 6,
           "img": "./assets/img/ray.gif",
-          "name": "Hiper Ray"
+          "name": "Hiper Ray",
+          "Sfx": "/assets/sounds/SFX/CharizardHiperRay.mp3"
         }
       ],
       "name": "Charizard",
@@ -182,7 +186,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/lightsBall.gif",
-          "name": "Energy Ball"
+          "name": "Energy Ball",
+          "Sfx": "/assets/sounds/SFX/Mew1.mp3"
         },
         {
           "MP": 20,
@@ -202,7 +207,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/cloud.gif",
-          "name": "Smoke Throw"
+          "name": "Smoke Throw",
+          "Sfx": "/assets/sounds/SFX/Mew2.mp3"
         },
         {
           "MP": 20,
@@ -216,7 +222,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/petals.gif",
-          "name": "Def Up"
+          "name": "Def Up",
+          "Sfx": "/assets/sounds/SFX/Mew3.mp3"
         },
         {
           "MP": 20,
@@ -230,7 +237,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/ray.gif",
-          "name": "Hiper Ray"
+          "name": "Hiper Ray",
+          "Sfx": "/assets/sounds/SFX/Mew4.mp3"
         }
       ],
       "name": "Mew",
@@ -264,7 +272,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/redSlash.gif",
-          "name": "Boomerang Throw"
+          "name": "Boomerang Throw",
+          "Sfx": "/assets/sounds/SFX/batflap.mp3"
         },
         {
           "MP": 20,
@@ -284,7 +293,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/moneyThrow.gif",
-          "name": "I'm BATMAN"
+          "name": "I'm BATMAN",
+          "Sfx": "/assets/sounds/SFX/imbatman.mp3"
         },
         {
           "MP": 20,
@@ -298,7 +308,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/2eSd.gif",
-          "name": "Cape Cover"
+          "name": "Cape Cover",
+          "Sfx": "/assets/sounds/SFX/batflap.mp3"
         },
         {
           "MP": 20,
@@ -312,7 +323,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/bat.gif",
-          "name": "BatiBat"
+          "name": "BatiBat",
+          "Sfx": "/assets/sounds/SFX/batflap.mp3"
         }
       ],
       "name": "Batman",
@@ -505,7 +517,8 @@
           ],
           "currentMP": 19,
           "img": "./assets/img/phoenix.gif",
-          "name": "Ave Fénix"
+          "name": "Ave Fénix",
+          "Sfx": "/assets/sounds/SFX/Phoenix2.mp3"
         },
         {
           "MP": 20,
@@ -519,7 +532,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/lightBeam.gif",
-          "name": "Puño Fantasma"
+          "name": "Puño Fantasma",
+          "Sfx": "/assets/sounds/SFX/Phoenix3.mp3"
         },
         {
           "MP": 20,
@@ -533,7 +547,8 @@
           ],
           "currentMP": 20,
           "img": "./assets/img/resurgir.gif",
-          "name": "Resurgir"
+          "name": "Resurgir",
+          "Sfx": "/assets/sounds/SFX/Resurgir.mp3"
         },
         {
           "MP": 1,
@@ -547,7 +562,8 @@
           ],
           "currentMP": 6,
           "img": "./assets/img/electric-aura.gif",
-          "name": "7mo Sentido"
+          "name": "7mo Sentido",
+          "Sfx": "/assets/sounds/SFX/Phoenix2.mp3"
         }
       ],
       "name": "Ikki",
@@ -8404,7 +8420,8 @@
               ],
               "currentMP": 16,
               "img": "./assets/img/fire.png",
-              "name": "Flame"
+              "name": "Flame",
+              "Sfx": "/assets/sounds/SFX/CharizardFlame.mp3"
             },
             {
               "MP": 20,
@@ -8418,7 +8435,8 @@
               ],
               "currentMP": 17,
               "img": "./assets/img/redSlash.gif",
-              "name": "Punch"
+              "name": "Punch",
+              "Sfx": "/assets/sounds/SFX/CharizardPunch.mp3"
             },
             {
               "MP": 20,
@@ -8432,7 +8450,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/2eSd.gif",
-              "name": "Def Up"
+              "name": "Def Up",
+              "Sfx": "/assets/sounds/SFX/CharizardDefUp.mp3"
             },
             {
               "MP": 1,
@@ -8446,7 +8465,8 @@
               ],
               "currentMP": 0,
               "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
+              "name": "Hiper Ray",
+              "Sfx": "/assets/sounds/SFX/CharizardHiperRay.mp3"
             }
           ],
           "name": "Charizard",
@@ -9047,7 +9067,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/fire.png",
-              "name": "Flame"
+              "name": "Flame",
+              "Sfx": "/assets/sounds/SFX/CharizardFlame.mp3"
             },
             {
               "MP": 20,
@@ -9061,7 +9082,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/redSlash.gif",
-              "name": "Punch"
+              "name": "Punch",
+              "Sfx": "/assets/sounds/SFX/CharizardPunch.mp3"
             },
             {
               "MP": 20,
@@ -9075,7 +9097,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/2eSd.gif",
-              "name": "Def Up"
+              "name": "Def Up",
+              "Sfx": "/assets/sounds/SFX/CharizardDefUp.mp3"
             },
             {
               "MP": 1,
@@ -9089,7 +9112,8 @@
               ],
               "currentMP": 1,
               "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
+              "name": "Hiper Ray",
+              "Sfx": "/assets/sounds/SFX/CharizardHiperRay.mp3"
             }
           ],
           "name": "Charizard",
@@ -9215,7 +9239,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/lightsBall.gif",
-              "name": "Energy Ball"
+              "name": "Energy Ball",
+              "Sfx": "/assets/sounds/SFX/Mew1.mp3"
             },
             {
               "MP": 20,
@@ -9235,7 +9260,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/cloud.gif",
-              "name": "Smoke Throw"
+              "name": "Smoke Throw",
+              "Sfx": "/assets/sounds/SFX/Mew2.mp3"
             },
             {
               "MP": 20,
@@ -9249,7 +9275,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/petals.gif",
-              "name": "Def Up"
+              "name": "Def Up",
+              "Sfx": "/assets/sounds/SFX/Mew3.mp3"
             },
             {
               "MP": 20,
@@ -9263,7 +9290,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
+              "name": "Hiper Ray",
+              "Sfx": "/assets/sounds/SFX/Mew4.mp3"
             }
           ],
           "name": "Mew",
@@ -9298,7 +9326,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/redSlash.gif",
-              "name": "Boomerang Throw"
+              "name": "Boomerang Throw",
+              "Sfx": "/assets/sounds/SFX/batflap.mp3"
             },
             {
               "MP": 20,
@@ -9318,7 +9347,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/moneyThrow.gif",
-              "name": "I'm BATMAN"
+              "name": "I'm BATMAN",
+              "Sfx": "/assets/sounds/SFX/imbatman.mp3"
             },
             {
               "MP": 20,
@@ -9332,7 +9362,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/2eSd.gif",
-              "name": "Cape Cover"
+              "name": "Cape Cover",
+              "Sfx": "/assets/sounds/SFX/batflap.mp3"
             },
             {
               "MP": 20,
@@ -9346,7 +9377,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/bat.gif",
-              "name": "BatiBat"
+              "name": "BatiBat",
+              "Sfx": "/assets/sounds/SFX/batflap.mp3"
             }
           ],
           "name": "Batman",
@@ -9380,7 +9412,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/phoenix.gif",
-              "name": "Ave Fénix"
+              "name": "Ave Fénix",
+              "Sfx": "/assets/sounds/SFX/Phoenix2.mp3"
             },
             {
               "MP": 20,
@@ -9394,7 +9427,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/lightBeam.gif",
-              "name": "Puño Fantasma"
+              "name": "Puño Fantasma",
+              "Sfx": "/assets/sounds/SFX/Phoenix3.mp3"
             },
             {
               "MP": 20,
@@ -9408,7 +9442,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/resurgir.gif",
-              "name": "Resurgir"
+              "name": "Resurgir",
+              "Sfx": "/assets/sounds/SFX/Resurgir.mp3"
             },
             {
               "MP": 1,
@@ -9422,7 +9457,8 @@
               ],
               "currentMP": 1,
               "img": "./assets/img/electric-aura.gif",
-              "name": "7mo Sentido"
+              "name": "7mo Sentido",
+              "Sfx": "/assets/sounds/SFX/Phoenix2.mp3"
             }
           ],
           "name": "Ikki",
@@ -9620,7 +9656,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/fire.png",
-              "name": "Flame"
+              "name": "Flame",
+              "Sfx": "/assets/sounds/SFX/CharizardFlame.mp3"
             },
             {
               "MP": 20,
@@ -9634,7 +9671,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/redSlash.gif",
-              "name": "Punch"
+              "name": "Punch",
+              "Sfx": "/assets/sounds/SFX/CharizardPunch.mp3"
             },
             {
               "MP": 20,
@@ -9648,7 +9686,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/2eSd.gif",
-              "name": "Def Up"
+              "name": "Def Up",
+              "Sfx": "/assets/sounds/SFX/CharizardDefUp.mp3"
             },
             {
               "MP": 1,
@@ -9662,7 +9701,8 @@
               ],
               "currentMP": 1,
               "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
+              "name": "Hiper Ray",
+              "Sfx": "/assets/sounds/SFX/CharizardHiperRay.mp3"
             }
           ],
           "name": "Charizard",
@@ -9777,7 +9817,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/lightsBall.gif",
-              "name": "Energy Ball"
+              "name": "Energy Ball",
+              "Sfx": "/assets/sounds/SFX/Mew1.mp3"
             },
             {
               "MP": 20,
@@ -9797,7 +9838,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/cloud.gif",
-              "name": "Smoke Throw"
+              "name": "Smoke Throw",
+              "Sfx": "/assets/sounds/SFX/Mew2.mp3"
             },
             {
               "MP": 20,
@@ -9811,7 +9853,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/petals.gif",
-              "name": "Def Up"
+              "name": "Def Up",
+              "Sfx": "/assets/sounds/SFX/Mew3.mp3"
             },
             {
               "MP": 20,
@@ -9825,7 +9868,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/ray.gif",
-              "name": "Hiper Ray"
+              "name": "Hiper Ray",
+              "Sfx": "/assets/sounds/SFX/Mew4.mp3"
             }
           ],
           "name": "Mew",
@@ -9941,7 +9985,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/redSlash.gif",
-              "name": "Boomerang Throw"
+              "name": "Boomerang Throw",
+              "Sfx": "/assets/sounds/SFX/batflap.mp3"
             },
             {
               "MP": 20,
@@ -9961,7 +10006,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/moneyThrow.gif",
-              "name": "I'm BATMAN"
+              "name": "I'm BATMAN",
+              "Sfx": "/assets/sounds/SFX/imbatman.mp3"
             },
             {
               "MP": 20,
@@ -9975,7 +10021,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/2eSd.gif",
-              "name": "Cape Cover"
+              "name": "Cape Cover",
+              "Sfx": "/assets/sounds/SFX/batflap.mp3"
             },
             {
               "MP": 20,
@@ -9989,7 +10036,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/bat.gif",
-              "name": "BatiBat"
+              "name": "BatiBat",
+              "Sfx": "/assets/sounds/SFX/batflap.mp3"
             }
           ],
           "name": "Batman",
@@ -10104,7 +10152,8 @@
               ],
               "currentMP": 13,
               "img": "./assets/img/phoenix.gif",
-              "name": "Ave Fénix"
+              "name": "Ave Fénix",
+              "Sfx": "/assets/sounds/SFX/Phoenix2.mp3"
             },
             {
               "MP": 20,
@@ -10118,7 +10167,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/lightBeam.gif",
-              "name": "Puño Fantasma"
+              "name": "Puño Fantasma",
+              "Sfx": "/assets/sounds/SFX/Phoenix3.mp3"
             },
             {
               "MP": 20,
@@ -10132,7 +10182,8 @@
               ],
               "currentMP": 20,
               "img": "./assets/img/resurgir.gif",
-              "name": "Resurgir"
+              "name": "Resurgir",
+              "Sfx": "/assets/sounds/SFX/Resurgir.mp3"
             },
             {
               "MP": 1,
@@ -10146,7 +10197,8 @@
               ],
               "currentMP": 0,
               "img": "./assets/img/electric-aura.gif",
-              "name": "7mo Sentido"
+              "name": "7mo Sentido",
+              "Sfx": "/assets/sounds/SFX/Phoenix2.mp3"
             }
           ],
           "name": "Ikki",
