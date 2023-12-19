@@ -25,7 +25,7 @@ const useUser = (origin) => {
             };
         });
     }
-    const levelUpFighter = (currentXP, newLevel, won) => {
+    const levelUpFighter = (currentXP, newLevel, won, increaseFightsWon) => {
         if (user) {
             let newUser = { ...user }
             if (won) {
@@ -50,6 +50,7 @@ const useUser = (origin) => {
                         object.quantity += 100
                     }
                 })
+                increaseFightsWon()
                 setUser(user)
             }
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {

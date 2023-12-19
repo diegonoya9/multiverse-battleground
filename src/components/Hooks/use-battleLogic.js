@@ -14,6 +14,13 @@ const useBattleLogic = (setShowLevelUp) => {
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
     const { user: enemy, changeUser: changeEnemyUser, userFighter: enemyFighter, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
+    const increaseFightsWon = () => {
+        setFightsWon((...prevValue) => {
+            let newValue = prevValue
+            newValue++
+            return newValue
+        })
+    }
     const onCloseModal = () => {
         setShowModal(false)
         setTurn(nextTurn)
@@ -229,7 +236,7 @@ const useBattleLogic = (setShowLevelUp) => {
     }
     useEffect(() => {
         if (battleEnded.finished && battleEnded.winner === "user" && userFighter) {
-            let newCurrentXP = userFighter.currentXP + (enemyFighter.level * 100)
+            let newCurrentXP = userFighter.currentXP + (enemyFighter.level * 100) + (100 * fightsWon)
             let newLevel = userFighter.level
             fightersLevels.forEach((fighterLevel) => {
                 if (fighterLevel.fighterId === userFighter.fighterId && fighterLevel.level > userFighter.level && fighterLevel.minXp < newCurrentXP) {
@@ -237,10 +244,10 @@ const useBattleLogic = (setShowLevelUp) => {
                     setShowLevelUp(true)
                 }
             })
-            levelUpFighter(newCurrentXP, newLevel, battleEnded.winner === "user")
+            levelUpFighter(newCurrentXP, newLevel, battleEnded.winner === "user", increaseFightsWon)
         }
         if (battleEnded.finished && battleEnded.winner !== "user" && userFighter) {
-            levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user")
+            levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user", increaseFightsWon)
         }
     }, [battleEnded, userFighter])
     useEffect(() => {
