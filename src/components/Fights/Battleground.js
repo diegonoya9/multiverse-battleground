@@ -27,7 +27,7 @@ const Battleground = ({ changeActivePage }) => {
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
     const [Sfx, setSfx] = useState();
-    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, startNewFight } = useBattleLogic(setShowLevelUp)
+    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -41,6 +41,7 @@ const Battleground = ({ changeActivePage }) => {
     }, [turn, battleEnded])
     useEffect(() => {
         if (enemyFighter && enemyFighter.currentHP === 0) {
+            changeShowModal()
             endBattle("user", true)
         }
         if (userFighter && userFighter.currentHP === 0) {
@@ -58,14 +59,13 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [userFighter, enemyFighter])
     const restartGame = () => {
-        endBattle(null, false)
         setShowLevelUp(false)
-        changeEnemyFighter()
         changeActivePage(1)
     }
     const newFight = () => {
         endBattle(null, false)
         setShowLevelUp(false)
+        setMenuActive(true)
         startNewFight()
         //changeEnemyFighter()
         // changeActivePage(1)

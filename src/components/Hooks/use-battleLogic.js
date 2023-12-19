@@ -18,6 +18,10 @@ const useBattleLogic = (setShowLevelUp) => {
         setShowModal(false)
         setTurn(nextTurn)
     }
+    const changeShowModal = () => {
+        setShowModal(false)
+        setModalContent()
+    }
     const handleModalState = (modalContent, nexTurn) => {
         if (modalContent) {
             setModalContent(modalContent)
@@ -26,6 +30,7 @@ const useBattleLogic = (setShowLevelUp) => {
         }
     }
     const startNewFight = () => {
+        setShowModal(false)
         let activeArray = []
         let data = { ...enemy }
         setFightsWon((prevValue) => {
@@ -245,7 +250,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, startNewFight }
+    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight }
 }
 
 export default useBattleLogic
