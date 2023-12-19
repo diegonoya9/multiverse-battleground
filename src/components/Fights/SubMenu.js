@@ -33,20 +33,20 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                     <ul className={classes.optionsContainer} >
                         {optionsArray && selectedOption === "objects" && optionsArray.map((x, i) => {
                             return x.category === "battleItem" &&
-                                <div className={classes.options} >
+                                <div key={x.name} className={classes.options} >
                                     <Button completeWidth="true" value={`${x.name}:${x.quantity}`} key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}><img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></Button>
                                 </div>
                         }
                         )}
                         {optionsArray && selectedOption === "fighters" && optionsArray.map((fighter, i) => {
                             return fighter.inParty && fighter.currentHP > 0 &&
-                                <div className={classes.options} >
+                                <div key={fighter.userFighterId} className={classes.options} >
                                     <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(fighter, selectedOption); changeUserFighter(fighter); }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
                                 </div>
                         })
                         }
                         {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => {
-                            return <div className={classes.options}>
+                            return <div key={x.name} className={classes.options}>
                                 <Button completeWidth="true" key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { if (x.currentMP > 0) { toggleSubMenu(); clickHandler(x, selectedOption); } }}>{x.name}:{x.currentMP}/{x.MP}</Button>
                             </div>
                         })

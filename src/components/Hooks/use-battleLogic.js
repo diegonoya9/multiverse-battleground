@@ -3,15 +3,16 @@ import useUser from "./use-user";
 import useBattleState from './use-battleState'
 
 const useBattleLogic = (setShowLevelUp) => {
-    const { battleEnded, endBattle } = useBattleState()
+    const { battleEnded, endBattle, restartBattle } = useBattleState()
     const [showModal, setShowModal] = useState(false)
     const [userAttacked, setUserAttacked] = useState({ "active": false, "Sfx": '' })
     const [modalContent, setModalContent] = useState()
     const [fightersLevels, setFightersLevels] = useState()
+    const [fightsWon, setFightsWon] = useState(0)
     const [turn, setTurn] = useState("user")
     const [nextTurn, setNextTurn] = useState()
     const { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP } = useUser("user")
-    const { userFighter: enemyFighter, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
+    const { user: enemy, changeUser: changeEnemyUser, userFighter: enemyFighter, changeUserFighter: changeEnemyFighter, attackUser: attackEnemy } = useUser("enemy")
     const [attack, setAttack] = useState({ active: false, src: "./assets/img/fire.png", inflictedOn: "enemy" })
     const onCloseModal = () => {
         setShowModal(false)
@@ -23,6 +24,69 @@ const useBattleLogic = (setShowLevelUp) => {
             setShowModal(true)
             setNextTurn(nexTurn)
         }
+    }
+    const startNewFight = () => {
+        let activeArray = []
+        let data = { ...enemy }
+        setFightsWon((prevValue) => {
+            return prevValue++
+        })
+        setAttack((prevState) => {
+            let newState = { ...prevState }
+            newState.active = false
+            return newState
+        })
+        setTurn("user")
+        let randomValue = Math.floor(Math.random() * (data.fighters.length))
+        for (let i = 0; i < data.fighters.length; i++) {
+            if (data.fighters.length > 1) {
+                if (i === randomValue) {
+                    activeArray.push(true)
+                } else {
+                    activeArray.push(false)
+                }
+            } else {
+                activeArray.push(true)
+            }
+        }
+        let totalLevel = 0
+        let totalFighters = 0
+        user.fighters.forEach((fighter) => {
+            if (fighter.inParty) {
+                totalFighters++
+                totalLevel += fighter.level
+            }
+        })
+        //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
+        let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
+        data.fighters.forEach((fighter) => {
+            fighter.level = averageLevel
+        })
+        let newFighters = data.fighters.map((fighter, index) => {
+            fightersLevels.forEach((fighterLevel) => {
+                if (fighterLevel.fighterId === fighter.fighterId && fighterLevel.level === fighter.level) {
+                    fighter = {
+                        ...fighter,
+                        attack: fighterLevel.attack,
+                        specialAttack: fighterLevel.specialAttack,
+                        specialDefense: fighterLevel.specialDefense,
+                        defense: fighterLevel.defense,
+                        maxHP: fighterLevel.maxHp,
+                        currentHP: fighterLevel.maxHp,
+                        accuracy: fighterLevel.accuracy
+                    }
+                }
+            })
+            fighter.active = activeArray[index]
+            fighter.currentHP = fighter.maxHP
+            fighter.moves.forEach((move) => {
+                move.currentMP = move.MP
+            })
+            return fighter
+        })
+        data.fighters = newFighters
+        changeEnemyUser(data)
+        restartBattle()
     }
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
@@ -181,7 +245,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent }
+    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, startNewFight }
 }
 
 export default useBattleLogic

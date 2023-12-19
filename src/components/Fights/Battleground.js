@@ -27,7 +27,7 @@ const Battleground = ({ changeActivePage }) => {
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
     const [Sfx, setSfx] = useState();
-    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent } = useBattleLogic(setShowLevelUp)
+    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, startNewFight } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -62,6 +62,13 @@ const Battleground = ({ changeActivePage }) => {
         setShowLevelUp(false)
         changeEnemyFighter()
         changeActivePage(1)
+    }
+    const newFight = () => {
+        endBattle(null, false)
+        setShowLevelUp(false)
+        startNewFight()
+        //changeEnemyFighter()
+        // changeActivePage(1)
     }
     const calculateXp = (level) => {
         // Ajuste para que al llegar al nivel 99 se necesiten 5,000,000 de experiencia
@@ -261,6 +268,7 @@ const Battleground = ({ changeActivePage }) => {
                     {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>Enemy WON</h2>}
                     {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{user.name} ran away</h1>}
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
+                    {battleEnded.winner === "user" && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value="Keep Fighting" />}
                 </Modal>
             </div>}
             {showSelectFighter && userFighter.currentHP === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {

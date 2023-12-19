@@ -27,12 +27,22 @@ const useUser = (origin) => {
     }
     const levelUpFighter = (currentXP, newLevel, won) => {
         if (user) {
-            let newUser = user
+            let newUser = { ...user }
             if (won) {
                 newUser.fighters.forEach(fighter => {
                     if (fighter.active) {
                         fighter.currentXP = currentXP
                         fighter.level = newLevel
+                        fightersLevels.forEach((level) => {
+                            if (fighter.level === level.level && fighter.fighterId === level.fighterId) {
+                                fighter.maxHP = level.maxHp
+                                fighter.attack = level.attack
+                                fighter.specialAttack = level.specialAttack
+                                fighter.defense = level.defense
+                                fighter.specialDefense = level.specialDefense
+                                fighter.accuracy = level.accuracy
+                            }
+                        })
                     }
                 })
                 newUser.objects.forEach((object) => {
@@ -40,6 +50,7 @@ const useUser = (origin) => {
                         object.quantity += 100
                     }
                 })
+                setUser(user)
             }
             fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                 method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
@@ -224,7 +235,9 @@ const useUser = (origin) => {
                 setFightersLevels(data)
             })
     }, [])
-
+    const changeUser = (user) => {
+        setUser(user)
+    }
     const changeUserFighter = (fighter) => {
         setUser((prevValue) => {
             let newValue = { ...prevValue }
@@ -240,7 +253,7 @@ const useUser = (origin) => {
             return newValue
         })
     }
-    return { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP }
+    return { user, changeUserFighter, userFighter, healUserFighter, attackUser, levelUpFighter, reduceFighterMP, changeUser }
 }
 
 export default useUser

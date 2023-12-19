@@ -10,7 +10,15 @@ const useBattleState = () => {
             return newState
         })
     }
-    return { battleEnded, endBattle }
+    const restartBattle = () => {
+        setBattleEnded((prevState) => {
+            let newState = { ...prevState }
+            newState.finished = false
+            newState.winner = null
+            return newState
+        })
+    }
+    return { battleEnded, endBattle, restartBattle }
 }
 
 export default useBattleState
