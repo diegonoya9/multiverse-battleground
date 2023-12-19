@@ -7,6 +7,13 @@ import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
+    const priceTags = document.querySelectorAll(".fighterPriceBlock")
+    priceTags.forEach(tag => {
+        tag.style.display = "none"
+    });;
+
+
+
     const [showModal, setShowModal] = useState(false)
     const { userContext } = useContext(MyContext);
     const [moves, setMoves] = useState()
@@ -134,12 +141,21 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         setShowConfirm(true)
         setShowModal(true)
     }
-    const deleteUserFighter = (userFighterId) => {
+    const deleteUserFighter = async (userFighterId) => {
+        let deleteFighter = await user.fighters.filter((fighter) => {
+            return fighter.userFighterId === userFighterId
+        })
         let newFighters = user.fighters.filter((fighter) => {
             return fighter.userFighterId !== userFighterId
         })
+        const sell = user.objects[4].quantity
+        let price = deleteFighter[0].price
+        const result = sell + price
         let newUser = user
+        newUser.objects[4].quantity = result
         newUser.fighters = newFighters
+
+
         setShowModal(false)
         setShowConfirm(false)
         fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
