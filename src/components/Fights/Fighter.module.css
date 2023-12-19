@@ -7,6 +7,7 @@
 }
 
 .fighterImage {
+    user-select: none;
     width: auto;
     /* La imagen ocupará el 100% del ancho del contenedor */
     height: 175px;
@@ -49,6 +50,7 @@
 /* Aplica la animación al elemento de la imagen del ataque enemigo */
 .userAttack {
     animation-name: userAttackMove;
+    user-select: none;
     animation-duration: .3s;
     height: 35%;
     /* Duración de la animación */
@@ -62,6 +64,7 @@
 
 .userPowerUp {
     position: absolute;
+    user-select: none;
     width: auto;
     margin-bottom: -55px;
     /* bottom: 0; */
@@ -87,6 +90,7 @@
 
 /* Aplica la animación al elemento de la imagen del ataque enemigo */
 .enemyAttack {
+    user-select: none;
     animation-name: enemyAttackMove;
     animation-duration: .3s;
     /* Duración de la animación */
