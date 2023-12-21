@@ -21,6 +21,7 @@ const useBattleLogic = (setShowLevelUp) => {
             return newValue
         })
     }
+    const [cure, setCure] = useState(0)
     const onCloseModal = () => {
         setShowModal(false)
         setTurn(nextTurn)
@@ -140,12 +141,14 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
-                                setUserAttacked({ "active": "user", "Sfx": option.Sfx })
                                 if (action.attackType === "normal") {
                                     newAction.value -= userFighter.attack
                                 } else {
                                     newAction.value -= userFighter.specialAttack
                                 }
+                                setUserAttacked({ "active": "user", "Sfx": option.Sfx, 'totalDamage': newAction.value })
+                                console.log(newAction.value)
+
                                 attackEnemy(newAction)
                             } else {
                                 setAttack((prevState) => {
@@ -166,6 +169,10 @@ const useBattleLogic = (setShowLevelUp) => {
             if (selectedOption === "objects") {
                 setMenuActive(false)
                 healUserFighter(option)
+                if (option.name === 'Potion' || option.name === 'Super Potion') {
+
+                    setCure(option.actions[0].value)
+                }
                 handleModalState(`${user.name} used ${option.name}`, "enemy")
             }
             if (option === "run") {
@@ -211,13 +218,13 @@ const useBattleLogic = (setShowLevelUp) => {
                             newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
-                        setUserAttacked({ "active": "enemy", "Sfx": enemyFighter.moves[randomMove].Sfx })
                         if (action.attackType === "normal") {
                             newAction.value -= enemyFighter.attack
                         } else {
                             newAction.value -= enemyFighter.specialAttack
                         }
                         attackUser(newAction)
+                        setUserAttacked({ "active": "enemy", "Sfx": enemyFighter.moves[randomMove].Sfx, 'totalDamage': newAction.value })
                     } else {
                         setUserAttacked({ "active": "enemyPowerUp", "Sfx": enemyFighter.moves[randomMove].Sfx })
                         setAttack((prevState) => {
@@ -257,7 +264,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight }
+    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight, healUserFighter, cure, setCure }
 }
 
 export default useBattleLogic
