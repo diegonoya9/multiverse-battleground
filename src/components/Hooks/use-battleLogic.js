@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import useUser from "./use-user";
 import useBattleState from './use-battleState'
-import { act } from "react-dom/test-utils";
 
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle, restartBattle } = useBattleState()
