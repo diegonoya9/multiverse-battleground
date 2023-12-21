@@ -27,7 +27,7 @@ const Battleground = ({ changeActivePage }) => {
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
     const [Sfx, setSfx] = useState();
-    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
+    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, cure, setCure, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -58,6 +58,26 @@ const Battleground = ({ changeActivePage }) => {
             }
         }
     }, [userFighter, enemyFighter, turn])
+
+
+
+
+    const [showH1, setShowH1] = useState(false);
+    useEffect(() => {
+        if (cure > 0) {
+            setShowH1(true); // Mostrar el h1 si 'cure' es mayor que 0
+
+            // Ocultar el h1 después de 1 segundo
+            setTimeout(() => {
+                setShowH1(false);
+                setCure(0); // 1000 milisegundos = 1 segundo
+            }, 1000)
+        }
+
+    }, [cure]);
+
+
+
     const restartGame = () => {
         setShowLevelUp(false)
         changeActivePage(1)
@@ -286,6 +306,7 @@ const Battleground = ({ changeActivePage }) => {
             }
             {userAttacked.totalDamage !== undefined && turn === 'user' && <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${userAttacked.totalDamage} `}</h1>}
             {userAttacked.totalDamage !== undefined && turn === 'enemy' && <h1 className={`${classes.punchRecive} ${classes.enemyTotalDamage}`}>{`${userAttacked.totalDamage} `}</h1>}
+            {showH1 && cure > 0 && <h1 className={`${classes.punchRecive} ${classes.totalCure}`} set>{`${cure} `}</h1>}
             {
                 enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 </Fighter>

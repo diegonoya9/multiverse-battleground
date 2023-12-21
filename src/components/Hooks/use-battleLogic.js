@@ -21,6 +21,7 @@ const useBattleLogic = (setShowLevelUp) => {
             return newValue
         })
     }
+    const [cure, setCure] = useState(0)
     const onCloseModal = () => {
         setShowModal(false)
         setTurn(nextTurn)
@@ -168,6 +169,7 @@ const useBattleLogic = (setShowLevelUp) => {
             if (selectedOption === "objects") {
                 setMenuActive(false)
                 healUserFighter(option)
+                setCure(option.actions[0].value)
                 handleModalState(`${user.name} used ${option.name}`, "enemy")
             }
             if (option === "run") {
@@ -259,7 +261,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight }
+    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight, healUserFighter, cure, setCure }
 }
 
 export default useBattleLogic
