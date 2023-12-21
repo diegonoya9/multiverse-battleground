@@ -254,6 +254,7 @@ const Battleground = ({ changeActivePage }) => {
         //generateLevels();
         selectTheme()
     }, []);
+
     return (
         <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
@@ -278,15 +279,23 @@ const Battleground = ({ changeActivePage }) => {
             })}</Modal>}
             {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} attack={attack} fighter={userFighter} user="user">
             </Fighter>}
+
             {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <div className={`${classes.userHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
                 <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
             </div>
             }
-            {enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
-            </Fighter>}
-            {enemyFighter && !battleEnded.finished && <div className={`${classes.enemyHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
-                <LifeBar fighter={enemyFighter} styleType={battlegroundType}></LifeBar>
-            </div>}
+            {userAttacked.totalDamage !== undefined && <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${userAttacked.totalDamage}`}</h1>}
+            {
+                enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
+                </Fighter>
+            }
+            {/* <h1 className={classes.punchRecive}>{userAttacked.value}</h1> */}
+            {
+                enemyFighter && !battleEnded.finished && <div className={`${classes.enemyHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
+                    <LifeBar fighter={enemyFighter} styleType={battlegroundType}></LifeBar>
+                </div>
+            }
+            {userAttacked.totalDamage !== undefined && <h1 className={`${classes.punchRecive} ${classes.enemyTotalDamage}`}>{`${userAttacked.totalDamage}`}</h1>}
             {!battleEnded.finished && menuActive && userFighter && userFighter.currentHP > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
         </div >

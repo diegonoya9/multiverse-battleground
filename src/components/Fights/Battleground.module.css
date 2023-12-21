@@ -119,6 +119,22 @@ h2.battlegroundAirport {
     margin: auto;
 }
 
+.fighterTotalDamage {
+    position: absolute;
+    bottom: 200px;
+    right: 50px;
+    color: white;
+    padding: 50px;
+}
+
+/* .enemyTotalDamage {
+    position: absolute;
+    bottom: 200px;
+    left: 50px;
+    color: red;
+    padding: 50px;
+} */
+
 /* Define la animación */
 @keyframes attack-move {
     0% {

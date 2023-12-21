@@ -140,12 +140,14 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
-                                setUserAttacked({ "active": "user", "Sfx": option.Sfx })
                                 if (action.attackType === "normal") {
                                     newAction.value -= userFighter.attack
                                 } else {
                                     newAction.value -= userFighter.specialAttack
                                 }
+                                setUserAttacked({ "active": "user", "Sfx": option.Sfx, 'totalDamage': newAction.value })
+                                console.log(newAction.value)
+
                                 attackEnemy(newAction)
                             } else {
                                 setAttack((prevState) => {
@@ -211,13 +213,13 @@ const useBattleLogic = (setShowLevelUp) => {
                             newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
-                        setUserAttacked({ "active": "enemy", "Sfx": enemyFighter.moves[randomMove].Sfx })
                         if (action.attackType === "normal") {
                             newAction.value -= enemyFighter.attack
                         } else {
                             newAction.value -= enemyFighter.specialAttack
                         }
                         attackUser(newAction)
+                        setUserAttacked({ "active": "enemy", "Sfx": enemyFighter.moves[randomMove].Sfx, 'totalDamage': newAction.value })
                     } else {
                         setUserAttacked({ "active": "enemyPowerUp", "Sfx": enemyFighter.moves[randomMove].Sfx })
                         setAttack((prevState) => {
