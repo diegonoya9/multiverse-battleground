@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useUser from "./use-user";
 import useBattleState from './use-battleState'
+import { act } from "react-dom/test-utils";
 
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle, restartBattle } = useBattleState()
@@ -141,14 +142,13 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.img
                                     return newState
                                 })
-                                if (action.attackType === "normal") {
+                                if (action.attackType === "normal" && action.field === "currentHP") {
                                     newAction.value -= userFighter.attack
-                                } else {
+                                }
+                                if (action.attackType === "special" && action.field === "currentHP") {
                                     newAction.value -= userFighter.specialAttack
                                 }
                                 setUserAttacked({ "active": "user", "Sfx": option.Sfx, 'totalDamage': newAction.value })
-                                console.log(newAction.value)
-
                                 attackEnemy(newAction)
                             } else {
                                 setAttack((prevState) => {
@@ -218,9 +218,10 @@ const useBattleLogic = (setShowLevelUp) => {
                             newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
-                        if (action.attackType === "normal") {
+                        if (action.attackType === "normal" && action.field === "currentHP") {
                             newAction.value -= enemyFighter.attack
-                        } else {
+                        }
+                        if (action.attackType === "special" && action.field === "currentHP") {
                             newAction.value -= enemyFighter.specialAttack
                         }
                         attackUser(newAction)
