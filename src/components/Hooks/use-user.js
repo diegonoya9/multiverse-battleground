@@ -97,7 +97,6 @@ const useUser = (origin) => {
                 }
                 return object
             })
-            //console.log(newUser)
             return newUser
         })
     }
@@ -108,20 +107,6 @@ const useUser = (origin) => {
                 ...prevState,
                 fighters: prevState.fighters.map((fighter) => {
                     if (fighter.active) {
-                        if (newValue.field === "currentHP" && newValue.inflictedOn === "enemy") {
-                            if (newValue.attackType === "normal") {
-                                newValue.value = Math.round(Math.min(newValue.value + fighter.defense, newValue.value * 0.8))
-                            } else {
-                                newValue.value = Math.round(Math.min(newValue.value + fighter.specialDefense, newValue.value * 0.8))
-                            }
-                        }
-                        if (newValue.field === "currentHP" && newValue.inflictedOn === "user") {
-                            if ((fighter.currentHP + (newValue.value * fighter.maxHP)) > fighter.maxHP) {
-                                newValue.value = fighter.maxHP - fighter.currentHP
-                            } else {
-                                newValue.value = (newValue.value * fighter.maxHP)
-                            }
-                        }
                         return {
                             ...fighter,
                             [newValue.field]: Math.max(0, fighter[newValue.field] + newValue.value),

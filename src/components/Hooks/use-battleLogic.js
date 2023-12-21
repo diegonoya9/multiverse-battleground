@@ -148,6 +148,20 @@ const useBattleLogic = (setShowLevelUp) => {
                                 if (action.attackType === "special" && action.field === "currentHP") {
                                     newAction.value -= userFighter.specialAttack
                                 }
+                                if (newAction.field === "currentHP" && newAction.inflictedOn === "enemy") {
+                                    if (newAction.attackType === "normal") {
+                                        newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense, newAction.value * 0.8))
+                                    } else {
+                                        newAction.value = Math.round(Math.min(newAction.value + enemyFighter.specialDefense, newAction.value * 0.8))
+                                    }
+                                }
+                                if (newAction.field === "currentHP" && newAction.inflictedOn === "user") {
+                                    if ((userFighter.currentHP + (newAction.value * userFighter.maxHP)) > userFighter.maxHP) {
+                                        newAction.value = userFighter.maxHP - userFighter.currentHP
+                                    } else {
+                                        newAction.value = (newAction.value * userFighter.maxHP)
+                                    }
+                                }
                                 setUserAttacked({ "active": "user", "Sfx": option.Sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
                             } else {
