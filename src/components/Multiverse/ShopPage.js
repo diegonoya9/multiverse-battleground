@@ -131,7 +131,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 objects.map((object) => {
                     return (
                         <div className={classes.objectContainer} key={object.name}>
-                            <ObjectCard object={object}></ObjectCard>
+                            <ObjectCard showPrice={true} object={object}></ObjectCard>
                             <Button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>BUY</Button>
                         </div>
                     );
@@ -145,7 +145,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 fighters.map((fighter) => {
                     return (
                         <div className={classes.objectContainer} key={fighter.fighterId}>
-                            <FighterCard fighter={fighter}></FighterCard>
+                            <FighterCard showPrice={true} fighter={fighter}></FighterCard>
                             <Button className={classes.buyButton} onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</Button>
                         </div>
                     );
