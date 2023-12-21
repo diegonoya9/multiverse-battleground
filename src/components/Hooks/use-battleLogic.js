@@ -7,6 +7,7 @@ const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle, restartBattle } = useBattleState()
     const [showModal, setShowModal] = useState(false)
     const [userAttacked, setUserAttacked] = useState({ "active": false, "Sfx": '' })
+    const [inflictedActions, setInflictedActions] = useState([])
     const [modalContent, setModalContent] = useState()
     const [fightersLevels, setFightersLevels] = useState()
     const [fightsWon, setFightsWon] = useState(0)
@@ -115,6 +116,7 @@ const useBattleLogic = (setShowLevelUp) => {
                     }
                     const wait = (attackHit) => {
                         setTimeout(() => {
+                            setInflictedActions([])
                             setAttack((prevState) => {
                                 let newState = { ...prevState }
                                 newState.active = false
@@ -132,6 +134,7 @@ const useBattleLogic = (setShowLevelUp) => {
 
                     setMenuActive(false)
                     if (attackHit) {
+                        let newInflictedActions = []
                         option.actions.forEach((action) => {
                             let newAction = { ...action }
                             if (action.inflictedOn === "enemy") {
@@ -152,6 +155,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 }
                                 setUserAttacked({ "active": "user", "Sfx": option.Sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
+                                newInflictedActions.push(newAction)
                             } else {
                                 setAttack((prevState) => {
                                     let newState = { ...prevState }
@@ -171,6 +175,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 attackUser(newAction)
                             }
                         })
+                        setInflictedActions(newInflictedActions)
                     }
                     wait(attackHit)
                 }
@@ -200,6 +205,7 @@ const useBattleLogic = (setShowLevelUp) => {
             }
             const wait = (attackHit) => {
                 setTimeout(() => {
+                    setInflictedActions([])
                     setMenuActive(true)
                     setAttack((prevState) => {
                         let newState = { ...prevState }
@@ -217,6 +223,7 @@ const useBattleLogic = (setShowLevelUp) => {
             };
 
             if (attackHit) {
+                let newInflictedActions = []
                 enemyFighter.moves[randomMove].actions.forEach((action) => {
                     let newAction = { ...action }
                     if (action.inflictedOn === "enemy") {
@@ -236,6 +243,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             newAction.value = Math.round(Math.min(newAction.value + userFighter.specialDefense, newAction.value - (newAction.value * 0.8)))
                         }
                         attackUser(newAction)
+                        newInflictedActions.push(newAction)
                         setUserAttacked({ "active": "enemy", "Sfx": enemyFighter.moves[randomMove].Sfx, 'totalDamage': newAction.value })
                     } else {
                         setUserAttacked({ "active": "enemyPowerUp", "Sfx": enemyFighter.moves[randomMove].Sfx })
@@ -256,6 +264,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         attackEnemy(newAction)
                     }
                 })
+                setInflictedActions(newInflictedActions)
             }
             wait(attackHit);
         }
@@ -283,7 +292,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 setFightersLevels(data)
             })
     }, [])
-    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight, healUserFighter, cure, setCure }
+    return { turn, userAttacked, setTurn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight, healUserFighter, cure, setCure, inflictedActions }
 }
 
 export default useBattleLogic

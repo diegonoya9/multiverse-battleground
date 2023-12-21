@@ -27,7 +27,7 @@ const Battleground = ({ changeActivePage }) => {
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
     const [Sfx, setSfx] = useState();
-    const { userAttacked, turn, enemyAI, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, cure, setCure, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
+    const { userAttacked, turn, enemyAI, inflictedActions, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, cure, setCure, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {
@@ -304,8 +304,12 @@ const Battleground = ({ changeActivePage }) => {
                 <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
             </div>
             }
-            {userAttacked.totalDamage !== undefined && turn === 'user' && <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${userAttacked.totalDamage} `}</h1>}
-            {userAttacked.totalDamage !== undefined && turn === 'enemy' && <h1 className={`${classes.punchRecive} ${classes.enemyTotalDamage}`}>{`${userAttacked.totalDamage} `}</h1>}
+            {inflictedActions[0] && turn === 'user' && <div className={classes.actionsInflictedEnemy} >{inflictedActions.map((action) => {
+                return <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${action.field} ${action.value} `}</h1>
+            })}</div>}
+            {inflictedActions[0] && turn === 'enemy' && <div className={classes.actionsInflictedUser} >{inflictedActions.map((action) => {
+                return <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${action.field} ${action.value} `}</h1>
+            })}</div>}
             {showH1 && cure > 0 && <h1 className={`${classes.punchRecive} ${classes.totalCure}`} set>{`${cure} `}</h1>}
             {
                 enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">

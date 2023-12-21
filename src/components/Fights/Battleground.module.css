@@ -119,18 +119,24 @@ h2.battlegroundAirport {
     margin: auto;
 }
 
-.fighterTotalDamage {
-    position: absolute;
+.actionsInflictedEnemy {
+    display: flex;
     bottom: 200px;
-    right: 50px;
+    left: 50px;
+}
+
+.actionsInflictedUser {
+    display: flex;
+    bottom: 200px;
+    left: 50px;
+}
+
+.fighterTotalDamage {
     color: red;
     padding: 50px;
 }
 
 .enemyTotalDamage {
-    position: absolute;
-    bottom: 200px;
-    left: 50px;
     color: red;
     padding: 50px;
 }
