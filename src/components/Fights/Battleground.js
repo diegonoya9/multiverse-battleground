@@ -10,6 +10,7 @@ import musicFile3 from '../../assets/sounds/music/OverNow.WAV';
 import Modal from '../UI/Modal.js'
 import Button from '../UI/Button.js'
 import LifeBar from './LifeBar'
+import ActionsList from './ActionsList.js'
 
 const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
@@ -304,12 +305,7 @@ const Battleground = ({ changeActivePage }) => {
                 <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
             </div>
             }
-            {inflictedActions[0] && turn === 'user' && <div className={classes.actionsInflictedEnemy} >{inflictedActions.map((action) => {
-                return <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${action.field} ${action.value} `}</h1>
-            })}</div>}
-            {inflictedActions[0] && turn === 'enemy' && <div className={classes.actionsInflictedUser} >{inflictedActions.map((action) => {
-                return <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${action.field} ${action.value} `}</h1>
-            })}</div>}
+            {inflictedActions[0] && <ActionsList inflictedActions={inflictedActions} turn={turn}></ActionsList>}
             {showH1 && cure > 0 && <h1 className={`${classes.punchRecive} ${classes.totalCure}`} set>{`${cure} `}</h1>}
             {
                 enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">

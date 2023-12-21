@@ -1,0 +1,13 @@
+.action {}
+
+.negative {
+    color: red;
+}
+
+.positive {
+    color: green;
+}
+
+.img {
+    height: 25px;
+}

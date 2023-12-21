@@ -1,0 +1,13 @@
+.actionsInflictedEnemy {
+    display: flex;
+    bottom: 200px;
+    right: 50px;
+    position: absolute;
+}
+
+.actionsInflictedUser {
+    display: flex;
+    position: absolute;
+    bottom: 200px;
+    left: 50px;
+}
