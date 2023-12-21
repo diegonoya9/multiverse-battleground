@@ -17,9 +17,26 @@ const Battleground = ({ changeActivePage }) => {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
     const songs = [
-        { id: 1, title: 'Song 1', src: musicFile1 },
-        { id: 2, title: 'Song 2', src: musicFile2 },
-        { id: 3, title: 'Song 3', src: musicFile3 },
+        { id: 1, title: 'Song 1', src: '/assets/sounds/music/AndWeDieYoung.WAV' },
+        { id: 2, title: 'Song 2', src: '/assets/sounds/music/FourHorsemen.WAV' },
+        { id: 3, title: 'Song 3', src: '/assets/sounds/music/africa.mp3' },
+        { id: 4, title: 'Song 4', src: '/assets/sounds/music/billie.mp3' },
+        { id: 5, title: 'Song 5', src: '/assets/sounds/music/chop.mp3' },
+        { id: 6, title: 'Song 6', src: '/assets/sounds/music/clint.mp3' },
+        { id: 7, title: 'Song 7', src: '/assets/sounds/music/countdown.mp3' },
+        { id: 8, title: 'Song 8', src: '/assets/sounds/music/dust.mp3' },
+        { id: 9, title: 'Song 9', src: '/assets/sounds/music/end.mp3' },
+        { id: 10, title: 'Song 10', src: '/assets/sounds/music/feel.mp3' },
+        { id: 11, title: 'Song 11', src: '/assets/sounds/music/lucky.mp3' },
+        { id: 13, title: 'Song 13', src: '/assets/sounds/music/sandman.mp3' },
+        { id: 14, title: 'Song 14', src: '/assets/sounds/music/seven.mp3' },
+        { id: 15, title: 'Song 15', src: '/assets/sounds/music/take.mp3' },
+        { id: 16, title: 'Song 16', src: '/assets/sounds/music/thriller.mp3' },
+        { id: 17, title: 'Song 17', src: '/assets/sounds/music/tiger.mp3' },
+        { id: 18, title: 'Song 18', src: '/assets/sounds/music/uptown.mp3' },
+        { id: 19, title: 'Song 19', src: '/assets/sounds/music/welcome.mp3' },
+        { id: 20, title: 'Song 20', src: '/assets/sounds/music/what.mp3' },
+        { id: 21, title: 'Song 21', src: '/assets/sounds/music/harder.mp3' },
         // Agrega más canciones según sea necesario
     ];
     const [showLevelUp, setShowLevelUp] = useState(false)
