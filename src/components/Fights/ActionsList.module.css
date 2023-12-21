@@ -1,0 +1,15 @@
+.actionsInflictedEnemy {
+    display: flex;
+    bottom: 70%;
+    right: 12%;
+    position: absolute;
+    flex-direction: column;
+}
+
+.actionsInflictedUser {
+    display: flex;
+    bottom: 70%;
+    left: 12%;
+    position: absolute;
+    flex-direction: column;
+}

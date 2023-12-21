@@ -17,7 +17,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
                     return (
                         object.name !== "money" &&
                         <div className={classes.objectContainer} key={object.name}>
-                            <ObjectCard object={object}></ObjectCard>
+                            <ObjectCard showPrice={false} object={object}></ObjectCard>
                         </div>
                     );
                 })}
