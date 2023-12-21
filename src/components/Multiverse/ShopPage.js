@@ -119,8 +119,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             }
             return ''
         })}</h1>}
-        {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
-            <h1 style={{ color: 'white' }}>Purchase confirmed!</h1>
+        {showModal && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
+            <h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
             <button className={classes.modalButton} onClick={() => setShowModal(false)}>
                 Keep Buying
             </button>
