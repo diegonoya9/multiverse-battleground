@@ -169,7 +169,10 @@ const useBattleLogic = (setShowLevelUp) => {
             if (selectedOption === "objects") {
                 setMenuActive(false)
                 healUserFighter(option)
-                setCure(option.actions[0].value)
+                if (option.name === 'Potion' || option.name === 'Super Potion') {
+
+                    setCure(option.actions[0].value)
+                }
                 handleModalState(`${user.name} used ${option.name}`, "enemy")
             }
             if (option === "run") {
