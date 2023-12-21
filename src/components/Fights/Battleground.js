@@ -284,18 +284,19 @@ const Battleground = ({ changeActivePage }) => {
                 <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
             </div>
             }
-            {userAttacked.totalDamage !== undefined && <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${userAttacked.totalDamage}`}</h1>}
+            {userAttacked.totalDamage !== undefined && turn === 'user' && <h1 className={`${classes.punchRecive} ${classes.fighterTotalDamage}`}>{`${userAttacked.totalDamage} `}</h1>}
+            {userAttacked.totalDamage !== undefined && turn === 'enemy' && <h1 className={`${classes.punchRecive} ${classes.enemyTotalDamage}`}>{`${userAttacked.totalDamage} `}</h1>}
             {
                 enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 </Fighter>
             }
-            {/* <h1 className={classes.punchRecive}>{userAttacked.value}</h1> */}
+
             {
                 enemyFighter && !battleEnded.finished && <div className={`${classes.enemyHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
                     <LifeBar fighter={enemyFighter} styleType={battlegroundType}></LifeBar>
                 </div>
             }
-            {userAttacked.totalDamage !== undefined && <h1 className={`${classes.punchRecive} ${classes.enemyTotalDamage}`}>{`${userAttacked.totalDamage}`}</h1>}
+
             {!battleEnded.finished && menuActive && userFighter && userFighter.currentHP > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
         </div >

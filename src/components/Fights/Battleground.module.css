@@ -127,13 +127,13 @@ h2.battlegroundAirport {
     padding: 50px;
 }
 
-/* .enemyTotalDamage {
+.enemyTotalDamage {
     position: absolute;
     bottom: 200px;
     left: 50px;
     color: red;
     padding: 50px;
-} */
+}
 
 /* Define la animación */
 @keyframes attack-move {
