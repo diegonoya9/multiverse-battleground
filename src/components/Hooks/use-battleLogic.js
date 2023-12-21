@@ -173,6 +173,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     }
                                 }
                                 attackUser(newAction)
+                                newInflictedActions.push(newAction)
                             }
                         })
                         setInflictedActions(newInflictedActions)
@@ -262,6 +263,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             }
                         }
                         attackEnemy(newAction)
+                        newInflictedActions.push(newAction)
                     }
                 })
                 setInflictedActions(newInflictedActions)
