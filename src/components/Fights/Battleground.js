@@ -55,14 +55,14 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [turn, battleEnded])
     useEffect(() => {
-        if (enemyFighter && enemyFighter.currentHP === 0 && !attack.active) {
+        if (enemyFighter && enemyFighter.current_hp === 0 && !attack.active) {
             changeShowModal()
             endBattle("user", true)
         }
-        if (userFighter && userFighter.currentHP === 0) {
+        if (userFighter && userFighter.current_hp === 0) {
             let cant = 0
             user.fighters.forEach((fighter) => {
-                if (fighter.inParty && fighter.currentHP > 0) {
+                if (fighter.in_party === "true" && fighter.current_hp > 0) {
                     cant++
                 }
             })
@@ -309,9 +309,9 @@ const Battleground = ({ changeActivePage }) => {
                     {battleEnded.winner === "user" && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value="Keep Fighting" />}
                 </Modal>
             </div>}
-            {showSelectFighter && userFighter.currentHP === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {
-                return fighter.inParty && fighter.currentHP > 0 && <div className={classes.options} >
-                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
+            {showSelectFighter && userFighter.current_hp === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {
+                return fighter.in_party === "true" && fighter.current_hp > 0 && <div className={classes.options} >
+                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.img_front} className={classes.miniImgMenu} /></Button>
                 </div>
             })}</Modal>}
             {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} attack={attack} fighter={userFighter} user="user">

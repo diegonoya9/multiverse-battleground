@@ -29,7 +29,7 @@ const useUser = (origin) => {
     const levelUpFighter = (currentXP, newLevel, won, increaseFightsWon) => {
         if (user) {
             let newUser = { ...user }
-            if (won) {
+            /*if (won) {
                 newUser.fighters.forEach(fighter => {
                     if (fighter.active) {
                         fighter.currentXP = currentXP
@@ -60,7 +60,7 @@ const useUser = (origin) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(newUser),
-            })
+            })*/
 
         }
     };
@@ -107,7 +107,7 @@ const useUser = (origin) => {
             let newState = {
                 ...prevState,
                 fighters: prevState.fighters.map((fighter) => {
-                    if (fighter.active) {
+                    if (fighter.active === "true") {
                         return {
                             ...fighter,
                             [newValue.field]: Math.max(0, fighter[newValue.field] + newValue.value),
@@ -129,74 +129,82 @@ const useUser = (origin) => {
                         fetch(backEndUrl + '/allfighters')
                             .then((response) => response.json())
                             .then((fightersData) => {
-                                let randomValue = Math.floor(Math.random() * (fightersData.length))
-                                for (let i = 0; i < fightersData.length; i++) {
-                                    if (fightersData.length > 1) {
-                                        if (i === randomValue) {
-                                            activeArray.push("true")
-                                        } else {
-                                            activeArray.push("false")
-                                        }
-                                    } else {
-                                        activeArray.push("true")
-                                    }
-                                }
-                                let totalLevel = 0
-                                let totalFighters = 0
-                                data.forEach((fighter) => {
-                                    if (fighter.in_party === "true") {
-                                        totalFighters++
-                                        totalLevel += fighter.level
-                                    }
-                                })
-                                //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
-                                let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
-                                fightersData.forEach((fighter) => {
-                                    fighter.level = averageLevel
-                                })
-                                data.fighters = fightersData
-                                console.log(fightersData)
-                                let newFighters = data.fighters.map((fighter, index) => {
-                                    fightersLevels.forEach((fighterLevel) => {
-                                        if (fighterLevel.fighterId === fighter.fighter_id && fighterLevel.level === fighter.level) {
-                                            fighter = {
-                                                ...fighter,
-                                                attack: fighterLevel.attack,
-                                                special_attack: fighterLevel.specialAttack,
-                                                special_defense: fighterLevel.specialDefense,
-                                                defense: fighterLevel.defense,
-                                                max_hp: fighterLevel.maxHp,
-                                                current_hp: fighterLevel.maxHp,
-                                                accuracy: fighterLevel.accuracy
+                                fetch(backEndUrl + '/allmoves')
+                                    .then(response => response.json())
+                                    .then(movesData => {
+                                        let randomValue = Math.floor(Math.random() * (fightersData.length))
+                                        for (let i = 0; i < fightersData.length; i++) {
+                                            if (fightersData.length > 1) {
+                                                if (i === randomValue) {
+                                                    activeArray.push("true")
+                                                } else {
+                                                    activeArray.push("false")
+                                                }
+                                            } else {
+                                                activeArray.push("true")
                                             }
                                         }
+                                        let totalLevel = 0
+                                        let totalFighters = 0
+                                        data.forEach((fighter) => {
+                                            if (fighter.in_party === "true") {
+                                                totalFighters++
+                                                totalLevel += fighter.level
+                                            }
+                                        })
+                                        //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
+                                        let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
+                                        fightersData.forEach((fighter) => {
+                                            fighter.level = averageLevel
+                                        })
+                                        data.fighters = fightersData
+                                        let newFighters = data.fighters.map((fighter, index) => {
+                                            fightersLevels.forEach((fighterLevel) => {
+                                                if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
+                                                    fighter = {
+                                                        ...fighter,
+                                                        attack: fighterLevel.attack,
+                                                        special_attack: fighterLevel.special_attack,
+                                                        special_defense: fighterLevel.special_defense,
+                                                        defense: fighterLevel.defense,
+                                                        max_hp: fighterLevel.max_hp,
+                                                        current_hp: fighterLevel.max_hp,
+                                                        accuracy: fighterLevel.accuracy
+                                                    }
+                                                }
+                                            })
+                                            if (origin === "enemy") {
+                                                fighter.active = activeArray[index]
+                                            }
+                                            fighter.currentHP = fighter.max_hp
+                                            /* fighter.moves.forEach((move) => {
+                                                 move.currentMP = move.moves.mp
+                                             })*/
+                                            movesData.forEach((move) => {
+                                                if (move.fighter_id === fighter.fighter_id) {
+                                                    fighter.moves = move
+                                                }
+                                            })
+                                            return fighter
+                                        })
+                                        data.fighters = newFighters
+                                        setUser(data)
                                     })
-                                    if (origin === "enemy") {
-                                        fighter.active = activeArray[index]
-                                    }
-                                    fighter.currentHP = fighter.max_hp
-                                    /* fighter.moves.forEach((move) => {
-                                         move.currentMP = move.moves.mp
-                                     })*/
-                                    return fighter
-                                })
-                                data.fighters = newFighters
-                                console.log(data)
-                                setUser(data)
+
                             })
                     }
                     if (origin === "user") {
                         let newFighters = data.map((fighter, index) => {
                             fightersLevels.forEach((fighterLevel) => {
-                                if (fighterLevel.fighterId === fighter.fighter_id && fighterLevel.level === fighter.level) {
+                                if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
                                     fighter = {
                                         ...fighter,
                                         attack: fighterLevel.attack,
-                                        specialAttack: fighterLevel.specialAttack,
-                                        specialDefense: fighterLevel.specialDefense,
+                                        specialAttack: fighterLevel.special_attack,
+                                        specialDefense: fighterLevel.special_defense,
                                         defense: fighterLevel.defense,
-                                        maxHP: fighterLevel.maxHp,
-                                        currentHP: fighterLevel.maxHp,
+                                        maxHP: fighterLevel.max_hp,
+                                        currentHP: fighterLevel.max_hp,
                                         accuracy: fighterLevel.accuracy
                                     }
                                 }
@@ -218,7 +226,7 @@ const useUser = (origin) => {
         }
     }, [fightersLevels, activeUser, origin])
     useEffect(() => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fightersLevels.json')
+        fetch(backEndUrl + '/allfighterLevels')
             .then(response => response.json())
             .then(data => {
                 setFightersLevels(data)
@@ -232,10 +240,10 @@ const useUser = (origin) => {
             let newValue = { ...prevValue }
             let newFighters = newValue.fighters
             newFighters.forEach((newFighter) => {
-                if (newFighter.userFighterId !== fighter.userFighterId) {
-                    newFighter.active = false
+                if (newFighter.user_fighter_id !== fighter.user_fighter_id) {
+                    newFighter.active = "false"
                 } else {
-                    newFighter.active = true
+                    newFighter.active = "true"
                 }
             })
             newValue.fighters = newFighters
