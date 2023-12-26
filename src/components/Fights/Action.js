@@ -2,11 +2,11 @@ import classes from './Action.module.css'
 import { useState } from 'react'
 const Action = ({ action }) => {
     const actionIdentifier = {
-        "currentHP": "/assets/img/HP.png",
+        "current_hp": "/assets/img/HP.png",
         "defense": '/assets/img/defense.png',
-        "specialDefense": '/assets/img/specialDefense.png',
+        "special_defense": '/assets/img/specialDefense.png',
         "attack": '/assets/img/attack.png',
-        "specialAttack": '/assets/img/specialAttack.png',
+        "special_attack": '/assets/img/specialAttack.png',
         "accuracy": "/assets/img/accuracy.png"
     }
     return (

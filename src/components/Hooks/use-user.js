@@ -11,10 +11,11 @@ const useUser = (origin) => {
         setUser((prevState) => {
             let newUser = { ...prevState }
             let newFighters = newUser.fighters.map((fighter) => {
-                if (fighter.active) {
+                if (fighter.active === "true") {
                     fighter.moves.forEach((move, index) => {
-                        if (move.name === attack) {
-                            fighter.moves[index].currentMP -= 1
+                        console.log(move)
+                        if (move.moves.name === attack) {
+                            move.currentMP -= 1
                         }
                     })
                 }
@@ -26,35 +27,35 @@ const useUser = (origin) => {
             };
         });
     }
-    const levelUpFighter = (currentXP, newLevel, won, increaseFightsWon) => {
+    const levelUpFighter = (current_xp, newLevel, won, increaseFightsWon) => {
         if (user) {
             let newUser = { ...user }
-            /*if (won) {
-                newUser.fighters.forEach(fighter => {
-                    if (fighter.active) {
-                        fighter.currentXP = currentXP
-                        fighter.level = newLevel
-                        fightersLevels.forEach((level) => {
-                            if (fighter.level === level.level && fighter.fighterId === level.fighterId) {
-                                fighter.maxHP = level.maxHp
-                                fighter.attack = level.attack
-                                fighter.specialAttack = level.specialAttack
-                                fighter.defense = level.defense
-                                fighter.specialDefense = level.specialDefense
-                                fighter.accuracy = level.accuracy
-                            }
-                        })
-                    }
-                })
-                newUser.objects.forEach((object) => {
-                    if (object.name === "money") {
-                        object.quantity += 100
-                    }
-                })
-                increaseFightsWon()
-                setUser(user)
+            if (won) {
+                /* newUser.fighters.forEach(fighter => {
+                     if (fighter.active === "true") {
+                         fighter.current_xp = current_xp
+                         fighter.level = newLevel
+                         fightersLevels.forEach((level) => {
+                             if (fighter.level === level.level && fighter.fighter_id === level.fighter_id) {
+                                 fighter.max_hp = level.max_hp
+                                 fighter.attack = level.attack
+                                 fighter.special_attack = level.special_attack
+                                 fighter.defense = level.defense
+                                 fighter.special_defense = level.special_defense
+                                 fighter.accuracy = level.accuracy
+                             }
+                         })
+                     }
+                 })
+                 newUser.objects.forEach((object) => {
+                     if (object.name === "money") {
+                         object.quantity += 100
+                     }
+                 })
+                 increaseFightsWon()*/
+                // setUser(user)
             }
-            fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+            /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                 method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,11 +80,11 @@ const useUser = (origin) => {
         setUser((prevState) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
-                if (fighter.active) {
+                if (fighter.active === "true") {
                     newOption.actions.forEach((action) => {
                         let result
-                        if (action.field === "currentHP" && ((fighter.currentHP + action.value) > fighter.maxHP)) {
-                            result = fighter.maxHP
+                        if (action.field === "current_hp" && ((fighter.current_hp + action.value) > fighter.max_hp)) {
+                            result = fighter.max_hp
                         } else {
                             result = Math.ceil(fighter[action.field] + action.value)
                         }
@@ -176,7 +177,7 @@ const useUser = (origin) => {
                                             if (origin === "enemy") {
                                                 fighter.active = activeArray[index]
                                             }
-                                            fighter.currentHP = fighter.max_hp
+                                            fighter.current_hp = fighter.max_hp
                                             /* fighter.moves.forEach((move) => {
                                                  move.currentMP = move.moves.mp
                                              })*/
@@ -195,20 +196,7 @@ const useUser = (origin) => {
                     }
                     if (origin === "user") {
                         let newFighters = data.map((fighter, index) => {
-                            fightersLevels.forEach((fighterLevel) => {
-                                if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
-                                    fighter = {
-                                        ...fighter,
-                                        attack: fighterLevel.attack,
-                                        specialAttack: fighterLevel.special_attack,
-                                        specialDefense: fighterLevel.special_defense,
-                                        defense: fighterLevel.defense,
-                                        maxHP: fighterLevel.max_hp,
-                                        currentHP: fighterLevel.max_hp,
-                                        accuracy: fighterLevel.accuracy
-                                    }
-                                }
-                            })
+
                             if (origin === "enemy") {
                                 fighter.active = activeArray[index]
                             }

@@ -39,7 +39,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         let cantExceeded = false
         /* Checks if there are already 4 fighters in the party */
         newUser.userfighters.forEach((fighter) => {
-            if (fighter.inParty) {
+            if (fighter.in_party === "true") {
                 cant++
             }
             if (cant === 4) {

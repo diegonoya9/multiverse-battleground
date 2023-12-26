@@ -95,7 +95,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 }
             })
             fighter.active = activeArray[index]
-            fighter.currentHP = fighter.maxHP
+            fighter.current_hp = fighter.max_hp
             /* fighter.moves.forEach((move) => {
                  move.currentMP = move.MP
              })*/
@@ -108,8 +108,8 @@ const useBattleLogic = (setShowLevelUp) => {
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
             if (selectedOption === "attacks") {
-                reduceFighterMP(option.name)
-                if (enemyFighter && enemyFighter.currentHP > 0) {
+                reduceFighterMP(option.moves.name)
+                if (enemyFighter && enemyFighter.current_hp > 0) {
                     let randomNumber = Math.random() * 100
                     let attackHit = userFighter.accuracy >= randomNumber
                     let timeOut = 2000
@@ -199,7 +199,7 @@ const useBattleLogic = (setShowLevelUp) => {
         }
     }
     const enemyAI = (setMenuActive, battleEnded) => {
-        if (turn === "enemy" && !battleEnded.finished) {
+        if (turn === "enemy" && !battleEnded.finished && enemyFighter.current_hp > 0) {
             const randomMove = Math.floor(Math.random() * 4)
             let randomNumber = Math.random() * 100
             let attackHit = enemyFighter.accuracy >= randomNumber
@@ -226,7 +226,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 }, timeOut); // 3000 milisegundos = 3 segundos
             };
 
-            if (true) {
+            if (attackHit) {
                 let newInflictedActions = []
                 enemyFighter.moves.actionmoves.forEach((action) => {
                     let newAction = { ...action }
@@ -260,9 +260,9 @@ const useBattleLogic = (setShowLevelUp) => {
                         })
                         if (newAction.field === "current_hp" && newAction.inflictedOn === "user") {
                             if ((enemyFighter.current_hp + (newAction.value * enemyFighter.max_hp)) > enemyFighter.max_hp) {
-                                newAction.value = enemyFighter.maxHP - enemyFighter.current_hp
+                                newAction.value = enemyFighter.max_hp - enemyFighter.current_hp
                             } else {
-                                newAction.value = (newAction.value * enemyFighter.maxHP)
+                                newAction.value = (newAction.value * enemyFighter.max_hp)
                             }
                         }
                         attackEnemy(newAction)

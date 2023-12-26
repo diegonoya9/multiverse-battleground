@@ -314,10 +314,10 @@ const Battleground = ({ changeActivePage }) => {
                     <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={battlegroundType} onClick={() => { setShowSelectFighter(false); changeUserFighter(fighter) }}><img alt="fighter mini" src={fighter.img_front} className={classes.miniImgMenu} /></Button>
                 </div>
             })}</Modal>}
-            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} attack={attack} fighter={userFighter} user="user">
+            {userFighter && userFighter.current_hp > 0 && !battleEnded.finished && <Fighter userAttacked={userAttacked.active} turn={turn} styleType={battlegroundType} attack={attack} fighter={userFighter} user="user">
             </Fighter>}
 
-            {userFighter && userFighter.currentHP > 0 && !battleEnded.finished && <div className={`${classes.userHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
+            {userFighter && userFighter.current_hp > 0 && !battleEnded.finished && <div className={`${classes.userHeaderContainer} ${classes.headerContainer} ${classes["userHeader" + battlegroundType]}`}>
                 <LifeBar fighter={userFighter} styleType={battlegroundType}></LifeBar>
             </div>
             }
@@ -334,7 +334,7 @@ const Battleground = ({ changeActivePage }) => {
                 </div>
             }
 
-            {!battleEnded.finished && menuActive && userFighter && userFighter.currentHP > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
+            {!battleEnded.finished && menuActive && userFighter && userFighter.current_hp > 0 && < FightMenu styleType={battlegroundType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} enemyFighter={enemyFighter} clickHandler={handleSubMenuOption}></FightMenu>}
 
         </div >
     )
