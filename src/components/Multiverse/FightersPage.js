@@ -18,6 +18,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showMoves, setShowMoves] = useState(false)
     const [showActions, setShowActions] = useState(false)
     const [showConfirm, setShowConfirm] = useState(false)
+    const [showNotInParty, setShowNotInParty] = useState(false)
     const [userFighterId, setUserFighterId] = useState(false)
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
@@ -29,6 +30,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         setShowMoves(false)
         setShowModal(false)
         setShowConfirm(false)
+        setShowNotInParty(false)
     }
     const addToParty = (userFighterId) => {
         let newUser = user
@@ -98,21 +100,17 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         setShowMoves(true)
         setShowModal(true)
     }
-    const setFirstFighter = (userFighterId) => {
-        let newUser = { ...user }
-        newUser.fighters.forEach((fighter) => {
-            if (fighter.userFighterId === userFighterId) {
-                fighter.active = true
-            } else {
-                fighter.active = false
-            }
-        })
-        fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-            method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+    const setFirstFighter = (user_fighter_id) => {
+        const parameters = [{
+            user_id: user.user_id,
+            user_fighter_id
+        }]
+        fetch(backEndUrl + "/setfirstfighter", {
+            method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newUser),
+            body: JSON.stringify(parameters),
         }).then(() => updateUser())
     }
     const deleteFighter = (userFighterId) => {
@@ -133,8 +131,6 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         let newUser = user
         newUser.objects[4].quantity = result
         newUser.fighters = newFighters
-
-
         setShowModal(false)
         setShowConfirm(false)
         /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
@@ -154,7 +150,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 user.userfighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                         <FighterCard fighter={fighter}></FighterCard>
-                        <Button onClick={() => { setFirstFighter(fighter.user_fighter_id) }} value="First in battle"></Button>
+                        <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setShowNotInParty(true); setShowModal(true) } }} value="First in battle"></Button>
                         <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value="View movements"></Button>
                         {fighter.in_party === "true" ?
                             <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value="Remove from party"></Button>
@@ -183,11 +179,12 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     </div>
                 })
             }
-            {!showMoves && !showConfirm && < h1 > No se puede bro.. máximo 4</h1>}
+            {!showMoves && !showConfirm && !showNotInParty && < h1 > No se puede bro.. máximo 4</h1>}
             {showConfirm && <div>
                 <h3>Are you sure you want to sell this fighter?</h3>
                 <Button onClick={() => deleteUserFighter(userFighterId)}>Sell</Button>
             </div>}
+            {showNotInParty && < h1 > Hay que agregarlo al party primero</h1>}
         </Modal>}
     </div >
     );
