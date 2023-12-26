@@ -15,6 +15,7 @@ const Multiverse = ({ changeActivePage }) => {
     };
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
+    let backEndUrl = userContext.backEndUrl
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
     const changeMultiverseActivePage = (activePage) => {
         setMultiverseActivePage(activePage)
@@ -30,12 +31,12 @@ const Multiverse = ({ changeActivePage }) => {
         }
     }, [user])
     const updateUser = () => {
-        fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
+        fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => { setUser(data[0]) })
     }
     useEffect(() => {
-        fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
+        fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => { setUser(data[0]); console.log(data) })
         const audio = document.getElementById('audioPlayer');
@@ -44,7 +45,7 @@ const Multiverse = ({ changeActivePage }) => {
         }
     }, [activeUser])
     useEffect(() => {
-        fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
+        fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => { setUser(data[0]) })
     }, [multiverseActivePage, activeUser])

@@ -11,9 +11,6 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     priceTags.forEach(tag => {
         tag.style.display = "none"
     });;
-    console.log(user)
-
-
     const [showModal, setShowModal] = useState(false)
     const { userContext } = useContext(MyContext);
     const [moves, setMoves] = useState()
@@ -23,6 +20,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showConfirm, setShowConfirm] = useState(false)
     const [userFighterId, setUserFighterId] = useState(false)
     let activeUser = userContext.idUsuario
+    let backEndUrl = userContext.backEndUrl
     const audioStyle = {
         display: 'none',
     };
@@ -36,7 +34,8 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         let newUser = user
         let cant = 0
         let cantExceeded = false
-        newUser.fighters.forEach((fighter, index) => {
+        /* Checks if there are already 4 fighters in the party */
+        newUser.userfighters.forEach((fighter) => {
             if (fighter.inParty) {
                 cant++
             }
@@ -47,50 +46,30 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         if (cantExceeded) {
             setShowModal(true)
         } else {
-            newUser.fighters.forEach((fighter, index) => {
-                if (fighter.userFighterId === userFighterId) {
-                    fighter.inParty = true
-                    if (cant === 0) {
-                        fighter.active = true
-                    }
-                }
-            })
-            fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-                method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+            const parameters = [{
+                user_fighter_id: userFighterId
+            }]
+            fetch(backEndUrl + "/addtoparty", {
+                method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newUser),
+                body: JSON.stringify(parameters),
             }).then(() => updateUser())
         }
     }
-    const removeFromParty = (userFighterId) => {
+    const removeFromParty = (user_fighter_id) => {
         let newUser = user
-        let setNewFirst = false
-        newUser.fighters.forEach((fighter, index) => {
-            if (fighter.userFighterId === userFighterId) {
-                fighter.inParty = false
-                if (fighter.active) {
-                    fighter.active = false
-                    setNewFirst = true
-                }
-            }
-        })
-        if (setNewFirst) {
-            let firstSetted = false
-            newUser.fighters.forEach((fighter, index) => {
-                if ((fighter.inParty === true) && !firstSetted) {
-                    fighter.active = true
-                    firstSetted = true
-                }
-            })
-        }
-        fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-            method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+        const parameters = [{
+            user_fighter_id,
+            user_id: newUser.user_id
+        }]
+        fetch(backEndUrl + "/removefromparty", {
+            method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newUser),
+            body: JSON.stringify(parameters),
         }).then(() => updateUser())
 
     }
@@ -158,34 +137,31 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
 
         setShowModal(false)
         setShowConfirm(false)
-        fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+        /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
             method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newUser),
-        }).then(() => updateUser())
+        }).then(() => updateUser())*/
     }
 
-    user.userfighters.forEach((fighter) => {
-        fighter.img_front = fighter.fighters.img_front
-    })
     return (<div className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
                 user.userfighters.map((fighter, i) => {
-                    return (<div className={classes.fighterContainer} key={fighter.userFighterId}>
+                    return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                         <FighterCard fighter={fighter}></FighterCard>
-                        <Button onClick={() => { setFirstFighter(fighter.userFighterId) }} value="First in battle"></Button>
-                        <Button onClick={() => { viewMovements(fighter.userFighterId) }} value="View movements"></Button>
-                        {fighter.inParty ?
-                            <Button onClick={() => { removeFromParty(fighter.userFighterId) }} value="Remove from party"></Button>
+                        <Button onClick={() => { setFirstFighter(fighter.user_fighter_id) }} value="First in battle"></Button>
+                        <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value="View movements"></Button>
+                        {fighter.in_party === "true" ?
+                            <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value="Remove from party"></Button>
                             :
-                            <Button onClick={() => { addToParty(fighter.userFighterId) }} value="Add to party"></Button>
+                            <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value="Add to party"></Button>
                         }
-                        <Button onClick={() => { deleteFighter(fighter.userFighterId) }} value="Sell Fighter"></Button>
+                        <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button>
                     </div>
                     );
                 })}

@@ -10,8 +10,8 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
     const audioStyle = {
         display: 'none',
     };
-    const { setUserId } = useContext(MyContext);
-
+    const { userContext, setUserId } = useContext(MyContext);
+    let backEndUrl = userContext.backEndUrl
     const setActiveUser = (id) => {
         setUserId(id)
         setShowModal(true)
@@ -22,7 +22,7 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
         setShowModal(false)
     }
     useEffect(() => {
-        fetch('https://graceful-capris-deer.cyclic.app/api/allusers')
+        fetch(backEndUrl + '/allusers')
             .then((response) => response.json())
             .then((data) => {
                 let newData = data.filter((user) => { return user }
@@ -42,7 +42,7 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
                     return (
                         <div className={`${classes.fighterContainer} `} key={user.userId} >
                             {user.name}
-                            <Button colorType="blue" onClick={() => setActiveUser(user.userId)} value="Choose user"></Button>
+                            <Button colorType="blue" onClick={() => setActiveUser(user.user_id)} value="Choose user"></Button>
                         </div>
                     );
                 })}

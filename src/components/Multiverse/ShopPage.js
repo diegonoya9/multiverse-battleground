@@ -11,6 +11,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     const [objects, setObjects] = useState()
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
+    let backEndUrl = userContext.backEndUrl
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
     const [showModal, setShowModal] = useState(false)
@@ -21,37 +22,24 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         display: 'none',
     };
     const buy = (id, price, type) => {
-        let newMoney = user.objects.filter((object) => {
-            return object.name === "money"
+        let newMoney = user.userobjects.filter((object) => {
+            return object.name === "Money"
         })
         let newUser = user
         if (newMoney[0].quantity >= price) {
             newMoney[0].quantity -= price;
             if (type === "fighter") {
-                console.log(id)
                 const parameters = [{
                     fighter_id: id,
-                    user_id: newUser.userId
+                    user_id: newUser.user_id
                 }]
-                fetch("http://localhost:3009/api/buyFighter", {
+                fetch(backEndUrl + "/buyFighter", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(parameters)
                 })
-                /*
-                fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-                    method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newUser),
-                }).then(fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        setUser(data)
-                    }))*/
             }
             if (type === "object") {
                 let newObject = objects.filter((object) => {
@@ -61,7 +49,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     object_id: newObject[0].object_id,
                     user_id: newUser.userId
                 }]
-                fetch("http://localhost:3009/api/buyObject", {
+                fetch(backEndUrl + "/buyObject", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
@@ -82,28 +70,28 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         }
     }
     useEffect(() => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+        fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => {
-                setUser(data)
+                setUser(data[0])
             })
-        fetch('https://graceful-capris-deer.cyclic.app/api/allobjects')
+        fetch(backEndUrl + '/allobjects')
             .then((response) => response.json())
             .then((objectsList) => {
                 objectsList = objectsList.filter((object) => {
-                    return object.name !== "money"
+                    return object.name !== "Money"
                 })
                 setObjects(objectsList)
             })
-        fetch('https://graceful-capris-deer.cyclic.app/api/allfighters')
+        fetch(backEndUrl + '/allfighters')
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
     }, [activeUser])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
-        {user && <h1 className={classes.divBackground}>Current money:{user.objects.map((object) => {
-            if (object.name === "money") {
+        {user && <h1 className={classes.divBackground}>Current money:{user.userobjects.map((object) => {
+            if (object.name === "Money") {
                 return object.quantity
             }
             return ''

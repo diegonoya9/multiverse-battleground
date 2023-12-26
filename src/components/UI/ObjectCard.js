@@ -8,7 +8,7 @@ const ObjectCard = ({ object, showPrice }) => {
                 <h3 className={`${classes.objectName} ${classes.title} `}>{object.name}</h3>
                 <h2 className={classes.spanStats}>Quantity:{object.quantity}</h2>
             </div>
-            <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${object.active && classes.active}`} key={`${object.id}stats`}>
+            <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${object.active === "true" && classes.active}`} key={`${object.id}stats`}>
                 <span className={classes.spanStats}>Description:{object.description}</span>
             </div>
         </div >
