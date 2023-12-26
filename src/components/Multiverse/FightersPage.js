@@ -11,7 +11,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     priceTags.forEach(tag => {
         tag.style.display = "none"
     });;
-
+    console.log(user)
 
 
     const [showModal, setShowModal] = useState(false)
@@ -166,12 +166,16 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             body: JSON.stringify(newUser),
         }).then(() => updateUser())
     }
+
+    user.userfighters.forEach((fighter) => {
+        fighter.img_front = fighter.fighters.img_front
+    })
     return (<div className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {user &&
-                user.fighters.map((fighter, i) => {
+                user.userfighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.userFighterId}>
                         <FighterCard fighter={fighter}></FighterCard>
                         <Button onClick={() => { setFirstFighter(fighter.userFighterId) }} value="First in battle"></Button>

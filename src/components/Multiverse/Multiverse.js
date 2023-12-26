@@ -37,7 +37,7 @@ const Multiverse = ({ changeActivePage }) => {
     useEffect(() => {
         fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { setUser(data[0]) })
+            .then(data => { setUser(data[0]); console.log(data) })
         const audio = document.getElementById('audioPlayer');
         if (audio) {
             audio.play()

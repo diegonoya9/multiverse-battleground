@@ -28,24 +28,19 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         if (newMoney[0].quantity >= price) {
             newMoney[0].quantity -= price;
             if (type === "fighter") {
-                let newFighter = fighters.filter((fighter) => {
-                    return fighter.fighterId === id
+                console.log(id)
+                const parameters = [{
+                    fighter_id: id,
+                    user_id: newUser.userId
+                }]
+                fetch("http://localhost:3009/api/buyFighter", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(parameters)
                 })
-                let newUserFighterId = -1
-                newUser.fighters.forEach((fighter) => {
-                    if (fighter.userFighterId > newUserFighterId) {
-                        newUserFighterId = fighter.userFighterId
-                    }
-                })
-                newFighter[0].userFighterId = (newUserFighterId + 1)
-                newUser.fighters.push(newFighter[0])
-                newUser.objects.forEach((object) => {
-                    if (object.name === "money") {
-                        object.quantity = newMoney[0].quantity
-                    }
-                    setShowModal(true)
-                    return object
-                })
+                /*
                 fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                     method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
@@ -56,49 +51,30 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     .then(response => response.json())
                     .then(data => {
                         setUser(data)
-                    }))
+                    }))*/
             }
             if (type === "object") {
                 let newObject = objects.filter((object) => {
                     return object.name === id
                 })
-                let addedQuantity = false
-                newUser.objects.forEach((object) => {
-                    if (object.name === newObject[0].name) {
-                        object.quantity++
-                        addedQuantity = true
-                    }
-                })
-                if (!addedQuantity) {
-                    newUser.objects.push(newObject[0])
-                }
-                newUser.objects.forEach((object) => {
-                    if (object.name === "money") {
-                        object.quantity = newMoney[0].quantity
-                    }
-                    return object
-                })
-                setUser(newUser)
                 const parameters = [{
                     object_id: newObject[0].object_id,
                     user_id: newUser.userId
                 }]
-                fetch("http://localhost:3009/api/buy", {
+                fetch("http://localhost:3009/api/buyObject", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(parameters)
                 })
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-                    method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newUser),
-                })*/
+                    .then(response => {
+                        if (response.statusText === "OK") {
+                            setShowModal(true)
+                        } else {
+                            console.log('error')
+                        }
+                    })
                 setShowModal(true)
             }
         } else {
@@ -159,7 +135,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     return (
                         <div className={classes.objectContainer} key={fighter.fighterId}>
                             <FighterCard showPrice={true} fighter={fighter}></FighterCard>
-                            <Button className={classes.buyButton} onClick={() => buy(fighter.fighterId, fighter.price, "fighter")}>BUY</Button>
+                            <Button className={classes.buyButton} onClick={() => buy(fighter.fighter_id, fighter.price, "fighter")}>BUY</Button>
                         </div>
                     );
                 })}
