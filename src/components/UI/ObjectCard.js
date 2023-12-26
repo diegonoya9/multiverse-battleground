@@ -4,7 +4,7 @@ const ObjectCard = ({ object, showPrice }) => {
         <div className={classes.card} key={object.id} >
             <div className={` ${classes.face} ${classes.front}`}>
                 {showPrice && <p className={classes.spanStats}>Price:{object.price}</p>}
-                <img alt="object" src={object.img} className={classes.objectImg} />
+                <img alt="object" src={object.objects.img} className={classes.objectImg} />
                 <h3 className={`${classes.objectName} ${classes.title} `}>{object.name}</h3>
                 <h2 className={classes.spanStats}>Quantity:{object.quantity}</h2>
             </div>

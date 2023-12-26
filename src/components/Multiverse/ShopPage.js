@@ -79,13 +79,26 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     return object
                 })
                 setUser(newUser)
-                fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
+                const parameters = [{
+                    object_id: newObject[0].object_id,
+                    user_id: newUser.userId
+                }]
+                fetch("https://graceful-capris-deer.cyclic.app/api/buy", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(parameters)
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
                     method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(newUser),
-                })
+                })*/
                 setShowModal(true)
             }
         } else {

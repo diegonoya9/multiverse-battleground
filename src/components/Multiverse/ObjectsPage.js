@@ -10,9 +10,9 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
         display: 'none',
     };
     useEffect(() => {
-        fetch('https://graceful-capris-deer.cyclic.app/api/alluserobjects/' + user.userId)
+        fetch('https://graceful-capris-deer.cyclic.app/api/alluserobjects/' + user.user_id)
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => setUserObjects(data))
     }, [])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
@@ -21,7 +21,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
             {userObjects &&
                 userObjects.map((object) => {
                     return (
-                        object.name !== "money" &&
+                        object.objects.name !== "Money" &&
                         <div className={classes.objectContainer} key={object.name}>
                             <ObjectCard showPrice={false} object={object}></ObjectCard>
                         </div>
