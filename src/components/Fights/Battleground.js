@@ -4,9 +4,6 @@ import FightMenu from './FightMenu.js'
 import { memo, useEffect, useState } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile1 from '../../assets/sounds/music/AndWeDieYoung.WAV';
-import musicFile2 from '../../assets/sounds/music/FourHorsemen.WAV';
-import musicFile3 from '../../assets/sounds/music/OverNow.WAV';
 import Modal from '../UI/Modal.js'
 import Button from '../UI/Button.js'
 import LifeBar from './LifeBar'
