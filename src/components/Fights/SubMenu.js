@@ -47,7 +47,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                         }
                         {optionsArray && selectedOption === "attacks" && optionsArray.map((x, i) => {
                             return <div key={x.name} className={classes.options}>
-                                <Button completeWidth="true" key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { if (x.currentMP > 0) { toggleSubMenu(); clickHandler(x, selectedOption); } }}>{x.name}:{x.currentMP}/{x.MP}</Button>
+                                <Button completeWidth="true" key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { if (x.currentMP > 0) { toggleSubMenu(); clickHandler(x, selectedOption); } }}>{x.moves.name}:{x.currentMP}/{x.moves.mp}</Button>
                             </div>
                         })
                         }

@@ -80,7 +80,6 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         let actions = []
         moves.forEach((move) => {
             if (move.move_id === move_id) {
-                console.log(move)
                 actions.push(move.actionmoves)
             }
         })

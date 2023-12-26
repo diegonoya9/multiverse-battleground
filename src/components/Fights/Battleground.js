@@ -221,7 +221,7 @@ const Battleground = ({ changeActivePage }) => {
                 levels.push(levelData);
             }
         }
-        console.log(levels)
+        //console.log(levels)
     };
     const selectTheme = () => {
         selectSong()
@@ -288,7 +288,7 @@ const Battleground = ({ changeActivePage }) => {
     }, [Sfx])
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
-        generateLevels();
+        //generateLevels();
         selectTheme()
     }, []);
 

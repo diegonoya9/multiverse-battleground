@@ -13,7 +13,7 @@ const Fighter = ({ turn, children, user, fighter, styleType, userAttacked, attac
             <div className={`${classes.sombra} ${classes.fighterWrapper} `}>
                 <div className={user === "user" ? classes.userFighter : classes.enemyFighter}>
                     {children}
-                    <img alt="fighter" src={user === "user" ? `${fighter.imgBack}` : `${fighter.imgFront}`} className={classes.fighterImage} />
+                    <img alt="fighter" src={user === "user" ? `${fighter.img_back}` : `${fighter.img_front}`} className={classes.fighterImage} />
                     <div className={classes.fighterShadow}>Shadow</div>
                 </div>
             </div >

@@ -6,6 +6,7 @@ const useUser = (origin) => {
     const [fightersLevels, setFightersLevels] = useState()
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
+    let backEndUrl = userContext.backEndUrl
     const reduceFighterMP = (attack) => {
         setUser((prevState) => {
             let newUser = { ...prevState }
@@ -66,7 +67,7 @@ const useUser = (origin) => {
     useEffect(() => {
         if (user && fightersLevels) {
             let newFighter = user.fighters.filter((fighter) => {
-                return fighter.active
+                return fighter.active === "true"
             })
             setUserFighter(newFighter[0])
             //console.log(user)
@@ -120,30 +121,30 @@ const useUser = (origin) => {
     }
     useEffect(() => {
         if (fightersLevels) {
-            fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+            fetch(backEndUrl + '/alluserfighters/' + activeUser)
                 .then(response => response.json())
                 .then(data => {
                     let activeArray = []
                     if (origin === "enemy") {
-                        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fighters.json')
+                        fetch(backEndUrl + '/allfighters')
                             .then((response) => response.json())
                             .then((fightersData) => {
                                 let randomValue = Math.floor(Math.random() * (fightersData.length))
                                 for (let i = 0; i < fightersData.length; i++) {
                                     if (fightersData.length > 1) {
                                         if (i === randomValue) {
-                                            activeArray.push(true)
+                                            activeArray.push("true")
                                         } else {
-                                            activeArray.push(false)
+                                            activeArray.push("false")
                                         }
                                     } else {
-                                        activeArray.push(true)
+                                        activeArray.push("true")
                                     }
                                 }
                                 let totalLevel = 0
                                 let totalFighters = 0
-                                data.fighters.forEach((fighter) => {
-                                    if (fighter.inParty) {
+                                data.forEach((fighter) => {
+                                    if (fighter.in_party === "true") {
                                         totalFighters++
                                         totalLevel += fighter.level
                                     }
@@ -154,17 +155,18 @@ const useUser = (origin) => {
                                     fighter.level = averageLevel
                                 })
                                 data.fighters = fightersData
+                                console.log(fightersData)
                                 let newFighters = data.fighters.map((fighter, index) => {
                                     fightersLevels.forEach((fighterLevel) => {
-                                        if (fighterLevel.fighterId === fighter.fighterId && fighterLevel.level === fighter.level) {
+                                        if (fighterLevel.fighterId === fighter.fighter_id && fighterLevel.level === fighter.level) {
                                             fighter = {
                                                 ...fighter,
                                                 attack: fighterLevel.attack,
-                                                specialAttack: fighterLevel.specialAttack,
-                                                specialDefense: fighterLevel.specialDefense,
+                                                special_attack: fighterLevel.specialAttack,
+                                                special_defense: fighterLevel.specialDefense,
                                                 defense: fighterLevel.defense,
-                                                maxHP: fighterLevel.maxHp,
-                                                currentHP: fighterLevel.maxHp,
+                                                max_hp: fighterLevel.maxHp,
+                                                current_hp: fighterLevel.maxHp,
                                                 accuracy: fighterLevel.accuracy
                                             }
                                         }
@@ -172,20 +174,21 @@ const useUser = (origin) => {
                                     if (origin === "enemy") {
                                         fighter.active = activeArray[index]
                                     }
-                                    //fighter.currentHP = fighter.maxHP
-                                    fighter.moves.forEach((move) => {
-                                        move.currentMP = move.MP
-                                    })
+                                    fighter.currentHP = fighter.max_hp
+                                    /* fighter.moves.forEach((move) => {
+                                         move.currentMP = move.moves.mp
+                                     })*/
                                     return fighter
                                 })
                                 data.fighters = newFighters
+                                console.log(data)
                                 setUser(data)
                             })
                     }
                     if (origin === "user") {
-                        let newFighters = data.fighters.map((fighter, index) => {
+                        let newFighters = data.map((fighter, index) => {
                             fightersLevels.forEach((fighterLevel) => {
-                                if (fighterLevel.fighterId === fighter.fighterId && fighterLevel.level === fighter.level) {
+                                if (fighterLevel.fighterId === fighter.fighter_id && fighterLevel.level === fighter.level) {
                                     fighter = {
                                         ...fighter,
                                         attack: fighterLevel.attack,
@@ -203,7 +206,7 @@ const useUser = (origin) => {
                             }
                             //fighter.currentHP = fighter.maxHP
                             fighter.moves.forEach((move) => {
-                                move.currentMP = move.MP
+                                move.currentMP = move.moves.mp
                             })
                             return fighter
                         })
