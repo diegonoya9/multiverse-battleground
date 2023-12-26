@@ -76,24 +76,24 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         }).then(() => updateUser())
 
     }
-    const viewActions = (moveName) => {
+    const viewActions = (move_id) => {
         let actions = []
         moves.forEach((move) => {
-            if (move.name === moveName) {
-                actions.push(move.actions)
+            if (move.move_id === move_id) {
+                console.log(move)
+                actions.push(move.actionmoves)
             }
         })
         setActions(actions[0])
         setShowActions(true)
         setShowModal(true)
     }
-    const viewMovements = (userFighterId) => {
-        let newUser = user
+    const viewMovements = (user_fighter_id) => {
         let moves = []
-        newUser.fighters.forEach((fighter, index) => {
-            if (fighter.userFighterId === userFighterId) {
+        fighters.forEach((fighter, index) => {
+            if (fighter.user_fighter_id === user_fighter_id) {
                 fighter.moves.forEach((move) => {
-                    moves.push(move)
+                    moves.push(move.moves)
                 })
             }
         })
@@ -169,7 +169,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         </div>
         {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {showMoves && moves && !showConfirm && !showActions && <ul>{moves.map((move) => {
-                return <Button key={move.name} onClick={() => { viewActions(move.name) }}>
+                return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
                     {move.name}
                 </Button>
             })} </ul>}

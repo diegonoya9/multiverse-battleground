@@ -1,6 +1,5 @@
 import classes from './FighterCard.module.css'
 const FighterCard = ({ fighter, showPrice }) => {
-    console.log(fighter)
     return (
         <div className={`${classes.fighterContainer} ${classes.card} `} key={fighter.id} >
             <div className={` ${classes.imageContainer} ${classes.face} ${classes.front}  ${fighter.active === "true" && classes.active}`}>
