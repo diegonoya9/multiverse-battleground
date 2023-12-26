@@ -13,7 +13,6 @@ const useUser = (origin) => {
             let newFighters = newUser.fighters.map((fighter) => {
                 if (fighter.active === "true") {
                     fighter.moves.forEach((move, index) => {
-                        console.log(move)
                         if (move.moves.name === attack) {
                             move.currentMP -= 1
                         }
@@ -27,42 +26,53 @@ const useUser = (origin) => {
             };
         });
     }
-    const levelUpFighter = (current_xp, newLevel, won, increaseFightsWon) => {
+    const levelUpFighter = async (current_xp, newLevel, won, increaseFightsWon) => {
         if (user) {
             let newUser = { ...user }
             if (won) {
-                /* newUser.fighters.forEach(fighter => {
-                     if (fighter.active === "true") {
-                         fighter.current_xp = current_xp
-                         fighter.level = newLevel
-                         fightersLevels.forEach((level) => {
-                             if (fighter.level === level.level && fighter.fighter_id === level.fighter_id) {
-                                 fighter.max_hp = level.max_hp
-                                 fighter.attack = level.attack
-                                 fighter.special_attack = level.special_attack
-                                 fighter.defense = level.defense
-                                 fighter.special_defense = level.special_defense
-                                 fighter.accuracy = level.accuracy
-                             }
-                         })
-                     }
-                 })
-                 newUser.objects.forEach((object) => {
-                     if (object.name === "money") {
-                         object.quantity += 100
-                     }
-                 })
-                 increaseFightsWon()*/
-                // setUser(user)
+                let newFighter
+                newUser.fighters.forEach(fighter => {
+                    if (fighter.active === "true") {
+                        fighter.current_xp = current_xp
+                        fighter.level = newLevel
+                        fightersLevels.forEach((level) => {
+                            if (fighter.level === level.level && fighter.fighter_id === level.fighter_id) {
+                                fighter.max_hp = level.max_hp
+                                fighter.attack = level.attack
+                                fighter.special_attack = level.special_attack
+                                fighter.defense = level.defense
+                                fighter.special_defense = level.special_defense
+                                fighter.accuracy = level.accuracy
+                            }
+                        })
+                        newFighter = fighter
+                    }
+                })
+                increaseFightsWon()
+                setUser(user)
+                const parameters = [{
+                    newFighter
+                }]
+                await fetch("http://localhost:3009/api/updatefighter", {
+                    method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(parameters),
+                })
+                let moneyParameters = [{
+                    user_id: activeUser,
+                    quantity: 100
+                }]
+                await fetch("http://localhost:3009/api/updateusermoney", {
+                    method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(moneyParameters),
+                })
             }
-            /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-                method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newUser),
-            })*/
-
+            /* MODIFICAR:  FALTA ACTUALIZAR LOS OBJETOS USADOS Y EL MONEY */
         }
     };
     useEffect(() => {
@@ -196,11 +206,6 @@ const useUser = (origin) => {
                     }
                     if (origin === "user") {
                         let newFighters = data.map((fighter, index) => {
-
-                            if (origin === "enemy") {
-                                fighter.active = activeArray[index]
-                            }
-                            //fighter.currentHP = fighter.maxHP
                             fighter.moves.forEach((move) => {
                                 move.currentMP = move.moves.mp
                             })
