@@ -13,11 +13,6 @@ const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
-    useEffect(() => {
-        fetch('https://graceful-capris-deer.cyclic.app/api/allusers')
-            .then((response) => response.json())
-            .then((data) => console.log(data))
-    }, [])
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
@@ -28,30 +23,30 @@ const Multiverse = ({ changeActivePage }) => {
     const [money, setMoney] = useState()
     useEffect(() => {
         if (user) {
-            let newMoney = user.objects.filter((object) => {
-                return object.name === "money"
+            let newMoney = user.userobjects.filter((object) => {
+                return object.objects.name === "Money"
             })
             setMoney(newMoney[0].quantity)
         }
     }, [user])
     const updateUser = () => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+        fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { setUser(data) })
+            .then(data => { setUser(data[0]) })
     }
     useEffect(() => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+        fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { setUser(data) })
+            .then(data => { setUser(data[0]) })
         const audio = document.getElementById('audioPlayer');
         if (audio) {
             audio.play()
         }
     }, [activeUser])
     useEffect(() => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users/' + activeUser + '.json')
+        fetch('https://graceful-capris-deer.cyclic.app/api/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { setUser(data) })
+            .then(data => { setUser(data[0]) })
     }, [multiverseActivePage, activeUser])
     return (
         <div className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >

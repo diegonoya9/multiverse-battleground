@@ -22,7 +22,7 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
         setShowModal(false)
     }
     useEffect(() => {
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/users.json')
+        fetch('https://graceful-capris-deer.cyclic.app/api/allusers')
             .then((response) => response.json())
             .then((data) => {
                 let newData = data.filter((user) => { return user }
