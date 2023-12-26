@@ -177,6 +177,7 @@ const Battleground = ({ changeActivePage }) => {
                 maxHp: 100
             }
         ]
+        let fighter_level_id = 1;
         for (let fighterId = 1; fighterId <= 7; fighterId++) {
             let prevAccuracy = 65
             let prevAttack = 10
@@ -217,12 +218,13 @@ const Battleground = ({ changeActivePage }) => {
                     specialDefense,
                     maxHp,
                     accuracy,
+                    fighter_level_id
                 };
-
+                fighter_level_id++
                 levels.push(levelData);
             }
         }
-        //console.log(levels)
+        console.log(levels)
     };
     const selectTheme = () => {
         selectSong()
@@ -289,7 +291,7 @@ const Battleground = ({ changeActivePage }) => {
     }, [Sfx])
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
-        //generateLevels();
+        generateLevels();
         selectTheme()
     }, []);
 

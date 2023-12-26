@@ -13,6 +13,11 @@ const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
+    useEffect(() => {
+        fetch('https://graceful-capris-deer.cyclic.app/api/allusers')
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+    }, [])
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")

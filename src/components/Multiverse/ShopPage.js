@@ -98,7 +98,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then(data => {
                 setUser(data)
             })
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/gameObjects.json')
+        fetch('https://graceful-capris-deer.cyclic.app/api/allobjects')
             .then((response) => response.json())
             .then((objectsList) => {
                 objectsList = objectsList.filter((object) => {
@@ -106,7 +106,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 })
                 setObjects(objectsList)
             })
-        fetch('https://multiverse-battleground-default-rtdb.firebaseio.com/fighters.json')
+        fetch('https://graceful-capris-deer.cyclic.app/api/allfighters')
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
     }, [activeUser])

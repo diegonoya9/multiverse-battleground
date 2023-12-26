@@ -4,7 +4,7 @@ const FighterCard = ({ fighter, showPrice }) => {
         <div className={`${classes.fighterContainer} ${classes.card} `} key={fighter.id} >
             <div className={` ${classes.imageContainer} ${classes.face} ${classes.front}  ${fighter.active && classes.active}`}>
                 {showPrice && <p className={`${classes.fighterPrice}  ${classes.title} ${"fighterPriceBlock"} `} >Price: {fighter.price}</p>}
-                <img alt="fighter" src={fighter.imgFront} className={classes.fighterImg} />
+                <img alt="fighter" src={fighter.img_front} className={classes.fighterImg} />
                 <h3 className={`${classes.fighterName} ${classes.title} `}>{fighter.name}</h3>
                 <h2 className={classes.spanStats}>LEVEL:{fighter.level}</h2>
             </div>
