@@ -83,7 +83,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     object_id: newObject[0].object_id,
                     user_id: newUser.userId
                 }]
-                fetch("https://graceful-capris-deer.cyclic.app/api/buy", {
+                fetch("http://localhost:3009/api/buy", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',

@@ -12,7 +12,13 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     useEffect(() => {
         fetch('https://graceful-capris-deer.cyclic.app/api/alluserobjects/' + user.user_id)
             .then((response) => response.json())
-            .then((data) => setUserObjects(data))
+            .then((data) => {
+                data.forEach(object => {
+                    object.img = object.objects.img
+                    object.name = object.objects.name
+                })
+                setUserObjects(data)
+            })
     }, [])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
