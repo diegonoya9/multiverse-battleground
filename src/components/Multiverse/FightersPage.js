@@ -1,7 +1,7 @@
 import classes from "./FightersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
@@ -13,6 +13,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     });;
     const [showModal, setShowModal] = useState(false)
     const { userContext } = useContext(MyContext);
+    const [fighters, setFighters] = useState()
     const [moves, setMoves] = useState()
     const [actions, setActions] = useState()
     const [showMoves, setShowMoves] = useState(false)
@@ -20,8 +21,8 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showConfirm, setShowConfirm] = useState(false)
     const [showNotInParty, setShowNotInParty] = useState(false)
     const [userFighterId, setUserFighterId] = useState(false)
-    let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
+    let activeUser = userContext.idUsuario
     const audioStyle = {
         display: 'none',
     };
@@ -141,13 +142,17 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             body: JSON.stringify(newUser),
         }).then(() => updateUser())*/
     }
-
+    useEffect(() => {
+        fetch(backEndUrl + "/alluserfighters/" + activeUser
+        ).then((response) => response.json())
+            .then(data => setFighters(data))
+    }, [])
     return (<div className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
-            {user &&
-                user.userfighters.map((fighter, i) => {
+            {fighters &&
+                fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                         <FighterCard fighter={fighter}></FighterCard>
                         <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setShowNotInParty(true); setShowModal(true) } }} value="First in battle"></Button>

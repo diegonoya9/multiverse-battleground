@@ -38,7 +38,7 @@ const Multiverse = ({ changeActivePage }) => {
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { setUser(data[0]); console.log(data) })
+            .then(data => setUser(data[0]))
         const audio = document.getElementById('audioPlayer');
         if (audio) {
             audio.play()
