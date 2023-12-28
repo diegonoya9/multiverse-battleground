@@ -6,7 +6,7 @@ const MyContextProvider = ({ children }) => {
     const [userContext, setUserContext] = useState({
         idUsuario: 1,
         userName: "",
-        backEndUrl: "http://localhost:3009/api" // Otros datos relacionados con el usuario si es necesario
+        backEndUrl: "https://multiverse-battlegorund-back.onrender.com/api" // Otros datos relacionados con el usuario si es necesario
     });
 
     const setUserId = (newId) => {

@@ -7,7 +7,6 @@ import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
-    console.log(user)
     const priceTags = document.querySelectorAll(".fighterPriceBlock")
     priceTags.forEach(tag => {
         tag.style.display = "none"

@@ -49,7 +49,6 @@ const Multiverse = ({ changeActivePage }) => {
             .then(response => response.json())
             .then(data => {
                 setUser(data[0])
-                console.log(data[0])
                 setUserName(data[0].name)
             })
     }, [multiverseActivePage, activeUser])

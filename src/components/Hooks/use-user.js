@@ -89,7 +89,7 @@ const useUser = (origin) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
                 if (fighter.active === "true") {
-                    newOption.actions.forEach((action) => {
+                    newOption.objects.actionobjects.forEach((action) => {
                         let result
                         if (action.field === "current_hp" && ((fighter.current_hp + action.value) > fighter.max_hp)) {
                             result = fighter.max_hp
@@ -210,7 +210,12 @@ const useUser = (origin) => {
                             return fighter
                         })
                         data.fighters = newFighters
-                        setUser(data)
+                        fetch(backEndUrl + '/alluserobjects/' + activeUser)
+                            .then((response) => response.json())
+                            .then((objects) => {
+                                data.objects = objects
+                                setUser(data)
+                            })
                     }
 
                 })

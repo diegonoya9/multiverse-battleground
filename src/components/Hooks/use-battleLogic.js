@@ -6,6 +6,7 @@ import { MyContext } from "../../context/MyContext";
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle, restartBattle } = useBattleState()
     const { userContext } = useContext(MyContext);
+    const userName = userContext.userName
     const backEndUrl = userContext.backEndUrl
     const [showModal, setShowModal] = useState(false)
     const [userAttacked, setUserAttacked] = useState({ "active": false, "sfx": '' })
@@ -141,7 +142,6 @@ const useBattleLogic = (setShowLevelUp) => {
                         option.moves.actionmoves.forEach((action) => {
                             let newAction = { ...action }
                             if (action.inflicted_on === "enemy") {
-                                console.log(attack)
                                 setAttack((prevState) => {
                                     let newState = { ...prevState }
                                     newState.active = true
@@ -157,7 +157,6 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newAction.value -= userFighter.special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
-                                console.log(newAction)
                                 setUserAttacked({ "active": "user", "sfx": option.moves.sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
                                 newInflictedActions.push(newAction)
@@ -190,10 +189,9 @@ const useBattleLogic = (setShowLevelUp) => {
                 setMenuActive(false)
                 healUserFighter(option)
                 if (option.name === 'Potion' || option.name === 'Super Potion') {
-
-                    setCure(option.actions[0].value)
+                    // setCure(option.objects.actionobjects[0].value)
                 }
-                handleModalState(`${user.name} used ${option.name}`, "enemy")
+                handleModalState(`${userName} used ${option.name}`, "enemy")
             }
             if (option === "run") {
                 endBattle("ran", true)
