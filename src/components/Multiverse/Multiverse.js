@@ -13,7 +13,7 @@ const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
-    const { userContext } = useContext(MyContext);
+    const { userContext, setUserName } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
@@ -47,7 +47,11 @@ const Multiverse = ({ changeActivePage }) => {
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { setUser(data[0]) })
+            .then(data => {
+                setUser(data[0])
+                console.log(data[0])
+                setUserName(data[0].name)
+            })
     }, [multiverseActivePage, activeUser])
     return (
         <div className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >

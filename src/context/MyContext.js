@@ -5,7 +5,8 @@ const MyContext = createContext();
 const MyContextProvider = ({ children }) => {
     const [userContext, setUserContext] = useState({
         idUsuario: 1,
-        backEndUrl: "https://multiverse-battlegorund-back.onrender.com/api/" // Otros datos relacionados con el usuario si es necesario
+        userName: "",
+        backEndUrl: "http://localhost:3009/api" // Otros datos relacionados con el usuario si es necesario
     });
 
     const setUserId = (newId) => {
@@ -14,9 +15,15 @@ const MyContextProvider = ({ children }) => {
             idUsuario: newId,
         });
     };
+    const setUserName = (userName) => {
+        setUserContext({
+            ...userContext,
+            userName
+        });
+    };
 
     return (
-        <MyContext.Provider value={{ userContext, setUserId }}>
+        <MyContext.Provider value={{ userContext, setUserId, setUserName }}>
             {children}
         </MyContext.Provider>
     );

@@ -203,7 +203,6 @@ const useUser = (origin) => {
                             })
                     }
                     if (origin === "user") {
-                        console.log(data)
                         let newFighters = data.map((fighter, index) => {
                             fighter.moves.forEach((move) => {
                                 move.currentMP = move.moves.mp

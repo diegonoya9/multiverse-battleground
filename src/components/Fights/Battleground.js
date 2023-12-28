@@ -1,18 +1,21 @@
 import classes from './Battleground.module.css'
 import Fighter from './Fighter'
 import FightMenu from './FightMenu.js'
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState, useContext } from 'react'
 import useBattleLogic from '../Hooks/use-battleLogic.js'
 import ReactAudioPlayer from 'react-audio-player';
 import Modal from '../UI/Modal.js'
 import Button from '../UI/Button.js'
 import LifeBar from './LifeBar'
 import ActionsList from './ActionsList.js'
+import { MyContext } from '../../context/MyContext.js'
 
 const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
+    const { userContext } = useContext(MyContext);
+    let userName = userContext.userName
     const songs = [
         { id: 1, title: 'Song 1', src: '/assets/sounds/music/AndWeDieYoung.WAV' },
         { id: 2, title: 'Song 2', src: '/assets/sounds/music/FourHorsemen.WAV' },
@@ -302,9 +305,9 @@ const Battleground = ({ changeActivePage }) => {
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
                 <Modal color="white" styleType={battlegroundType} onClose={() => restartGame()}>
                     {showLevelUp && <h2 className={classes[battlegroundType]}>Tu {userFighter.name} subió de nivel</h2>}
-                    {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{user.name} WON</h2>}
+                    {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{userName} WON</h2>}
                     {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>Enemy WON</h2>}
-                    {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{user.name} ran away</h1>}
+                    {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{userName} ran away</h1>}
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
                     {battleEnded.winner === "user" && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value="Keep Fighting" />}
                 </Modal>
