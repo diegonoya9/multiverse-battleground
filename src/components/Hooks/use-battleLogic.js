@@ -141,11 +141,12 @@ const useBattleLogic = (setShowLevelUp) => {
                         option.moves.actionmoves.forEach((action) => {
                             let newAction = { ...action }
                             if (action.inflicted_on === "enemy") {
+                                console.log(attack)
                                 setAttack((prevState) => {
                                     let newState = { ...prevState }
                                     newState.active = true
                                     newState.inflicted_on = "enemy"
-                                    newState.src = "./assets/img/fire.png"
+                                    newState.src = option.moves.img
                                     return newState
                                 })
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
@@ -164,7 +165,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     let newState = { ...prevState }
                                     newState.active = true
                                     newState.inflicted_on = "user"
-                                    newState.src = "./assets/img/fire.png"
+                                    newState.src = option.moves.img
                                     return newState
                                 })
                                 setUserAttacked({ "active": "userPowerUp", "Sfx": "/assets/sounds/SFX/Phoenix2.mp3" })
@@ -235,7 +236,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             let newState = { ...prevState }
                             newState.active = true
                             newState.inflicted_on = "user"
-                            newState.src = "./assets/img/fire.png"
+                            newState.src = enemyFighter.moves.img
                             return newState
                         })
                         if (action.attackType === "normal" && action.field === "current_hp") {
@@ -255,7 +256,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             let newState = { ...prevState }
                             newState.active = true
                             newState.inflicted_on = "enemy"
-                            newState.src = "./assets/img/fire.png"
+                            newState.src = enemyFighter.moves.img
                             return newState
                         })
                         if (newAction.field === "current_hp" && newAction.inflictedOn === "user") {

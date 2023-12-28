@@ -176,7 +176,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 actions.map((action, index) => {
                     return <div key={Math.random()} >
                         <p>Action: {index + 1}</p>
-                        <p>Inflicted on: {action.inflictedOn}</p>
+                        <p>Inflicted on: {action.inflicted_on}</p>
                         <p>Type: {action.attackType}</p>
                         <p>Field: {action.field}</p>
                         <p>Value: {action.value}</p>

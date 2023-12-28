@@ -297,8 +297,8 @@ const Battleground = ({ changeActivePage }) => {
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
             {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} id="audioSfxPlayer" controls style={audioStyle} />}
-            {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflictedOn === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
-            {attack.active && turn === "user" && !battleEnded.finished && attack.inflictedOn === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflicted_on === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
+            {attack.active && turn === "user" && !battleEnded.finished && attack.inflicted_on === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
                 <Modal color="white" styleType={battlegroundType} onClose={() => restartGame()}>
                     {showLevelUp && <h2 className={classes[battlegroundType]}>Tu {userFighter.name} subió de nivel</h2>}

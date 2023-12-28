@@ -3,11 +3,11 @@ import Action from './Action'
 const Actions = ({ inflictedActions, turn }) => {
     return (<div>
         <div className={classes.actionsInflictedUser} >{inflictedActions.map((action) => {
-            return ((action.inflictedOn === "user" && turn === "user") || (action.inflictedOn === "enemy" && turn === "enemy"))
+            return ((action.inflicted_on === "user" && turn === "user") || (action.inflicted_on === "enemy" && turn === "enemy"))
                 && <Action action={action} ></Action>
         })}</div>
         <div className={classes.actionsInflictedEnemy} >{inflictedActions.map((action) => {
-            return ((action.inflictedOn === "enemy" && turn === "user") || (action.inflictedOn === "user" && turn === "enemy"))
+            return ((action.inflicted_on === "enemy" && turn === "user") || (action.inflicted_on === "user" && turn === "enemy"))
                 && <Action action={action} ></Action>
         })}</div>
     </div>)
