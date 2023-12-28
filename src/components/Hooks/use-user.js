@@ -53,7 +53,7 @@ const useUser = (origin) => {
                 const parameters = [{
                     newFighter
                 }]
-                await fetch("http://localhost:3009/api/updatefighter", {
+                await fetch(backEndUrl + "/updatefighter", {
                     method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
                         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const useUser = (origin) => {
                     user_id: activeUser,
                     quantity: 100
                 }]
-                await fetch("http://localhost:3009/api/updateusermoney", {
+                await fetch(backEndUrl + "/updateusermoney", {
                     method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
                         'Content-Type': 'application/json',
