@@ -81,12 +81,10 @@ const useUser = (origin) => {
                 return fighter.active === "true"
             })
             setUserFighter(newFighter[0])
-            //console.log(user)
         }
     }, [user, fightersLevels])
     const healUserFighter = ({ ...option }) => {
         let newOption = option
-        // console.log(option)
         setUser((prevState) => {
             let newUser = { ...prevState }
             newUser.fighters.forEach((fighter) => {
@@ -205,6 +203,7 @@ const useUser = (origin) => {
                             })
                     }
                     if (origin === "user") {
+                        console.log(data)
                         let newFighters = data.map((fighter, index) => {
                             fighter.moves.forEach((move) => {
                                 move.currentMP = move.moves.mp

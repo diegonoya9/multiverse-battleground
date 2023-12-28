@@ -41,7 +41,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                         {optionsArray && selectedOption === "fighters" && optionsArray.map((fighter, i) => {
                             return fighter.in_party === "true" && fighter.current_hp > 0 &&
                                 <div key={fighter.userFighterId} className={classes.options} >
-                                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(fighter, selectedOption); changeUserFighter(fighter); }}><img alt="fighter mini" src={fighter.imgFront} className={classes.miniImgMenu} /></Button>
+                                    <Button completeWidth="true" key={fighter.name + i} value={fighter.name} styleType={styleType} onClick={() => { toggleSubMenu(); clickHandler(fighter, selectedOption); changeUserFighter(fighter); }}><img alt="fighter mini" src={fighter.img_front} className={classes.miniImgMenu} /></Button>
                                 </div>
                         })
                         }

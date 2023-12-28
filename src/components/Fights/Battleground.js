@@ -249,32 +249,32 @@ const Battleground = ({ changeActivePage }) => {
         let audio = '/assets/sounds/SFX/Ha.mp3'
         if (userAttacked.active === "user") {
             if (audioSfx) {
-                if (userAttacked.Sfx) {
-                    audio = userAttacked.Sfx
+                if (userAttacked.sfx) {
+                    audio = userAttacked.sfx
                 }
                 setSfx(audio)
             }
         }
         if (userAttacked.active === "userPowerUp") {
             if (audioSfx) {
-                if (userAttacked.Sfx) {
-                    audio = userAttacked.Sfx
+                if (userAttacked.sfx) {
+                    audio = userAttacked.sfx
                 }
                 setSfx(audio)
             }
         }
         if (userAttacked.active === "enemy") {
             if (audioSfx) {
-                if (userAttacked.Sfx) {
-                    audio = userAttacked.Sfx
+                if (userAttacked.sfx) {
+                    audio = userAttacked.sfx
                 }
                 setSfx(audio)
             }
         }
         if (userAttacked.active === "enemyPowerUp") {
             if (audioSfx) {
-                if (userAttacked.Sfx) {
-                    audio = userAttacked.Sfx
+                if (userAttacked.sfx) {
+                    audio = userAttacked.sfx
                 }
                 setSfx(audio)
             }

@@ -8,7 +8,7 @@ const useBattleLogic = (setShowLevelUp) => {
     const { userContext } = useContext(MyContext);
     const backEndUrl = userContext.backEndUrl
     const [showModal, setShowModal] = useState(false)
-    const [userAttacked, setUserAttacked] = useState({ "active": false, "Sfx": '' })
+    const [userAttacked, setUserAttacked] = useState({ "active": false, "sfx": '' })
     const [inflictedActions, setInflictedActions] = useState([])
     const [modalContent, setModalContent] = useState()
     const [fightersLevels, setFightersLevels] = useState()
@@ -124,7 +124,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                 newState.active = false
                                 return newState
                             })
-                            setUserAttacked({ "active": false, "Sfx": '' })
+                            setUserAttacked({ "active": false, "sfx": '' })
                             if (attackHit) {
                                 handleModalState(`${userFighter.name} used ${option.moves.name}`, "enemy")
                             } else {
@@ -157,7 +157,8 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newAction.value -= userFighter.special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
-                                setUserAttacked({ "active": "user", "Sfx": "/assets/sounds/SFX/Phoenix2.mp3", 'totalDamage': newAction.value })
+                                console.log(newAction)
+                                setUserAttacked({ "active": "user", "sfx": option.moves.sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
                                 newInflictedActions.push(newAction)
                             } else {
@@ -168,7 +169,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.moves.img
                                     return newState
                                 })
-                                setUserAttacked({ "active": "userPowerUp", "Sfx": "/assets/sounds/SFX/Phoenix2.mp3" })
+                                setUserAttacked({ "active": "userPowerUp", "sfx": newAction.sfx })
                                 if (newAction.field === "current_hp" && newAction.inflicted_on === "user") {
                                     if ((userFighter.current_hp + (newAction.value * userFighter.max_hp)) > userFighter.max_hp) {
                                         newAction.value = userFighter.max_hp - userFighter.current_hp
@@ -217,7 +218,7 @@ const useBattleLogic = (setShowLevelUp) => {
                         newState.active = false
                         return newState
                     })
-                    setUserAttacked({ "active": false, "Sfx": '' })
+                    setUserAttacked({ "active": false, "sfx": '' })
                     if (attackHit) {
                         handleModalState(`Enemy ${enemyFighter.name} used ${enemyFighter.moves.name}`, "user")
                     } else {
@@ -249,9 +250,9 @@ const useBattleLogic = (setShowLevelUp) => {
                         }
                         attackUser(newAction)
                         newInflictedActions.push(newAction)
-                        setUserAttacked({ "active": "enemy", "Sfx": "/assets/sounds/SFX/Phoenix2.mp3", 'totalDamage': newAction.value })
+                        setUserAttacked({ "active": "enemy", "sfx": newAction.sfx, 'totalDamage': newAction.value })
                     } else {
-                        setUserAttacked({ "active": "enemyPowerUp", "Sfx": "/assets/sounds/SFX/Phoenix2.mp3" })
+                        setUserAttacked({ "active": "enemyPowerUp", "sfx": newAction.sfx })
                         setAttack((prevState) => {
                             let newState = { ...prevState }
                             newState.active = true

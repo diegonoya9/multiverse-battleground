@@ -7,6 +7,7 @@ import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
+    console.log(user)
     const priceTags = document.querySelectorAll(".fighterPriceBlock")
     priceTags.forEach(tag => {
         tag.style.display = "none"
@@ -58,7 +59,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(parameters),
-            }).then(() => updateUser())
+            }).then(() => updateFighters())
         }
     }
     const removeFromParty = (user_fighter_id) => {
@@ -73,7 +74,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(parameters),
-        }).then(() => updateUser())
+        }).then(() => updateFighters())
 
     }
     const viewActions = (move_id) => {
@@ -111,7 +112,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(parameters),
-        }).then(() => updateUser())
+        }).then(() => updateFighters())
     }
     const deleteFighter = (userFighterId) => {
         setUserFighterId(userFighterId)
@@ -133,18 +134,14 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         newUser.fighters = newFighters
         setShowModal(false)
         setShowConfirm(false)
-        /*fetch("https://multiverse-battleground-default-rtdb.firebaseio.com/users/" + activeUser + ".json", {
-            method: 'PATCH', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newUser),
-        }).then(() => updateUser())*/
     }
-    useEffect(() => {
+    const updateFighters = () => {
         fetch(backEndUrl + "/alluserfighters/" + activeUser
         ).then((response) => response.json())
             .then(data => setFighters(data))
+    }
+    useEffect(() => {
+        updateFighters()
     }, [])
     return (<div className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
@@ -177,7 +174,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     return <div key={Math.random()} >
                         <p>Action: {index + 1}</p>
                         <p>Inflicted on: {action.inflicted_on}</p>
-                        <p>Type: {action.attackType}</p>
+                        <p>Type: {action.attack_type}</p>
                         <p>Field: {action.field}</p>
                         <p>Value: {action.value}</p>
                     </div>
