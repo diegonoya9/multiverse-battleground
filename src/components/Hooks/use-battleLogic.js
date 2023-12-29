@@ -170,10 +170,10 @@ const useBattleLogic = (setShowLevelUp) => {
                                 })
                                 setUserAttacked({ "active": "userPowerUp", "sfx": option.moves.sfx })
                                 if (newAction.field === "current_hp" && newAction.inflicted_on === "user") {
-                                    if ((userFighter.current_hp + ((newAction.value * userFighter.max_hp)/100) > userFighter.max_hp)) {
+                                    if ((userFighter.current_hp + ((newAction.value * userFighter.max_hp) / 100) > userFighter.max_hp)) {
                                         newAction.value = userFighter.max_hp - userFighter.current_hp
                                     } else {
-                                        newAction.value = ((newAction.value * userFighter.max_hp)/100)
+                                        newAction.value = ((newAction.value * userFighter.max_hp) / 100)
                                     }
                                 }
                                 attackUser(newAction)
@@ -247,9 +247,9 @@ const useBattleLogic = (setShowLevelUp) => {
                         }
                         attackUser(newAction)
                         newInflictedActions.push(newAction)
-                        setUserAttacked({ "active": "enemy", "sfx": newAction.sfx, 'totalDamage': newAction.value })
+                        setUserAttacked({ "active": "enemy", "sfx": enemyFighter.moves[randomMove].sfx, 'totalDamage': newAction.value })
                     } else {
-                        setUserAttacked({ "active": "enemyPowerUp", "sfx": newAction.sfx })
+                        setUserAttacked({ "active": "enemyPowerUp", "sfx": enemyFighter.moves[randomMove].sfx })
                         setAttack((prevState) => {
                             let newState = { ...prevState }
                             newState.active = true
