@@ -138,67 +138,64 @@ const useUser = (origin) => {
                         fetch(backEndUrl + '/allfighters')
                             .then((response) => response.json())
                             .then((fightersData) => {
-                                fetch(backEndUrl + '/allmoves')
-                                    .then(response => response.json())
-                                    .then(movesData => {
-                                        let randomValue = Math.floor(Math.random() * (fightersData.length))
-                                        for (let i = 0; i < fightersData.length; i++) {
-                                            if (fightersData.length > 1) {
-                                                if (i === randomValue) {
-                                                    activeArray.push("true")
-                                                } else {
-                                                    activeArray.push("false")
-                                                }
-                                            } else {
-                                                activeArray.push("true")
+                                let randomValue = Math.floor(Math.random() * (fightersData.length))
+                                for (let i = 0; i < fightersData.length; i++) {
+                                    if (fightersData.length > 1) {
+                                        if (i === randomValue) {
+                                            activeArray.push("true")
+                                        } else {
+                                            activeArray.push("false")
+                                        }
+                                    } else {
+                                        activeArray.push("true")
+                                    }
+                                }
+                                let totalLevel = 0
+                                let totalFighters = 0
+                                data.forEach((fighter) => {
+                                    if (fighter.in_party === "true") {
+                                        totalFighters++
+                                        totalLevel += fighter.level
+                                    }
+                                })
+                                //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
+                                let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
+                                fightersData.forEach((fighter) => {
+                                    fighter.level = averageLevel
+                                })
+                                data.fighters = fightersData
+                                let newFighters = data.fighters.map((fighter, index) => {
+                                    fightersLevels.forEach((fighterLevel) => {
+                                        if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
+                                            fighter = {
+                                                ...fighter,
+                                                attack: fighterLevel.attack,
+                                                special_attack: fighterLevel.special_attack,
+                                                special_defense: fighterLevel.special_defense,
+                                                defense: fighterLevel.defense,
+                                                max_hp: fighterLevel.max_hp,
+                                                current_hp: fighterLevel.max_hp,
+                                                accuracy: fighterLevel.accuracy
                                             }
                                         }
-                                        let totalLevel = 0
-                                        let totalFighters = 0
-                                        data.forEach((fighter) => {
-                                            if (fighter.in_party === "true") {
-                                                totalFighters++
-                                                totalLevel += fighter.level
-                                            }
-                                        })
-                                        //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
-                                        let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
-                                        fightersData.forEach((fighter) => {
-                                            fighter.level = averageLevel
-                                        })
-                                        data.fighters = fightersData
-                                        let newFighters = data.fighters.map((fighter, index) => {
-                                            fightersLevels.forEach((fighterLevel) => {
-                                                if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
-                                                    fighter = {
-                                                        ...fighter,
-                                                        attack: fighterLevel.attack,
-                                                        special_attack: fighterLevel.special_attack,
-                                                        special_defense: fighterLevel.special_defense,
-                                                        defense: fighterLevel.defense,
-                                                        max_hp: fighterLevel.max_hp,
-                                                        current_hp: fighterLevel.max_hp,
-                                                        accuracy: fighterLevel.accuracy
-                                                    }
-                                                }
-                                            })
-                                            if (origin === "enemy") {
-                                                fighter.active = activeArray[index]
-                                            }
-                                            fighter.current_hp = fighter.max_hp
-                                            /* fighter.moves.forEach((move) => {
-                                                 move.currentMP = move.moves.mp
-                                             })*/
-                                            movesData.forEach((move) => {
-                                                if (move.fighter_id === fighter.fighter_id) {
-                                                    fighter.moves = move
-                                                }
-                                            })
-                                            return fighter
-                                        })
-                                        data.fighters = newFighters
-                                        setUser(data)
                                     })
+                                    if (origin === "enemy") {
+                                        fighter.active = activeArray[index]
+                                    }
+                                    fighter.current_hp = fighter.max_hp
+                                    /* fighter.moves.forEach((move) => {
+                                         move.currentMP = move.moves.mp
+                                     })*/
+                                    /* movesData.forEach((move) => {
+                                         if (move.fighter_id === fighter.fighter_id) {
+                                             fighter.moves = move
+                                         }
+                                     })*/
+                                    return fighter
+                                })
+                                data.fighters = newFighters
+                                setUser(data)
+
 
                             })
                     }

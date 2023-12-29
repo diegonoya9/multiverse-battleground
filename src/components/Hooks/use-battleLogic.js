@@ -218,24 +218,23 @@ const useBattleLogic = (setShowLevelUp) => {
                     })
                     setUserAttacked({ "active": false, "sfx": '' })
                     if (attackHit) {
-                        handleModalState(`Enemy ${enemyFighter.name} used ${enemyFighter.moves.name}`, "user")
+                        handleModalState(`Enemy ${enemyFighter.name} used ${enemyFighter.moves[randomMove].name}`, "user")
                     } else {
                         handleModalState(`Enemy ${enemyFighter.name} missed`, "user")
                     }
                     // Aquí puedes colocar la acción que quieres ejecutar después de 3 segundos
                 }, timeOut); // 3000 milisegundos = 3 segundos
             };
-
             if (attackHit) {
                 let newInflictedActions = []
-                enemyFighter.moves.actionmoves.forEach((action) => {
+                enemyFighter.moves[randomMove].actionmoves.forEach((action) => {
                     let newAction = { ...action }
                     if (action.inflicted_on === "enemy") {
                         setAttack((prevState) => {
                             let newState = { ...prevState }
                             newState.active = true
                             newState.inflicted_on = "user"
-                            newState.src = enemyFighter.moves.img
+                            newState.src = enemyFighter.moves[randomMove].img
                             return newState
                         })
                         if (action.attackType === "normal" && action.field === "current_hp") {
@@ -255,7 +254,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             let newState = { ...prevState }
                             newState.active = true
                             newState.inflicted_on = "enemy"
-                            newState.src = enemyFighter.moves.img
+                            newState.src = action.img
                             return newState
                         })
                         if (newAction.field === "current_hp" && newAction.inflictedOn === "user") {

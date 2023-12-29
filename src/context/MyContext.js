@@ -3,10 +3,11 @@ import React, { createContext, useState } from 'react';
 const MyContext = createContext();
 
 const MyContextProvider = ({ children }) => {
+
     const [userContext, setUserContext] = useState({
         idUsuario: 1,
         userName: "",
-        backEndUrl: "https://multiverse-battlegorund-back.onrender.com/api" // Otros datos relacionados con el usuario si es necesario
+        backEndUrl: process.env.REACT_APP_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battlegorund-back.onrender.com/api" // Otros datos relacionados con el usuario si es necesario
     });
 
     const setUserId = (newId) => {
