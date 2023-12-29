@@ -168,7 +168,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newState.src = option.moves.img
                                     return newState
                                 })
-                                setUserAttacked({ "active": "userPowerUp", "sfx": newAction.sfx })
+                                setUserAttacked({ "active": "userPowerUp", "sfx": option.moves.sfx })
                                 if (newAction.field === "current_hp" && newAction.inflicted_on === "user") {
                                     if ((userFighter.current_hp + ((newAction.value * userFighter.max_hp)/100) > userFighter.max_hp)) {
                                         newAction.value = userFighter.max_hp - userFighter.current_hp
