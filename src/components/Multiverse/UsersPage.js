@@ -29,7 +29,7 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
                 )
                 setUsers(newData)
             })
-    }, [])
+    }, [backEndUrl])
     return (<div>
         {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
             <h1 style={{ color: 'white' }}>Player selected</h1>

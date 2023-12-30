@@ -18,7 +18,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
             .then((data) => {
                 setUserObjects(data)
             })
-    }, [])
+    }, [backEndUrl, user.user_id])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>

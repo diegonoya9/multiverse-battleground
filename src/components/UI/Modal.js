@@ -5,19 +5,19 @@ import classes from './Modal.module.css';
 const Modal = ({ onClose, backgroundColor, color, children, styleType }) => {
     const modalRef = useRef();
 
-    const handleClickOutside = (event) => {
-        if (modalRef.current && !modalRef.current.contains(event.target)) {
-            onClose();
-        }
-    };
     // Agregar un event listener para cerrar el modal haciendo clic fuera de él
     React.useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
         document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [handleClickOutside]);
+    }, [onClose]);
 
     return (
         <div className={classes.modalWrapper} style={{ backgroundColor, color }}>

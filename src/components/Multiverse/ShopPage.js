@@ -86,7 +86,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         fetch(backEndUrl + '/allfighters')
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
-    }, [activeUser])
+    }, [activeUser, backEndUrl])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
