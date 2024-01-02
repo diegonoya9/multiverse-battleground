@@ -8,16 +8,24 @@ import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 import ObjectCard from "../UI/ObjectCard";
 const ShopPage = ({ changeMultiverseActivePage }) => {
+    const modalPurchaseConfirmed = <div><h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
+        <button className={classes.modalButton} onClick={() => setShowModal(false)}>
+            Keep Buying
+        </button></div>
     const [objects, setObjects] = useState()
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
+    const [modalContent, setModalContent] = useState()
     const [showModal, setShowModal] = useState(false)
     const closeModal = () => {
-        setShowModal(false)
+        if (modalContent !== "Processing.. Please wait") {
+            setShowModal(false)
+        }
     }
+
     const audioStyle = {
         display: 'none',
     };
@@ -27,6 +35,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         })
         let newUser = user
         if (newMoney[0].quantity >= price) {
+            setModalContent("Processing.. Please wait")
+            setShowModal(true)
             newMoney[0].quantity -= price;
             if (type === "fighter") {
                 const parameters = [{
@@ -39,6 +49,14 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(parameters)
+                }).then(response => {
+                    if (response.statusText === "OK") {
+                        setModalContent(modalPurchaseConfirmed)
+                        setShowModal(true)
+                    } else {
+                        setModalContent('Error when buying')
+                        setShowModal(true)
+                    }
                 })
             }
             if (type === "object") {
@@ -49,7 +67,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     object_id: newObject[0].object_id,
                     user_id: newUser.user_id
                 }]
-                console.log(newUser)
                 fetch(backEndUrl + "/buyObject", {
                     method: "POST",
                     headers: {
@@ -59,15 +76,17 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 })
                     .then(response => {
                         if (response.statusText === "OK") {
+                            setModalContent(modalPurchaseConfirmed)
                             setShowModal(true)
                         } else {
-                            console.log('error')
+                            setModalContent('Error when buying')
+                            setShowModal(true)
                         }
                     })
-                setShowModal(true)
             }
         } else {
-            console.log('not enough money')
+            setModalContent('Not enough money')
+            setShowModal(true)
         }
     }
     useEffect(() => {
@@ -98,10 +117,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             return ''
         })}</h1>}
         {showModal && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
-            <h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
-            <button className={classes.modalButton} onClick={() => setShowModal(false)}>
-                Keep Buying
-            </button>
+            {modalContent}
         </Modal>}
         <h1 className={classes.divBackground}>OBJECTS:</h1>
         {objects && <div className={classes.container} >
