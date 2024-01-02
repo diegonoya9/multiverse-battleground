@@ -47,8 +47,9 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 })
                 const parameters = [{
                     object_id: newObject[0].object_id,
-                    user_id: newUser.userId
+                    user_id: newUser.user_id
                 }]
+                console.log(newUser)
                 fetch(backEndUrl + "/buyObject", {
                     method: "POST",
                     headers: {
