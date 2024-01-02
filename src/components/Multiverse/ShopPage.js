@@ -25,7 +25,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             setShowModal(false)
         }
     }
-
     const audioStyle = {
         display: 'none',
     };

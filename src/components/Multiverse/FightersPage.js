@@ -12,6 +12,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         tag.style.display = "none"
     });;
     const [showModal, setShowModal] = useState(false)
+    const [modalContent, setModalContent] = useState()
     const { userContext } = useContext(MyContext);
     const [fighters, setFighters] = useState()
     const [moves, setMoves] = useState()
@@ -21,17 +22,21 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const [showConfirm, setShowConfirm] = useState(false)
     const [showNotInParty, setShowNotInParty] = useState(false)
     const [userFighterId, setUserFighterId] = useState(false)
+    const [allowCloseModal, setAllowCloseModal] = useState(true)
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
     const audioStyle = {
         display: 'none',
     };
     const closeModal = () => {
-        setShowActions(false)
-        setShowMoves(false)
-        setShowModal(false)
-        setShowConfirm(false)
-        setShowNotInParty(false)
+        if (allowCloseModal) {
+            setShowActions(false)
+            setShowMoves(false)
+            setShowModal(false)
+            setShowConfirm(false)
+            setShowNotInParty(false)
+            setModalContent()
+        }
     }
     const addToParty = (userFighterId) => {
         let newUser = user
@@ -47,18 +52,24 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             }
         })
         if (cantExceeded) {
+            setAllowCloseModal(true)
             setShowModal(true)
         } else {
             const parameters = [{
                 user_fighter_id: userFighterId
             }]
+            setModalContent('Adding to party...')
+            setAllowCloseModal(false)
+            setShowModal(true)
             fetch(backEndUrl + "/addtoparty", {
                 method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(parameters),
-            }).then(() => updateFighters())
+            }).then(() => {
+                updateFighters()
+            })
         }
     }
     const removeFromParty = (user_fighter_id) => {
@@ -67,6 +78,9 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             user_fighter_id,
             user_id: newUser.user_id
         }]
+        setModalContent('Removing from party...')
+        setAllowCloseModal(false)
+        setShowModal(true)
         fetch(backEndUrl + "/removefromparty", {
             method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
@@ -96,6 +110,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                 })
             }
         })
+        setAllowCloseModal(true)
         setMoves(moves)
         setShowMoves(true)
         setShowModal(true)
@@ -105,13 +120,18 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
             user_id: user.user_id,
             user_fighter_id
         }]
+        setModalContent('Assigning first fighter')
+        setShowModal(true)
+        setAllowCloseModal(false)
         fetch(backEndUrl + "/setfirstfighter", {
             method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(parameters),
-        }).then(() => updateFighters())
+        }).then(() => {
+            updateFighters()
+        })
     }
     const deleteFighter = (userFighterId) => {
         setUserFighterId(userFighterId)
@@ -137,8 +157,15 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     const updateFighters = () => {
         fetch(backEndUrl + "/alluserfighters/" + activeUser
         ).then((response) => response.json())
-            .then(data => setFighters(data))
+            .then(data => {
+                setFighters(data)
+            })
     }
+
+    useEffect(() => {
+        setShowModal(false)
+        setModalContent()
+    }, [fighters])
     useEffect(() => {
         updateFighters()
     }, [])
@@ -162,7 +189,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     );
                 })}
         </div>
-        {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
+        {showModal && !modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {showMoves && moves && !showConfirm && !showActions && <ul>{moves.map((move) => {
                 return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
                     {move.name}
@@ -179,12 +206,15 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
                     </div>
                 })
             }
-            {!showMoves && !showConfirm && !showNotInParty && < h1 > No se puede bro.. máximo 4</h1>}
+            {!showMoves && !showConfirm && !showNotInParty && !modalContent && < h1 > No se puede bro.. máximo 4</h1>}
             {showConfirm && <div>
                 <h3>Are you sure you want to sell this fighter?</h3>
                 <Button onClick={() => deleteUserFighter(userFighterId)}>Sell</Button>
             </div>}
             {showNotInParty && < h1 > Hay que agregarlo al party primero</h1>}
+        </Modal>}
+        {showModal && modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
+            {modalContent}
         </Modal>}
     </div >
     );
