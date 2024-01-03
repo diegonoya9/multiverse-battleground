@@ -11,7 +11,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
+    debug: false,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -27,6 +27,13 @@ i18n
             shop: "Shop",
             users: "Users",
             fighters: "Fighters"
+          },
+          fighterspage: {
+            removeFromParty: "Remove from party",
+            addToParty: "Add to party",
+            setFirst: "Set First",
+            back: "Back to Main Menu",
+            viewMovements: "View Movements"
           }
         }
       },
@@ -40,6 +47,13 @@ i18n
             shop: "Tienda",
             users: "Usuarios",
             fighters: "Luchadores"
+          },
+          fighterspage: {
+            removeFromParty: "Quitar del equipo",
+            addToParty: "Agregar al equipo",
+            setFirst: "Seleccionar primero",
+            back: "Volver al Menú Principal",
+            viewMovements: "Ver Ataques"
           }
         }
       },

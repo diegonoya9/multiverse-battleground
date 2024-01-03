@@ -6,7 +6,9 @@ import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
+import { useTranslation } from 'react-i18next';
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
+    const { t } = useTranslation();
     const priceTags = document.querySelectorAll(".fighterPriceBlock")
     priceTags.forEach(tag => {
         tag.style.display = "none"
@@ -139,20 +141,20 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         setShowModal(true)
     }
     const deleteUserFighter = async (userFighterId) => {
-       /* let deleteFighter = await user.fighters.filter((fighter) => {
-            return fighter.userFighterId === userFighterId
-        })
-        let newFighters = user.fighters.filter((fighter) => {
-            return fighter.userFighterId !== userFighterId
-        })
-        const sell = user.objects[4].quantity
-        let price = deleteFighter[0].price
-        const result = sell + price
-        let newUser = user
-        newUser.objects[4].quantity = result
-        newUser.fighters = newFighters
-        setShowModal(false)
-        setShowConfirm(false)*/
+        /* let deleteFighter = await user.fighters.filter((fighter) => {
+             return fighter.userFighterId === userFighterId
+         })
+         let newFighters = user.fighters.filter((fighter) => {
+             return fighter.userFighterId !== userFighterId
+         })
+         const sell = user.objects[4].quantity
+         let price = deleteFighter[0].price
+         const result = sell + price
+         let newUser = user
+         newUser.objects[4].quantity = result
+         newUser.fighters = newFighters
+         setShowModal(false)
+         setShowConfirm(false)*/
     }
     const fetchData = async () => {
         try {
@@ -165,7 +167,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
             console.error('Error fetching data:', error);
         }
     };
-    const updateFighters = async() => {       
+    const updateFighters = async () => {
         await fetchData()
     }
 
@@ -184,12 +186,12 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                         <FighterCard fighter={fighter}></FighterCard>
-                        <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setShowNotInParty(true); setShowModal(true) } }} value="First in battle"></Button>
-                        <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value="View movements"></Button>
+                        <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setShowNotInParty(true); setShowModal(true) } }} value={t('fighterspage.setFirst')}></Button>
+                        <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value={t('fighterspage.viewMovements')}></Button>
                         {fighter.in_party === "true" ?
-                            <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value="Remove from party"></Button>
+                            <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
                             :
-                            <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value="Add to party"></Button>
+                            <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value={t('fighterspage.addToParty')}></Button>
                         }
                         {/* <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button> */}
                     </div>

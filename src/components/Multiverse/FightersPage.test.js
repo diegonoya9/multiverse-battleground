@@ -3,6 +3,13 @@ import React from 'react';
 import { render, waitFor, act, fireEvent, cleanup } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import FightersPage from './FightersPage';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n';
+
+beforeAll(() => {
+    i18n.use(initReactI18next)
+
+});
 const user =
 {
     "user_id": 1,
@@ -270,12 +277,14 @@ beforeEach(async () => {
     global.fetch = jest.fn().mockResolvedValue({
         json: jest.fn().mockResolvedValue(fighters)
     });
-
     await act(async () => {
-        component = render(
-            <MyContextProvider value={{ userContext: mockUserContext }}>
-                <FightersPage user={user} />
-            </MyContextProvider>
+        component = render(<>
+            <I18nextProvider i18n={i18n}>
+                <MyContextProvider value={{ userContext: mockUserContext }}>
+                    <FightersPage user={user} />
+                </MyContextProvider>
+            </I18nextProvider>
+        </>
         );
     });
 })
@@ -284,7 +293,7 @@ afterEach(() => {
     cleanup();
 });
 test('renders fighters page and selects First in Battle component', async () => {
-    const firstInBattleButton = component.getByText("First in battle")
+    const firstInBattleButton = component.getByText(i18n.t('fighterspage.setFirst'))
     await waitFor(() => {
         fireEvent.click(firstInBattleButton)
     });
@@ -296,7 +305,7 @@ test('renders fighters page component and removes from party', async () => {
     });
     // Resto de tu l�gica de prueba aqu�
     const mainMenuButton = component.getByText("Back to Main Menu");
-    const removeFromPartyButton = component.getByText("Remove from party")
+    const removeFromPartyButton = component.getByText(i18n.t('fighterspage.removeFromParty'))
     await waitFor(() => {
         fireEvent.click(removeFromPartyButton)
     });
@@ -319,14 +328,14 @@ test('renders fighters page component and adds it to party', async () => {
             </MyContextProvider>
         );
     });
-    const addToPartyButton = component.getByText("Add to party")
+    const addToPartyButton = component.getByText(i18n.t('fighterspage.addToParty'))
     await waitFor(() => {
         fireEvent.click(addToPartyButton)
     });
     // Realiza otras verificaciones seg�n sea necesario
 });
 test('renders fighters page and selects a movement component', async () => {
-    const viewMovements = component.getByText("View movements")
+    const viewMovements = component.getByText(i18n.t('fighterspage.viewMovements'))
     await waitFor(() => {
         fireEvent.click(viewMovements)
     });
