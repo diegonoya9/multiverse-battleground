@@ -26,7 +26,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
     }
 
     return (
-        <div className={classes.divSubMenu}>
+        <div alt="divSubMenu" className={classes.divSubMenu}>
             {showModal
                 &&
                 <Modal styleType={styleType} color="white" backgroundColor="white" onClose={closeModal}>

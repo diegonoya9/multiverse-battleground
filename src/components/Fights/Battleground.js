@@ -296,7 +296,7 @@ const Battleground = ({ changeActivePage }) => {
     }, []);
 
     return (
-        <div className={`${classes.battleground} ${classes[battlegroundType]}`}>
+        <div alt="battlegroundBackground" className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
             {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} id="audioSfxPlayer" controls style={audioStyle} />}
