@@ -1,7 +1,7 @@
 // FightMenu.test.js
-import { fireEvent,render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import FightMenu from './FightMenu';
-const fighter={
+const fighter = {
     "user_fighter_id": 26,
     "user_id": 1,
     "fighter_id": 5,
@@ -131,197 +131,191 @@ const fighter={
         }
     ]
 }
-const user=
-	{
-		"user_id": 1,
-		"email": "lina@gmail.com",
-		"password": "123456",
-		"name": "Lina",
-		"money": 5000,
-		"avatar": "lina.jpg",
-		"profile": "Admin",
-		"userfighters": [
-			{
-				"user_fighter_id": 26,
-				"user_id": 1,
-				"fighter_id": 5,
-				"level": 5,
-				"active": "true",
-				"in_party": "true",
-				"extra_accuracy": 0,
-				"extra_max_hp": 0,
-				"extra_attack": 100000,
-				"extra_special_attack": 100000,
-				"extra_defense": 0,
-				"extra_special_defense": 0,
-				"current_xp": 3100,
-				"fighters": {
-					"fighter_id": 5,
-					"img_back": "./assets/img/mew-back.png",
-					"img_front": "./assets/img/mew-front.png",
-					"name": "Mew",
-					"price": 100
-				},
-				"img_front": "./assets/img/mew-front.png",
-				"img_back": "./assets/img/mew-back.png"
-			},
-			{
-				"user_fighter_id": 27,
-				"user_id": 1,
-				"fighter_id": 4,
-				"level": 2,
-				"active": "false",
-				"in_party": "true",
-				"extra_accuracy": 0,
-				"extra_max_hp": 0,
-				"extra_attack": 0,
-				"extra_special_attack": 0,
-				"extra_defense": 0,
-				"extra_special_defense": 0,
-				"current_xp": 800,
-				"fighters": {
-					"fighter_id": 4,
-					"img_back": "./assets/img/vegeta-back.gif",
-					"img_front": "./assets/img/vegeta-front.gif",
-					"name": "Vegeta",
-					"price": 100
-				},
-				"img_front": "./assets/img/vegeta-front.gif",
-				"img_back": "./assets/img/vegeta-back.gif"
-			},
-			{
-				"user_fighter_id": 28,
-				"user_id": 1,
-				"fighter_id": 6,
-				"level": 2,
-				"active": "false",
-				"in_party": "false",
-				"extra_accuracy": 0,
-				"extra_max_hp": 0,
-				"extra_attack": 0,
-				"extra_special_attack": 0,
-				"extra_defense": 0,
-				"extra_special_defense": 0,
-				"current_xp": 900,
-				"fighters": {
-					"fighter_id": 6,
-					"img_back": "./assets/img/michael3.gif",
-					"img_front": "./assets/img/michael-front.gif",
-					"name": "Michael",
-					"price": 100
-				},
-				"img_front": "./assets/img/michael-front.gif",
-				"img_back": "./assets/img/michael3.gif"
-			}
-		],
-		"userobjects": [
-			{
-				"user_object_id": 2,
-				"user_id": 1,
-				"object_id": 7,
-				"quantity": 25911,
-				"objects": {
-					"name": "Money",
-					"description": "Money"
-				},
-				"name": "Money",
-				"description": "Money"
-			},
-			{
-				"user_object_id": 9,
-				"user_id": 1,
-				"object_id": 1,
-				"quantity": 8,
-				"objects": {
-					"name": "Potion",
-					"description": "Heals the user 2000 HP"
-				},
-				"name": "Potion",
-				"description": "Heals the user 2000 HP"
-			},
-			{
-				"user_object_id": 10,
-				"user_id": 1,
-				"object_id": 2,
-				"quantity": 12,
-				"objects": {
-					"name": "Super Potion",
-					"description": "Heals the user 5000 HP"
-				},
-				"name": "Super Potion",
-				"description": "Heals the user 5000 HP"
-			},
-			{
-				"user_object_id": 11,
-				"user_id": 1,
-				"object_id": 3,
-				"quantity": 1,
-				"objects": {
-					"name": "Milanesa",
-					"description": "Increases user defense by 150"
-				},
-				"name": "Milanesa",
-				"description": "Increases user defense by 150"
-			},
-			{
-				"user_object_id": 12,
-				"user_id": 1,
-				"object_id": 4,
-				"quantity": 1,
-				"objects": {
-					"name": "Huevo Duro",
-					"description": "Increases user attack by 100"
-				},
-				"name": "Huevo Duro",
-				"description": "Increases user attack by 100"
-			},
-			{
-				"user_object_id": 13,
-				"user_id": 1,
-				"object_id": 6,
-				"quantity": 1,
-				"objects": {
-					"name": "Coffee",
-					"description": "Increase special attack by 150"
-				},
-				"name": "Coffee",
-				"description": "Increase special attack by 150"
-			},
-			{
-				"user_object_id": 14,
-				"user_id": 1,
-				"object_id": 5,
-				"quantity": 1,
-				"objects": {
-					"name": "Dopamine",
-					"description": "Increase accuracy by 25"
-				},
-				"name": "Dopamine",
-				"description": "Increase accuracy by 25"
-			}
-		]
-	}
-
+const user =
+{
+    "user_id": 1,
+    "email": "lina@gmail.com",
+    "password": "123456",
+    "name": "Lina",
+    "money": 5000,
+    "avatar": "lina.jpg",
+    "profile": "Admin",
+    "userfighters": [
+        {
+            "user_fighter_id": 26,
+            "user_id": 1,
+            "fighter_id": 5,
+            "level": 5,
+            "active": "true",
+            "in_party": "true",
+            "extra_accuracy": 0,
+            "extra_max_hp": 0,
+            "extra_attack": 100000,
+            "extra_special_attack": 100000,
+            "extra_defense": 0,
+            "extra_special_defense": 0,
+            "current_xp": 3100,
+            "fighters": {
+                "fighter_id": 5,
+                "img_back": "./assets/img/mew-back.png",
+                "img_front": "./assets/img/mew-front.png",
+                "name": "Mew",
+                "price": 100
+            },
+            "img_front": "./assets/img/mew-front.png",
+            "img_back": "./assets/img/mew-back.png"
+        },
+        {
+            "user_fighter_id": 27,
+            "user_id": 1,
+            "fighter_id": 4,
+            "level": 2,
+            "active": "false",
+            "in_party": "true",
+            "extra_accuracy": 0,
+            "extra_max_hp": 0,
+            "extra_attack": 0,
+            "extra_special_attack": 0,
+            "extra_defense": 0,
+            "extra_special_defense": 0,
+            "current_xp": 800,
+            "fighters": {
+                "fighter_id": 4,
+                "img_back": "./assets/img/vegeta-back.gif",
+                "img_front": "./assets/img/vegeta-front.gif",
+                "name": "Vegeta",
+                "price": 100
+            },
+            "img_front": "./assets/img/vegeta-front.gif",
+            "img_back": "./assets/img/vegeta-back.gif"
+        },
+        {
+            "user_fighter_id": 28,
+            "user_id": 1,
+            "fighter_id": 6,
+            "level": 2,
+            "active": "false",
+            "in_party": "false",
+            "extra_accuracy": 0,
+            "extra_max_hp": 0,
+            "extra_attack": 0,
+            "extra_special_attack": 0,
+            "extra_defense": 0,
+            "extra_special_defense": 0,
+            "current_xp": 900,
+            "fighters": {
+                "fighter_id": 6,
+                "img_back": "./assets/img/michael3.gif",
+                "img_front": "./assets/img/michael-front.gif",
+                "name": "Michael",
+                "price": 100
+            },
+            "img_front": "./assets/img/michael-front.gif",
+            "img_back": "./assets/img/michael3.gif"
+        }
+    ],
+    "userobjects": [
+        {
+            "user_object_id": 2,
+            "user_id": 1,
+            "object_id": 7,
+            "quantity": 25911,
+            "objects": {
+                "name": "Money",
+                "description": "Money"
+            },
+            "name": "Money",
+            "description": "Money"
+        },
+        {
+            "user_object_id": 9,
+            "user_id": 1,
+            "object_id": 1,
+            "quantity": 8,
+            "objects": {
+                "name": "Potion",
+                "description": "Heals the user 2000 HP"
+            },
+            "name": "Potion",
+            "description": "Heals the user 2000 HP"
+        },
+        {
+            "user_object_id": 10,
+            "user_id": 1,
+            "object_id": 2,
+            "quantity": 12,
+            "objects": {
+                "name": "Super Potion",
+                "description": "Heals the user 5000 HP"
+            },
+            "name": "Super Potion",
+            "description": "Heals the user 5000 HP"
+        },
+        {
+            "user_object_id": 11,
+            "user_id": 1,
+            "object_id": 3,
+            "quantity": 1,
+            "objects": {
+                "name": "Milanesa",
+                "description": "Increases user defense by 150"
+            },
+            "name": "Milanesa",
+            "description": "Increases user defense by 150"
+        },
+        {
+            "user_object_id": 12,
+            "user_id": 1,
+            "object_id": 4,
+            "quantity": 1,
+            "objects": {
+                "name": "Huevo Duro",
+                "description": "Increases user attack by 100"
+            },
+            "name": "Huevo Duro",
+            "description": "Increases user attack by 100"
+        },
+        {
+            "user_object_id": 13,
+            "user_id": 1,
+            "object_id": 6,
+            "quantity": 1,
+            "objects": {
+                "name": "Coffee",
+                "description": "Increase special attack by 150"
+            },
+            "name": "Coffee",
+            "description": "Increase special attack by 150"
+        },
+        {
+            "user_object_id": 14,
+            "user_id": 1,
+            "object_id": 5,
+            "quantity": 1,
+            "objects": {
+                "name": "Dopamine",
+                "description": "Increase accuracy by 25"
+            },
+            "name": "Dopamine",
+            "description": "Increase accuracy by 25"
+        }
+    ]
+}
+let component
+beforeEach(() => {
+    const mockHandler = jest.fn();
+    // Renderiza FightMenu dentro de MyContextProvider con el contexto simulado
+    component = render(
+        <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler} />
+    );
+});
 test('renders FightMenu component', () => {
-    const mockHandler = jest.fn()
-  // Renderiza FightMenu dentro de MyContextProvider con el contexto simulado
-  const component = render(
-      <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler}/>
-  );
-
-  // Puedes agregar expectativas para asegurarte de que los elementos esperados estén presentes
-  const attacksButton = component.getByText("Attacks")
-  fireEvent.click(attacksButton)
-  component.findByAltText('subMenu')
-
+    // Puedes agregar expectativas para asegurarte de que los elementos esperados estén presentes
+    const attacksButton = component.getByText("Attacks")
+    fireEvent.click(attacksButton)
+    component.findByAltText('subMenu')
 });
 test('run button from fightMenu works', () => {
-    const mockHandler = jest.fn()
-    // Renderiza FightMenu dentro de MyContextProvider con el contexto simulado
-    const component = render(
-        <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler}/>
-    );
-  
     const runButton = component.getByText("Run")
     fireEvent.click(runButton)
 })
