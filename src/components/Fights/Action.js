@@ -1,5 +1,4 @@
 import classes from './Action.module.css'
-import { useState } from 'react'
 const Action = ({ action }) => {
     const actionIdentifier = {
         "current_hp": "/assets/img/HP.png",
