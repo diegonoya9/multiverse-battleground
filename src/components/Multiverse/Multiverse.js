@@ -59,21 +59,21 @@ const Multiverse = ({ changeActivePage }) => {
                 <div className={classes.mainMenu}>
                     <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
                     <div id="divWelcome" className={classes.divWelcome}>
-                        <h1 className={classes.h1}>Welcome {user.name}</h1>
-                        <h2 className={classes.h2}>You have {money} pesos</h2>
+                        <h1 className={classes.h1}>{t('multiverse.welcome')} {user.name}</h1>
+                        <h2 className={classes.h2}>{t('multiverse.money')} {money} pesos</h2>
                     </div>
                     <div className={classes.btnContainer} >
                         <Button value={t('multiverse.fight')} colorType="red" onClick={() => changeActivePage(2)}></Button>
-                        <Button value='Fighters' colorType="brown" onClick={(e) => {
+                        <Button value={t('multiverse.fighters')} colorType="brown" onClick={(e) => {
                             changeMultiverseActivePage('fighters');
                         }}></Button>
-                        <Button value='Bag' colorType="green" onClick={(e) => {
+                        <Button value={t('multiverse.bag')} colorType="green" onClick={(e) => {
                             changeMultiverseActivePage('bag');
                         }}></Button>
-                        <Button value='Shop' colorType="yellow" onClick={(e) => {
+                        <Button value={t('multiverse.shop')} colorType="yellow" onClick={(e) => {
                             changeMultiverseActivePage('shop');
                         }}></Button>
-                        <Button value='Users' colorType="blue" onClick={(e) => {
+                        <Button value={t('multiverse.users')} colorType="blue" onClick={(e) => {
                             changeMultiverseActivePage('users');
                         }}></Button>
                     </div>

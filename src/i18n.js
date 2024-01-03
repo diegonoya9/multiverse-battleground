@@ -20,14 +20,26 @@ i18n
       en: {
         translation: {
           multiverse: {
-            fight: 'Fight!'
+            fight: 'Fight!',
+            welcome: 'Welcome',
+            money: 'You have',
+            bag: "Bag",
+            shop: "Shop",
+            users: "Users",
+            fighters: "Fighters"
           }
         }
       },
       es: {
         translation: {
           multiverse: {
-            fight: 'A pelear!'
+            fight: 'A pelear!',
+            welcome: 'Hola',
+            money: 'Tienes',
+            bag: "Mochila",
+            shop: "Tienda",
+            users: "Usuarios",
+            fighters: "Luchadores"
           }
         }
       },
