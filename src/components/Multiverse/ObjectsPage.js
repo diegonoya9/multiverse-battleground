@@ -5,6 +5,7 @@ import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
 import Button from "../UI/Button";
 import ObjectCard from "../UI/ObjectCard";
 import { MyContext } from "../../context/MyContext";
+import { act } from 'react-dom/test-utils';
 const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     const [userObjects, setUserObjects] = useState()
     const audioStyle = {
@@ -13,11 +14,21 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     const { userContext } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
     useEffect(() => {
-        fetch(backEndUrl + '/alluserobjects/' + user.user_id)
-            .then((response) => response.json())
-            .then((data) => {
-                setUserObjects(data)
-            })
+        const fetchData = async () => {
+            try {
+                if (backEndUrl && user) {
+                    const response = await fetch(backEndUrl + '/alluserobjects/' + user.user_id);
+                    const data = await response.json();
+                    act(() => {
+                        setUserObjects(data);
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, [backEndUrl, user.user_id])
     return (<div className={classes.backgroundImg}>
         <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
