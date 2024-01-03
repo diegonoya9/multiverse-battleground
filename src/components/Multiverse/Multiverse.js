@@ -53,7 +53,7 @@ const Multiverse = ({ changeActivePage }) => {
             })
     }, [multiverseActivePage, activeUser])
     return (
-        <div className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >
+        <div alt='mainDiv' className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >
             {multiverseActivePage === 'mainMenu' && user &&
                 <div className={classes.mainMenu}>
                     <ReactAudioPlayer src={musicFile} autoPlay id="audioPlayer" controls style={audioStyle} />
