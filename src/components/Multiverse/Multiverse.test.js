@@ -2,7 +2,18 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import Multiverse from './Multiverse';
+// Importa i18next y las funciones necesarias
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
+// Configura i18next
+i18n.use(initReactI18next).init({
+  lng: 'en', // Configura el idioma deseado
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 // Mock del contexto para la prueba
 const mockUserContext = {
   idUsuario: 1,
@@ -14,6 +25,6 @@ test('renders multiverse component', () => {
   const component = render(<MyContextProvider value={{ userContext: mockUserContext }}>
     <Multiverse />
   </MyContextProvider>)
-    component.findByAltText('mainDiv')
+  component.findByAltText('mainDiv')
 
 });
