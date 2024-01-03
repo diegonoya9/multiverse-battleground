@@ -20,7 +20,7 @@ i18n
       en: {
         translation: {
           multiverse: {
-            fight: 'Fight!',
+            fight: 'Fight',
             welcome: 'Welcome',
             money: 'You have',
             bag: "Bag",
@@ -33,7 +33,7 @@ i18n
       es: {
         translation: {
           multiverse: {
-            fight: 'A pelear!',
+            fight: 'A pelear',
             welcome: 'Hola',
             money: 'Tienes',
             bag: "Mochila",
@@ -45,5 +45,12 @@ i18n
       },
     }
   });
-
+/*i18n.changeLanguage('es')
+  .then(() => {
+    console.log('Idioma cambiado a inglés');
+    // Puedes realizar acciones adicionales después de cambiar el idioma si es necesario
+  })
+  .catch(error => {
+    console.error('Error al cambiar el idioma', error);
+  });*/
 export default i18n;
