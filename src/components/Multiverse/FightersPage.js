@@ -6,7 +6,7 @@ import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
-const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
+const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const priceTags = document.querySelectorAll(".fighterPriceBlock")
     priceTags.forEach(tag => {
         tag.style.display = "none"
@@ -139,7 +139,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         setShowModal(true)
     }
     const deleteUserFighter = async (userFighterId) => {
-        let deleteFighter = await user.fighters.filter((fighter) => {
+       /* let deleteFighter = await user.fighters.filter((fighter) => {
             return fighter.userFighterId === userFighterId
         })
         let newFighters = user.fighters.filter((fighter) => {
@@ -152,14 +152,21 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
         newUser.objects[4].quantity = result
         newUser.fighters = newFighters
         setShowModal(false)
-        setShowConfirm(false)
+        setShowConfirm(false)*/
     }
-    const updateFighters = () => {
-        fetch(backEndUrl + "/alluserfighters/" + activeUser
-        ).then((response) => response.json())
-            .then(data => {
-                setFighters(data)
-            })
+    const fetchData = async () => {
+        try {
+            if (backEndUrl && activeUser) {
+                const response = await fetch(backEndUrl + '/alluserfighters/' + activeUser);
+                const data = await response.json();
+                setFighters(data);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    const updateFighters = async() => {       
+        await fetchData()
     }
 
     useEffect(() => {
@@ -169,7 +176,7 @@ const FightersPage = ({ user, changeMultiverseActivePage, updateUser }) => {
     useEffect(() => {
         updateFighters()
     }, [])
-    return (<div className={`${classes.body} ${classes.backgroundImg}`}>
+    return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
