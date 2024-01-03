@@ -8,8 +8,9 @@ import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
 import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
-
+import { useTranslation } from 'react-i18next';
 const Multiverse = ({ changeActivePage }) => {
+    const { t } = useTranslation();
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
@@ -62,7 +63,7 @@ const Multiverse = ({ changeActivePage }) => {
                         <h2 className={classes.h2}>You have {money} pesos</h2>
                     </div>
                     <div className={classes.btnContainer} >
-                        <Button value='Fight' colorType="red" onClick={() => changeActivePage(2)}></Button>
+                        <Button value={t('multiverse.fight')} colorType="red" onClick={() => changeActivePage(2)}></Button>
                         <Button value='Fighters' colorType="brown" onClick={(e) => {
                             changeMultiverseActivePage('fighters');
                         }}></Button>

@@ -191,7 +191,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                             :
                             <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value="Add to party"></Button>
                         }
-                        <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button>
+                        {/* <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button> */}
                     </div>
                     );
                 })}

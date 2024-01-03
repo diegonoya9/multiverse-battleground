@@ -279,7 +279,12 @@ beforeEach(async () => {
         );
     });
 })
-
+test('renders fighters page and selects First in Battle component', async () => {
+    const firstInBattleButton = component.getByText("First in battle")
+    await waitFor(() => {
+        fireEvent.click(firstInBattleButton)
+    });
+});
 test('renders fighters page component and removes from party', async () => {
     // Espera que la operación asíncrona se complete antes de realizar las verificaciones
     await waitFor(() => {
@@ -323,9 +328,4 @@ test('renders fighters page and selects a movement component', async () => {
     fireEvent.click(energyBallMovement)
     const actionInflictedOn=component.getByText("Inflicted on: enemy")
 });
-test('renders fighters page and selects First in Battle component', async () => {
-    const firstInBattleButton = component.getByText("First in battle")
-    await waitFor(() => {
-        fireEvent.click(firstInBattleButton)
-    });
-});
+
