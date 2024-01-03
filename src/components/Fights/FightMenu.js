@@ -16,7 +16,7 @@ const FightMenu = ({ user, userFighter, clickHandler, changeUserFighter, styleTy
         }
     }
     return (<div>
-        {subMenuActive ? <SubMenu styleType={styleType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
+        {subMenuActive ? <SubMenu alt="subMenu" styleType={styleType} user={user} changeUserFighter={changeUserFighter} userFighter={userFighter} clickHandler={clickHandler} toggleSubMenu={toggleSubMenu} selectedOption={selectedOption}></SubMenu> :
             <div className={classes.fightMenu}>
                 <div className={`${classes.fightMenuImg} ${classes[styleType]}`}>
                     <ul className={classes.optionsContainer}>
