@@ -1,130 +1,130 @@
 // FightersPage.test.js
 import React from 'react';
-import { render, waitFor, act ,fireEvent} from '@testing-library/react';
+import { render, waitFor, act, fireEvent, cleanup } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import FightersPage from './FightersPage';
 const user =
-	{
-		"user_id": 1,
-		"email": "lina@gmail.com",
-		"password": "123456",
-		"name": "Lina",
-		"money": 5000,
-		"avatar": "lina.jpg",
-		"profile": "Admin",
-		"userfighters": [
-			{
-				"user_fighter_id": 26,
-				"user_id": 1,
-				"fighter_id": 5,
-				"level": 5,
-				"active": "true",
-				"in_party": "true",
-				"extra_accuracy": 0,
-				"extra_max_hp": 0,
-				"extra_attack": 100000,
-				"extra_special_attack": 100000,
-				"extra_defense": 0,
-				"extra_special_defense": 0,
-				"current_xp": 3100,
-				"fighters": {
-					"fighter_id": 5,
-					"img_back": "./assets/img/mew-back.png",
-					"img_front": "./assets/img/mew-front.png",
-					"name": "Mew",
-					"price": 100
-				},
-				"img_front": "./assets/img/mew-front.png",
-				"img_back": "./assets/img/mew-back.png"
-			}
-		],
-		"userobjects": [
-			{
-				"user_object_id": 2,
-				"user_id": 1,
-				"object_id": 7,
-				"quantity": 25911,
-				"objects": {
-					"name": "Money",
-					"description": "Money"
-				},
-				"name": "Money",
-				"description": "Money"
-			},
-			{
-				"user_object_id": 9,
-				"user_id": 1,
-				"object_id": 1,
-				"quantity": 8,
-				"objects": {
-					"name": "Potion",
-					"description": "Heals the user 2000 HP"
-				},
-				"name": "Potion",
-				"description": "Heals the user 2000 HP"
-			},
-			{
-				"user_object_id": 10,
-				"user_id": 1,
-				"object_id": 2,
-				"quantity": 12,
-				"objects": {
-					"name": "Super Potion",
-					"description": "Heals the user 5000 HP"
-				},
-				"name": "Super Potion",
-				"description": "Heals the user 5000 HP"
-			},
-			{
-				"user_object_id": 11,
-				"user_id": 1,
-				"object_id": 3,
-				"quantity": 1,
-				"objects": {
-					"name": "Milanesa",
-					"description": "Increases user defense by 150"
-				},
-				"name": "Milanesa",
-				"description": "Increases user defense by 150"
-			},
-			{
-				"user_object_id": 12,
-				"user_id": 1,
-				"object_id": 4,
-				"quantity": 1,
-				"objects": {
-					"name": "Huevo Duro",
-					"description": "Increases user attack by 100"
-				},
-				"name": "Huevo Duro",
-				"description": "Increases user attack by 100"
-			},
-			{
-				"user_object_id": 13,
-				"user_id": 1,
-				"object_id": 6,
-				"quantity": 1,
-				"objects": {
-					"name": "Coffee",
-					"description": "Increase special attack by 150"
-				},
-				"name": "Coffee",
-				"description": "Increase special attack by 150"
-			},
-			{
-				"user_object_id": 14,
-				"user_id": 1,
-				"object_id": 5,
-				"quantity": 1,
-				"objects": {
-					"name": "Dopamine",
-					"description": "Increase accuracy by 25"
-				},
-				"name": "Dopamine",
-				"description": "Increase accuracy by 25"
-			}
-		]
-	}
+{
+    "user_id": 1,
+    "email": "lina@gmail.com",
+    "password": "123456",
+    "name": "Lina",
+    "money": 5000,
+    "avatar": "lina.jpg",
+    "profile": "Admin",
+    "userfighters": [
+        {
+            "user_fighter_id": 26,
+            "user_id": 1,
+            "fighter_id": 5,
+            "level": 5,
+            "active": "true",
+            "in_party": "true",
+            "extra_accuracy": 0,
+            "extra_max_hp": 0,
+            "extra_attack": 100000,
+            "extra_special_attack": 100000,
+            "extra_defense": 0,
+            "extra_special_defense": 0,
+            "current_xp": 3100,
+            "fighters": {
+                "fighter_id": 5,
+                "img_back": "./assets/img/mew-back.png",
+                "img_front": "./assets/img/mew-front.png",
+                "name": "Mew",
+                "price": 100
+            },
+            "img_front": "./assets/img/mew-front.png",
+            "img_back": "./assets/img/mew-back.png"
+        }
+    ],
+    "userobjects": [
+        {
+            "user_object_id": 2,
+            "user_id": 1,
+            "object_id": 7,
+            "quantity": 25911,
+            "objects": {
+                "name": "Money",
+                "description": "Money"
+            },
+            "name": "Money",
+            "description": "Money"
+        },
+        {
+            "user_object_id": 9,
+            "user_id": 1,
+            "object_id": 1,
+            "quantity": 8,
+            "objects": {
+                "name": "Potion",
+                "description": "Heals the user 2000 HP"
+            },
+            "name": "Potion",
+            "description": "Heals the user 2000 HP"
+        },
+        {
+            "user_object_id": 10,
+            "user_id": 1,
+            "object_id": 2,
+            "quantity": 12,
+            "objects": {
+                "name": "Super Potion",
+                "description": "Heals the user 5000 HP"
+            },
+            "name": "Super Potion",
+            "description": "Heals the user 5000 HP"
+        },
+        {
+            "user_object_id": 11,
+            "user_id": 1,
+            "object_id": 3,
+            "quantity": 1,
+            "objects": {
+                "name": "Milanesa",
+                "description": "Increases user defense by 150"
+            },
+            "name": "Milanesa",
+            "description": "Increases user defense by 150"
+        },
+        {
+            "user_object_id": 12,
+            "user_id": 1,
+            "object_id": 4,
+            "quantity": 1,
+            "objects": {
+                "name": "Huevo Duro",
+                "description": "Increases user attack by 100"
+            },
+            "name": "Huevo Duro",
+            "description": "Increases user attack by 100"
+        },
+        {
+            "user_object_id": 13,
+            "user_id": 1,
+            "object_id": 6,
+            "quantity": 1,
+            "objects": {
+                "name": "Coffee",
+                "description": "Increase special attack by 150"
+            },
+            "name": "Coffee",
+            "description": "Increase special attack by 150"
+        },
+        {
+            "user_object_id": 14,
+            "user_id": 1,
+            "object_id": 5,
+            "quantity": 1,
+            "objects": {
+                "name": "Dopamine",
+                "description": "Increase accuracy by 25"
+            },
+            "name": "Dopamine",
+            "description": "Increase accuracy by 25"
+        }
+    ]
+}
 
 const fighters = [
     {
@@ -279,6 +279,10 @@ beforeEach(async () => {
         );
     });
 })
+afterEach(() => {
+    global.fetch.mockRestore();
+    cleanup();
+});
 test('renders fighters page and selects First in Battle component', async () => {
     const firstInBattleButton = component.getByText("First in battle")
     await waitFor(() => {
@@ -286,21 +290,23 @@ test('renders fighters page and selects First in Battle component', async () => 
     });
 });
 test('renders fighters page component and removes from party', async () => {
-    // Espera que la operación asíncrona se complete antes de realizar las verificaciones
+    // Espera que la operaciï¿½n asï¿½ncrona se complete antes de realizar las verificaciones
     await waitFor(() => {
         component.getByText("Mew");
     });
-    // Resto de tu lógica de prueba aquí
+    // Resto de tu lï¿½gica de prueba aquï¿½
     const mainMenuButton = component.getByText("Back to Main Menu");
     const removeFromPartyButton = component.getByText("Remove from party")
     await waitFor(() => {
         fireEvent.click(removeFromPartyButton)
     });
-    // Realiza otras verificaciones según sea necesario
+    // Realiza otras verificaciones segï¿½n sea necesario
 });
 test('renders fighters page component and adds it to party', async () => {
-    // Espera que la operación asíncrona se complete antes de realizar las verificaciones
-    fighters[0].in_party="false"
+    const clonedFighters = fighters.slice(); // Clona el arreglo
+
+    // Modifica el clon en lugar del arreglo original
+    clonedFighters[0].in_party = "false";
     global.fetch = jest.fn().mockResolvedValue({
         json: jest.fn().mockResolvedValue(fighters)
     });
@@ -317,15 +323,15 @@ test('renders fighters page component and adds it to party', async () => {
     await waitFor(() => {
         fireEvent.click(addToPartyButton)
     });
-    // Realiza otras verificaciones según sea necesario
+    // Realiza otras verificaciones segï¿½n sea necesario
 });
 test('renders fighters page and selects a movement component', async () => {
     const viewMovements = component.getByText("View movements")
     await waitFor(() => {
         fireEvent.click(viewMovements)
     });
-    const energyBallMovement=component.getByText("Energy Ball")
+    const energyBallMovement = component.getByText("Energy Ball")
     fireEvent.click(energyBallMovement)
-    const actionInflictedOn=component.getByText("Inflicted on: enemy")
+    const actionInflictedOn = component.getByText("Inflicted on: enemy")
 });
 
