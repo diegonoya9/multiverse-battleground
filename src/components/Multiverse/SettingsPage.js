@@ -1,9 +1,9 @@
 import classes from './SettingsPage.module.css'
 import Button from '../UI/Button'
-import { useState , useContext} from 'react';
+import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MyContext } from '../../context/MyContext';
-const SettingsPage = ({ changeMultiverseActivePage, user,updateUser }) => {
+const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
     const { t } = useTranslation();
     const { userContext } = useContext(MyContext);
     const backEndUrl = userContext.backEndUrl
@@ -19,14 +19,20 @@ const SettingsPage = ({ changeMultiverseActivePage, user,updateUser }) => {
             sound: volumes.sound,
             sfx: volumes.sfx,
         }]
-        fetch(backEndUrl+'/updateuserconfig',{
-            method:"POST",
+        fetch(backEndUrl + '/updateuserconfig', {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(parameters)
+            body: JSON.stringify(parameters)
         }).then(() => {
             updateUser()
+        })
+    }
+    const handleVolumeChange = (origin, event) => {
+        const newVolume = parseInt(event.target.value);
+        setVolumes((prevValue) => {
+            return { ...prevValue, [origin]: newVolume }
         })
     }
     const changeVolume = (origin, action) => {
@@ -53,8 +59,18 @@ const SettingsPage = ({ changeMultiverseActivePage, user,updateUser }) => {
             {volumes && Object.entries(volumes).map(([key, value]) => (
                 <div key={key}>
                     {t(`settingspage.${key}`)} : {volumes[key]}
-                    <Button value="-" onClick={() => changeVolume(key, "decrease")} />
-                    <Button value="+" onClick={() => changeVolume(key, "increase")} />
+                    <div>
+                        <Button value="-" onClick={() => changeVolume(key, "decrease")} />
+                        <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            step="1"
+                            value={value}
+                            onChange={(event) => handleVolumeChange(key, event)}
+                        />
+                        <Button value="+" onClick={() => changeVolume(key, "increase")} />
+                    </div>
                 </div>
             ))}
             <Button colorType="lightgreen" value={t('settingspage.save')} onClick={() => { saveChanges() }}></Button>

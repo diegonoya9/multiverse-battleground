@@ -23,6 +23,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const [allowCloseModal, setAllowCloseModal] = useState(true)
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
+    let bg = userContext.bg
     const audioStyle = {
         display: 'none',
     };
@@ -197,7 +198,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
-            <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+            <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />
             {fighters &&
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>

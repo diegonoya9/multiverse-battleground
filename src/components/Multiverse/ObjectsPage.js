@@ -13,6 +13,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
     };
     const { userContext } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
+    let bg = userContext.bg
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,7 +32,7 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
         fetchData();
     }, [backEndUrl, user.user_id])
     return (<div className={classes.backgroundImg}>
-        <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+        <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             {userObjects &&

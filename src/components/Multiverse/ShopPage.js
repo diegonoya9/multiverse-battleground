@@ -7,7 +7,7 @@ import musicFile from "../../assets/sounds/music/OverNow.WAV"
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 import ObjectCard from "../UI/ObjectCard";
-const ShopPage = ({ changeMultiverseActivePage }) => {
+const ShopPage = ({changeMultiverseActivePage }) => {
     const modalPurchaseConfirmed = <div><h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
         <button className={classes.modalButton} onClick={() => setShowModal(false)}>
             Keep Buying
@@ -16,6 +16,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
+    let bg = userContext.bg
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
     const [modalContent, setModalContent] = useState()
@@ -107,7 +108,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then((data) => { setFighters(data) })
     }, [activeUser, backEndUrl])
     return (<div className={classes.backgroundImg}>
-        <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
+        {user && <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         {user && <h1 className={classes.divBackground}>Current money:{user.userobjects.map((object) => {
             if (object.name === "Money") {
