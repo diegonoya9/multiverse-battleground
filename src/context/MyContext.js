@@ -6,9 +6,9 @@ const MyContextProvider = ({ children }) => {
     const [userContext, setUserContext] = useState({
         idUsuario: 1,
         userName: "",
-        bg:100,
-        sfx:100,
-        sound:100,
+        bg:0,
+        sfx:0,
+        sound:0,
         backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battlegorund-back.onrender.com/api" // Otros datos relacionados con el usuario si es necesario
     });
 
