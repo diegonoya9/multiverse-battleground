@@ -18,12 +18,8 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const { userContext } = useContext(MyContext);
     const [fighters, setFighters] = useState()
     const [moves, setMoves] = useState()
-    const [actions, setActions] = useState()
-    const [showMoves, setShowMoves] = useState(false)
-    const [showActions, setShowActions] = useState(false)
-    const [showConfirm, setShowConfirm] = useState(false)
-    const [showNotInParty, setShowNotInParty] = useState(false)
-    const [userFighterId, setUserFighterId] = useState(false)
+    /*const [showConfirm, setShowConfirm] = useState(false)
+    const [userFighterId, setUserFighterId] = useState(false)*/
     const [allowCloseModal, setAllowCloseModal] = useState(true)
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
@@ -32,11 +28,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     };
     const closeModal = () => {
         if (allowCloseModal) {
-            setShowActions(false)
-            setShowMoves(false)
             setShowModal(false)
-            setShowConfirm(false)
-            setShowNotInParty(false)
             setModalContent()
         }
     }
@@ -160,9 +152,9 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         })
     }
     const deleteFighter = (userFighterId) => {
-        setUserFighterId(userFighterId)
+       /* setUserFighterId(userFighterId)
         setShowConfirm(true)
-        setShowModal(true)
+        setShowModal(true)*/
     }
     const deleteUserFighter = async (userFighterId) => {
         /* let deleteFighter = await user.fighters.filter((fighter) => {
@@ -203,7 +195,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         updateFighters()
     }, [])
     return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
-        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+        <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {fighters &&
@@ -222,12 +214,12 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                     );
                 })}
         </div>
-        {showModal && !modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
+        {/*showModal && !modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {showConfirm && <div>
                 <h3>Are you sure you want to sell this fighter?</h3>
                 <Button onClick={() => deleteUserFighter(userFighterId)}>Sell</Button>
             </div>}
-        </Modal>}
+            </Modal>*/}
         {showModal && modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {modalContent}
         </Modal>}

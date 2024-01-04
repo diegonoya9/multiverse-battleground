@@ -8,7 +8,6 @@ import i18n from '../../i18n';
 
 beforeAll(() => {
     i18n.use(initReactI18next)
-
 });
 const user =
 {

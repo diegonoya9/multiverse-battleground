@@ -34,6 +34,11 @@ i18n
             setFirst: "Set First",
             back: "Back to Main Menu",
             viewMovements: "View Movements"
+          },
+          home:{
+            welcome:"Welcomeas to the Multiverse Battleground",
+            getReady:"Get ready for epic battles!",
+            start:"Start Adventure!"
           }
         }
       },
@@ -54,6 +59,11 @@ i18n
             setFirst: "Seleccionar primero",
             back: "Volver al Menú Principal",
             viewMovements: "Ver Ataques"
+          },
+          home:{
+            welcome:"Bienvenido al Multiverse Battleground",
+            getReady:"Preparate para batallas épicas!!",
+            start:"Empezar Aventura!"
           }
         }
       },
