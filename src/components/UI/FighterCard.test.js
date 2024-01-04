@@ -2,6 +2,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import FighterCard from './FighterCard';
+import { initReactI18next } from 'react-i18next';
+import i18n from '../../i18n';
+
+beforeAll(() => {
+    i18n.use(initReactI18next)
+});
 const fighter=
 	{
 		"user_fighter_id": 26,

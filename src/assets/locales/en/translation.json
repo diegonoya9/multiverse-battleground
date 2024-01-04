@@ -33,5 +33,16 @@
     "sound": "Sounds volume",
     "sfx": "SFX volume",
     "save": "Save changes"
+  },
+  "fightercard":{
+    "price":"Price",
+    "level":"Level",
+    "hp":"MAX HP",
+    "xp":"CURRENT XP",
+    "attack":"ATTACK",
+    "specialAttack":"SPECIAL ATTACK",
+    "defense":"DEFENSE",
+    "specialDefense":"SPECIAL DEFENSE",
+    "accuracy":"ACCURACY"
   }
 }

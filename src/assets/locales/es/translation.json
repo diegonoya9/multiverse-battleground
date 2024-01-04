@@ -33,5 +33,16 @@
         "sound": "Volumen de sonidos de interfaz",
         "sfx": "Volumen de Efectos Especiales",
         "save": "Guardar cambios"
+    },
+    "fightercard": {
+        "price": "Precio",
+        "level":"Nivel",
+        "hp":"VIDA",
+        "xp":"EXP",
+        "attack":"ATAQUE",
+        "specialAttack":"ATAQUE ESPECIAL",
+        "defense":"DEFENSA",
+        "specialDefense":"DEFENSA ESPECIAL",
+        "accuracy":"PUNTERÍA"
     }
 }
