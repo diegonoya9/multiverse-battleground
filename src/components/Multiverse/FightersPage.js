@@ -9,10 +9,6 @@ import FighterCard from "../UI/FighterCard";
 import { useTranslation } from 'react-i18next';
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const { t } = useTranslation();
-    const priceTags = document.querySelectorAll(".fighterPriceBlock")
-    priceTags.forEach(tag => {
-        tag.style.display = "none"
-    });;
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState()
     const { userContext } = useContext(MyContext);
@@ -202,7 +198,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
             {fighters &&
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
-                        <FighterCard fighter={fighter}></FighterCard>
+                        <FighterCard fighter={fighter} showPrice={false}></FighterCard>
                         <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
                         <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value={t('fighterspage.viewMovements')}></Button>
                         {fighter.in_party === "true" ?

@@ -1,6 +1,6 @@
 // ObjectsPage.test.js
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup,act } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import ObjectsPage from './ObjectsPage';
 afterEach(() => {
@@ -35,18 +35,21 @@ const objects = [
     "img": "./assets/img/money.png"
   }
 ]
+let component
 const user = { user_id: 1 }
-test('renders objects page component', () => {
+test('renders objects page component', async() => {
   global.fetch = jest.fn().mockResolvedValue({
     json: jest.fn().mockResolvedValue(objects)
   });
   // Renderiza ObjectsPage dentro de MyContextProvider con el contexto simulado
-  const { getByText } = render(
-    <MyContextProvider value={{ userContext: mockUserContext }}>
-      <ObjectsPage user={user} />
-    </MyContextProvider>
+  await act(async () => {
+    component = render(
+      <MyContextProvider value={{ userContext: mockUserContext }}>
+            <ObjectsPage user={user} />
+      </MyContextProvider>
   );
+  })
 
   // Puedes agregar expectativas para asegurarte de que los elementos esperados est�n presentes
-  expect(getByText(/Back to Main Menu/)).toBeInTheDocument();
+  component.getByText("Back to Main Menu")
 });

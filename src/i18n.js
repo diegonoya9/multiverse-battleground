@@ -42,9 +42,10 @@ i18n
             getReady:"Get ready for epic battles!",
             start:"Start Adventure!"
           },
-          objectspage:{
+          objectscard:{
+            price:"Price",
             quantity:"Quantity",
-            description:"Description"
+            description:"Description",
           },
           settingspage:{
             back:"Back to Main Menu",
@@ -80,7 +81,8 @@ i18n
             getReady:"Preparate para batallas épicas!!",
             start:"Empezar Aventura!"
           },
-          objectspage:{
+          objectscard:{
+            price:"Precio",
             quantity:"Cantidad",
             description:"Descripción"
           },
