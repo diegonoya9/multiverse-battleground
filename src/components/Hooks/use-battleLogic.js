@@ -293,7 +293,7 @@ const useBattleLogic = (setShowLevelUp) => {
                     quantity: object.quantity
                 }]
                 await fetch(backEndUrl + "/udpateuserobjectsbattle", {
-                    method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -304,7 +304,19 @@ const useBattleLogic = (setShowLevelUp) => {
             levelUpFighter(newCurrentXP, newLevel, battleEnded.winner === "user", increaseFightsWon)
         }
         if (battleEnded.finished && battleEnded.winner !== "user" && userFighter) {
-            console.log(user.user_id)
+            const result = user.objects.map(async (object) => {
+                const parameters = [{
+                    id: object.user_object_id,
+                    quantity: object.quantity
+                }]
+                await fetch(backEndUrl + "/udpateuserobjectsbattle", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(parameters),
+                })
+            })
             levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user", increaseFightsWon)
         }
     }, [battleEnded, userFighter])
