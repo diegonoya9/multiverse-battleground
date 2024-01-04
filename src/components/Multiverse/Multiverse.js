@@ -2,6 +2,7 @@ import { memo, useState, useEffect, useContext } from "react"
 import FightersPage from "./FightersPage.js"
 import ObjectsPage from "./ObjectsPage.js"
 import UsersPage from './UsersPage.js'
+import SettingsPage from './SettingsPage.js'
 import classes from './Multiverse.module.css'
 import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
@@ -74,6 +75,9 @@ const Multiverse = ({ changeActivePage }) => {
                         <Button value={t('multiverse.shop')} colorType="yellow" onClick={(e) => {
                             changeMultiverseActivePage('shop');
                         }}></Button>
+                        <Button value={t('multiverse.config')} colorType="blue" onClick={(e) => {
+                            changeMultiverseActivePage('config');
+                        }}></Button>
                         <Button value={t('multiverse.users')} colorType="blue" onClick={(e) => {
                             changeMultiverseActivePage('users');
                         }}></Button>
@@ -86,6 +90,7 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
             {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
+            {multiverseActivePage === "config" && <SettingsPage updateUser={updateUser}user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></SettingsPage>}
         </div >
     )
 }

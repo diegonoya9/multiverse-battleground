@@ -26,7 +26,8 @@ i18n
             bag: "Bag",
             shop: "Shop",
             users: "Users",
-            fighters: "Fighters"
+            fighters: "Fighters",
+            config:"Settings"
           },
           fighterspage: {
             removeFromParty: "Remove from party",
@@ -43,6 +44,13 @@ i18n
           objectspage:{
             quantity:"Quantity",
             description:"Description"
+          },
+          settingspage:{
+            back:"Back to Main Menu",
+            bg:"Background Music volume",
+            sound:"Sounds volume",
+            sfx:"SFX volume",
+            save:"Save changes"
           }
         }
       },
@@ -55,7 +63,8 @@ i18n
             bag: "Mochila",
             shop: "Tienda",
             users: "Usuarios",
-            fighters: "Luchadores"
+            fighters: "Luchadores",
+            config:"Opciones"
           },
           fighterspage: {
             removeFromParty: "Quitar del equipo",
@@ -72,6 +81,13 @@ i18n
           objectspage:{
             quantity:"Cantidad",
             description:"Descripción"
+          },
+          settingspage:{
+            back:"Volver al Menú Principal",
+            bg:"Volúmen de Música de ambiente",
+            sound:"Volúmen de sonidos de interfaz",
+            sfx:"Volúmen de Efectos Especiales",
+            save:"Guardar cambios"
           }
         }
       },
