@@ -7,7 +7,9 @@ import musicFile from "../../assets/sounds/music/OverNow.WAV"
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 import ObjectCard from "../UI/ObjectCard";
+import { useTranslation } from 'react-i18next';
 const ShopPage = ({changeMultiverseActivePage }) => {
+    const { t } = useTranslation();
     const modalPurchaseConfirmed = <div><h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
         <button className={classes.modalButton} onClick={() => setShowModal(false)}>
             Keep Buying
