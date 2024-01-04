@@ -10,6 +10,7 @@ const Modal = ({ onClose, backgroundColor, color, children, styleType }) => {
         const handleClickOutside = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
                 onClose();
+                console.log(modalRef.current.contains(event.target))
             }
         };
         document.addEventListener('mousedown', handleClickOutside);

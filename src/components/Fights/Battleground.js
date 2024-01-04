@@ -291,7 +291,7 @@ const Battleground = ({ changeActivePage }) => {
         if (Sfx && user) {
             audioSfx.play()
         }
-    }, [Sfx,user])
+    }, [Sfx, user])
     useEffect(() => {
         // Llamada a la función para generar y guardar los niveles
         //generateLevels();
@@ -300,14 +300,14 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div alt="battlegroundBackground" className={`${classes.battleground} ${classes[battlegroundType]}`}>
-            {!userFighter && !enemyFighter && <Loading/>}
+            {!userFighter && !enemyFighter && <Loading />}
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
-            {song &&user && <ReactAudioPlayer src={`${song}`} id="audioPlayer" volume={bg/100}  autoPlay controls style={audioStyle} />}
-            {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`}volume={sfx/100} id="audioSfxPlayer" controls style={audioStyle} />}
+            {song && user && <ReactAudioPlayer src={`${song}`} id="audioPlayer" volume={bg / 100} autoPlay controls style={audioStyle} />}
+            {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} volume={sfx / 100} id="audioSfxPlayer" controls style={audioStyle} />}
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflicted_on === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflicted_on === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
-                <Modal color="white" styleType={battlegroundType} onClose={() => restartGame()}>
+                <Modal color="white" styleType={battlegroundType} onClose={() => console.log('esperando respuesta')}>
                     {showLevelUp && <h2 className={classes[battlegroundType]}>Tu {userFighter.name} subió de nivel</h2>}
                     {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{userName} WON</h2>}
                     {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>Enemy WON</h2>}
