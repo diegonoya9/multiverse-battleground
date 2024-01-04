@@ -1,7 +1,7 @@
 import classes from "./FightersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../UI/Modal";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
@@ -41,11 +41,10 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         }
     }
     const addToParty = (userFighterId) => {
-        let newUser = user
         let cant = 0
         let cantExceeded = false
         /* Checks if there are already 4 fighters in the party */
-        newUser.userfighters.forEach((fighter) => {
+        fighters.forEach((fighter) => {
             if (fighter.in_party === "true") {
                 cant++
             }
@@ -55,6 +54,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         })
         if (cantExceeded) {
             setAllowCloseModal(true)
+            setModalContent("Can't add more than 4 members to the party.")
             setShowModal(true)
         } else {
             const parameters = [{
@@ -99,13 +99,34 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 actions.push(move.actionmoves)
             }
         })
-        setActions(actions[0])
-        setShowActions(true)
-        setShowModal(true)
+        setAllowCloseModal(true)
+        if (actions[0]) {
+            setModalContent(actions[0].map((action, index) => {
+                return <div key={Math.random()} >
+                    <p>Action: {index + 1}</p>
+                    <p>Inflicted on: {action.inflicted_on}</p>
+                    <p>Type: {action.attack_type}</p>
+                    <p>Field: {action.field}</p>
+                    <p>Value: {action.value}</p>
+                </div>
+            }))
+            setShowModal(true)
+        }
     }
+    useEffect(() => {
+        if (moves) {
+            setModalContent(
+                <ul>{moves.map((move) => {
+                    return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
+                        {move.name}
+                    </Button>
+                })} </ul>
+            )
+        }
+    }, [moves])
     const viewMovements = (user_fighter_id) => {
         let moves = []
-        fighters.forEach((fighter, index) => {
+        fighters.forEach((fighter) => {
             if (fighter.user_fighter_id === user_fighter_id) {
                 fighter.moves.forEach((move) => {
                     moves.push(move.moves)
@@ -114,9 +135,12 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         })
         setAllowCloseModal(true)
         setMoves(moves)
-        setShowMoves(true)
-        setShowModal(true)
     }
+    useEffect(() => {
+        if (modalContent) {
+            setShowModal(true)
+        }
+    }, [modalContent])
     const setFirstFighter = (user_fighter_id) => {
         const parameters = [{
             user_id: user.user_id,
@@ -186,7 +210,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                         <FighterCard fighter={fighter}></FighterCard>
-                        <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setShowNotInParty(true); setShowModal(true) } }} value={t('fighterspage.setFirst')}></Button>
+                        <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
                         <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value={t('fighterspage.viewMovements')}></Button>
                         {fighter.in_party === "true" ?
                             <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
@@ -199,28 +223,10 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 })}
         </div>
         {showModal && !modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
-            {showMoves && moves && !showConfirm && !showActions && <ul>{moves.map((move) => {
-                return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
-                    {move.name}
-                </Button>
-            })} </ul>}
-            {showActions && actions &&
-                actions.map((action, index) => {
-                    return <div key={Math.random()} >
-                        <p>Action: {index + 1}</p>
-                        <p>Inflicted on: {action.inflicted_on}</p>
-                        <p>Type: {action.attack_type}</p>
-                        <p>Field: {action.field}</p>
-                        <p>Value: {action.value}</p>
-                    </div>
-                })
-            }
-            {!showMoves && !showConfirm && !showNotInParty && !modalContent && < h1 > No se puede bro.. máximo 4</h1>}
             {showConfirm && <div>
                 <h3>Are you sure you want to sell this fighter?</h3>
                 <Button onClick={() => deleteUserFighter(userFighterId)}>Sell</Button>
             </div>}
-            {showNotInParty && < h1 > Hay que agregarlo al party primero</h1>}
         </Modal>}
         {showModal && modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {modalContent}

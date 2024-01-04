@@ -299,21 +299,18 @@ test('renders fighters page and selects First in Battle component', async () => 
     });
 });
 test('renders fighters page component and removes from party', async () => {
-    // Espera que la operaci�n as�ncrona se complete antes de realizar las verificaciones
+    // Espera que la operación asíncrona se complete antes de realizar las verificaciones
     await waitFor(() => {
         component.getByText("Mew");
     });
-    // Resto de tu l�gica de prueba aqu�
     const mainMenuButton = component.getByText("Back to Main Menu");
     const removeFromPartyButton = component.getByText(i18n.t('fighterspage.removeFromParty'))
     await waitFor(() => {
         fireEvent.click(removeFromPartyButton)
     });
-    // Realiza otras verificaciones seg�n sea necesario
 });
 test('renders fighters page component and adds it to party', async () => {
     const clonedFighters = fighters.slice(); // Clona el arreglo
-
     // Modifica el clon en lugar del arreglo original
     clonedFighters[0].in_party = "false";
     global.fetch = jest.fn().mockResolvedValue({
@@ -332,7 +329,7 @@ test('renders fighters page component and adds it to party', async () => {
     await waitFor(() => {
         fireEvent.click(addToPartyButton)
     });
-    // Realiza otras verificaciones seg�n sea necesario
+    // Realiza otras verificaciones según sea necesario
 });
 test('renders fighters page and selects a movement component', async () => {
     const viewMovements = component.getByText(i18n.t('fighterspage.viewMovements'))
