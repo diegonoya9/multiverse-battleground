@@ -307,7 +307,7 @@ const Battleground = ({ changeActivePage }) => {
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflicted_on === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflicted_on === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
-                <Modal color="white" styleType={battlegroundType} onClose={() => console.log('esperando respuesta')}>
+                <Modal color="white" styleType={battlegroundType} onClose={() => { return }}>
                     {showLevelUp && <h2 className={classes[battlegroundType]}>Tu {userFighter.name} subió de nivel</h2>}
                     {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{userName} WON</h2>}
                     {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>Enemy WON</h2>}
