@@ -2,6 +2,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import ObjectCard from './ObjectCard';
+import { initReactI18next } from 'react-i18next';
+import i18n from '../../i18n';
+
+beforeAll(() => {
+    i18n.use(initReactI18next)
+});
 const object={
     "user_object_id": 2,
     "user_id": 1,

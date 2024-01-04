@@ -1,15 +1,17 @@
 import classes from './ObjectCard.module.css'
+import { useTranslation } from 'react-i18next';
 const ObjectCard = ({ object, showPrice }) => {
+    const { t } = useTranslation();
     return (
         <div className={classes.card} key={object.id} >
             <div className={` ${classes.face} ${classes.front}`}>
                 {showPrice && <p className={classes.spanStats}>Price:{object.price}</p>}
                 <img alt="object" src={object.img} className={classes.objectImg} />
                 <h3 className={`${classes.objectName} ${classes.title} `}>{object.name}</h3>
-                <h2 className={classes.spanStats}>Quantity:{object.quantity}</h2>
+                <h2 className={classes.spanStats}>{t('objectspage.quantity')}:{object.quantity}</h2>
             </div>
             <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${object.active === "true" && classes.active}`} key={`${object.id}stats`}>
-                <span className={classes.spanStats}>Description:{object.description}</span>
+                <span className={classes.spanStats}>{t('objectspage.description')}:{object.description}</span>
             </div>
         </div >
     )

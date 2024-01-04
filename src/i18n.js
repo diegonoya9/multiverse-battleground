@@ -39,6 +39,10 @@ i18n
             welcome:"Welcomeas to the Multiverse Battleground",
             getReady:"Get ready for epic battles!",
             start:"Start Adventure!"
+          },
+          objectspage:{
+            quantity:"Quantity",
+            description:"Description"
           }
         }
       },
@@ -64,6 +68,10 @@ i18n
             welcome:"Bienvenido al Multiverse Battleground",
             getReady:"Preparate para batallas épicas!!",
             start:"Empezar Aventura!"
+          },
+          objectspage:{
+            quantity:"Cantidad",
+            description:"Descripción"
           }
         }
       },
