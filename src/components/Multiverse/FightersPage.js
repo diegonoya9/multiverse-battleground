@@ -139,7 +139,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
             user_id: user.user_id,
             user_fighter_id
         }]
-        setModalContent('Assigning first fighter')
+        setModalContent(t('fighterspage.assigningFirst'))
         setShowModal(true)
         setAllowCloseModal(false)
         fetch(backEndUrl + "/setfirstfighter", {

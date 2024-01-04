@@ -34,7 +34,8 @@ i18n
             addToParty: "Add to party",
             setFirst: "Set First",
             back: "Back to Main Menu",
-            viewMovements: "View Movements"
+            viewMovements: "View Movements",
+            assigningFirst:"Assigning first fighter"
           },
           home:{
             welcome:"Welcomeas to the Multiverse Battleground",
@@ -71,7 +72,8 @@ i18n
             addToParty: "Agregar al equipo",
             setFirst: "Seleccionar primero",
             back: "Volver al Menú Principal",
-            viewMovements: "Ver Ataques"
+            viewMovements: "Ver Ataques",
+            assigningFirst:"Seleccionando primer luchador"
           },
           home:{
             welcome:"Bienvenido al Multiverse Battleground",
