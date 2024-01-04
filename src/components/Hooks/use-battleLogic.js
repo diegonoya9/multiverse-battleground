@@ -150,11 +150,11 @@ const useBattleLogic = (setShowLevelUp) => {
                                     return newState
                                 })
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
-                                    newAction.value -= userFighter.attack
+                                    newAction.value -= 1000000
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 if (action.attack_type === "special" && action.field === "current_hp") {
-                                    newAction.value -= userFighter.special_attack
+                                    newAction.value -= 1000000
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 setUserAttacked({ "active": "user", "sfx": option.moves.sfx, 'totalDamage': newAction.value })
@@ -283,9 +283,28 @@ const useBattleLogic = (setShowLevelUp) => {
                     setShowLevelUp(true)
                 }
             })
+            console.log(user.objects)
+            const result = user.objects.map(async (object) => {
+                console.log('Id del objeto', object.user_object_id)// con estos 2 tengo que hacer un POST a la tabla de userObjects
+                console.log('cantidad del objeto', object.quantity)// con estos 2 tengo que hacer un POST a la tabla de userObjects
+
+                const parameters = [{
+                    id: object.user_object_id,
+                    quantity: object.quantity
+                }]
+                await fetch(backEndUrl + "/udpateuserobjectsbattle", {
+                    method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(parameters),
+                })
+            })
+            //Hacer un POST de este result al apiControllers.upadateUserObjects
             levelUpFighter(newCurrentXP, newLevel, battleEnded.winner === "user", increaseFightsWon)
         }
         if (battleEnded.finished && battleEnded.winner !== "user" && userFighter) {
+            console.log(user.user_id)
             levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user", increaseFightsWon)
         }
     }, [battleEnded, userFighter])
