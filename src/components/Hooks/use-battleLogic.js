@@ -150,10 +150,12 @@ const useBattleLogic = (setShowLevelUp) => {
                                     return newState
                                 })
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
+                                    //newAction.value -= 100000
                                     newAction.value -= userFighter.attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 if (action.attack_type === "special" && action.field === "current_hp") {
+                                    //newAction.value -= 100000
                                     newAction.value -= userFighter.special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
@@ -285,9 +287,6 @@ const useBattleLogic = (setShowLevelUp) => {
             })
             console.log(user.objects)
             const result = user.objects.map(async (object) => {
-                console.log('Id del objeto', object.user_object_id)// con estos 2 tengo que hacer un POST a la tabla de userObjects
-                console.log('cantidad del objeto', object.quantity)// con estos 2 tengo que hacer un POST a la tabla de userObjects
-
                 const parameters = [{
                     id: object.user_object_id,
                     quantity: object.quantity
