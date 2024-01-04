@@ -9,6 +9,7 @@ import Button from '../UI/Button.js'
 import LifeBar from './LifeBar'
 import ActionsList from './ActionsList.js'
 import { MyContext } from '../../context/MyContext.js'
+import Loading from '../UI/Loading.js'
 
 const Battleground = ({ changeActivePage }) => {
     const audioStyle = {
@@ -297,6 +298,7 @@ const Battleground = ({ changeActivePage }) => {
 
     return (
         <div alt="battlegroundBackground" className={`${classes.battleground} ${classes[battlegroundType]}`}>
+            {!userFighter && !enemyFighter && <Loading/>}
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && <ReactAudioPlayer src={`${song}`} id="audioPlayer" autoPlay controls style={audioStyle} />}
             {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} id="audioSfxPlayer" controls style={audioStyle} />}

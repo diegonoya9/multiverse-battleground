@@ -9,6 +9,7 @@ import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
 import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
 import { useTranslation } from 'react-i18next';
+import Loading from "../UI/Loading.js"
 const Multiverse = ({ changeActivePage }) => {
     const { t } = useTranslation();
     const audioStyle = {
@@ -79,6 +80,7 @@ const Multiverse = ({ changeActivePage }) => {
                     </div>
                 </div>
             }
+            {multiverseActivePage === "mainMenu" && !user && <Loading></Loading>}
             {multiverseActivePage === "fighters" && <FightersPage
                 updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
