@@ -1,0 +1,37 @@
+{
+  "multiverse": {
+    "fight": "Fight",
+    "welcome": "Welcome",
+    "money": "You have",
+    "bag": "Bag",
+    "shop": "Shop",
+    "users": "Users",
+    "fighters": "Fighters",
+    "config": "Settings"
+  },
+  "fighterspage": {
+    "removeFromParty": "Remove from party",
+    "addToParty": "Add to party",
+    "setFirst": "Set First",
+    "back": "Back to Main Menu",
+    "viewMovements": "View Movements",
+    "assigningFirst": "Assigning first fighter"
+  },
+  "home": {
+    "welcome": "Welcome to the Multiverse Battleground",
+    "getReady": "Get ready for epic battles!",
+    "start": "Start Adventure!"
+  },
+  "objectscard": {
+    "price": "Price",
+    "quantity": "Quantity",
+    "description": "Description"
+  },
+  "settingspage": {
+    "back": "Back to Main Menu",
+    "bg": "Background Music volume",
+    "sound": "Sounds volume",
+    "sfx": "SFX volume",
+    "save": "Save changes"
+  }
+}

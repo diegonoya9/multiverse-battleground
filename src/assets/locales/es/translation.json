@@ -1,0 +1,37 @@
+{
+    "multiverse": {
+        "fight": "A pelear",
+        "welcome": "Hola",
+        "money": "Tienes",
+        "bag": "Mochila",
+        "shop": "Tienda",
+        "users": "Usuarios",
+        "fighters": "Luchadores",
+        "config": "Opciones"
+    },
+    "fighterspage": {
+        "removeFromParty": "Quitar del equipo",
+        "addToParty": "Agregar al equipo",
+        "setFirst": "Seleccionar primero",
+        "back": "Volver al Menú Principal",
+        "viewMovements": "Ver Ataques",
+        "assigningFirst": "Seleccionando primer luchador"
+    },
+    "home": {
+        "welcome": "Bienvenido al Multiverse Battleground",
+        "getReady": "Prepárate para batallas épicas!!",
+        "start": "Empezar Aventura!"
+    },
+    "objectscard": {
+        "price": "Precio",
+        "quantity": "Cantidad",
+        "description": "Descripción"
+    },
+    "settingspage": {
+        "back": "Volver al Menú Principal",
+        "bg": "Volumen de Música de ambiente",
+        "sound": "Volumen de sonidos de interfaz",
+        "sfx": "Volumen de Efectos Especiales",
+        "save": "Guardar cambios"
+    }
+}

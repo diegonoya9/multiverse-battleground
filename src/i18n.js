@@ -1,7 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-
+import enTranslations from './assets/locales/en/translation.json';
+import esTranslations from './assets/locales/es/translation.json';
 i18n
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
@@ -18,82 +19,10 @@ i18n
     },
     resources: {
       en: {
-        translation: {
-          multiverse: {
-            fight: 'Fight',
-            welcome: 'Welcome',
-            money: 'You have',
-            bag: "Bag",
-            shop: "Shop",
-            users: "Users",
-            fighters: "Fighters",
-            config:"Settings"
-          },
-          fighterspage: {
-            removeFromParty: "Remove from party",
-            addToParty: "Add to party",
-            setFirst: "Set First",
-            back: "Back to Main Menu",
-            viewMovements: "View Movements",
-            assigningFirst:"Assigning first fighter"
-          },
-          home:{
-            welcome:"Welcomeas to the Multiverse Battleground",
-            getReady:"Get ready for epic battles!",
-            start:"Start Adventure!"
-          },
-          objectscard:{
-            price:"Price",
-            quantity:"Quantity",
-            description:"Description",
-          },
-          settingspage:{
-            back:"Back to Main Menu",
-            bg:"Background Music volume",
-            sound:"Sounds volume",
-            sfx:"SFX volume",
-            save:"Save changes"
-          }
-        }
+        translation: enTranslations
       },
       es: {
-        translation: {
-          multiverse: {
-            fight: 'A pelear',
-            welcome: 'Hola',
-            money: 'Tienes',
-            bag: "Mochila",
-            shop: "Tienda",
-            users: "Usuarios",
-            fighters: "Luchadores",
-            config:"Opciones"
-          },
-          fighterspage: {
-            removeFromParty: "Quitar del equipo",
-            addToParty: "Agregar al equipo",
-            setFirst: "Seleccionar primero",
-            back: "Volver al Menú Principal",
-            viewMovements: "Ver Ataques",
-            assigningFirst:"Seleccionando primer luchador"
-          },
-          home:{
-            welcome:"Bienvenido al Multiverse Battleground",
-            getReady:"Preparate para batallas épicas!!",
-            start:"Empezar Aventura!"
-          },
-          objectscard:{
-            price:"Precio",
-            quantity:"Cantidad",
-            description:"Descripción"
-          },
-          settingspage:{
-            back:"Volver al Menú Principal",
-            bg:"Volúmen de Música de ambiente",
-            sound:"Volúmen de sonidos de interfaz",
-            sfx:"Volúmen de Efectos Especiales",
-            save:"Guardar cambios"
-          }
-        }
+        translation: esTranslations
       },
     }
   });
