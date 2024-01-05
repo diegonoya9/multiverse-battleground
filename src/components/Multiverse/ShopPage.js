@@ -52,7 +52,7 @@ const ShopPage = ({changeMultiverseActivePage }) => {
                     },
                     body: JSON.stringify(parameters)
                 }).then(response => {
-                    if (response.statusText === "OK") {
+                    if (response.statusText === "ok") {
                         setModalContent(modalPurchaseConfirmed)
                         setShowModal(true)
                     } else {
