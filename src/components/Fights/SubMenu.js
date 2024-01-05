@@ -32,7 +32,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                 <Modal styleType={styleType} color="white" backgroundColor="white" onClose={closeModal}>
                     <ul className={classes.optionsContainer} >
                         {optionsArray && selectedOption === "objects" && optionsArray.map((x, i) => {
-                            return x.objects.category === "battleItem" &&
+                            return x.objects.category === "battleItem" && x.quantity > 0 &&
                                 <div key={i} className={classes.options} >
                                     <Button completeWidth="true" value={`${x.name}:${x.quantity}`} key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}><img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></Button>
                                 </div>
