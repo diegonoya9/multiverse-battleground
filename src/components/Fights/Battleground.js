@@ -20,6 +20,8 @@ const Battleground = ({ changeActivePage }) => {
     let userName = userContext.userName
     let bg = userContext.bg
     let sfx = userContext.sfx
+    let currentMission = userContext.currentMission
+    let currentLevel = userContext.currentLevel
     const songs = [
         { id: 1, title: 'Song 1', src: '/assets/sounds/music/AndWeDieYoung.WAV' },
         { id: 2, title: 'Song 2', src: '/assets/sounds/music/FourHorsemen.WAV' },
@@ -298,7 +300,6 @@ const Battleground = ({ changeActivePage }) => {
         //generateLevels();
         selectTheme()
     }, []);
-
     return (
         <div alt="battlegroundBackground" className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {!userFighter && !enemyFighter && <Loading />}
@@ -314,7 +315,7 @@ const Battleground = ({ changeActivePage }) => {
                     {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>{t('battleground.enemyWon')}</h2>}
                     {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{userName} {t('battleground.ran')}</h1>}
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value={t('battleground.main')} />
-                    {battleEnded.winner === "user" && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value={t('battleground.restart')} />}
+                    {battleEnded.winner === "user" && (currentMission === 0 || (currentMission.missionlevels.length > (currentLevel))) && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value={t('battleground.restart')} />}
                 </Modal>
             </div>}
             {showSelectFighter && userFighter.current_hp === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {

@@ -5,9 +5,11 @@ import { MyContext } from "../../context/MyContext";
 
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle, restartBattle } = useBattleState()
-    const { userContext } = useContext(MyContext);
+    const { userContext ,setCurrentLevel} = useContext(MyContext);
     const userName = userContext.userName
     const backEndUrl = userContext.backEndUrl
+    const currentMission = userContext.currentMission
+    const currentLevel = userContext.currentLevel
     const [showModal, setShowModal] = useState(false)
     const [userAttacked, setUserAttacked] = useState({ "active": false, "sfx": '' })
     const [inflictedActions, setInflictedActions] = useState([])
@@ -55,55 +57,98 @@ const useBattleLogic = (setShowLevelUp) => {
             return newState
         })
         setTurn("user")
-        let randomValue = Math.floor(Math.random() * (data.fighters.length))
-        for (let i = 0; i < data.fighters.length; i++) {
-            if (data.fighters.length > 1) {
-                if (i === randomValue) {
-                    activeArray.push("true")
-                } else {
-                    activeArray.push("false")
-                }
-            } else {
-                activeArray.push("true")
-            }
-        }
-        let totalLevel = 0
-        let totalFighters = 0
-        user.fighters.forEach((fighter) => {
-            if (fighter.in_party === "true") {
-                totalFighters++
-                totalLevel += fighter.level
-            }
-        })
-        //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
-        let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
-        data.fighters.forEach((fighter) => {
-            fighter.level = averageLevel
-        })
-        let newFighters = data.fighters.map((fighter, index) => {
-            fightersLevels.forEach((fighterLevel) => {
-                if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
-                    fighter = {
-                        ...fighter,
-                        attack: fighterLevel.attack,
-                        special_attack: fighterLevel.special_attack,
-                        special_defense: fighterLevel.special_defense,
-                        defense: fighterLevel.defense,
-                        max_hp: fighterLevel.max_hp,
-                        current_hp: fighterLevel.max_hp,
-                        accuracy: fighterLevel.accuracy
+        if (currentMission === 0) {
+            let randomValue = Math.floor(Math.random() * (data.fighters.length))
+            for (let i = 0; i < data.fighters.length; i++) {
+                if (data.fighters.length > 1) {
+                    if (i === randomValue) {
+                        activeArray.push("true")
+                    } else {
+                        activeArray.push("false")
                     }
+                } else {
+                    activeArray.push("true")
+                }
+            }
+            let totalLevel = 0
+            let totalFighters = 0
+            user.fighters.forEach((fighter) => {
+                if (fighter.in_party === "true") {
+                    totalFighters++
+                    totalLevel += fighter.level
                 }
             })
-            fighter.active = activeArray[index]
-            fighter.current_hp = fighter.max_hp
-            /* fighter.moves.forEach((move) => {
-                 move.currentMP = move.MP
-             })*/
-            return fighter
-        })
-        data.fighters = newFighters
-        changeEnemyUser(data)
+            //let averageLevel = Math.round(Math.min((totalLevel / totalFighters) + (totalFighters * 1), 100))
+            let averageLevel = Math.min(Math.ceil(Math.max((totalLevel / totalFighters)), 100))
+            data.fighters.forEach((fighter) => {
+                fighter.level = averageLevel
+            })
+            let newFighters = data.fighters.map((fighter, index) => {
+                fightersLevels.forEach((fighterLevel) => {
+                    if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === fighter.level) {
+                        fighter = {
+                            ...fighter,
+                            attack: fighterLevel.attack,
+                            special_attack: fighterLevel.special_attack,
+                            special_defense: fighterLevel.special_defense,
+                            defense: fighterLevel.defense,
+                            max_hp: fighterLevel.max_hp,
+                            current_hp: fighterLevel.max_hp,
+                            accuracy: fighterLevel.accuracy
+                        }
+                    }
+                })
+                fighter.active = activeArray[index]
+                fighter.current_hp = fighter.max_hp
+                /* fighter.moves.forEach((move) => {
+                     move.currentMP = move.MP
+                 })*/
+                return fighter
+            })
+            data.fighters = newFighters
+            changeEnemyUser(data)
+        } else {/* If it is a mission */
+            let levelIndex = 0
+            currentMission.missionlevels.forEach((level, index) => {
+                if (level.order === currentLevel + 1 ) {
+                    levelIndex = index
+                }
+            })
+            let newFighters = data.fighters.map((fighter, index) => {
+                fightersLevels.forEach((fighterLevel) => {
+                    if (fighterLevel.fighter_id === fighter.fighter_id && fighterLevel.level === currentMission.missionlevels[levelIndex].level) {
+                        fighter = {
+                            ...fighter,
+                            attack: fighterLevel.attack,
+                            special_attack: fighterLevel.special_attack,
+                            special_defense: fighterLevel.special_defense,
+                            defense: fighterLevel.defense,
+                            max_hp: fighterLevel.max_hp,
+                            current_hp: fighterLevel.max_hp,
+                            accuracy: fighterLevel.accuracy,
+                            extra_attack: 0,
+                            extra_special_attack: 0,
+                            extra_defense: 0,
+                            extra_special_defense: 0,
+                            extra_accuracy: 0,
+                            extra_max_hp: 0
+                        }
+                    }
+                })
+                fighter.level = currentMission.missionlevels[levelIndex].level
+                if (fighter.fighter_id === currentMission.missionlevels[levelIndex].fighter_id) {
+                    fighter.active = "true"
+                } else {
+                    fighter.active = "false"
+                }
+                fighter.current_hp = fighter.max_hp
+                return fighter
+            })
+            let newUser = {}
+            newUser.fighters = newFighters
+            setCurrentLevel(currentLevel+1)
+            changeEnemyUser(newUser);
+        }
         restartBattle()
     }
     const userLogic = (option, selectedOption, setMenuActive) => {
@@ -112,7 +157,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 reduceFighterMP(option.moves.name)
                 if (enemyFighter && enemyFighter.current_hp > 0) {
                     let randomNumber = Math.random() * 100
-                    let attackHit = (userFighter.accuracy + userFighter.extra_accuracy)>= randomNumber
+                    let attackHit = (userFighter.accuracy + userFighter.extra_accuracy) >= randomNumber
                     let timeOut = 2000
                     if (!attackHit) {
                         timeOut = 1
@@ -206,7 +251,7 @@ const useBattleLogic = (setShowLevelUp) => {
         if (turn === "enemy" && !battleEnded.finished && enemyFighter.current_hp > 0) {
             const randomMove = Math.floor(Math.random() * 4)
             let randomNumber = Math.random() * 100
-            let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy)>= randomNumber
+            let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy) >= randomNumber
             let timeOut = 2000
             if (!attackHit) {
                 timeOut = 1
@@ -244,12 +289,12 @@ const useBattleLogic = (setShowLevelUp) => {
                         if (action.attackType === "normal" && action.field === "current_hp") {
                             newAction.value -= enemyFighter.attack
                             newAction.value -= enemyFighter.extra_attack
-                            newAction.value = Math.round(Math.min(newAction.value + userFighter.defense+ userFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
+                            newAction.value = Math.round(Math.min(newAction.value + userFighter.defense + userFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
                         }
                         if (action.attackType === "special" && action.field === "current_hp") {
                             newAction.value -= enemyFighter.special_attack
                             newAction.value -= enemyFighter.extra_special_attack
-                            newAction.value = Math.round(Math.min(newAction.value + userFighter.special_defense+ userFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
+                            newAction.value = Math.round(Math.min(newAction.value + userFighter.special_defense + userFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
                         }
                         attackUser(newAction)
                         newInflictedActions.push(newAction)
@@ -290,7 +335,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 }
             })
             const parameters = [{
-                objects:user.objects
+                objects: user.objects
             }]
             fetch(backEndUrl + "/udpateuserobjectsbattle", {
                 method: 'POST',
@@ -304,7 +349,7 @@ const useBattleLogic = (setShowLevelUp) => {
         }
         if (battleEnded.finished && battleEnded.winner !== "user" && userFighter) {
             const parameters = [{
-                objects:user.objects
+                objects: user.objects
             }]
             fetch(backEndUrl + "/udpateuserobjectsbattle", {
                 method: 'POST',

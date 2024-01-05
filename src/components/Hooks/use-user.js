@@ -85,7 +85,7 @@ const useUser = (origin) => {
                 setUserFighter(newFighter[0])
             }else{
                 let newFighter=user.fighters.filter((fighter) => {
-                  return fighter.active === true
+                  return fighter.active === "true"
                 })
                 setUserFighter(newFighter[0])
             }
@@ -230,7 +230,11 @@ const useUser = (origin) => {
                                             }
                                         })
                                         fighter.level=currentMission.missionlevels[levelIndex].level
-                                        fighter.active = fighter.fighter_id === currentMission.missionlevels[levelIndex].fighter_id
+                                        if (fighter.fighter_id === currentMission.missionlevels[levelIndex].fighter_id){
+                                            fighter.active = "true"
+                                        }else{
+                                            fighter.active="false"
+                                        }
                                         fighter.current_hp = fighter.max_hp
                                         return fighter
                                     })
