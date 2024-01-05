@@ -10,8 +10,9 @@ import LifeBar from './LifeBar'
 import ActionsList from './ActionsList.js'
 import { MyContext } from '../../context/MyContext.js'
 import Loading from '../UI/Loading.js'
-
+import { useTranslation } from 'react-i18next'
 const Battleground = ({ changeActivePage }) => {
+    const { t } = useTranslation();
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
@@ -308,12 +309,12 @@ const Battleground = ({ changeActivePage }) => {
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflicted_on === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}
             {battleEnded.finished && battlegroundType && <div className={classes.battleEnded}>
                 <Modal color="white" styleType={battlegroundType} onClose={() => { return }}>
-                    {showLevelUp && <h2 className={classes[battlegroundType]}>Tu {userFighter.name} subió de nivel</h2>}
-                    {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{userName} WON</h2>}
-                    {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>Enemy WON</h2>}
-                    {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{userName} ran away</h1>}
-                    <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value="Main Menu" />
-                    {battleEnded.winner === "user" && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value="Keep Fighting" />}
+                    {showLevelUp && <h2 className={classes[battlegroundType]}>{t('battleground.your')} {userFighter.name} {t('battleground.levelUp')}</h2>}
+                    {battleEnded.winner === "user" && user && <h2 className={classes[battlegroundType]}>{userName} {t('battleground.won')}</h2>}
+                    {battleEnded.winner === "enemy" && <h2 className={classes[battlegroundType]}>{t('battleground.enemyWon')}</h2>}
+                    {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{userName} {t('battleground.ran')}</h1>}
+                    <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value={t('battleground.main')} />
+                    {battleEnded.winner === "user" && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value={t('battleground.restart')} />}
                 </Modal>
             </div>}
             {showSelectFighter && userFighter.current_hp === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {

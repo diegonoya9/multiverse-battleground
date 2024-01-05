@@ -2,7 +2,12 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import Battleground from './Battleground';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n';
 
+beforeAll(() => {
+    i18n.use(initReactI18next)
+});
 // Mock del contexto para la prueba
 const mockUserContext = {
   idUsuario: 1,

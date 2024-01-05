@@ -112,7 +112,7 @@ const useBattleLogic = (setShowLevelUp) => {
                 reduceFighterMP(option.moves.name)
                 if (enemyFighter && enemyFighter.current_hp > 0) {
                     let randomNumber = Math.random() * 100
-                    let attackHit = userFighter.accuracy >= randomNumber
+                    let attackHit = (userFighter.accuracy + userFighter.extra_accuracy)>= randomNumber
                     let timeOut = 2000
                     if (!attackHit) {
                         timeOut = 1
@@ -206,7 +206,7 @@ const useBattleLogic = (setShowLevelUp) => {
         if (turn === "enemy" && !battleEnded.finished && enemyFighter.current_hp > 0) {
             const randomMove = Math.floor(Math.random() * 4)
             let randomNumber = Math.random() * 100
-            let attackHit = enemyFighter.accuracy >= randomNumber
+            let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy)>= randomNumber
             let timeOut = 2000
             if (!attackHit) {
                 timeOut = 1

@@ -50,5 +50,17 @@
     "objects":"Objects",
     "run":"Run",
     "fighters":"Fighters"
+  },
+  "loading":{
+      "loading":"Loading..."
+  },
+  "battleground":{
+      "your":"Your",
+      "levelUp":"leveled up",
+      "won": "won",
+      "enemyWon": "The enemy won",
+      "ran": "ran away",
+      "main": "Main Menu",
+      "restart":"Keep Fighting"
   }
 }

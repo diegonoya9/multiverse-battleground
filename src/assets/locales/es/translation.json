@@ -50,5 +50,17 @@
       "objects":"Objetos",
       "run":"Escapar",
       "fighters":"Luchadores"
+    },
+    "loading":{
+        "loading":"Cargando..."
+    },
+    "battleground":{
+        "your":"Tu",
+        "levelUp":"subió de nivel",
+        "won": "ganó",
+        "enemyWon": "El enemigo ganó",
+        "ran": "escapó",
+        "main": "Menú Principal",
+        "restart":"Seguir luchando"
     }
 }
