@@ -150,12 +150,12 @@ const useBattleLogic = (setShowLevelUp) => {
                                     return newState
                                 })
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
-                                    //newAction.value -= 100000
+                                    newAction.value -= 100000
                                     newAction.value -= userFighter.attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 if (action.attack_type === "special" && action.field === "current_hp") {
-                                    //newAction.value -= 100000
+                                    newAction.value -= 100000
                                     newAction.value -= userFighter.special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
@@ -276,7 +276,7 @@ const useBattleLogic = (setShowLevelUp) => {
         }
     }
     useEffect(() => {
-        if (battleEnded.finished && battleEnded.winner === "user" && userFighter && !attack.active) {
+        if (battleEnded.finished && battleEnded.winner === "user" && enemyFighter.current_hp === 0 && userFighter && !attack.active) {
             let newCurrentXP = userFighter.current_xp + (enemyFighter.level * 100) + (100 * fightsWon)
             let newLevel = userFighter.level
             fightersLevels.forEach((fighterLevel) => {
@@ -285,36 +285,29 @@ const useBattleLogic = (setShowLevelUp) => {
                     setShowLevelUp(true)
                 }
             })
-            console.log(user.objects)
-            const result = user.objects.map(async (object) => {
-                const parameters = [{
-                    id: object.user_object_id,
-                    quantity: object.quantity
-                }]
-                await fetch(backEndUrl + "/udpateuserobjectsbattle", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(parameters),
-                })
+            const parameters = [{
+                objects:user.objects
+            }]
+            fetch(backEndUrl + "/udpateuserobjectsbattle", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(parameters),
             })
             //Hacer un POST de este result al apiControllers.upadateUserObjects
             levelUpFighter(newCurrentXP, newLevel, battleEnded.winner === "user", increaseFightsWon)
         }
         if (battleEnded.finished && battleEnded.winner !== "user" && userFighter) {
-            const result = user.objects.map(async (object) => {
-                const parameters = [{
-                    id: object.user_object_id,
-                    quantity: object.quantity
-                }]
-                await fetch(backEndUrl + "/udpateuserobjectsbattle", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(parameters),
-                })
+            const parameters = [{
+                objects:user.objects
+            }]
+            fetch(backEndUrl + "/udpateuserobjectsbattle", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(parameters),
             })
             levelUpFighter(userFighter.currentXP, userFighter.level, battleEnded.winner === "user", increaseFightsWon)
         }

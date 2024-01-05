@@ -1,6 +1,12 @@
 // FightMenu.test.js
 import { fireEvent, render } from '@testing-library/react';
 import FightMenu from './FightMenu';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n';
+
+beforeAll(() => {
+    i18n.use(initReactI18next)
+});
 const fighter = {
     "user_fighter_id": 26,
     "user_id": 1,
@@ -305,8 +311,11 @@ let component
 beforeEach(() => {
     const mockHandler = jest.fn();
     // Renderiza FightMenu dentro de MyContextProvider con el contexto simulado
+
     component = render(
-        <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler} />
+        <I18nextProvider i18n={i18n}>
+            <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler} />
+        </I18nextProvider>
     );
 });
 test('renders FightMenu component', () => {
@@ -316,6 +325,6 @@ test('renders FightMenu component', () => {
     component.findByAltText('subMenu')
 });
 test('run button from fightMenu works', () => {
-    const runButton = component.getByText("Run")
+    const runButton = component.getByText(i18n.t('fightmenu.run'))
     fireEvent.click(runButton)
 })

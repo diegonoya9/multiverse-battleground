@@ -44,5 +44,11 @@
         "defense":"DEFENSA",
         "specialDefense":"DEFENSA ESPECIAL",
         "accuracy":"PUNTERÍA"
+    },
+    "fightmenu":{
+      "attacks":"Ataques",
+      "objects":"Objetos",
+      "run":"Escapar",
+      "fighters":"Luchadores"
     }
 }

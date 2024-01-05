@@ -61,7 +61,7 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [turn, battleEnded])
     useEffect(() => {
-        if (enemyFighter && enemyFighter.current_hp === 0 && !attack.active) {
+        if (turn === "enemy" && enemyFighter && !battleEnded.finished && enemyFighter.current_hp === 0 && !attack.active) {
             changeShowModal()
             endBattle("user", true)
         }
@@ -104,7 +104,7 @@ const Battleground = ({ changeActivePage }) => {
         changeActivePage(1)
     }
     const newFight = () => {
-        endBattle(null, false)
+        //endBattle(null, false)
         setShowLevelUp(false)
         setMenuActive(true)
         startNewFight()

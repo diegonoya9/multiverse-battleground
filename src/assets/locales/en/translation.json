@@ -44,5 +44,11 @@
     "defense":"DEFENSE",
     "specialDefense":"SPECIAL DEFENSE",
     "accuracy":"ACCURACY"
+  },
+  "fightmenu":{
+    "attacks":"Attacks",
+    "objects":"Objects",
+    "run":"Run",
+    "fighters":"Fighters"
   }
 }
