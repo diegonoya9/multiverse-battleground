@@ -48,7 +48,7 @@ const Battleground = ({ changeActivePage }) => {
     const [battlegroundType, setBattlegroundType] = useState();
     const [song, setSong] = useState();
     const [Sfx, setSfx] = useState();
-    const { userAttacked, turn, enemyAI, inflictedActions, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, cure, setCure, changeEnemyFighter, battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
+    const { userAttacked, turn, enemyAI, inflictedActions, userLogic, attack, user, userFighter, enemyFighter, changeUserFighter, cure, setCure,  battleEnded, endBattle, showModal, onCloseModal, modalContent, changeShowModal, startNewFight } = useBattleLogic(setShowLevelUp)
     const [menuActive, setMenuActive] = useState(true)
     const handleSubMenuOption = (option, selectedOption) => {
         if (turn === "user") {

@@ -216,14 +216,14 @@ const useUser = (origin) => {
 
                 })
         }
-    }, [fightersLevels, activeUser, origin])
+    }, [fightersLevels, activeUser, origin,backEndUrl])
     useEffect(() => {
         fetch(backEndUrl + '/allfighterLevels')
             .then(response => response.json())
             .then(data => {
                 setFightersLevels(data)
             })
-    }, [])
+    }, [backEndUrl])
     const changeUser = (user) => {
         setUser(user)
     }
