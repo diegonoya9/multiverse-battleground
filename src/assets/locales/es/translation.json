@@ -66,6 +66,7 @@
     "shoppage": {
         "objects": "Objetos",
         "fighters": "Luchadores",
-        "money": "Dinero actual"
+        "money": "Dinero actual",
+        "main":"Volver al Menú Principal"
     }
 }

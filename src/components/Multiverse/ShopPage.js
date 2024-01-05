@@ -111,7 +111,7 @@ const ShopPage = ({changeMultiverseActivePage }) => {
     }, [activeUser, backEndUrl])
     return (<div className={classes.backgroundImg}>
         {user && <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />}
-        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+        <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         {user && <h1 className={classes.divBackground}>{t('shoppage.money')}:{user.userobjects.map((object) => {
             if (object.name === "Money") {
                 return object.quantity
