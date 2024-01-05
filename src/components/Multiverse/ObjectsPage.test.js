@@ -1,8 +1,9 @@
 // ObjectsPage.test.js
 import React from 'react';
-import { render, cleanup,act } from '@testing-library/react';
+import { render, cleanup, act } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import ObjectsPage from './ObjectsPage';
+import renderer from 'react-test-renderer'
 afterEach(() => {
   global.fetch.mockRestore();
   cleanup();
@@ -37,7 +38,7 @@ const objects = [
 ]
 let component
 const user = { user_id: 1 }
-test('renders objects page component', async() => {
+test('renders objects page component', async () => {
   global.fetch = jest.fn().mockResolvedValue({
     json: jest.fn().mockResolvedValue(objects)
   });
@@ -45,11 +46,21 @@ test('renders objects page component', async() => {
   await act(async () => {
     component = render(
       <MyContextProvider value={{ userContext: mockUserContext }}>
-            <ObjectsPage user={user} />
+        <ObjectsPage user={user} />
       </MyContextProvider>
-  );
+    );
   })
 
   // Puedes agregar expectativas para asegurarte de que los elementos esperados est�n presentes
   component.getByText("Back to Main Menu")
+});
+it('renders objectpage correctly according to snapshot', () => {
+  const tree = renderer
+    .create(
+      <MyContextProvider value={{ userContext: mockUserContext }}>
+        <ObjectsPage user={user} />
+      </MyContextProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

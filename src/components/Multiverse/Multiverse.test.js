@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{startTransition } from 'react';
 import { render } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import Multiverse from './Multiverse';
 // Importa i18next y las funciones necesarias
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import renderer from 'react-test-renderer';
 
 // Configura i18next
 i18n.use(initReactI18next).init({
@@ -27,4 +28,23 @@ test('renders multiverse component', () => {
   </MyContextProvider>)
   component.findByAltText('mainDiv')
 
+});
+
+it('renders correctly accodring to snapshot', () => {
+  const tree = renderer
+    .create(
+      <MyContextProvider value={{ userContext: mockUserContext }}>
+        <React.Suspense fallback={<div>Loading...</div>}>
+          {/*
+            Envuelve la parte que está causando la suspensión con startTransition
+          */}
+          {startTransition(() => (
+            <Multiverse />
+          ))}
+        </React.Suspense>
+      </MyContextProvider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
 });
