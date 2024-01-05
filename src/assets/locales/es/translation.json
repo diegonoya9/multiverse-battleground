@@ -36,31 +36,36 @@
     },
     "fightercard": {
         "price": "Precio",
-        "level":"Nivel",
-        "hp":"VIDA",
-        "xp":"EXP",
-        "attack":"ATAQUE",
-        "specialAttack":"ATAQUE ESPECIAL",
-        "defense":"DEFENSA",
-        "specialDefense":"DEFENSA ESPECIAL",
-        "accuracy":"PUNTERÍA"
+        "level": "Nivel",
+        "hp": "VIDA",
+        "xp": "EXP",
+        "attack": "ATAQUE",
+        "specialAttack": "ATAQUE ESPECIAL",
+        "defense": "DEFENSA",
+        "specialDefense": "DEFENSA ESPECIAL",
+        "accuracy": "PUNTERÍA"
     },
-    "fightmenu":{
-      "attacks":"Ataques",
-      "objects":"Objetos",
-      "run":"Escapar",
-      "fighters":"Luchadores"
+    "fightmenu": {
+        "attacks": "Ataques",
+        "objects": "Objetos",
+        "run": "Escapar",
+        "fighters": "Luchadores"
     },
-    "loading":{
-        "loading":"Cargando..."
+    "loading": {
+        "loading": "Cargando..."
     },
-    "battleground":{
-        "your":"Tu",
-        "levelUp":"subió de nivel",
+    "battleground": {
+        "your": "Tu",
+        "levelUp": "subió de nivel",
         "won": "ganó",
         "enemyWon": "El enemigo ganó",
         "ran": "escapó",
         "main": "Menú Principal",
-        "restart":"Seguir luchando"
+        "restart": "Seguir luchando"
+    },
+    "shoppage": {
+        "objects": "Objetos",
+        "fighters": "Luchadores",
+        "money": "Dinero actual"
     }
 }

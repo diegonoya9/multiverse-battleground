@@ -6,7 +6,7 @@ const Loading = () => {
         <div className={classes.modalOverlay}>
             <div className={classes.loadingDiv}>
                 <h1 className={classes.h1}>{t("loading.loading")}</h1>
-                <img src="../../assets/img/loading.gif" />
+                <img alt="loadingImg" src="../../assets/img/loading.gif" />
             </div>
         </div>
     )

@@ -62,5 +62,11 @@
       "ran": "ran away",
       "main": "Main Menu",
       "restart":"Keep Fighting"
+  },
+  "shoppage":{
+      "objects":"Objects",
+      "fighters":"Fighters",
+      "money":"Current money"
   }
 }
+

@@ -112,7 +112,7 @@ const ShopPage = ({changeMultiverseActivePage }) => {
     return (<div className={classes.backgroundImg}>
         {user && <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
-        {user && <h1 className={classes.divBackground}>Current money:{user.userobjects.map((object) => {
+        {user && <h1 className={classes.divBackground}>{t('shoppage.money')}:{user.userobjects.map((object) => {
             if (object.name === "Money") {
                 return object.quantity
             }
@@ -121,7 +121,7 @@ const ShopPage = ({changeMultiverseActivePage }) => {
         {showModal && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
             {modalContent}
         </Modal>}
-        <h1 className={classes.divBackground}>OBJECTS:</h1>
+        <h1 className={classes.divBackground}>{t('shoppage.objects')}:</h1>
         {objects && <div className={classes.container} >
             {objects &&
                 objects.map((object) => {
@@ -136,7 +136,7 @@ const ShopPage = ({changeMultiverseActivePage }) => {
 
         }
 
-        {fighters && <div><h1 className={classes.divBackground}>FIGHTERS:</h1><div className={classes.container} >
+        {fighters && <div><h1 className={classes.divBackground}>{t('shoppage.fighters')}:</h1><div className={classes.container} >
             {fighters &&
                 fighters.map((fighter) => {
                     return (
