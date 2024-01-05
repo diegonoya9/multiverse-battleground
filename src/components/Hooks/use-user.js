@@ -174,7 +174,13 @@ const useUser = (origin) => {
                                                 defense: fighterLevel.defense,
                                                 max_hp: fighterLevel.max_hp,
                                                 current_hp: fighterLevel.max_hp,
-                                                accuracy: fighterLevel.accuracy
+                                                accuracy: fighterLevel.accuracy,
+                                                extra_attack:0,
+                                                extra_special_attack:0,
+                                                extra_defense:0,
+                                                extra_special_defense:0,
+                                                extra_accuracy:0,
+                                                extra_max_hp:0
                                             }
                                         }
                                     })

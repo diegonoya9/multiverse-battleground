@@ -152,12 +152,14 @@ const useBattleLogic = (setShowLevelUp) => {
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
                                     //newAction.value -= 100000
                                     newAction.value -= userFighter.attack
-                                    newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense, newAction.value - (newAction.value * 0.8)))
+                                    newAction.value -= userFighter.extra_attack
+                                    newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense + enemyFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 if (action.attack_type === "special" && action.field === "current_hp") {
                                     //newAction.value -= 100000
                                     newAction.value -= userFighter.special_attack
-                                    newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense, newAction.value - (newAction.value * 0.8)))
+                                    newAction.value -= userFighter.extra_special_attack
+                                    newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense + enemyFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 setUserAttacked({ "active": "user", "sfx": option.moves.sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
@@ -241,11 +243,13 @@ const useBattleLogic = (setShowLevelUp) => {
                         })
                         if (action.attackType === "normal" && action.field === "current_hp") {
                             newAction.value -= enemyFighter.attack
-                            newAction.value = Math.round(Math.min(newAction.value + userFighter.defense, newAction.value - (newAction.value * 0.8)))
+                            newAction.value -= enemyFighter.extra_attack
+                            newAction.value = Math.round(Math.min(newAction.value + userFighter.defense+ userFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
                         }
                         if (action.attackType === "special" && action.field === "current_hp") {
                             newAction.value -= enemyFighter.special_attack
-                            newAction.value = Math.round(Math.min(newAction.value + userFighter.special_defense, newAction.value - (newAction.value * 0.8)))
+                            newAction.value -= enemyFighter.extra_special_attack
+                            newAction.value = Math.round(Math.min(newAction.value + userFighter.special_defense+ userFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
                         }
                         attackUser(newAction)
                         newInflictedActions.push(newAction)
