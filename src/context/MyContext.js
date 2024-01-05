@@ -9,7 +9,9 @@ const MyContextProvider = ({ children }) => {
         bg:0,
         sfx:0,
         sound:0,
-        backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battlegorund-back.onrender.com/api" // Otros datos relacionados con el usuario si es necesario
+        backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battlegorund-back.onrender.com/api", // Otros datos relacionados con el usuario si es necesario
+        currentMission:0,
+        currentLevel:0
     });
 
     const setUserId = (newId) => {
@@ -26,6 +28,22 @@ const MyContextProvider = ({ children }) => {
             return{
             ...newvalue,
             userName
+        }
+    });}
+    const setCurrentMission = (mission) => {
+        setUserContext((prevValue) => {
+            let newvalue={...prevValue}
+            return{
+            ...newvalue,
+            currentMission:mission
+        }
+    });}
+    const setCurrentLevel = (level) => {
+        setUserContext((prevValue) => {
+            let newvalue={...prevValue}
+            return{
+            ...newvalue,
+            currentLevel:level
         }
     });}
     const setBg = (bg) => {
@@ -55,7 +73,7 @@ const MyContextProvider = ({ children }) => {
     });}
 
     return (
-        <MyContext.Provider value={{ userContext, setUserId, setUserName,setBg,setSound,setSfx }}>
+        <MyContext.Provider value={{ userContext, setUserId, setUserName,setBg,setSound,setSfx,setCurrentLevel,setCurrentMission }}>
             {children}
         </MyContext.Provider>
     );

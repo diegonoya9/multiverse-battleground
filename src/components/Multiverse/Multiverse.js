@@ -3,6 +3,7 @@ import FightersPage from "./FightersPage.js"
 import ObjectsPage from "./ObjectsPage.js"
 import UsersPage from './UsersPage.js'
 import SettingsPage from './SettingsPage.js'
+import MissionsPage from "./MissionsPage.js"
 import classes from './Multiverse.module.css'
 import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
@@ -16,7 +17,7 @@ const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
-    const { userContext, setUserName,setSound,setBg,setSfx } = useContext(MyContext);
+    const { userContext, setUserName,setSound,setBg,setSfx ,setCurrentMission} = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
     let bg = userContext.bg
@@ -53,6 +54,9 @@ const Multiverse = ({ changeActivePage }) => {
             audio.play()
         }
     }, [activeUser])
+    useEffect(() => {        
+     setCurrentMission(0)
+    },[])
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
@@ -84,6 +88,9 @@ const Multiverse = ({ changeActivePage }) => {
                         <Button value={t('multiverse.shop')} colorType="yellow" onClick={(e) => {
                             changeMultiverseActivePage('shop');
                         }}></Button>
+                        <Button value={t('multiverse.missions')} colorType="yellow" onClick={(e) => {
+                            changeMultiverseActivePage('missions');
+                        }}></Button>
                         <Button value={t('multiverse.config')} colorType="blue" onClick={(e) => {
                             changeMultiverseActivePage('config');
                         }}></Button>
@@ -99,7 +106,8 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
             {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
-            {multiverseActivePage === "config" && <SettingsPage updateUser={updateUser}user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></SettingsPage>}
+            {multiverseActivePage === "config" && <SettingsPage updateUser={updateUser} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></SettingsPage>}
+            {multiverseActivePage === "missions" && <MissionsPage changeActivePage={changeActivePage} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></MissionsPage>}
         </div >
     )
 }
