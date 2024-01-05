@@ -8,7 +8,7 @@ import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 import ObjectCard from "../UI/ObjectCard";
 import { useTranslation } from 'react-i18next';
-const ShopPage = ({changeMultiverseActivePage }) => {
+const ShopPage = ({ changeMultiverseActivePage }) => {
     const { t } = useTranslation();
     const modalPurchaseConfirmed = <div><h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
         <button className={classes.modalButton} onClick={() => setShowModal(false)}>
@@ -105,12 +105,12 @@ const ShopPage = ({changeMultiverseActivePage }) => {
                 })
                 setObjects(objectsList)
             })
-        fetch(backEndUrl + '/allfighters')
+        fetch(backEndUrl + '/allfightersinitiallevel')
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
     }, [activeUser, backEndUrl])
     return (<div className={classes.backgroundImg}>
-        {user && <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />}
+        {user && <ReactAudioPlayer src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         {user && <h1 className={classes.divBackground}>{t('shoppage.money')}:{user.userobjects.map((object) => {
             if (object.name === "Money") {
