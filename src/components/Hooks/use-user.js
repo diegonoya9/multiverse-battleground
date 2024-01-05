@@ -64,15 +64,14 @@ const useUser = (origin) => {
                     user_id: activeUser,
                     quantity: 100
                 }]
-               /* await fetch(backEndUrl + "/updateusermoney", {
+                await fetch(backEndUrl + "/updateusermoney", {
                     method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(moneyParameters),
-                })*/
+                })
             }
-            /* MODIFICAR:  FALTA ACTUALIZAR LOS OBJETOS USADOS Y EL MONEY */
         }
     };
     useEffect(() => {
