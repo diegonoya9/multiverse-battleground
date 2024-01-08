@@ -12,7 +12,6 @@ const FighterCard = ({ fighter, showPrice }) => {
             </div>
             <div className={`${classes.divStats} ${classes.face} ${classes.back}  ${fighter.active === "true" && classes.active}`} key={`${fighter.id}stats`}>
                 <p className={classes.spanStats}>{t('fightercard.hp')}:{fighter.max_hp}</p>
-                <p className={classes.spanStats}>{t('fightercard.xp')}:{fighter.current_xp}</p>
                 <p className={classes.spanStats}>{t('fightercard.attack')}:{fighter.attack}</p>
                 <p className={classes.spanStats}>{t('fightercard.specialAttack')}:{fighter.special_attack}</p>
                 <p className={classes.spanStats}>{t('fightercard.defense')}:{fighter.defense}</p>
