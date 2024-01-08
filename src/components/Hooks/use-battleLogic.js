@@ -5,7 +5,7 @@ import { MyContext } from "../../context/MyContext";
 
 const useBattleLogic = (setShowLevelUp) => {
     const { battleEnded, endBattle, restartBattle } = useBattleState()
-    const { userContext ,setCurrentLevel} = useContext(MyContext);
+    const { userContext, setCurrentLevel } = useContext(MyContext);
     const userName = userContext.userName
     const backEndUrl = userContext.backEndUrl
     const currentMission = userContext.currentMission
@@ -110,7 +110,7 @@ const useBattleLogic = (setShowLevelUp) => {
         } else {/* If it is a mission */
             let levelIndex = 0
             currentMission.missionlevels.forEach((level, index) => {
-                if (level.order === currentLevel + 1 ) {
+                if (level.order === currentLevel + 1) {
                     levelIndex = index
                 }
             })
@@ -146,14 +146,13 @@ const useBattleLogic = (setShowLevelUp) => {
             })
             let newUser = {}
             newUser.fighters = newFighters
-            setCurrentLevel(currentLevel+1)
+            setCurrentLevel(currentLevel + 1)
             changeEnemyUser(newUser);
         }
         restartBattle()
     }
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
-            console.log(option)
             if (selectedOption === "attacks") {
                 reduceFighterMP(option.name)
                 if (enemyFighter && enemyFighter.current_hp > 0) {
@@ -278,46 +277,48 @@ const useBattleLogic = (setShowLevelUp) => {
             if (attackHit) {
                 let newInflictedActions = []
                 enemyFighter.moves[randomMove].actionmoves.forEach((action) => {
-                    let newAction = { ...action }
-                    if (action.inflicted_on === "enemy") {
-                        setAttack((prevState) => {
-                            let newState = { ...prevState }
-                            newState.active = true
-                            newState.inflicted_on = "user"
-                            newState.src = enemyFighter.moves[randomMove].img
-                            return newState
-                        })
-                        if (action.attackType === "normal" && action.field === "current_hp") {
-                            newAction.value -= enemyFighter.attack
-                            newAction.value -= enemyFighter.extra_attack
-                            newAction.value = Math.round(Math.min(newAction.value + userFighter.defense + userFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
-                        }
-                        if (action.attackType === "special" && action.field === "current_hp") {
-                            newAction.value -= enemyFighter.special_attack
-                            newAction.value -= enemyFighter.extra_special_attack
-                            newAction.value = Math.round(Math.min(newAction.value + userFighter.special_defense + userFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
-                        }
-                        attackUser(newAction)
-                        newInflictedActions.push(newAction)
-                        setUserAttacked({ "active": "enemy", "sfx": enemyFighter.moves[randomMove].sfx, 'totalDamage': newAction.value })
-                    } else {
-                        setUserAttacked({ "active": "enemyPowerUp", "sfx": enemyFighter.moves[randomMove].sfx })
-                        setAttack((prevState) => {
-                            let newState = { ...prevState }
-                            newState.active = true
-                            newState.inflicted_on = "enemy"
-                            newState.src = enemyFighter.moves[randomMove].img
-                            return newState
-                        })
-                        if (newAction.field === "current_hp" && newAction.inflictedOn === "user") {
-                            if ((enemyFighter.current_hp + (newAction.value * enemyFighter.max_hp)) > enemyFighter.max_hp) {
-                                newAction.value = enemyFighter.max_hp - enemyFighter.current_hp
-                            } else {
-                                newAction.value = (newAction.value * enemyFighter.max_hp)
+                    if (action.level === parseInt(enemyFighter.level / 10)) {
+                        let newAction = { ...action }
+                        if (action.inflicted_on === "enemy") {
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = true
+                                newState.inflicted_on = "user"
+                                newState.src = enemyFighter.moves[randomMove].img
+                                return newState
+                            })
+                            if (action.attackType === "normal" && action.field === "current_hp") {
+                                newAction.value -= enemyFighter.attack
+                                newAction.value -= enemyFighter.extra_attack
+                                newAction.value = Math.round(Math.min(newAction.value + userFighter.defense + userFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
                             }
+                            if (action.attackType === "special" && action.field === "current_hp") {
+                                newAction.value -= enemyFighter.special_attack
+                                newAction.value -= enemyFighter.extra_special_attack
+                                newAction.value = Math.round(Math.min(newAction.value + userFighter.special_defense + userFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
+                            }
+                            attackUser(newAction)
+                            newInflictedActions.push(newAction)
+                            setUserAttacked({ "active": "enemy", "sfx": enemyFighter.moves[randomMove].sfx, 'totalDamage': newAction.value })
+                        } else {
+                            setUserAttacked({ "active": "enemyPowerUp", "sfx": enemyFighter.moves[randomMove].sfx })
+                            setAttack((prevState) => {
+                                let newState = { ...prevState }
+                                newState.active = true
+                                newState.inflicted_on = "enemy"
+                                newState.src = enemyFighter.moves[randomMove].img
+                                return newState
+                            })
+                            if (newAction.field === "current_hp" && newAction.inflictedOn === "user") {
+                                if ((enemyFighter.current_hp + (newAction.value * enemyFighter.max_hp)) > enemyFighter.max_hp) {
+                                    newAction.value = enemyFighter.max_hp - enemyFighter.current_hp
+                                } else {
+                                    newAction.value = (newAction.value * enemyFighter.max_hp)
+                                }
+                            }
+                            attackEnemy(newAction)
+                            newInflictedActions.push(newAction)
                         }
-                        attackEnemy(newAction)
-                        newInflictedActions.push(newAction)
                     }
                 })
                 setInflictedActions(newInflictedActions)
