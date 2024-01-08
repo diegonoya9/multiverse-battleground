@@ -118,7 +118,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         fighters.forEach((fighter) => {
             if (fighter.user_fighter_id === user_fighter_id) {
                 fighter.moves.forEach((move) => {
-                    moves.push(move.moves)
+                    moves.push(move)
                 })
             }
         })

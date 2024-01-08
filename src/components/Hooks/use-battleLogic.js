@@ -153,8 +153,9 @@ const useBattleLogic = (setShowLevelUp) => {
     }
     const userLogic = (option, selectedOption, setMenuActive) => {
         if (turn === "user") {
+            console.log(option)
             if (selectedOption === "attacks") {
-                reduceFighterMP(option.moves.name)
+                reduceFighterMP(option.name)
                 if (enemyFighter && enemyFighter.current_hp > 0) {
                     let randomNumber = Math.random() * 100
                     let attackHit = (userFighter.accuracy + userFighter.extra_accuracy) >= randomNumber
@@ -172,7 +173,7 @@ const useBattleLogic = (setShowLevelUp) => {
                             })
                             setUserAttacked({ "active": false, "sfx": '' })
                             if (attackHit) {
-                                handleModalState(`${userFighter.name} used ${option.moves.name}`, "enemy")
+                                handleModalState(`${userFighter.name} used ${option.name}`, "enemy")
                             } else {
                                 handleModalState(`${userFighter.name} missed`, "enemy")
                             }
@@ -184,14 +185,14 @@ const useBattleLogic = (setShowLevelUp) => {
                     if (attackHit) {
                         //console.log(option)
                         let newInflictedActions = []
-                        option.moves.actionmoves.forEach((action) => {
+                        option.actionmoves.forEach((action) => {
                             let newAction = { ...action }
                             if (action.inflicted_on === "enemy") {
                                 setAttack((prevState) => {
                                     let newState = { ...prevState }
                                     newState.active = true
                                     newState.inflicted_on = "enemy"
-                                    newState.src = option.moves.img
+                                    newState.src = option.img
                                     return newState
                                 })
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
@@ -206,7 +207,7 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newAction.value -= userFighter.extra_special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense + enemyFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
-                                setUserAttacked({ "active": "user", "sfx": option.moves.sfx, 'totalDamage': newAction.value })
+                                setUserAttacked({ "active": "user", "sfx": option.sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
                                 newInflictedActions.push(newAction)
                             } else {
@@ -214,10 +215,10 @@ const useBattleLogic = (setShowLevelUp) => {
                                     let newState = { ...prevState }
                                     newState.active = true
                                     newState.inflicted_on = "user"
-                                    newState.src = option.moves.img
+                                    newState.src = option.img
                                     return newState
                                 })
-                                setUserAttacked({ "active": "userPowerUp", "sfx": option.moves.sfx })
+                                setUserAttacked({ "active": "userPowerUp", "sfx": option.sfx })
                                 if (newAction.field === "current_hp" && newAction.inflicted_on === "user") {
                                     if ((userFighter.current_hp + ((newAction.value * userFighter.max_hp) / 100) > userFighter.max_hp)) {
                                         newAction.value = userFighter.max_hp - userFighter.current_hp

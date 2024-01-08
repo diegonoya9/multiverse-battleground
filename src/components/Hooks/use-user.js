@@ -15,7 +15,7 @@ const useUser = (origin) => {
             let newFighters = newUser.fighters.map((fighter) => {
                 if (fighter.active === "true") {
                     fighter.moves.forEach((move, index) => {
-                        if (move.moves.name === attack) {
+                        if (move.name === attack) {
                             move.currentMP -= 1
                         }
                     })
@@ -248,7 +248,7 @@ const useUser = (origin) => {
                     if (origin === "user") {
                         let newFighters = data.map((fighter, index) => {
                             fighter.moves.forEach((move) => {
-                                move.currentMP = move.moves.mp
+                                move.currentMP = move.mp
                             })
                             return fighter
                         })
