@@ -53,7 +53,8 @@ const useUser = (origin) => {
                 increaseFightsWon()
                 setUser(user)
                 const parameters = [{
-                    newFighter
+                    newFighter,
+                    current_xp
                 }]
                 await fetch(backEndUrl + "/updatefighter", {
                     method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
