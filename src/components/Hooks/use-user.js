@@ -4,7 +4,7 @@ const useUser = (origin) => {
     const [userFighter, setUserFighter] = useState()
     const [user, setUser] = useState()
     const [fightersLevels, setFightersLevels] = useState()
-    const { userContext, setCurrentLevel } = useContext(MyContext);
+    const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
     let currentMission = userContext.currentMission
@@ -51,7 +51,20 @@ const useUser = (origin) => {
                     }
                 })
                 increaseFightsWon()
-                setUser(user)
+                setUser(user)            
+                if (currentMission !== 0 && (currentMission.missionlevels.length <= (currentLevel))) {
+                    const parametersMissionComplete = [{
+                        user_id:activeUser,
+                        missionprizes: currentMission.missionprizes
+                    }]
+                    await fetch(backEndUrl + "/completemission", {
+                        method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(parametersMissionComplete),
+                    })
+                }
                 const parameters = [{
                     newFighter,
                     current_xp
@@ -79,14 +92,14 @@ const useUser = (origin) => {
     };
     useEffect(() => {
         if (user && fightersLevels) {
-            if(origin === "user" || (origin === "enemy" && currentMission === 0)){
+            if (origin === "user" || (origin === "enemy" && currentMission === 0)) {
                 let newFighter = user.fighters.filter((fighter) => {
                     return fighter.active === "true"
                 })
                 setUserFighter(newFighter[0])
-            }else{
-                let newFighter=user.fighters.filter((fighter) => {
-                  return fighter.active === "true"
+            } else {
+                let newFighter = user.fighters.filter((fighter) => {
+                    return fighter.active === "true"
                 })
                 setUserFighter(newFighter[0])
             }
@@ -203,10 +216,10 @@ const useUser = (origin) => {
                                     setUser(data)
                                 } else {/*If it is a mission */
                                     data.fighters = fightersData
-                                    let levelIndex=0
-                                    currentMission.missionlevels.forEach((level,index) => {
-                                        if (level.order === currentLevel){
-                                            levelIndex=index
+                                    let levelIndex = 0
+                                    currentMission.missionlevels.forEach((level, index) => {
+                                        if (level.order === currentLevel) {
+                                            levelIndex = index
                                         }
                                     })
                                     let newFighters = data.fighters.map((fighter, index) => {
@@ -230,17 +243,17 @@ const useUser = (origin) => {
                                                 }
                                             }
                                         })
-                                        fighter.level=currentMission.missionlevels[levelIndex].level
-                                        if (fighter.fighter_id === currentMission.missionlevels[levelIndex].fighter_id){
+                                        fighter.level = currentMission.missionlevels[levelIndex].level
+                                        if (fighter.fighter_id === currentMission.missionlevels[levelIndex].fighter_id) {
                                             fighter.active = "true"
-                                        }else{
-                                            fighter.active="false"
+                                        } else {
+                                            fighter.active = "false"
                                         }
                                         fighter.current_hp = fighter.max_hp
                                         return fighter
                                     })
-                                    let newUser={}
-                                    newUser.fighters=newFighters
+                                    let newUser = {}
+                                    newUser.fighters = newFighters
                                     setUser(newUser);
                                 }
                             })

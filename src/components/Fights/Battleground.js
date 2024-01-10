@@ -83,44 +83,20 @@ const Battleground = ({ changeActivePage }) => {
         }
     }, [userFighter, enemyFighter, turn])
 
-
-
-
-   /* const [showH1, setShowH1] = useState(false);
-    useEffect(() => {
-        if (cure > 0) {
-            setShowH1(true); // Mostrar el h1 si 'cure' es mayor que 0
-
-            // Ocultar el h1 después de 1 segundo
-            setTimeout(() => {
-                setShowH1(false);
-                setCure(0); // 1000 milisegundos = 1 segundo
-            }, 1000)
-        }
-
-    }, [cure]);*/
-
-
-
     const restartGame = () => {
         setShowLevelUp(false)
         changeActivePage(1)
     }
     const newFight = () => {
-        //endBattle(null, false)
         setShowLevelUp(false)
         setMenuActive(true)
         startNewFight()
-        //changeEnemyFighter()
-        // changeActivePage(1)
     }
     const calculateXp = (level) => {
         // Ajuste para que al llegar al nivel 99 se necesiten 5,000,000 de experiencia
         if (level <= 99) {
             return level * (level * 100);
         }
-
-        // Resto de los niveles
         return level * 5000;
     };
     const generateLevels = () => {
@@ -316,6 +292,12 @@ const Battleground = ({ changeActivePage }) => {
                     {battleEnded.winner === "ran" && user && <h1 className={classes[battlegroundType]}>{userName} {t('battleground.ran')}</h1>}
                     <Button styleType={battlegroundType} colorType={"green"} onClick={() => restartGame()} value={t('battleground.main')} />
                     {battleEnded.winner === "user" && (currentMission === 0 || (currentMission.missionlevels.length > (currentLevel))) && <Button styleType={battlegroundType} colorType={"green"} onClick={() => newFight()} value={t('battleground.restart')} />}
+                    {battleEnded.winner === "user" && (currentMission !== 0 && (currentMission.missionlevels.length <= (currentLevel))) && <div>
+                        <p>Prizes</p>
+                        {currentMission.missionprizes.map((prize) => {
+                            return prize.objects.name + " : " + prize.value
+                        })}
+                    </div>}
                 </Modal>
             </div>}
             {showSelectFighter && userFighter.current_hp === 0 && <Modal onClose={() => { }}>{user.fighters.map((fighter, i) => {
@@ -331,7 +313,6 @@ const Battleground = ({ changeActivePage }) => {
             </div>
             }
             {inflictedActions[0] && <ActionsList inflictedActions={inflictedActions} turn={turn}></ActionsList>}
-            {/*showH1 && cure > 0 && <h1 className={`${classes.punchRecive} ${classes.totalCure}`} set>{`${cure} `}</h1>*/}
             {
                 enemyFighter && !battleEnded.finished && <Fighter attack={attack} userAttacked={userAttacked.active} turn={turn} className={classes.notActive} styleType={battlegroundType} fighter={enemyFighter} user="enemy">
                 </Fighter>
