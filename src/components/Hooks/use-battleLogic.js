@@ -251,7 +251,8 @@ const useBattleLogic = (setShowLevelUp) => {
         if (turn === "enemy" && !battleEnded.finished && enemyFighter.current_hp > 0) {
             const randomMove = Math.floor(Math.random() * 4)
             let randomNumber = Math.random() * 100
-            let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy) >= randomNumber
+           // let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy) >= randomNumber
+            let attackHit = true
             let timeOut = 2000
             if (!attackHit) {
                 timeOut = 1
@@ -277,7 +278,7 @@ const useBattleLogic = (setShowLevelUp) => {
             if (attackHit) {
                 let newInflictedActions = []
                 enemyFighter.moves[randomMove].actionmoves.forEach((action) => {
-                    if (action.level === parseInt(enemyFighter.level / 10)) {
+                    if (action.level === Math.max(parseInt(enemyFighter.level / 10),1)) {
                         let newAction = { ...action }
                         if (action.inflicted_on === "enemy") {
                             setAttack((prevState) => {
