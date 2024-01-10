@@ -195,13 +195,13 @@ const useBattleLogic = (setShowLevelUp) => {
                                     return newState
                                 })
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
-                                    newAction.value -= 100000
+                                    //newAction.value -= 100000
                                     newAction.value -= userFighter.attack
                                     newAction.value -= userFighter.extra_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense + enemyFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 if (action.attack_type === "special" && action.field === "current_hp") {
-                                    newAction.value -= 100000
+                                    //newAction.value -= 100000
                                     newAction.value -= userFighter.special_attack
                                     newAction.value -= userFighter.extra_special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense + enemyFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
@@ -251,8 +251,7 @@ const useBattleLogic = (setShowLevelUp) => {
         if (turn === "enemy" && !battleEnded.finished && enemyFighter.current_hp > 0) {
             const randomMove = Math.floor(Math.random() * 4)
             let randomNumber = Math.random() * 100
-           // let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy) >= randomNumber
-            let attackHit = true
+            let attackHit = (enemyFighter.accuracy + enemyFighter.extra_accuracy) >= randomNumber
             let timeOut = 2000
             if (!attackHit) {
                 timeOut = 1
