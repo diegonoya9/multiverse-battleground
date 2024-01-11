@@ -52,9 +52,10 @@ const MatchMaking = ({changeMultiverseActivePage}) => {
           Cambiar Turno
         </button>
         {listaClientes && listaClientes.map((cliente) => {
-            return <div>
+            return cliente.clientId !== activeUser &&<div>
                 <p>{cliente.userName}</p>
                 <p>{cliente.clientId}</p>
+                <Button value="Challenge this MF" onClick={() => enviarMensaje({type:"challenge",id:cliente.clientId,clientId:activeUser})}></Button>
             </div>
         })}
       </div>
