@@ -8,8 +8,9 @@ const MatchMaking = ({changeMultiverseActivePage}) => {
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let userName = userContext.userName
+    let backEndWS = userContext.backEndWS
     useEffect(() => {
-        const newWs = new WebSocket('ws://localhost:3020');
+        const newWs = new WebSocket(backEndWS);
 
         newWs.addEventListener('open', () => {
           console.log('Conexión establecida');

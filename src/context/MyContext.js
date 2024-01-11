@@ -10,6 +10,7 @@ const MyContextProvider = ({ children }) => {
         sfx:0,
         sound:0,
         backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battlegorund-back.onrender.com/api", // Otros datos relacionados con el usuario si es necesario
+        backEndWS: process.env.NODE_ENV === 'development' ? "ws://localhost:3020" : "wss://multiverse-battlegorund-back.onrender.com", // Otros datos relacionados con el usuario si es necesario
         currentMission:0,
         currentLevel:0
     });
