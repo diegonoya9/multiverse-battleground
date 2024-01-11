@@ -4,6 +4,7 @@ import ObjectsPage from "./ObjectsPage.js"
 import UsersPage from './UsersPage.js'
 import SettingsPage from './SettingsPage.js'
 import MissionsPage from "./MissionsPage.js"
+import MatchMaking from "./MatchMaking.js"
 import classes from './Multiverse.module.css'
 import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
@@ -79,6 +80,12 @@ const Multiverse = ({ changeActivePage }) => {
                     </div>
                     <div className={classes.btnContainer} >
                         <Button value={t('multiverse.fight')} colorType="red" onClick={() => changeActivePage(2)}></Button>
+                        <Button value={t('multiverse.missions')} colorType="yellow" onClick={(e) => {
+                            changeMultiverseActivePage('missions');
+                        }}></Button>
+                        <Button value={t('multiverse.pvp')} colorType="yellow" onClick={(e) => {
+                            changeMultiverseActivePage('pvp');
+                        }}></Button>
                         <Button value={t('multiverse.fighters')} colorType="brown" onClick={(e) => {
                             changeMultiverseActivePage('fighters');
                         }}></Button>
@@ -87,9 +94,6 @@ const Multiverse = ({ changeActivePage }) => {
                         }}></Button>
                         <Button value={t('multiverse.shop')} colorType="yellow" onClick={(e) => {
                             changeMultiverseActivePage('shop');
-                        }}></Button>
-                        <Button value={t('multiverse.missions')} colorType="yellow" onClick={(e) => {
-                            changeMultiverseActivePage('missions');
                         }}></Button>
                         <Button value={t('multiverse.config')} colorType="blue" onClick={(e) => {
                             changeMultiverseActivePage('config');
@@ -108,6 +112,7 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
             {multiverseActivePage === "config" && <SettingsPage updateUser={updateUser} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></SettingsPage>}
             {multiverseActivePage === "missions" && <MissionsPage changeActivePage={changeActivePage} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></MissionsPage>}
+            {multiverseActivePage === "pvp" && <MatchMaking changeActivePage={changeActivePage} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></MatchMaking>}
         </div >
     )
 }
