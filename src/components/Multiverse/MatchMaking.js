@@ -47,11 +47,16 @@ const MatchMaking = ({changeMultiverseActivePage}) => {
     return (
       <div>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
-        <p>Clientes Conectados: {listaClientes.join(', ')}</p>
         {/* Renderiza tu juego aquí */}
         <button onClick={() => enviarMensaje({ tipo: 'cambio_turno', turno: 'jugador2' })}>
           Cambiar Turno
         </button>
+        {listaClientes && listaClientes.map((cliente) => {
+            return <div>
+                <p>{cliente.userName}</p>
+                <p>{cliente.clientId}</p>
+            </div>
+        })}
       </div>
     );
 }
