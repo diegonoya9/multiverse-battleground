@@ -309,11 +309,11 @@ const useBattleLogic = (setShowLevelUp) => {
                                 newState.src = enemyFighter.moves[randomMove].img
                                 return newState
                             })
-                            if (newAction.field === "current_hp" && newAction.inflictedOn === "user") {
-                                if ((enemyFighter.current_hp + (newAction.value * enemyFighter.max_hp)) > enemyFighter.max_hp) {
+                            if (newAction.field === "current_hp" && newAction.inflicted_on === "user") {
+                                if ((enemyFighter.current_hp + ((newAction.value * enemyFighter.max_hp) / 100) > enemyFighter.max_hp)) {
                                     newAction.value = enemyFighter.max_hp - enemyFighter.current_hp
                                 } else {
-                                    newAction.value = (newAction.value * enemyFighter.max_hp)
+                                    newAction.value = ((newAction.value * enemyFighter.max_hp) / 100)
                                 }
                             }
                             attackEnemy(newAction)

@@ -92,6 +92,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         if (actions[0]) {
             setModalContent(actions[0].map((action, index) => {
                 return <div key={Math.random()} >
+                    <p>Level: {action.level}</p>
                     <p>Action: {index + 1}</p>
                     <p>Inflicted on: {action.inflicted_on}</p>
                     <p>Type: {action.attack_type}</p>
