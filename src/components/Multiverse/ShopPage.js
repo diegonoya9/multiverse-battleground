@@ -24,6 +24,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     let bg = userContext.bg
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
+    const [userMoney, setUserMoney] = useState()
     const [modalContent, setModalContent] = useState()
     const [showModal, setShowModal] = useState(false)
     const closeModal = () => {
@@ -147,7 +148,16 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
     }, [activeUser, backEndUrl])
-    const objectQuantity = currentObject && <div>
+    useEffect(() => {
+        if (user) {
+            user.userobjects.forEach((object) => {
+                if (object.name === "Money") {
+                    setUserMoney(object.quantity)
+                }
+            })
+        }
+    }, [user])
+    const objectQuantity = currentObject && userMoney && <div>
         <p>{currentObject.name}</p>
         <p>Total Price:{totalPrice}</p>
         <div>
@@ -156,7 +166,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             <input
                 type="range"
                 min="0"
-                max="100"
+                max={userMoney / currentObject.price}
                 step="1"
                 value={quantity}
                 onChange={(event) => handleQuantityChange(event)}
@@ -168,12 +178,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     return (<div className={classes.backgroundImg}>
         {user && <ReactAudioPlayer src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
-        {user && <h1 className={classes.divBackground}>{t('shoppage.money')}:{user.userobjects.map((object) => {
-            if (object.name === "Money") {
-                return object.quantity
-            }
-            return ''
-        })}</h1>}
+        {user && userMoney && <h1 className={classes.divBackground}>{t('shoppage.money')}:{userMoney}</h1>}
         {showModal && modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
             {modalContent}
         </Modal>}
