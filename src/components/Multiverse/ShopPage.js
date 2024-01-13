@@ -61,13 +61,14 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         setQuantity(newQuantity)
     }
     const buy = (id, price, type) => {
-        let newMoney = user.userobjects.filter((object) => {
-            return object.name === "Money"
-        })
         let newUser = user
-        if (newMoney[0].quantity >= price) {
-            newMoney[0].quantity -= price;
+        if (userMoney >= price) {
+
             if (type === "fighter") {
+                setUserMoney((prevValue) => {
+                    prevValue -= price
+                    return prevValue
+                })
                 setModalContent("Processing.. Please wait")
                 setShowModal(true)
                 const parameters = [{
@@ -81,7 +82,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                     },
                     body: JSON.stringify(parameters)
                 }).then(response => {
-                    if (response.statusText === "ok") {
+                    console.log(response)
+                    if (response.statusText === "OK") {
                         setModalContent(modalPurchaseConfirmed)
                         setShowModal(true)
                     } else {
@@ -111,6 +113,10 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             user_id: user.user_id,
             quantity
         }]
+        setUserMoney((prevValue) => {
+            prevValue -= currentObject.price * quantity
+            return prevValue
+        })
         setModalContent("Processing.. Please wait")
         setShowModal(true)
         fetch(backEndUrl + "/buyObject", {
