@@ -98,26 +98,6 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 setCurrentObject(newObject[0])
                 setModalContent()
                 setShowModal(true)
-                /*const parameters = [{
-                    object_id: newObject[0].object_id,
-                    user_id: newUser.user_id
-                }]
-                fetch(backEndUrl + "/buyObject", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(parameters)
-                })
-                    .then(response => {
-                        if (response.statusText === "OK") {
-                            setModalContent(modalPurchaseConfirmed)
-                            setShowModal(true)
-                        } else {
-                            setModalContent('Error when buying')
-                            setShowModal(true)
-                        }
-                    })*/
             }
         } else {
             setModalContent('Not enough money')
@@ -130,6 +110,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             user_id: user.user_id,
             quantity
         }]
+        setModalContent("Processing.. Please wait")
+        setShowModal(true)
         fetch(backEndUrl + "/buyObject", {
             method: "POST",
             headers: {
@@ -165,6 +147,24 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             .then((response) => response.json())
             .then((data) => { setFighters(data) })
     }, [activeUser, backEndUrl])
+    const objectQuantity = currentObject && <div>
+        <p>{currentObject.name}</p>
+        <p>Total Price:{totalPrice}</p>
+        <div>
+            Quantity:{quantity}
+            <Button value="-" onClick={() => changeQuantity("decrease")} />
+            <input
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value={quantity}
+                onChange={(event) => handleQuantityChange(event)}
+            />
+            <Button value="+" onClick={() => changeQuantity("increase")} />
+        </div>
+        <Button value="Buy" onClick={() => buyObject()} />
+    </div>
     return (<div className={classes.backgroundImg}>
         {user && <ReactAudioPlayer src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
@@ -178,24 +178,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             {modalContent}
         </Modal>}
         {showModal && !modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
-            <div>
-                <p>{currentObject.name}</p>
-                <p>Total Price:{totalPrice}</p>
-                <div>
-                    Quantity:{quantity}
-                    <Button value="-" onClick={() => changeQuantity("decrease")} />
-                    <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        step="1"
-                        value={quantity}
-                        onChange={(event) => handleQuantityChange(event)}
-                    />
-                    <Button value="+" onClick={() => changeQuantity("increase")} />
-                </div>
-                <Button value="Buy" onClick={() => buyObject()} />
-            </div>
+            {objectQuantity}
         </Modal>
         }
         <h1 className={classes.divBackground}>{t('shoppage.objects')}:</h1>
