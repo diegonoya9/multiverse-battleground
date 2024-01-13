@@ -15,6 +15,8 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             Keep Buying
         </button></div>
     const [objects, setObjects] = useState()
+    const [totalPrice, setTotalPrice] = useState()
+    const [currentObject, setCurrentObject] = useState()
     const [quantity, setQuantity] = useState(1)
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
@@ -35,41 +37,27 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     const changeQuantity = (action) => {
         if (action === "increase") {
             if (quantity < 100) {
+                setTotalPrice(currentObject.price * (quantity + 1))
                 setQuantity((prevValue) => {
-                    return prevValue++
+                    prevValue++
+                    return prevValue
                 })
             }
         }
         if (action === "decrease") {
             if (quantity > 0) {
+                setTotalPrice(currentObject.price * (quantity - 1))
                 setQuantity((prevValue) => {
-                    return prevValue--
+                    prevValue--
+                    return prevValue
                 })
             }
         }
     }
     const handleQuantityChange = (event) => {
         const newQuantity = parseInt(event.target.value);
+        setTotalPrice(currentObject.price * newQuantity)
         setQuantity(newQuantity)
-    }
-    const objectQuantity = (object) => {
-        console.log(object)
-        return <div>
-            <p>{object.name}</p>
-            <div>
-                Quantity:
-                <Button value="-" onClick={() => changeQuantity("decrease")} />
-                <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="1"
-                    value={quantity}
-                    onChange={(event) => handleQuantityChange(event)}
-                />
-                <Button value="+" onClick={() => changeQuantity("increase")} />
-            </div>
-        </div>
     }
     const buy = (id, price, type) => {
         let newMoney = user.userobjects.filter((object) => {
@@ -105,7 +93,10 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 let newObject = objects.filter((object) => {
                     return object.name === id
                 })
-                setModalContent(objectQuantity(newObject[0]))
+                setTotalPrice(newObject[0].price)
+                setQuantity(1)
+                setCurrentObject(newObject[0])
+                setModalContent()
                 setShowModal(true)
                 /*const parameters = [{
                     object_id: newObject[0].object_id,
@@ -132,6 +123,29 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             setModalContent('Not enough money')
             setShowModal(true)
         }
+    }
+    const buyObject = () => {
+        const parameters = [{
+            object_id: currentObject.object_id,
+            user_id: user.user_id,
+            quantity
+        }]
+        fetch(backEndUrl + "/buyObject", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(parameters)
+        })
+            .then(response => {
+                if (response.statusText === "OK") {
+                    setModalContent(modalPurchaseConfirmed)
+                    setShowModal(true)
+                } else {
+                    setModalContent('Error when buying')
+                    setShowModal(true)
+                }
+            })
     }
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
@@ -160,9 +174,30 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             }
             return ''
         })}</h1>}
-        {showModal && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
+        {showModal && modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
             {modalContent}
         </Modal>}
+        {showModal && !modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
+            <div>
+                <p>{currentObject.name}</p>
+                <p>Total Price:{totalPrice}</p>
+                <div>
+                    Quantity:{quantity}
+                    <Button value="-" onClick={() => changeQuantity("decrease")} />
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value={quantity}
+                        onChange={(event) => handleQuantityChange(event)}
+                    />
+                    <Button value="+" onClick={() => changeQuantity("increase")} />
+                </div>
+                <Button value="Buy" onClick={() => buyObject()} />
+            </div>
+        </Modal>
+        }
         <h1 className={classes.divBackground}>{t('shoppage.objects')}:</h1>
         {objects && <div className={classes.container} >
             {objects &&
