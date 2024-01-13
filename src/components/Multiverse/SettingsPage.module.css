@@ -1,0 +1,23 @@
+.settingsContainer {
+    background-image: url('../../assets/img/menu-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: 100% 100%;
+    width: 35%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+}
+
+.optionContainer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

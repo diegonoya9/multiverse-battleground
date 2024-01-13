@@ -72,19 +72,21 @@ const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
             </Modal>}
             <Button colorType="lightgreen" value={t('settingspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
             {volumes && Object.entries(volumes).map(([key, value]) => (
-                <div key={key}>
-                    {t(`settingspage.${key}`)} : {volumes[key]}
-                    <div>
-                        <Button value="-" onClick={() => changeVolume(key, "decrease")} />
-                        <input
-                            type="range"
-                            min="0"
-                            max="100"
-                            step="1"
-                            value={value}
-                            onChange={(event) => handleVolumeChange(key, event)}
-                        />
-                        <Button value="+" onClick={() => changeVolume(key, "increase")} />
+                <div className={classes.settingsContainer} key={key}>
+                    <div className={classes.optionContainer}>
+                        {t(`settingspage.${key}`)} : {volumes[key]}
+                        <div >
+                            <Button value="-" onClick={() => changeVolume(key, "decrease")} />
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                step="1"
+                                value={value}
+                                onChange={(event) => handleVolumeChange(key, event)}
+                            />
+                            <Button value="+" onClick={() => changeVolume(key, "increase")} />
+                        </div>
                     </div>
                 </div>
             ))}
