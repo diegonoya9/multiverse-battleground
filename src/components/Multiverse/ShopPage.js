@@ -15,6 +15,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
             Keep Buying
         </button></div>
     const [objects, setObjects] = useState()
+    const [quantity, setQuantity] = useState(1)
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
@@ -31,16 +32,55 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     const audioStyle = {
         display: 'none',
     };
+    const changeQuantity = (action) => {
+        if (action === "increase") {
+            if (quantity < 100) {
+                setQuantity((prevValue) => {
+                    return prevValue++
+                })
+            }
+        }
+        if (action === "decrease") {
+            if (quantity > 0) {
+                setQuantity((prevValue) => {
+                    return prevValue--
+                })
+            }
+        }
+    }
+    const handleQuantityChange = (event) => {
+        const newQuantity = parseInt(event.target.value);
+        setQuantity(newQuantity)
+    }
+    const objectQuantity = (object) => {
+        console.log(object)
+        return <div>
+            <p>{object.name}</p>
+            <div>
+                Quantity:
+                <Button value="-" onClick={() => changeQuantity("decrease")} />
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value={quantity}
+                    onChange={(event) => handleQuantityChange(event)}
+                />
+                <Button value="+" onClick={() => changeQuantity("increase")} />
+            </div>
+        </div>
+    }
     const buy = (id, price, type) => {
         let newMoney = user.userobjects.filter((object) => {
             return object.name === "Money"
         })
         let newUser = user
         if (newMoney[0].quantity >= price) {
-            setModalContent("Processing.. Please wait")
-            setShowModal(true)
             newMoney[0].quantity -= price;
             if (type === "fighter") {
+                setModalContent("Processing.. Please wait")
+                setShowModal(true)
                 const parameters = [{
                     fighter_id: id,
                     user_id: newUser.user_id
@@ -65,7 +105,9 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                 let newObject = objects.filter((object) => {
                     return object.name === id
                 })
-                const parameters = [{
+                setModalContent(objectQuantity(newObject[0]))
+                setShowModal(true)
+                /*const parameters = [{
                     object_id: newObject[0].object_id,
                     user_id: newUser.user_id
                 }]
@@ -84,7 +126,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
                             setModalContent('Error when buying')
                             setShowModal(true)
                         }
-                    })
+                    })*/
             }
         } else {
             setModalContent('Not enough money')
