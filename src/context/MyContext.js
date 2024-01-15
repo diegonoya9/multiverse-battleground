@@ -6,75 +6,81 @@ const MyContextProvider = ({ children }) => {
     const [userContext, setUserContext] = useState({
         idUsuario: 1,
         userName: "",
-        bg:0,
-        sfx:0,
-        sound:0,
-        backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battlegorund-back.onrender.com/api", // Otros datos relacionados con el usuario si es necesario
-        backEndWS: process.env.NODE_ENV === 'development' ? "ws://localhost:3009" : "wss://multiverse-battlegorund-back.onrender.com", // Otros datos relacionados con el usuario si es necesario
-        currentMission:0,
-        currentLevel:0
+        bg: 0,
+        sfx: 0,
+        sound: 0,
+        backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battleground-back.onrender.com/api", // Otros datos relacionados con el usuario si es necesario
+        backEndWS: process.env.NODE_ENV === 'development' ? "ws://localhost:3009" : "wss://multiverse-battleground-back.onrender.com", // Otros datos relacionados con el usuario si es necesario
+        currentMission: 0,
+        currentLevel: 0
     });
 
     const setUserId = (newId) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            idUsuario:newId
-        }
-    });}
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                idUsuario: newId
+            }
+        });
+    }
     const setUserName = (userName) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            userName
-        }
-    });}
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                userName
+            }
+        });
+    }
     const setCurrentMission = (mission) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            currentMission:mission
-        }
-    });}
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                currentMission: mission
+            }
+        });
+    }
     const setCurrentLevel = (level) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            currentLevel:level
-        }
-    });}
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                currentLevel: level
+            }
+        });
+    }
     const setBg = (bg) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            bg
-        }
-    });
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                bg
+            }
+        });
     };
     const setSound = (sound) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            sound
-        }
-    });}
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                sound
+            }
+        });
+    }
     const setSfx = (sfx) => {
         setUserContext((prevValue) => {
-            let newvalue={...prevValue}
-            return{
-            ...newvalue,
-            sfx
-        }
-    });}
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                sfx
+            }
+        });
+    }
 
     return (
-        <MyContext.Provider value={{ userContext, setUserId, setUserName,setBg,setSound,setSfx,setCurrentLevel,setCurrentMission }}>
+        <MyContext.Provider value={{ userContext, setUserId, setUserName, setBg, setSound, setSfx, setCurrentLevel, setCurrentMission }}>
             {children}
         </MyContext.Provider>
     );

@@ -206,6 +206,12 @@ const useBattleLogic = (setShowLevelUp) => {
                                     newAction.value -= userFighter.extra_special_attack
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense + enemyFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
+                                /* if (action.attack_type === "robavidas_special" && action.field === "current_hp") {
+                                     //newAction.value -= 100000
+                                     newAction.value -= userFighter.special_attack
+                                     newAction.value -= userFighter.extra_special_attack
+                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense + enemyFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
+                                 }*/
                                 setUserAttacked({ "active": "user", "sfx": option.sfx, 'totalDamage': newAction.value })
                                 attackEnemy(newAction)
                                 newInflictedActions.push(newAction)
@@ -277,7 +283,7 @@ const useBattleLogic = (setShowLevelUp) => {
             if (attackHit) {
                 let newInflictedActions = []
                 enemyFighter.moves[randomMove].actionmoves.forEach((action) => {
-                    if (action.level === Math.max(parseInt(enemyFighter.level / 10),1)) {
+                    if (action.level === Math.max(parseInt(enemyFighter.level / 10), 1)) {
                         let newAction = { ...action }
                         if (action.inflicted_on === "enemy") {
                             setAttack((prevState) => {

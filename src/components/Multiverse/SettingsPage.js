@@ -1,11 +1,14 @@
 import classes from './SettingsPage.module.css'
 import Button from '../UI/Button'
+import Modal from '../UI/Modal'
 import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MyContext } from '../../context/MyContext';
 const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
     const { t } = useTranslation();
     const { userContext } = useContext(MyContext);
+    const [showModal, setShowModal] = useState(false)
+    const [modalContent, setModalContent] = useState()
     const backEndUrl = userContext.backEndUrl
     const [volumes, setVolumes] = useState({
         bg: user.bg_volume,
@@ -13,6 +16,8 @@ const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
         sfx: user.sfx_volume
     })
     const saveChanges = () => {
+        setModalContent('Saving settings..')
+        setShowModal(true)
         const parameters = [{
             user_id: user.user_id,
             bg: volumes.bg,
@@ -27,6 +32,7 @@ const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
             body: JSON.stringify(parameters)
         }).then(() => {
             updateUser()
+            setModalContent('Settings saved.')
         })
     }
     const handleVolumeChange = (origin, event) => {
@@ -53,23 +59,34 @@ const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
             }
         }
     }
+    const closeModal = () => {
+        if (modalContent !== "Saving settings..") {
+            setShowModal(false)
+            setModalContent('')
+        }
+    }
     return (
         <div>
+            {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
+                {modalContent}
+            </Modal>}
             <Button colorType="lightgreen" value={t('settingspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
             {volumes && Object.entries(volumes).map(([key, value]) => (
-                <div key={key}>
-                    {t(`settingspage.${key}`)} : {volumes[key]}
-                    <div>
-                        <Button value="-" onClick={() => changeVolume(key, "decrease")} />
-                        <input
-                            type="range"
-                            min="0"
-                            max="100"
-                            step="1"
-                            value={value}
-                            onChange={(event) => handleVolumeChange(key, event)}
-                        />
-                        <Button value="+" onClick={() => changeVolume(key, "increase")} />
+                <div className={classes.settingsContainer} key={key}>
+                    <div className={classes.optionContainer}>
+                        {t(`settingspage.${key}`)} : {volumes[key]}
+                        <div >
+                            <Button value="-" onClick={() => changeVolume(key, "decrease")} />
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                step="1"
+                                value={value}
+                                onChange={(event) => handleVolumeChange(key, event)}
+                            />
+                            <Button value="+" onClick={() => changeVolume(key, "increase")} />
+                        </div>
                     </div>
                 </div>
             ))}
