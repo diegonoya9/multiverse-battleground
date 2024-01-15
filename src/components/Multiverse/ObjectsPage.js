@@ -28,8 +28,12 @@ const ObjectsPage = ({ user, changeMultiverseActivePage }) => {
 
         fetchData();
     }, [backEndUrl, user.user_id])
+    const handleAudioEnd = (e) => {
+        // Reiniciar la reproducción cuando la canción termine
+        e.target.play();
+      };
     return (<div className={classes.backgroundImg}>
-        <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />
+        <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
             {userObjects &&

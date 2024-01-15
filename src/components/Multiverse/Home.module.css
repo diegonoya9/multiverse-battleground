@@ -1,5 +1,5 @@
 * {
-    font-family: 'Mochiy Pop One', sans-serif;
+    font-family: 'Allerta Stencil', system-ui;
 }
 
 .homeDiv {
@@ -12,6 +12,18 @@
     background-attachment: fixed;
     display: flex;
 }
+.homeDivGoogle {
+    background-image: url('../../assets/img/island.gif');
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;    
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 .modalButton {
@@ -23,4 +35,8 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.googleLogin{
+    margin:auto;
 }

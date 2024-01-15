@@ -18,7 +18,18 @@ const Multiverse = ({ changeActivePage }) => {
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
-    const { userContext, setUserName,setSound,setBg,setSfx ,setCurrentMission} = useContext(MyContext);
+    const [song, setSong] = useState(0);
+
+    const songs = [
+        { id: 1, title: 'Song 1', src: '/assets/sounds/music/Aeroplane.WAV' },
+        { id: 3, title: 'Song 3', src: '/assets/sounds/music/africa.mp3' },
+        { id: 18, title: 'Song 18', src: '/assets/sounds/music/uptown.mp3' },
+        { id: 19, title: 'Song 19', src: '/assets/sounds/music/welcome.mp3' },
+        { id: 20, title: 'Song 20', src: '/assets/sounds/music/what.mp3' }
+        // Agrega más canciones según sea necesario
+    ];
+
+    const { userContext, setUserName, setSound, setBg, setSfx, setCurrentMission } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
     let bg = userContext.bg
@@ -39,41 +50,50 @@ const Multiverse = ({ changeActivePage }) => {
     const updateUser = () => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
-            .then(data => { 
+            .then(data => {
                 setUser(data[0])
-                setSound(data[0].sound_volume) 
-                setSfx(data[0].sfx_volume) 
-                setBg(data[0].bg_volume) 
+                setSound(data[0].sound_volume)
+                setSfx(data[0].sfx_volume)
+                setBg(data[0].bg_volume)
             })
+    }
+    const selectSong = () => {
+        let randomSong = Math.floor(Math.random() * songs.length)
+        setSong(songs[randomSong].src)
     }
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => setUser(data[0]))
+     
+    }, [activeUser])
+
+    useEffect(() => {
         const audio = document.getElementById('audioPlayer');
         if (audio) {
             audio.play()
         }
-    }, [activeUser])
-    useEffect(() => {        
-     setCurrentMission(0)
-    },[])
+    }, [song])
+    useEffect(() => {
+        setCurrentMission(0)
+        selectSong()
+    }, [])
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => {
                 setUser(data[0])
                 setUserName(data[0].name)
-                setSound(data[0].sound_volume) 
-                setSfx(data[0].sfx_volume) 
-                setBg(data[0].bg_volume) 
+                setSound(data[0].sound_volume)
+                setSfx(data[0].sfx_volume)
+                setBg(data[0].bg_volume)
             })
     }, [multiverseActivePage, activeUser])
     return (
         <div alt='mainDiv' className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >
             {multiverseActivePage === 'mainMenu' && user &&
                 <div className={classes.mainMenu}>
-                    <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay id="audioPlayer" controls style={audioStyle} />
+                    {song && <ReactAudioPlayer src={`${song}`} onEnded={() => selectSong()} volume={bg / 100} autoPlay id="audioPlayer" controls style={audioStyle} />}
                     <div id="divWelcome" className={classes.divWelcome}>
                         <h1 className={classes.h1}>{t('multiverse.welcome')} {user.name}</h1>
                         <h2 className={classes.h2}>{t('multiverse.money')} {money} pesos</h2>

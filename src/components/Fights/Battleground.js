@@ -213,8 +213,8 @@ const Battleground = ({ changeActivePage }) => {
         selectBattlegroundType()
     }
     const selectSong = () => {
-        let randomBattleground = Math.floor(Math.random() * songs.length)
-        setSong(songs[randomBattleground].src)
+        let randomSong = Math.floor(Math.random() * songs.length)
+        setSong(songs[randomSong].src)
     }
     const handleSfxEnded = () => {
         setSfx(false)
@@ -280,7 +280,7 @@ const Battleground = ({ changeActivePage }) => {
         <div alt="battlegroundBackground" className={`${classes.battleground} ${classes[battlegroundType]}`}>
             {!userFighter && !enemyFighter && <Loading />}
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
-            {song && user && <ReactAudioPlayer src={`${song}`} id="audioPlayer" volume={bg / 100} autoPlay controls style={audioStyle} />}
+            {song && user && <ReactAudioPlayer src={`${song}`} id="audioPlayer" onEnded={() => selectSong()} volume={bg / 100} autoPlay controls style={audioStyle} />}
             {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} volume={sfx / 100} id="audioSfxPlayer" controls style={audioStyle} />}
             {attack.active && turn === "enemy" && !battleEnded.finished && attack.inflicted_on === "user" && <img alt="enemyAttack" className={classes["enemy-attack-animation"]} src={attack.src} />}
             {attack.active && turn === "user" && !battleEnded.finished && attack.inflicted_on === "enemy" && <img alt="userAttack" className={classes["attack-animation"]} src={attack.src} />}

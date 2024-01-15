@@ -69,16 +69,30 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
             user_fighter_id,
             user_id: newUser.user_id
         }]
-        setModalContent('Removing from party...')
-        setAllowCloseModal(false)
-        setShowModal(true)
-        fetch(backEndUrl + "/removefromparty", {
-            method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(parameters),
-        }).then(() => updateFighters())
+        // Inicializa un contador
+        let countInParty = 0
+        // Recorre cada userfighter y verifica si in_party es "true"
+        fighters.forEach((userfighter) => {
+            if (userfighter.in_party === "true") {
+                countInParty++
+            }
+        });
+        if (countInParty > 1){
+            setModalContent('Removing from party...')
+            setAllowCloseModal(false)
+            setShowModal(true)
+            fetch(backEndUrl + "/removefromparty", {
+                method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(parameters),
+            }).then(() => updateFighters())
+        }else{            
+            setModalContent('You need to have at least one fighter in the party')
+            setAllowCloseModal(true)
+            setShowModal(true)
+        }
 
     }
     const viewActions = (move_id) => {
@@ -150,9 +164,9 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
         })
     }
     const deleteFighter = (userFighterId) => {
-       /* setUserFighterId(userFighterId)
-        setShowConfirm(true)
-        setShowModal(true)*/
+        /* setUserFighterId(userFighterId)
+         setShowConfirm(true)
+         setShowModal(true)*/
     }
     const deleteUserFighter = async (userFighterId) => {
         /* let deleteFighter = await user.fighters.filter((fighter) => {
@@ -192,10 +206,14 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     useEffect(() => {
         updateFighters()
     }, [])
+    const handleAudioEnd = (e) => {
+        // Reiniciar la reproducción cuando la canción termine
+        e.target.play();
+      };
     return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
-            <ReactAudioPlayer src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />
+            <ReactAudioPlayer src={musicFile}  onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
             {fighters &&
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
