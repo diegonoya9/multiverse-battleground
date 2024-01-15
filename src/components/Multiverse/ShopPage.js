@@ -181,8 +181,12 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
         </div>
         <Button value="Buy" onClick={() => buyObject()} />
     </div>
+    const handleAudioEnd = (e) => {
+        // Reiniciar la reproducción cuando la canción termine
+        e.target.play();
+    };
     return (<div className={classes.backgroundImg}>
-        {user && <ReactAudioPlayer src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />}
+        {user && <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         {user && userMoney && <h1 className={classes.divBackground}>{t('shoppage.money')}:{userMoney}</h1>}
         {showModal && modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >

@@ -206,10 +206,14 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     useEffect(() => {
         updateFighters()
     }, [])
+    const handleAudioEnd = (e) => {
+        // Reiniciar la reproducción cuando la canción termine
+        e.target.play();
+      };
     return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
         <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
         <div className={classes.container} >
-            <ReactAudioPlayer src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />
+            <ReactAudioPlayer src={musicFile}  onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
             {fighters &&
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
