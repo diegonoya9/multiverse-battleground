@@ -131,7 +131,11 @@ const useBattleLogic = (setShowLevelUp) => {
                             extra_defense: 0,
                             extra_special_defense: 0,
                             extra_accuracy: 0,
-                            extra_max_hp: 0
+                            extra_max_hp: 0,
+                            attack_multiplier: 0,
+                            special_attack_multiplier: 0,
+                            defense_multiplier: 0,
+                            special_defense_multiplier: 0
                         }
                     }
                 })
@@ -152,7 +156,7 @@ const useBattleLogic = (setShowLevelUp) => {
         restartBattle()
     }
     const userLogic = (option, selectedOption, setMenuActive) => {
-        if (turn === "user") {
+        if (turn === "user" && userFighter) {
             if (selectedOption === "attacks") {
                 reduceFighterMP(option.name)
                 if (enemyFighter && enemyFighter.current_hp > 0) {
@@ -197,13 +201,15 @@ const useBattleLogic = (setShowLevelUp) => {
                                 if (action.attack_type === "normal" && action.field === "current_hp") {
                                     //newAction.value -= 100000
                                     newAction.value -= userFighter.attack
-                                    newAction.value -= userFighter.extra_attack
+                                    newAction.value -= userFighter.extra_attack     
+                                    newAction.value = newAction.value * userFighter.attack_multiplier     
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.defense + enemyFighter.extra_defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 if (action.attack_type === "special" && action.field === "current_hp") {
                                     //newAction.value -= 100000
                                     newAction.value -= userFighter.special_attack
                                     newAction.value -= userFighter.extra_special_attack
+                                    newAction.value = newAction.value * userFighter.special_attack_multiplier 
                                     newAction.value = Math.round(Math.min(newAction.value + enemyFighter.special_defense + enemyFighter.extra_special_defense, newAction.value - (newAction.value * 0.8)))
                                 }
                                 /* if (action.attack_type === "robavidas_special" && action.field === "current_hp") {

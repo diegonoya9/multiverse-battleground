@@ -11,4 +11,5 @@ MuBa is a turn based RPG fighting game, where you can use Fighters from every mu
 Open [https://multiverse-battleground.web.app/](https://multiverse-battleground.web.app/) to start playing.
 
 ## Side Note
+
 Play the game with audio activated for a better experience ;) .

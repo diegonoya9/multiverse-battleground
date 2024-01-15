@@ -204,7 +204,11 @@ const useUser = (origin) => {
                                                     extra_defense: 0,
                                                     extra_special_defense: 0,
                                                     extra_accuracy: 0,
-                                                    extra_max_hp: 0
+                                                    extra_max_hp: 0,
+                                                    attack_multiplier:0,
+                                                    special_attack_multiplier:0,
+                                                    defense_multiplier:0,
+                                                    special_defense_multiplier:0,
                                                 }
                                             }
                                         })
@@ -239,7 +243,11 @@ const useUser = (origin) => {
                                                     extra_defense: 0,
                                                     extra_special_defense: 0,
                                                     extra_accuracy: 0,
-                                                    extra_max_hp: 0
+                                                    extra_max_hp: 0,                                                    
+                                                    attack_multiplier:0,
+                                                    special_attack_multiplier:0,
+                                                    defense_multiplier:0,
+                                                    special_defense_multiplier:0,
                                                 }
                                             }
                                         })
