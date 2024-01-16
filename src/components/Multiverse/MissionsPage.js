@@ -4,18 +4,20 @@ import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
-const MissionsPage = ({ changeActivePage,user, changeMultiverseActivePage }) => {
+import { useNavigate } from "react-router-dom";
+const MissionsPage = () => {
+    const navigate = useNavigate()
     const [missions, setMissions] = useState()
     const audioStyle = {
         display: 'none',
     };
-    const { userContext, setCurrentMission,setCurrentLevel } = useContext(MyContext);
+    const { userContext, setCurrentMission, setCurrentLevel } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
     let bg = userContext.bg
     useEffect(() => {
         const fetchData = async () => {
             try {
-                if (backEndUrl ) {
+                if (backEndUrl) {
                     const response = await fetch(backEndUrl + '/allmissions/');
                     const data = await response.json();
                     setMissions(data);
@@ -30,22 +32,22 @@ const MissionsPage = ({ changeActivePage,user, changeMultiverseActivePage }) => 
     const startMission = (mission) => {
         setCurrentLevel(1)
         setCurrentMission(mission)
-        changeActivePage(2)
+        navigate('/battle')
     }
     const handleAudioEnd = (e) => {
         // Reiniciar la reproducción cuando la canción termine
         e.target.play();
-      };
+    };
     return (<div className={classes.backgroundImg}>
-        <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={bg/100} autoPlay controls style={audioStyle} />
-        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+        <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />
+        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { navigate('/') }}></Button>
         <div className={classes.container} >
             {missions &&
                 missions.map((mission) => {
                     return (
                         <div className={classes.missionContainer} key={mission.mission_id}>
                             {mission.description}
-                            <Button value="Start Mission" onClick={() => {startMission(mission)}}></Button>
+                            <Button value="Start Mission" onClick={() => { startMission(mission) }}></Button>
                         </div>
                     );
                 })}

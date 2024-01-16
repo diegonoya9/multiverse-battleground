@@ -1,14 +1,17 @@
 import classes from './SettingsPage.module.css'
-import Button from '../UI/Button'
-import Modal from '../UI/Modal'
+import Button from '../components/UI/Button'
+import Modal from '../components/UI/Modal'
 import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MyContext } from '../../context/MyContext';
+import { MyContext } from '../context/MyContext';
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/OverNow.WAV"
-const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
+import musicFile from "../assets/sounds/music/OverNow.WAV"
+import { useNavigate } from 'react-router-dom';
+const SettingsPage = ({ changeMultiverseActivePage, updateUser }) => {
+    const navigate = useNavigate()
     const { t } = useTranslation();
-    const { userContext } = useContext(MyContext);
+    const { userContext, setUser } = useContext(MyContext);
+    let user = userContext.user
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState()
     const backEndUrl = userContext.backEndUrl
@@ -36,7 +39,11 @@ const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
             },
             body: JSON.stringify(parameters)
         }).then(() => {
-            updateUser()
+            let newUser = { ...user }
+            newUser.bg = volumes.bg
+            newUser.sound = volumes.sound
+            newUser.sfx = volumes.sfx
+            setUser(newUser)
             setModalContent('Settings saved.')
         })
     }
@@ -73,14 +80,14 @@ const SettingsPage = ({ changeMultiverseActivePage, user, updateUser }) => {
     const handleAudioEnd = (e) => {
         // Reiniciar la reproducción cuando la canción termine
         e.target.play();
-      };
+    };
     return (
         <div>
-            <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={volumes.bg/100} autoPlay controls style={audioStyle} />
+            <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={volumes.bg / 100} autoPlay controls style={audioStyle} />
             {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
                 {modalContent}
             </Modal>}
-            <Button colorType="lightgreen" value={t('settingspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+            <Button colorType="lightgreen" value={t('settingspage.back')} onClick={() => { navigate('/') }}></Button>
             {volumes && Object.entries(volumes).map(([key, value]) => (
                 <div className={classes.settingsContainer} key={key}>
                     <div className={classes.optionContainer}>

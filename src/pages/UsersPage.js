@@ -1,11 +1,13 @@
 import classes from "./UsersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
 import { useState, useContext, useEffect } from "react";
-import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
-import Button from "../UI/Button";
-import Modal from "../UI/Modal";
-import { MyContext } from '../../context/MyContext';
+import musicFile from "../assets/sounds/music/DirtyLove.WAV"
+import Button from "../components/UI/Button";
+import Modal from "../components/UI/Modal";
+import { MyContext } from '../context/MyContext';
+import { useNavigate } from "react-router-dom";
 const UsersPage = ({ changeMultiverseActivePage }) => {
+    const navigate = useNavigate()
     const [users, setUsers] = useState([])
     const audioStyle = {
         display: 'none',
@@ -34,7 +36,7 @@ const UsersPage = ({ changeMultiverseActivePage }) => {
         {showModal && <Modal onClose={closeModal} backgroundColor="lightblue" color="white">
             <h1 style={{ color: 'white' }}>Player selected</h1>
         </Modal>}
-        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+        <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { navigate('/') }}></Button>
         <div className={classes.container} >
             <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {users &&

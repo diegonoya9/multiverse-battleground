@@ -1,14 +1,16 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState, useContext } from "react";
 import ReactAudioPlayer from 'react-audio-player';
-import Modal from "../UI/Modal";
-import Button from "../UI/Button";
-import musicFile from "../../assets/sounds/music/OverNow.WAV"
-import { MyContext } from "../../context/MyContext";
-import FighterCard from "../UI/FighterCard";
-import ObjectCard from "../UI/ObjectCard";
+import Modal from "../components/UI/Modal";
+import Button from "../components/UI/Button";
+import musicFile from "../assets/sounds/music/OverNow.WAV"
+import { MyContext } from "../context/MyContext";
+import FighterCard from "../components/UI/FighterCard";
+import ObjectCard from "../components/UI/ObjectCard";
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from "react-router-dom";
 const ShopPage = ({ changeMultiverseActivePage }) => {
+    const navigate = useNavigate()
     const { t } = useTranslation();
     const modalPurchaseConfirmed = <div><h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
         <button className={classes.modalButton} onClick={() => setShowModal(false)}>
@@ -187,7 +189,7 @@ const ShopPage = ({ changeMultiverseActivePage }) => {
     };
     return (<div className={classes.backgroundImg}>
         {user && <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />}
-        <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+        <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { navigate('/') }}></Button>
         {user && userMoney && <h1 className={classes.divBackground}>{t('shoppage.money')}:{userMoney}</h1>}
         {showModal && modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >
             {modalContent}

@@ -11,17 +11,9 @@ import { GoogleLogin } from '@react-oauth/google';
 import { MyContext } from '../../context/MyContext';
 const Home = () => {
     const { t } = useTranslation();
-    const { userContext, setUserId, setUserName } = useContext(MyContext);
+    const { userContext, setUser, setUserId, setUserName } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
     const [userLoggedIn, setUserLoggedIn] = useState(false)
-    const [showModal, setShowModal] = useState(true);
-    const handleStartAdventure = () => {
-        setShowModal(false);
-    };
-    const [activePage, setActivePage] = useState(1)
-    const changeActivePage = (page) => {
-        setActivePage(page)
-    }
     const handleGoogleLogin = (credentials) => {
         const parameters = [{
             credentials: credentials
@@ -35,9 +27,14 @@ const Home = () => {
         }).then(response => response.json())
             .then((data) => {
                 if (data.user_id) {
-                    setUserId(data.user_id)
-                    setUserName(data.name)
-                    setUserLoggedIn(true)
+                    fetch(backEndUrl + "/allusers/" + data.user_id)
+                        .then(response => response.json())
+                        .then(responseData => {
+                            setUser(responseData[0])
+                            setUserId(data.user_id)
+                            setUserName(data.name)
+                            setUserLoggedIn(true)
+                        })
                 }
             })
     }
@@ -53,16 +50,6 @@ const Home = () => {
                     }}
                     useOneTap
                 /> </div>}
-            {/*<div id="homeDiv" className={classes.homeDiv}>
-                    {showModal && <Modal onClose={handleStartAdventure} color="white"  >
-                        <h1 >{t('home.welcome')}</h1>
-                        <p style={{ color: '#fff' }}>{t('home.getReady')}</p>
-                        <Button colorType="green" value={t('home.start')} onClick={() => handleStartAdventure()}>
-                        </Button></Modal>}
-                    {activePage && activePage === 1 && !showModal && <Multiverse changeActivePage={changeActivePage}></Multiverse>}
-                    {activePage && activePage === 2 && !showModal && <Battleground changeActivePage={changeActivePage}></Battleground>}
-                </div> */}
-
             {userLoggedIn &&
                 <div id="homeDiv" className={classes.homeDiv}>
                     <Outlet />

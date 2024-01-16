@@ -4,6 +4,7 @@ const MyContext = createContext();
 
 const MyContextProvider = ({ children }) => {
     const [userContext, setUserContext] = useState({
+        user: {},
         idUsuario: 1,
         userName: "",
         bg: 0,
@@ -14,7 +15,15 @@ const MyContextProvider = ({ children }) => {
         currentMission: 0,
         currentLevel: 0
     });
-
+    const setUser = (user) => {
+        setUserContext((prevValue) => {
+            let newvalue = { ...prevValue }
+            return {
+                ...newvalue,
+                user
+            }
+        });
+    }
     const setUserId = (newId) => {
         setUserContext((prevValue) => {
             let newvalue = { ...prevValue }
@@ -80,7 +89,7 @@ const MyContextProvider = ({ children }) => {
     }
 
     return (
-        <MyContext.Provider value={{ userContext, setUserId, setUserName, setBg, setSound, setSfx, setCurrentLevel, setCurrentMission }}>
+        <MyContext.Provider value={{ userContext, setUser, setUserId, setUserName, setBg, setSound, setSfx, setCurrentLevel, setCurrentMission }}>
             {children}
         </MyContext.Provider>
     );

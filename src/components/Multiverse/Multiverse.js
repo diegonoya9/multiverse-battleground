@@ -1,14 +1,6 @@
 import { memo, useState, useEffect, useContext } from "react"
-import FightersPage from "./FightersPage.js"
-import ObjectsPage from "./ObjectsPage.js"
-import UsersPage from './UsersPage.js'
-import SettingsPage from './SettingsPage.js'
-import MissionsPage from "./MissionsPage.js"
-import MatchMaking from "./MatchMaking.js"
 import classes from './Multiverse.module.css'
-import ShopPage from "./ShopPage.js"
 import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/Aeroplane.WAV"
 import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
 import { useTranslation } from 'react-i18next';
@@ -31,15 +23,13 @@ const Multiverse = ({ changeActivePage }) => {
         // Agrega más canciones según sea necesario
     ];
 
-    const { userContext, setUserName, setSound, setBg, setSfx, setCurrentMission } = useContext(MyContext);
+    const { userContext, setUserName, setUser, setSound, setBg, setSfx, setCurrentMission } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
     let bg = userContext.bg
+    let user = userContext.user
     const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
-    const changeMultiverseActivePage = (activePage) => {
-        setMultiverseActivePage(activePage)
-    }
-    const [user, setUser] = useState()
+    //const [user, setUser] = useState()
     const [money, setMoney] = useState()
     useEffect(() => {
         if (user) {
@@ -63,12 +53,12 @@ const Multiverse = ({ changeActivePage }) => {
         let randomSong = Math.floor(Math.random() * songs.length)
         setSong(songs[randomSong].src)
     }
-    useEffect(() => {
-        fetch(backEndUrl + '/allusers/' + activeUser)
-            .then(response => response.json())
-            .then(data => setUser(data[0]))
-
-    }, [activeUser])
+    /* useEffect(() => {
+         fetch(backEndUrl + '/allusers/' + activeUser)
+             .then(response => response.json())
+             .then(data => setUser(data[0]))
+ 
+     }, [activeUser])*/
 
     useEffect(() => {
         const audio = document.getElementById('audioPlayer');
@@ -103,25 +93,25 @@ const Multiverse = ({ changeActivePage }) => {
                     <div className={classes.btnContainer} >
                         <Button value={t('multiverse.fight')} colorType="red" onClick={() => navigate('/battle')}></Button>
                         <Button value={t('multiverse.missions')} colorType="yellow" onClick={(e) => {
-                            changeMultiverseActivePage('missions');
+                            navigate('/missions');
                         }}></Button>
                         <Button value={t('multiverse.pvp')} colorType="yellow" onClick={(e) => {
-                            changeMultiverseActivePage('pvp');
+                            navigate('/pvp');
                         }}></Button>
                         <Button value={t('multiverse.fighters')} colorType="brown" onClick={(e) => {
                             navigate('/fighters');
                         }}></Button>
                         <Button value={t('multiverse.bag')} colorType="green" onClick={(e) => {
-                            changeMultiverseActivePage('bag');
+                            navigate('/bag');
                         }}></Button>
                         <Button value={t('multiverse.shop')} colorType="yellow" onClick={(e) => {
-                            changeMultiverseActivePage('shop');
+                            navigate('/shop');
                         }}></Button>
                         <Button value={t('multiverse.config')} colorType="blue" onClick={(e) => {
-                            changeMultiverseActivePage('config');
+                            navigate('/config');
                         }}></Button>
                         <Button value={t('multiverse.users')} colorType="blue" onClick={(e) => {
-                            changeMultiverseActivePage('users');
+                            navigate('/users');
                         }}></Button>
                     </div>
                 </div>
@@ -129,12 +119,6 @@ const Multiverse = ({ changeActivePage }) => {
             {multiverseActivePage === "mainMenu" && !user && <Loading></Loading>}
             {/*multiverseActivePage === "fighters" && <FightersPage
                 updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>*/}
-            {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
-            {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
-            {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}
-            {multiverseActivePage === "config" && <SettingsPage updateUser={updateUser} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></SettingsPage>}
-            {multiverseActivePage === "missions" && <MissionsPage changeActivePage={changeActivePage} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></MissionsPage>}
-            {multiverseActivePage === "pvp" && <MatchMaking changeActivePage={changeActivePage} user={user} changeMultiverseActivePage={changeMultiverseActivePage} ></MatchMaking>}
         </div >
     )
 }

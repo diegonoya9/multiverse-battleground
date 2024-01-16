@@ -11,15 +11,13 @@ import { useNavigate } from "react-router-dom";
 const FightersPage = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
-    const [user, setUser] = useState()
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState()
     const { userContext } = useContext(MyContext);
     const [fighters, setFighters] = useState()
     const [moves, setMoves] = useState()
-    /*const [showConfirm, setShowConfirm] = useState(false)
-    const [userFighterId, setUserFighterId] = useState(false)*/
     const [allowCloseModal, setAllowCloseModal] = useState(true)
+    const user = userContext.user
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
     let bg = userContext.bg
@@ -209,47 +207,41 @@ const FightersPage = () => {
     useEffect(() => {
         updateFighters()
     }, [])
-    useEffect(() => {
-        fetch(backEndUrl + '/allusers/' + activeUser)
-            .then(response => response.json())
-            .then(data => {
-                setUser(data[0])
-            })
-    }, [activeUser])
     const handleAudioEnd = (e) => {
         // Reiniciar la reproducción cuando la canción termine
         e.target.play();
     };
-    return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
-        <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { navigate('/') }}></Button>
-        <div className={classes.container} >
-            <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
-            {fighters &&
-                fighters.map((fighter, i) => {
-                    return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
-                        <FighterCard fighter={fighter} showPrice={false}></FighterCard>
-                        <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
-                        <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value={t('fighterspage.viewMovements')}></Button>
-                        {fighter.in_party === "true" ?
-                            <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
-                            :
-                            <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value={t('fighterspage.addToParty')}></Button>
-                        }
-                        {/* <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button> */}
-                    </div>
-                    );
-                })}
-        </div>
-        {/*showModal && !modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
+    return (
+        <div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
+            <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { navigate('/') }}></Button>
+            <div className={classes.container} >
+                <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
+                {fighters &&
+                    fighters.map((fighter, i) => {
+                        return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
+                            <FighterCard fighter={fighter} showPrice={false}></FighterCard>
+                            <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
+                            <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value={t('fighterspage.viewMovements')}></Button>
+                            {fighter.in_party === "true" ?
+                                <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
+                                :
+                                <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value={t('fighterspage.addToParty')}></Button>
+                            }
+                            {/* <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button> */}
+                        </div>
+                        );
+                    })}
+            </div>
+            {/*showModal && !modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
             {showConfirm && <div>
                 <h3>Are you sure you want to sell this fighter?</h3>
                 <Button onClick={() => deleteUserFighter(userFighterId)}>Sell</Button>
             </div>}
             </Modal>*/}
-        {showModal && modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
-            {modalContent}
-        </Modal>}
-    </div >
+            {showModal && modalContent && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
+                {modalContent}
+            </Modal>}
+        </div >
     );
 
 }
