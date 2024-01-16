@@ -28,7 +28,6 @@ const Multiverse = ({ changeActivePage }) => {
     let backEndUrl = userContext.backEndUrl
     let bg = userContext.bg
     let user = userContext.user
-    const [multiverseActivePage, setMultiverseActivePage] = useState("mainMenu")
     //const [user, setUser] = useState()
     const [money, setMoney] = useState()
     useEffect(() => {
@@ -39,27 +38,10 @@ const Multiverse = ({ changeActivePage }) => {
             setMoney(newMoney[0].quantity)
         }
     }, [user])
-    const updateUser = () => {
-        fetch(backEndUrl + '/allusers/' + activeUser)
-            .then(response => response.json())
-            .then(data => {
-                setUser(data[0])
-                setSound(data[0].sound_volume)
-                setSfx(data[0].sfx_volume)
-                setBg(data[0].bg_volume)
-            })
-    }
     const selectSong = () => {
         let randomSong = Math.floor(Math.random() * songs.length)
         setSong(songs[randomSong].src)
     }
-    /* useEffect(() => {
-         fetch(backEndUrl + '/allusers/' + activeUser)
-             .then(response => response.json())
-             .then(data => setUser(data[0]))
- 
-     }, [activeUser])*/
-
     useEffect(() => {
         const audio = document.getElementById('audioPlayer');
         if (audio) {
@@ -80,10 +62,10 @@ const Multiverse = ({ changeActivePage }) => {
                 setSfx(data[0].sfx_volume)
                 setBg(data[0].bg_volume)
             })
-    }, [multiverseActivePage, activeUser])
+    }, [activeUser])
     return (
-        <div alt='mainDiv' className={`${classes.container} ${multiverseActivePage === "mainMenu" && classes.notScrollable}`} >
-            {multiverseActivePage === 'mainMenu' && user &&
+        <div alt='mainDiv' className={`${classes.container} ${classes.notScrollable}`} >
+            {user &&
                 <div className={classes.mainMenu}>
                     {song && <ReactAudioPlayer src={`${song}`} onEnded={() => selectSong()} volume={bg / 100} autoPlay id="audioPlayer" controls style={audioStyle} />}
                     <div id="divWelcome" className={classes.divWelcome}>
@@ -116,9 +98,7 @@ const Multiverse = ({ changeActivePage }) => {
                     </div>
                 </div>
             }
-            {multiverseActivePage === "mainMenu" && !user && <Loading></Loading>}
-            {/*multiverseActivePage === "fighters" && <FightersPage
-                updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>*/}
+            {!user && <Loading></Loading>}
         </div >
     )
 }

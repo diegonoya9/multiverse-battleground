@@ -1,9 +1,10 @@
 // ObjectsPage.test.js
 import React from 'react';
 import { render, cleanup, act } from '@testing-library/react';
-import { MyContextProvider } from '../../context/MyContext';
+import { MyContextProvider } from '../context/MyContext';
 import ObjectsPage from './ObjectsPage';
 import renderer from 'react-test-renderer'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 afterEach(() => {
   global.fetch.mockRestore();
   cleanup();
@@ -14,6 +15,12 @@ const mockUserContext = {
   backEndUrl: "http://localhost:3009/api"
   // Otros datos relacionados con el usuario si es necesario
 };
+const testRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <div />,
+  },
+]);
 const objects = [
   {
     "user_object_id": 2,
@@ -46,7 +53,9 @@ test('renders objects page component', async () => {
   await act(async () => {
     component = render(
       <MyContextProvider value={{ userContext: mockUserContext }}>
-        <ObjectsPage user={user} />
+        <RouterProvider router={testRouter}>
+          <ObjectsPage user={user} />
+        </RouterProvider>
       </MyContextProvider>
     );
   })

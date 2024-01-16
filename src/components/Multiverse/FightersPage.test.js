@@ -5,6 +5,8 @@ import { MyContextProvider } from '../../context/MyContext';
 import FightersPage from './FightersPage';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 
 beforeAll(() => {
     i18n.use(initReactI18next)
@@ -133,136 +135,136 @@ const user =
 }
 
 const fighters = [
-	{
-		"user_fighter_id": 26,
-		"user_id": 1,
-		"fighter_id": 5,
-		"level": 50,
-		"active": "false",
-		"in_party": "true",
-		"extra_accuracy": 0,
-		"extra_max_hp": 0,
-		"extra_attack": 0,
-		"extra_special_attack": 0,
-		"extra_defense": 0,
-		"extra_special_defense": 0,
-		"current_xp": 259800,
-		"fighters": {
-			"fighter_id": 5,
-			"img_back": "./assets/img/mew-back.png",
-			"img_front": "./assets/img/mew-front.png",
-			"name": "Mew",
-			"price": 100
-		},
-		"name": "Mew",
-		"img_back": "./assets/img/mew-back.png",
-		"img_front": "./assets/img/mew-front.png",
-		"attack": 4705,
-		"special_attack": 4717,
-		"defense": 4712,
-		"special_defense": 4731,
-		"accuracy": 102,
-		"max_hp": 49394,
-		"current_hp": 49394,
-		"moves": [
-			{
-				"user_fighter_move_id": 18,
-				"move_id": 5,
-				"user_fighter_id": 26,
-				"current_xp": 1,
-				"level": 5,
-				"movelevel_id": 269,
-				"img": "./assets/img/lightsBall.gif",
-				"name": "Energy Ball",
-				"sfx": "/assets/sounds/SFX/Mew1.mp3",
-				"mp": 20,
-				"actionmoves": [
-					{
-						"action_move_id": 128,
-						"move_id": 5,
-						"attack_type": "normal",
-						"field": "current_hp",
-						"inflicted_on": "enemy",
-						"value": -650,
-						"level": 5,
-						"movelevel_id": 269
-					}
-				]
-			},
-			{
-				"user_fighter_move_id": 19,
-				"move_id": 14,
-				"user_fighter_id": 26,
-				"current_xp": 1,
-				"level": 1,
-				"movelevel_id": 18,
-				"img": "./assets/img/cloud.gif",
-				"name": "Smoke Throw",
-				"sfx": "/assets/sounds/SFX/Mew2.mp3",
-				"mp": 20,
-				"actionmoves": [
-					{
-						"action_move_id": 14,
-						"move_id": 14,
-						"attack_type": "special",
-						"field": "accuracy",
-						"inflicted_on": "enemy",
-						"value": -20,
-						"level": 1,
-						"movelevel_id": 18
-					}
-				]
-			},
-			{
-				"user_fighter_move_id": 20,
-				"move_id": 15,
-				"user_fighter_id": 26,
-				"current_xp": 1,
-				"level": 1,
-				"movelevel_id": 19,
-				"img": "./assets/img/petals.gif",
-				"name": "Cutie",
-				"sfx": "/assets/sounds/SFX/Mew3.mp3",
-				"mp": 20,
-				"actionmoves": [
-					{
-						"action_move_id": 15,
-						"move_id": 15,
-						"attack_type": "special",
-						"field": "extra_defense",
-						"inflicted_on": "user",
-						"value": 30,
-						"level": 1,
-						"movelevel_id": 19
-					}
-				]
-			},
-			{
-				"user_fighter_move_id": 21,
-				"move_id": 16,
-				"user_fighter_id": 26,
-				"current_xp": 1,
-				"level": 1,
-				"movelevel_id": 20,
-				"img": "./assets/img/ray.gif",
-				"name": "Hiper Ray",
-				"sfx": "/assets/sounds/SFX/Mew4.mp3",
-				"mp": 20,
-				"actionmoves": [
-					{
-						"action_move_id": 16,
-						"move_id": 16,
-						"attack_type": "special",
-						"field": "current_hp",
-						"inflicted_on": "enemy",
-						"value": -300,
-						"level": 1,
-						"movelevel_id": 20
-					}
-				]
-			}
-		]
-	}
+    {
+        "user_fighter_id": 26,
+        "user_id": 1,
+        "fighter_id": 5,
+        "level": 50,
+        "active": "false",
+        "in_party": "true",
+        "extra_accuracy": 0,
+        "extra_max_hp": 0,
+        "extra_attack": 0,
+        "extra_special_attack": 0,
+        "extra_defense": 0,
+        "extra_special_defense": 0,
+        "current_xp": 259800,
+        "fighters": {
+            "fighter_id": 5,
+            "img_back": "./assets/img/mew-back.png",
+            "img_front": "./assets/img/mew-front.png",
+            "name": "Mew",
+            "price": 100
+        },
+        "name": "Mew",
+        "img_back": "./assets/img/mew-back.png",
+        "img_front": "./assets/img/mew-front.png",
+        "attack": 4705,
+        "special_attack": 4717,
+        "defense": 4712,
+        "special_defense": 4731,
+        "accuracy": 102,
+        "max_hp": 49394,
+        "current_hp": 49394,
+        "moves": [
+            {
+                "user_fighter_move_id": 18,
+                "move_id": 5,
+                "user_fighter_id": 26,
+                "current_xp": 1,
+                "level": 5,
+                "movelevel_id": 269,
+                "img": "./assets/img/lightsBall.gif",
+                "name": "Energy Ball",
+                "sfx": "/assets/sounds/SFX/Mew1.mp3",
+                "mp": 20,
+                "actionmoves": [
+                    {
+                        "action_move_id": 128,
+                        "move_id": 5,
+                        "attack_type": "normal",
+                        "field": "current_hp",
+                        "inflicted_on": "enemy",
+                        "value": -650,
+                        "level": 5,
+                        "movelevel_id": 269
+                    }
+                ]
+            },
+            {
+                "user_fighter_move_id": 19,
+                "move_id": 14,
+                "user_fighter_id": 26,
+                "current_xp": 1,
+                "level": 1,
+                "movelevel_id": 18,
+                "img": "./assets/img/cloud.gif",
+                "name": "Smoke Throw",
+                "sfx": "/assets/sounds/SFX/Mew2.mp3",
+                "mp": 20,
+                "actionmoves": [
+                    {
+                        "action_move_id": 14,
+                        "move_id": 14,
+                        "attack_type": "special",
+                        "field": "accuracy",
+                        "inflicted_on": "enemy",
+                        "value": -20,
+                        "level": 1,
+                        "movelevel_id": 18
+                    }
+                ]
+            },
+            {
+                "user_fighter_move_id": 20,
+                "move_id": 15,
+                "user_fighter_id": 26,
+                "current_xp": 1,
+                "level": 1,
+                "movelevel_id": 19,
+                "img": "./assets/img/petals.gif",
+                "name": "Cutie",
+                "sfx": "/assets/sounds/SFX/Mew3.mp3",
+                "mp": 20,
+                "actionmoves": [
+                    {
+                        "action_move_id": 15,
+                        "move_id": 15,
+                        "attack_type": "special",
+                        "field": "extra_defense",
+                        "inflicted_on": "user",
+                        "value": 30,
+                        "level": 1,
+                        "movelevel_id": 19
+                    }
+                ]
+            },
+            {
+                "user_fighter_move_id": 21,
+                "move_id": 16,
+                "user_fighter_id": 26,
+                "current_xp": 1,
+                "level": 1,
+                "movelevel_id": 20,
+                "img": "./assets/img/ray.gif",
+                "name": "Hiper Ray",
+                "sfx": "/assets/sounds/SFX/Mew4.mp3",
+                "mp": 20,
+                "actionmoves": [
+                    {
+                        "action_move_id": 16,
+                        "move_id": 16,
+                        "attack_type": "special",
+                        "field": "current_hp",
+                        "inflicted_on": "enemy",
+                        "value": -300,
+                        "level": 1,
+                        "movelevel_id": 20
+                    }
+                ]
+            }
+        ]
+    }
 ]
 // Mock del contexto para la prueba
 const mockUserContext = {
@@ -270,20 +272,28 @@ const mockUserContext = {
     backEndUrl: "http://localhost:3009/api"
     // Otros datos relacionados con el usuario si es necesario
 };
-
+const testRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <div />,
+    },
+]);
 let component;
 beforeEach(async () => {
     global.fetch = jest.fn().mockResolvedValue({
         json: jest.fn().mockResolvedValue(fighters)
     });
     await act(async () => {
-        component = render(<>
-            <I18nextProvider i18n={i18n}>
-                <MyContextProvider value={{ userContext: mockUserContext }}>
-                    <FightersPage user={user} />
-                </MyContextProvider>
-            </I18nextProvider>
-        </>
+        component = render(
+            <>
+                <I18nextProvider i18n={i18n}>
+                    <RouterProvider router={testRouter}>
+                        <MyContextProvider value={{ userContext: mockUserContext }}>
+                            <FightersPage user={user} />
+                        </MyContextProvider>
+                    </RouterProvider>
+                </I18nextProvider>
+            </>
         );
     });
 })
