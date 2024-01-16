@@ -1,10 +1,6 @@
 import { useState, useContext } from "react"
 import { Outlet } from "react-router-dom"
-import Multiverse from "./Multiverse"
-import Modal from "../UI/Modal"
-import Battleground from "../Fights/Battleground"
 import classes from './Home.module.css'
-import Button from "../UI/Button"
 import { useTranslation } from 'react-i18next';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
@@ -41,15 +37,17 @@ const Home = () => {
     return (
         <GoogleOAuthProvider clientId="297991534299-1ed49hpjqhhudbcngaa0an7b0jts398v.apps.googleusercontent.com">
             {!userLoggedIn &&
-                <div id="homeDivGoogle" className={classes.homeDivGoogle}><GoogleLogin
-                    onSuccess={credentialResponse => {
-                        handleGoogleLogin(credentialResponse)
-                    }}
-                    onError={() => {
-                        console.log('Login Failed');
-                    }}
-                    useOneTap
-                /> </div>}
+                <div id="homeDivGoogle" className={classes.homeDivGoogle}>
+                    <h1>{t('home.login')}</h1>
+                    <GoogleLogin
+                        onSuccess={credentialResponse => {
+                            handleGoogleLogin(credentialResponse)
+                        }}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+                        useOneTap
+                    /> </div>}
             {userLoggedIn &&
                 <div id="homeDiv" className={classes.homeDiv}>
                     <Outlet />

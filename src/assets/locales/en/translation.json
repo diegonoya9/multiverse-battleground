@@ -9,7 +9,7 @@
     "fighters": "Fighters",
     "config": "Settings",
     "missions": "Missions",
-    "pvp":"Player vs Player"
+    "pvp": "Player vs Player"
   },
   "fighterspage": {
     "removeFromParty": "Remove from party",
@@ -22,7 +22,8 @@
   "home": {
     "welcome": "Welcome to the Multiverse Battleground",
     "getReady": "Get ready for epic battles!",
-    "start": "Start Adventure!"
+    "start": "Start Adventure!",
+    "login": "Login with Google"
   },
   "objectscard": {
     "price": "Price",
@@ -36,40 +37,39 @@
     "sfx": "SFX volume",
     "save": "Save changes"
   },
-  "fightercard":{
-    "price":"Price",
-    "level":"Level",
-    "hp":"MAX HP",
-    "xp":"CURRENT XP",
-    "attack":"ATTACK",
-    "specialAttack":"SPECIAL ATTACK",
-    "defense":"DEFENSE",
-    "specialDefense":"SPECIAL DEFENSE",
-    "accuracy":"ACCURACY"
+  "fightercard": {
+    "price": "Price",
+    "level": "Level",
+    "hp": "MAX HP",
+    "xp": "CURRENT XP",
+    "attack": "ATTACK",
+    "specialAttack": "SPECIAL ATTACK",
+    "defense": "DEFENSE",
+    "specialDefense": "SPECIAL DEFENSE",
+    "accuracy": "ACCURACY"
   },
-  "fightmenu":{
-    "attacks":"Attacks",
-    "objects":"Objects",
-    "run":"Run",
-    "fighters":"Fighters"
+  "fightmenu": {
+    "attacks": "Attacks",
+    "objects": "Objects",
+    "run": "Run",
+    "fighters": "Fighters"
   },
-  "loading":{
-      "loading":"Loading..."
+  "loading": {
+    "loading": "Loading..."
   },
-  "battleground":{
-      "your":"Your",
-      "levelUp":"leveled up",
-      "won": "won",
-      "enemyWon": "The enemy won",
-      "ran": "ran away",
-      "main": "Main Menu",
-      "restart":"Keep Fighting"
+  "battleground": {
+    "your": "Your",
+    "levelUp": "leveled up",
+    "won": "won",
+    "enemyWon": "The enemy won",
+    "ran": "ran away",
+    "main": "Main Menu",
+    "restart": "Keep Fighting"
   },
-  "shoppage":{
-      "objects":"Objects",
-      "fighters":"Fighters",
-      "money":"Current money",
-      "main":"Back to Main Menu"
+  "shoppage": {
+    "objects": "Objects",
+    "fighters": "Fighters",
+    "money": "Current money",
+    "main": "Back to Main Menu"
   }
 }
-

@@ -18,6 +18,6 @@ test('renders App component', () => {
   </>
   );
 
-  // Puedes agregar expectativas para asegurarte de que los elementos esperados estén presentes
-  component.getByText(i18n.t('home.welcome'))
+  // Puedes agregar expectativas para asegurarte de que los elementos esperados estï¿½n presentes
+  component.getByText(i18n.t('home.login'))
 });

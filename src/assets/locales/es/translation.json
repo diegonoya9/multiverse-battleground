@@ -9,7 +9,7 @@
         "fighters": "Luchadores",
         "config": "Opciones",
         "missions": "Misiones",
-        "pvp":"Jugador vs Jugador"
+        "pvp": "Jugador vs Jugador"
     },
     "fighterspage": {
         "removeFromParty": "Quitar del equipo",
@@ -22,7 +22,8 @@
     "home": {
         "welcome": "Bienvenido al Multiverse Battleground",
         "getReady": "Prepárate para batallas épicas!!",
-        "start": "Empezar Aventura!"
+        "start": "Empezar Aventura!",
+        "login": "Login con Google"
     },
     "objectscard": {
         "price": "Precio",
@@ -69,6 +70,6 @@
         "objects": "Objetos",
         "fighters": "Luchadores",
         "money": "Dinero actual",
-        "main":"Volver al Menú Principal"
+        "main": "Volver al Menú Principal"
     }
 }
