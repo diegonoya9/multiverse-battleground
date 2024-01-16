@@ -24,7 +24,7 @@ let component
 test('renders shop page component', () => {
   // Renderiza ShopPage dentro de MyContextProvider con el contexto simulado
   component = render(<>
-    <RouterProvider>
+    <RouterProvider router={testRouter}>
       <I18nextProvider i18n={i18n}>
         <MyContextProvider value={{ userContext: mockUserContext }}>
           <ShopPage />
