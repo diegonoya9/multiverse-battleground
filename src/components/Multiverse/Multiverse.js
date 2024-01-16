@@ -127,8 +127,8 @@ const Multiverse = ({ changeActivePage }) => {
                 </div>
             }
             {multiverseActivePage === "mainMenu" && !user && <Loading></Loading>}
-            {multiverseActivePage === "fighters" && <FightersPage
-                updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>}
+            {/*multiverseActivePage === "fighters" && <FightersPage
+                updateUser={updateUser} changeMultiverseActivePage={changeMultiverseActivePage} user={user}></FightersPage>*/}
             {multiverseActivePage === "bag" && <ObjectsPage changeMultiverseActivePage={changeMultiverseActivePage} user={user}></ObjectsPage>}
             {multiverseActivePage === "shop" && <ShopPage changeMultiverseActivePage={changeMultiverseActivePage} ></ShopPage>}
             {multiverseActivePage === "users" && <UsersPage changeMultiverseActivePage={changeMultiverseActivePage} ></UsersPage>}

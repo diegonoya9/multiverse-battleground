@@ -8,9 +8,10 @@ import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
-const FightersPage = ({ user, changeMultiverseActivePage }) => {
+const FightersPage = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
+    const [user, setUser] = useState()
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState()
     const { userContext } = useContext(MyContext);
@@ -208,6 +209,13 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     useEffect(() => {
         updateFighters()
     }, [])
+    useEffect(() => {
+        fetch(backEndUrl + '/allusers/' + activeUser)
+            .then(response => response.json())
+            .then(data => {
+                setUser(data[0])
+            })
+    }, [activeUser])
     const handleAudioEnd = (e) => {
         // Reiniciar la reproducción cuando la canción termine
         e.target.play();
