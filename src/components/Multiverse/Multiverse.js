@@ -13,7 +13,9 @@ import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
 import { useTranslation } from 'react-i18next';
 import Loading from "../UI/Loading.js"
+import { useNavigate } from "react-router-dom"
 const Multiverse = ({ changeActivePage }) => {
+    const navigate = useNavigate()
     const { t } = useTranslation();
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
@@ -65,7 +67,7 @@ const Multiverse = ({ changeActivePage }) => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => setUser(data[0]))
-     
+
     }, [activeUser])
 
     useEffect(() => {
@@ -99,7 +101,7 @@ const Multiverse = ({ changeActivePage }) => {
                         <h2 className={classes.h2}>{t('multiverse.money')} {money} pesos</h2>
                     </div>
                     <div className={classes.btnContainer} >
-                        <Button value={t('multiverse.fight')} colorType="red" onClick={() => changeActivePage(2)}></Button>
+                        <Button value={t('multiverse.fight')} colorType="red" onClick={() => navigate('/battle')}></Button>
                         <Button value={t('multiverse.missions')} colorType="yellow" onClick={(e) => {
                             changeMultiverseActivePage('missions');
                         }}></Button>
@@ -107,7 +109,7 @@ const Multiverse = ({ changeActivePage }) => {
                             changeMultiverseActivePage('pvp');
                         }}></Button>
                         <Button value={t('multiverse.fighters')} colorType="brown" onClick={(e) => {
-                            changeMultiverseActivePage('fighters');
+                            navigate('/fighters');
                         }}></Button>
                         <Button value={t('multiverse.bag')} colorType="green" onClick={(e) => {
                             changeMultiverseActivePage('bag');

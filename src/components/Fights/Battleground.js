@@ -11,7 +11,9 @@ import ActionsList from './ActionsList.js'
 import { MyContext } from '../../context/MyContext.js'
 import Loading from '../UI/Loading.js'
 import { useTranslation } from 'react-i18next'
-const Battleground = ({ changeActivePage }) => {
+import { useNavigate } from 'react-router-dom'
+const Battleground = () => {
+    const navigate = useNavigate()
     const { t } = useTranslation();
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
@@ -85,7 +87,7 @@ const Battleground = ({ changeActivePage }) => {
 
     const restartGame = () => {
         setShowLevelUp(false)
-        changeActivePage(1)
+        navigate('/')
     }
     const newFight = () => {
         setShowLevelUp(false)

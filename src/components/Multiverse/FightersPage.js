@@ -7,7 +7,9 @@ import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import FighterCard from "../UI/FighterCard";
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from "react-router-dom";
 const FightersPage = ({ user, changeMultiverseActivePage }) => {
+    const navigate = useNavigate()
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState()
@@ -77,7 +79,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 countInParty++
             }
         });
-        if (countInParty > 1){
+        if (countInParty > 1) {
             setModalContent('Removing from party...')
             setAllowCloseModal(false)
             setShowModal(true)
@@ -88,7 +90,7 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
                 },
                 body: JSON.stringify(parameters),
             }).then(() => updateFighters())
-        }else{            
+        } else {
             setModalContent('You need to have at least one fighter in the party')
             setAllowCloseModal(true)
             setShowModal(true)
@@ -209,11 +211,11 @@ const FightersPage = ({ user, changeMultiverseActivePage }) => {
     const handleAudioEnd = (e) => {
         // Reiniciar la reproducción cuando la canción termine
         e.target.play();
-      };
+    };
     return (<div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
-        <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { changeMultiverseActivePage("mainMenu") }}></Button>
+        <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { navigate('/') }}></Button>
         <div className={classes.container} >
-            <ReactAudioPlayer src={musicFile}  onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
+            <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
             {fighters &&
                 fighters.map((fighter, i) => {
                     return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>

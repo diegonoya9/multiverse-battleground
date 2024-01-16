@@ -1,5 +1,6 @@
 * {
     font-family: 'Allerta Stencil', system-ui;
+    text-align: center;
 }
 
 .homeDiv {
@@ -12,11 +13,12 @@
     background-attachment: fixed;
     display: flex;
 }
+
 .homeDivGoogle {
     background-image: url('../../assets/img/island.gif');
     min-height: 100vh;
     height: 100vh;
-    width: 100vw;    
+    width: 100vw;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
@@ -37,6 +39,6 @@
     margin-top: 20px;
 }
 
-.googleLogin{
-    margin:auto;
+.googleLogin {
+    margin: auto;
 }
