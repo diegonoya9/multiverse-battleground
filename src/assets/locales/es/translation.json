@@ -20,7 +20,11 @@
         "assigningFirst": "Seleccionando primer luchador",
         "selectMovements": "Seleccionar ataques para pelea",
         "removeAttack": "Quitar",
-        "addAttack": "Agregar"
+        "addAttack": "Agregar",
+        "cantRemoveMove": "Debes tener al menos un ataque seleccionado",
+        "cantAddMove": "No se pueden agregar mas de 4",
+        "removingMove": "Quitando ataque ...",
+        "addingMove": "Agregando ataque ..."
     },
     "home": {
         "welcome": "Bienvenido al Multiverse Battleground",

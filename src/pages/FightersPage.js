@@ -127,10 +127,10 @@ const FightersPage = () => {
             }
         })
         if (selected === 0) {
-            setModalContent("You need to select at least one move")
+            setModalContent(t('fighterspage.cantRemoveMove'))
         } else {
             setAllowCloseModal(false)
-            setModalContent("Removing move")
+            setModalContent(t('fighterspage.removingMove'))
             const parameters = [{
                 user_fighter_move_id
             }]
@@ -151,10 +151,10 @@ const FightersPage = () => {
             }
         })
         if (selected >= 4) {
-            setModalContent("Can't select more than 4 moves")
+            setModalContent(t('fighterspage.cantAddMove'))
         } else {
             setAllowCloseModal(false)
-            setModalContent("Adding move")
+            setModalContent(t('fighterspage.addingMove'))
             const parameters = [{
                 user_fighter_move_id
             }]

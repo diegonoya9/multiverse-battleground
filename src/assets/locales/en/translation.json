@@ -20,7 +20,11 @@
     "assigningFirst": "Assigning first fighter",
     "selectMovements": "Select moves for fight",
     "removeAttack": "Remove",
-    "addAttack": "Add"
+    "addAttack": "Add",
+    "cantRemoveMove": "You need to have at least one move selected",
+    "cantAddMove": "Can't add more than 4 moves",
+    "removingMove": "Removing move ...",
+    "addingMove": "Adding move ..."
   },
   "home": {
     "welcome": "Welcome to the Multiverse Battleground",
