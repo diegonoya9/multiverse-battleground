@@ -11,7 +11,6 @@ const Button = ({ value, onClick, completeWidth, styleType, children }) => {
     const handleButtonClick = () => {
         const audio = document.getElementById('audioPlayer');
         if (audio) {
-            console.log(sound)
             audio.play()
         }
         onClick()

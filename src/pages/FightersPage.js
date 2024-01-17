@@ -13,6 +13,7 @@ const FightersPage = () => {
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState()
+    const [selectMoves, setSelectMoves] = useState(false)
     const { userContext } = useContext(MyContext);
     const [fighters, setFighters] = useState()
     const [moves, setMoves] = useState()
@@ -118,18 +119,83 @@ const FightersPage = () => {
             setShowModal(true)
         }
     }
+    const removeAttack = (user_fighter_move_id) => {
+        let selected = 0
+        moves.forEach((move) => {
+            if (move.selected === 1) {
+                selected++
+            }
+        })
+        if (selected === 0) {
+            setModalContent("You need to select at least one move")
+        } else {
+            setAllowCloseModal(false)
+            setModalContent("Removing move")
+            const parameters = [{
+                user_fighter_move_id
+            }]
+            fetch(backEndUrl + "/removeMove", {
+                method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(parameters),
+            }).then(() => updateFighters())
+        }
+    }
+    const addAttack = (user_fighter_move_id) => {
+        let selected = 0
+        moves.forEach((move) => {
+            if (move.selected === 1) {
+                selected++
+            }
+        })
+        if (selected >= 4) {
+            setModalContent("Can't select more than 4 moves")
+        } else {
+            setAllowCloseModal(false)
+            setModalContent("Adding move")
+            const parameters = [{
+                user_fighter_move_id
+            }]
+            fetch(backEndUrl + "/addMove", {
+                method: 'POST', // O 'PUT' si deseas sobrescribir completamente los datos del usuario
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(parameters),
+            }).then(() => updateFighters())
+        }
+    }
     useEffect(() => {
         if (moves) {
-            setModalContent(
-                <ul>{moves.map((move) => {
-                    return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
-                        {move.name}
-                    </Button>
-                })} </ul>
-            )
+            if (!selectMoves) {
+                setModalContent(
+                    <ul>{moves.map((move) => {
+                        return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
+                            {move.name}
+                        </Button>
+                    })} </ul>
+                )
+            } else {
+                setModalContent(
+                    <ul>{moves.map((move) => {
+                        return <div>
+                            {move.name}
+                            {move.selected === 1 && <Button key={move.name} onClick={() => { removeAttack(move.user_fighter_move_id) }}>
+                                {t('fighterspage.removeAttack')}
+                            </Button>}
+                            {move.selected === 0 && <Button key={move.name} onClick={() => { addAttack(move.user_fighter_move_id) }}>
+                                {t('fighterspage.addAttack')}
+                            </Button>}
+
+                        </div>
+                    })} </ul>
+                )
+            }
         }
-    }, [moves])
-    const viewMovements = (user_fighter_id) => {
+    }, [moves, selectMoves])
+    const viewMovements = (user_fighter_id, allowSelect) => {
         let moves = []
         fighters.forEach((fighter) => {
             if (fighter.user_fighter_id === user_fighter_id) {
@@ -138,6 +204,7 @@ const FightersPage = () => {
                 })
             }
         })
+        setSelectMoves(allowSelect)
         setAllowCloseModal(true)
         setMoves(moves)
     }
@@ -164,6 +231,7 @@ const FightersPage = () => {
             updateFighters()
         })
     }
+
     const deleteFighter = (userFighterId) => {
         /* setUserFighterId(userFighterId)
          setShowConfirm(true)
@@ -199,7 +267,6 @@ const FightersPage = () => {
     const updateFighters = async () => {
         await fetchData()
     }
-
     useEffect(() => {
         setShowModal(false)
         setModalContent()
@@ -221,7 +288,8 @@ const FightersPage = () => {
                         return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                             <FighterCard fighter={fighter} showPrice={false}></FighterCard>
                             <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
-                            <Button onClick={() => { viewMovements(fighter.user_fighter_id) }} value={t('fighterspage.viewMovements')}></Button>
+                            <Button onClick={() => { viewMovements(fighter.user_fighter_id, false) }} value={t('fighterspage.viewMovements')}></Button>
+                            <Button onClick={() => { viewMovements(fighter.user_fighter_id, true) }} value={t('fighterspage.selectMovements')}></Button>
                             {fighter.in_party === "true" ?
                                 <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
                                 :

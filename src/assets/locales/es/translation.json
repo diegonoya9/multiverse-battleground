@@ -17,7 +17,10 @@
         "setFirst": "Seleccionar primero",
         "back": "Volver al Menú Principal",
         "viewMovements": "Ver Ataques",
-        "assigningFirst": "Seleccionando primer luchador"
+        "assigningFirst": "Seleccionando primer luchador",
+        "selectMovements": "Seleccionar ataques para pelea",
+        "removeAttack": "Quitar",
+        "addAttack": "Agregar"
     },
     "home": {
         "welcome": "Bienvenido al Multiverse Battleground",

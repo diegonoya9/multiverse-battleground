@@ -17,7 +17,10 @@
     "setFirst": "Set First",
     "back": "Back to Main Menu",
     "viewMovements": "View Movements",
-    "assigningFirst": "Assigning first fighter"
+    "assigningFirst": "Assigning first fighter",
+    "selectMovements": "Select moves for fight",
+    "removeAttack": "Remove",
+    "addAttack": "Add"
   },
   "home": {
     "welcome": "Welcome to the Multiverse Battleground",
