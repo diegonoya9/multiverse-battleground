@@ -1,4 +1,4 @@
-import React,{startTransition } from 'react';
+import React, { startTransition } from 'react';
 import { render } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import Multiverse from './Multiverse';
@@ -6,6 +6,7 @@ import Multiverse from './Multiverse';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import renderer from 'react-test-renderer';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 // Configura i18next
 i18n.use(initReactI18next).init({
@@ -20,11 +21,19 @@ const mockUserContext = {
   idUsuario: 1,
   // Otros datos relacionados con el usuario si es necesario
 };
+const testRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <div />,
+  },
+]);
 
 test('renders multiverse component', () => {
   // Renderiza Multiverse dentro de MyContextProvider con el contexto simulado
   const component = render(<MyContextProvider value={{ userContext: mockUserContext }}>
-    <Multiverse />
+    <RouterProvider router={testRouter}>
+      <Multiverse />
+    </RouterProvider>
   </MyContextProvider>)
   component.findByAltText('mainDiv')
 

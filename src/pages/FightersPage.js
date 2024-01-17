@@ -1,11 +1,11 @@
 import classes from "./FightersPage.module.css"
 import ReactAudioPlayer from 'react-audio-player';
-import Modal from "../UI/Modal";
+import Modal from "../components/UI/Modal";
 import { useState, useContext, useEffect, useCallback } from "react";
-import musicFile from "../../assets/sounds/music/DirtyLove.WAV"
-import Button from "../UI/Button";
-import { MyContext } from "../../context/MyContext";
-import FighterCard from "../UI/FighterCard";
+import musicFile from "../assets/sounds/music/DirtyLove.WAV"
+import Button from "../components/UI/Button";
+import { MyContext } from "../context/MyContext";
+import FighterCard from "../components/UI/FighterCard";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 const FightersPage = () => {

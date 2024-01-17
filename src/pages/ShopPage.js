@@ -9,7 +9,7 @@ import FighterCard from "../components/UI/FighterCard";
 import ObjectCard from "../components/UI/ObjectCard";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
-const ShopPage = ({ changeMultiverseActivePage }) => {
+const ShopPage = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
     const modalPurchaseConfirmed = <div><h1 style={{ color: 'black' }}>Purchase confirmed!</h1>
