@@ -6,7 +6,7 @@ import { MyContext } from '../../context/MyContext';
 import { useTranslation } from 'react-i18next';
 import Loading from "../UI/Loading.js"
 import { useNavigate } from "react-router-dom"
-const Multiverse = ({ changeActivePage }) => {
+const Multiverse = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
     const audioStyle = {
