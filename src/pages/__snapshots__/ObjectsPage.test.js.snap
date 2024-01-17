@@ -1,3 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders objectpage correctly according to snapshot 1`] = `<div />`;
+exports[`ObjectsPage Component renders objectpage correctly according to snapshot 1`] = `
+Array [
+  <div>
+    <link
+      href="https://fonts.googleapis.com"
+      rel="preconnect"
+    />
+    <link
+      href="https://fonts.gstatic.com"
+      rel="preconnect"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Merienda&family=Mochiy+Pop+One&family=Dhurjati&family=Black+Ops+One&family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+  </div>,
+  <div
+    className="homeDivGoogle"
+    id="homeDivGoogle"
+  >
+    <h1>
+      Login with Google
+    </h1>
+    <div
+      style={
+        Object {
+          "height": 40,
+        }
+      }
+    />
+     
+  </div>,
+]
+`;

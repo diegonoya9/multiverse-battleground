@@ -1,36 +1,16 @@
 // ObjectsPage.test.js
 import React from 'react';
-import { render, cleanup, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MyContextProvider } from '../context/MyContext';
 import ObjectsPage from './ObjectsPage';
 import renderer from 'react-test-renderer'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-afterEach(() => {
-  global.fetch.mockRestore();
-  cleanup();
-});
-// Mock del contexto para la prueba
-const mockUserContext = {
-  user: {
-    user_id: 7
-  },
-  idUsuario: 1,
-  userName: "",
-  bg: 0,
-  sfx: 0,
-  sound: 0,
-  backEndUrl: "http://localhost:3009/api", // Otros datos relacionados con el usuario si es necesario
-  backEndWS: "ws://localhost:3009", // Otros datos relacionados con el usuario si es necesario
-  currentMission: 0,
-  currentLevel: 0
-};
-const testRouter = createBrowserRouter([
-  {
-    path: '/',
-    element: <div />,
-  },
-]);
-const objects = [
+import RootLayuout from './Root';
+import Home from '../components/Multiverse/Home';
+import Multiverse from '../components/Multiverse/Multiverse';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
+import i18n from '../i18n';
+/*const objects = [
   {
     "user_object_id": 2,
     "user_id": 1,
@@ -51,7 +31,81 @@ const objects = [
     "description": "Money",
     "img": "./assets/img/money.png"
   }
-]
+]*/
+const mockNavigate = jest.fn();
+beforeAll(() => {
+  i18n.use(initReactI18next)
+});
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}));
+
+describe('ObjectsPage Component', () => {
+  // Mock del contexto
+  const mockContext = {
+    userContext: {
+      backEndUrl: 'http://example.com',
+      bg: 0,
+      user: {
+        user_id: 7
+      }
+    },
+    setUserId: jest.fn(),
+  };
+
+  it('handles click on "Back to Main Menu" button', async () => {
+    render(
+      <MyContextProvider value={mockContext}>
+        <ObjectsPage />
+      </MyContextProvider>
+    );
+
+    // Simula el clic en el botón
+    fireEvent.click(screen.getByText('Back to Main Menu'));
+
+    // Asegúrate de que la función navigate se haya llamado con "/"
+    expect(mockNavigate).toHaveBeenCalledWith('/');
+    // Puedes realizar más assertions según tus necesidades
+  });
+  it('renders objectpage correctly according to snapshot', () => {
+    const tree = renderer
+      .create(
+        <MyContextProvider value={mockContext}>
+          <RouterProvider router={testRouter}>
+            <ObjectsPage />
+          </RouterProvider>
+        </MyContextProvider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  // Puedes escribir más pruebas para otras interacciones y comportamientos del componente
+});
+
+/*
+afterEach(() => {
+  global.fetch.mockRestore();
+  cleanup();
+});*/
+const testRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayuout />,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+        children: [
+          { index: true, element: <Multiverse /> },
+          { path: '/bag', element: <ObjectsPage /> },
+        ]
+      }
+    ]
+  }
+])
+
+/*
 let component
 const user = { user_id: 1 }
 test('renders objects page component', async () => {
@@ -84,3 +138,4 @@ it('renders objectpage correctly according to snapshot', () => {
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+*/

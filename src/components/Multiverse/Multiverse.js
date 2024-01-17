@@ -92,9 +92,11 @@ const Multiverse = ({ changeActivePage }) => {
                         <Button value={t('multiverse.config')} colorType="blue" onClick={(e) => {
                             navigate('/config');
                         }}></Button>
-                        <Button value={t('multiverse.users')} colorType="blue" onClick={(e) => {
-                            navigate('/users');
-                        }}></Button>
+                        {user && user.profile === "Admin" &&
+                            <Button value={t('multiverse.users')} colorType="blue" onClick={(e) => {
+                                navigate('/users');
+                            }}></Button>
+                        }
                     </div>
                 </div>
             }

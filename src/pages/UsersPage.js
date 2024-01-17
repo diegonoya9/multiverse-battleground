@@ -6,7 +6,7 @@ import Button from "../components/UI/Button";
 import Modal from "../components/UI/Modal";
 import { MyContext } from '../context/MyContext';
 import { useNavigate } from "react-router-dom";
-const UsersPage = ({ changeMultiverseActivePage }) => {
+const UsersPage = () => {
     const navigate = useNavigate()
     const [users, setUsers] = useState([])
     const audioStyle = {
