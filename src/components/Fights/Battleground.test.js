@@ -23,7 +23,7 @@ const testRouter = createBrowserRouter([
 Object.defineProperty(HTMLMediaElement.prototype, 'play', {
   writable: true,
   value: function () {
-    /* implementaci�n vac�a o con l�gica simulada seg�n sea necesario */
+
   },
 });
 test('renders Battleground component', () => {
