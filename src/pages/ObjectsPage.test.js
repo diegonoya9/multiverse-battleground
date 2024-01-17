@@ -11,9 +11,18 @@ afterEach(() => {
 });
 // Mock del contexto para la prueba
 const mockUserContext = {
+  user: {
+    user_id: 7
+  },
   idUsuario: 1,
-  backEndUrl: "http://localhost:3009/api"
-  // Otros datos relacionados con el usuario si es necesario
+  userName: "",
+  bg: 0,
+  sfx: 0,
+  sound: 0,
+  backEndUrl: "http://localhost:3009/api", // Otros datos relacionados con el usuario si es necesario
+  backEndWS: "ws://localhost:3009", // Otros datos relacionados con el usuario si es necesario
+  currentMission: 0,
+  currentLevel: 0
 };
 const testRouter = createBrowserRouter([
   {
@@ -52,11 +61,11 @@ test('renders objects page component', async () => {
   // Renderiza ObjectsPage dentro de MyContextProvider con el contexto simulado
   await act(async () => {
     component = render(
-      <MyContextProvider value={{ userContext: mockUserContext }}>
-        <RouterProvider router={testRouter}>
-          <ObjectsPage user={user} />
-        </RouterProvider>
-      </MyContextProvider>
+      <RouterProvider router={testRouter}>
+        <MyContextProvider value={{ userContext: mockUserContext }}>
+          <ObjectsPage />
+        </MyContextProvider>
+      </RouterProvider>
     );
   })
 
@@ -67,7 +76,9 @@ it('renders objectpage correctly according to snapshot', () => {
   const tree = renderer
     .create(
       <MyContextProvider value={{ userContext: mockUserContext }}>
-        <ObjectsPage user={user} />
+        <RouterProvider router={testRouter}>
+          <ObjectsPage />
+        </RouterProvider>
       </MyContextProvider>
     )
     .toJSON();

@@ -17,7 +17,7 @@ const FightersPage = () => {
     const [fighters, setFighters] = useState()
     const [moves, setMoves] = useState()
     const [allowCloseModal, setAllowCloseModal] = useState(true)
-    const user = userContext.user
+    let user = userContext.user
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
     let bg = userContext.bg
