@@ -2,7 +2,11 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MyContextProvider } from '../context/MyContext'; // Asegúrate de importar tu contexto y proveedor adecuadamente
 import UsersPage from './UsersPage';
-
+jest.mock('react-audio-player', () => {
+  const ReactAudioPlayer = jest.fn();
+  ReactAudioPlayer.prototype.play = jest.fn();
+  return ReactAudioPlayer;
+});
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({

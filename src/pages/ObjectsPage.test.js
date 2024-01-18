@@ -10,6 +10,11 @@ import Home from '../components/Multiverse/Home';
 import Multiverse from '../components/Multiverse/Multiverse';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
+jest.mock('react-audio-player', () => {
+  const ReactAudioPlayer = jest.fn();
+  ReactAudioPlayer.prototype.play = jest.fn();
+  return ReactAudioPlayer;
+});
 /*const objects = [
   {
     "user_object_id": 2,

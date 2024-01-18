@@ -3,6 +3,17 @@ import { fireEvent, render } from '@testing-library/react';
 import FightMenu from './FightMenu';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
+import { MyContextProvider } from '../../context/MyContext';
+jest.mock('react-audio-player', () => {
+    const ReactAudioPlayer = jest.fn();
+    ReactAudioPlayer.prototype.play = jest.fn();
+    return ReactAudioPlayer;
+});
+const mockContextValue = {
+    userContext: {
+        sound: 50,
+    },
+};
 
 beforeAll(() => {
     i18n.use(initReactI18next)
@@ -313,9 +324,11 @@ beforeEach(() => {
     // Renderiza FightMenu dentro de MyContextProvider con el contexto simulado
 
     component = render(
-        <I18nextProvider i18n={i18n}>
-            <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler} />
-        </I18nextProvider>
+        <MyContextProvider value={mockContextValue}>
+            <I18nextProvider i18n={i18n}>
+                <FightMenu user={user} userFighter={fighter} clickHandler={mockHandler} />
+            </I18nextProvider>
+        </MyContextProvider>
     );
 });
 test('renders FightMenu component', () => {
