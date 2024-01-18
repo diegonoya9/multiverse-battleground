@@ -2,7 +2,9 @@ import classes from './SubMenu.module.css'
 import { useState, useEffect } from 'react'
 import Modal from '../UI/Modal'
 import Button from '../UI/Button'
+import { useTranslation } from 'react-i18next'
 const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighter, changeUserFighter, styleType }) => {
+    const { t } = useTranslation()
     const [optionsArray, setOptionsArray] = useState()
     const [showModal, setShowModal] = useState(true)
     useEffect(() => {
@@ -34,7 +36,7 @@ const SubMenu = ({ user, clickHandler, toggleSubMenu, selectedOption, userFighte
                         {optionsArray && selectedOption === "objects" && optionsArray.map((x, i) => {
                             return x.objects.category === "battleItem" && x.quantity > 0 &&
                                 <div key={i} className={classes.options} >
-                                    <Button completeWidth="true" value={`${x.name}:${x.quantity}`} key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}><img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></Button>
+                                    <Button completeWidth="true" value={t(`objects.${x.name}`) + ' : ' + x.quantity} key={x.name + i} styleType={styleType} className={classes.options} onClick={() => { toggleSubMenu(); clickHandler(x, selectedOption); }}><img alt="fighter mini" src={x.img} className={classes.miniImgMenu} /></Button>
                                 </div>
                         }
                         )}
