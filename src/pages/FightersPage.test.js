@@ -71,7 +71,7 @@ describe('FightersPage Component', () => {
                     "current_xp": 1,
                     "level": 1,
                     "movelevel_id": 1,
-                    "selected": 1,
+                    "selected": 0,
                     "img": "./assets/img/fire.png",
                     "name": "Flame",
                     "sfx": "/assets/sounds/SFX/CharizardFlame.mp3",
@@ -1724,6 +1724,82 @@ describe('FightersPage Component', () => {
           });
         fireEvent.click(removeFromParty[0])   
         await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(3));    
+    });
+    it('renders correctly after setting first fighter', async () => {
+        const mockJsonPromise = Promise.resolve(fakeData);
+        const mockFetchPromise = Promise.resolve({
+            json: jest.fn().mockResolvedValueOnce(mockJsonPromise),
+            ok: true,
+        });
+
+        global.fetch = jest.fn().mockResolvedValueOnce(mockFetchPromise);
+        // Renderiza el componente
+        await act(async () => {
+            render(
+                <MyContextProvider value={mockContextValue}>
+                    <MemoryRouter initialEntries={['/fighters']}>
+                        <I18nextProvider i18n={i18n}>
+                            <FightersPage />
+                        </I18nextProvider>
+                    </MemoryRouter>
+                </MyContextProvider>
+            );
+        });
+
+        const setFirst = screen.getAllByText(i18n.t('fighterspage.setFirst'))
+        const fakeResponse = { ok:true };
+        global.fetch.mockResolvedValueOnce({
+          json: jest.fn().mockResolvedValueOnce(fakeResponse),
+          ok: true,
+        });
+        global.fetch.mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce(fakeData),
+            ok: true,
+          });
+        fireEvent.click(setFirst[2])   
+        await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(3));    
+    });
+    it('renders correctly after fetching data and add Attack', async () => {
+        // Simula el resultado del fetch
+        //const fakeData = [{ fighterId: 1, name: 'Fighter1' }];
+        const mockJsonPromise = Promise.resolve(fakeData);
+        const mockFetchPromise = Promise.resolve({
+            json: jest.fn().mockResolvedValueOnce(mockJsonPromise),
+            ok: true,
+        });
+
+        global.fetch = jest.fn().mockResolvedValueOnce(mockFetchPromise);
+        // Renderiza el componente
+        await act(async () => {
+            render(
+                <MyContextProvider value={mockContextValue}>
+                    <MemoryRouter initialEntries={['/fighters']}>
+                        <I18nextProvider i18n={i18n}>
+                            <FightersPage />
+                        </I18nextProvider>
+                    </MemoryRouter>
+                </MyContextProvider>
+            );
+        });
+
+        // Espera a que se resuelva la llamada fetch
+        await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
+
+        // Realiza expectativas sobre el estado del componente después de la llamada fetch
+        expect(screen.getByText('Charizard')).toBeInTheDocument();
+        const selectMoves = screen.getAllByText(i18n.t('fighterspage.selectMovements'))
+        fireEvent.click(selectMoves[0])
+        const addAttack = screen.getByText(i18n.t('fighterspage.addAttack'))
+        const fakeResponse = { ok:true };
+        global.fetch.mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce(fakeResponse),
+            ok: true,
+          });
+          global.fetch.mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce(fakeData),
+            ok: true,
+          });
+        fireEvent.click(addAttack)
     });
     // Puedes agregar más pruebas según las funcionalidades de tu componente
     // Por ejemplo, pruebas para las funciones addToParty, removeFromParty, etc.

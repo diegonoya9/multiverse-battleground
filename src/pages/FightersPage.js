@@ -164,7 +164,7 @@ const FightersPage = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(parameters),
-            }).then(() => updateFighters())
+            }).then(() => {updateFighters()})
         }
     }
     useEffect(() => {
@@ -172,7 +172,7 @@ const FightersPage = () => {
             if (!selectMoves) {
                 setModalContent(
                     <ul>{moves.map((move) => {
-                        return <Button key={move.name} onClick={() => { viewActions(move.move_id) }}>
+                        return <Button key={move.user_fighter_move_id} onClick={() => { viewActions(move.move_id) }}>
                             {move.name}
                         </Button>
                     })} </ul>
@@ -180,12 +180,12 @@ const FightersPage = () => {
             } else {
                 setModalContent(
                     <ul>{moves.map((move) => {
-                        return <div>
+                        return <div >
                             {move.name}
-                            {move.selected === 1 && <Button key={move.name} onClick={() => { removeAttack(move.user_fighter_move_id) }}>
+                            {move.selected === 1 && <Button key={move.user_fighter_move_id} onClick={() => { removeAttack(move.user_fighter_move_id) }}>
                                 {t('fighterspage.removeAttack')}
                             </Button>}
-                            {move.selected === 0 && <Button key={move.name} onClick={() => { addAttack(move.user_fighter_move_id) }}>
+                            {move.selected === 0 && <Button key={move.user_fighter_move_id} onClick={() => { addAttack(move.user_fighter_move_id) }}>
                                 {t('fighterspage.addAttack')}
                             </Button>}
 
