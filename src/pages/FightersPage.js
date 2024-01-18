@@ -287,13 +287,13 @@ const FightersPage = () => {
                     fighters.map((fighter, i) => {
                         return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
                             <FighterCard fighter={fighter} showPrice={false}></FighterCard>
-                            <Button onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
-                            <Button onClick={() => { viewMovements(fighter.user_fighter_id, false) }} value={t('fighterspage.viewMovements')}></Button>
-                            <Button onClick={() => { viewMovements(fighter.user_fighter_id, true) }} value={t('fighterspage.selectMovements')}></Button>
+                            <Button completeWidth={true} onClick={() => { if (fighter.in_party === "true") { setFirstFighter(fighter.user_fighter_id) } else { setAllowCloseModal(true); setModalContent('You need to add the fighter to the party first.') } }} value={t('fighterspage.setFirst')}></Button>
+                            <Button completeWidth={true} onClick={() => { viewMovements(fighter.user_fighter_id, false) }} value={t('fighterspage.viewMovements')}></Button>
+                            <Button completeWidth={true} onClick={() => { viewMovements(fighter.user_fighter_id, true) }} value={t('fighterspage.selectMovements')}></Button>
                             {fighter.in_party === "true" ?
-                                <Button onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
+                                <Button completeWidth={true} onClick={() => { removeFromParty(fighter.user_fighter_id) }} value={t('fighterspage.removeFromParty')}></Button>
                                 :
-                                <Button onClick={() => { addToParty(fighter.user_fighter_id) }} value={t('fighterspage.addToParty')}></Button>
+                                <Button completeWidth={true} onClick={() => { addToParty(fighter.user_fighter_id) }} value={t('fighterspage.addToParty')}></Button>
                             }
                             {/* <Button onClick={() => { deleteFighter(fighter.user_fighter_id) }} value="Sell Fighter"></Button> */}
                         </div>

@@ -205,7 +205,7 @@ const ShopPage = () => {
                     return (
                         <div className={classes.objectContainer} key={object.name}>
                             <ObjectCard showPrice={true} object={object}></ObjectCard>
-                            <Button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>BUY</Button>
+                            <Button className={classes.buyButton} onClick={() => buy(object.name, object.price, "object")}>{t('shoppage.buy')}</Button>
                         </div>
                     );
                 })}
@@ -217,9 +217,9 @@ const ShopPage = () => {
             {fighters &&
                 fighters.map((fighter) => {
                     return (
-                        <div className={classes.objectContainer} key={fighter.fighterId}>
+                        <div className={classes.objectContainer} key={fighter.fighter_id}>
                             <FighterCard showPrice={true} fighter={fighter}></FighterCard>
-                            <Button className={classes.buyButton} onClick={() => buy(fighter.fighter_id, fighter.price, "fighter")}>BUY</Button>
+                            <Button className={classes.buyButton} onClick={() => buy(fighter.fighter_id, fighter.price, "fighter")}>{t('shoppage.buy')}</Button>
                         </div>
                     );
                 })}
