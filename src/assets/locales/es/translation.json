@@ -12,6 +12,12 @@
         "pvp": "Jugador vs Jugador"
     },
     "fighterspage": {
+        "level": "Nivel",
+        "action": "Acción",
+        "inflicted_on": "Objetivo",
+        "type": "Tipo",
+        "field": "Campo",
+        "value": "Valor",
         "removeFromParty": "Quitar del equipo",
         "addToParty": "Agregar al equipo",
         "setFirst": "Seleccionar primero",
@@ -93,5 +99,22 @@
         "fighters": "Luchadores",
         "money": "Dinero actual",
         "main": "Volver al Menú Principal"
+    },
+    "actions": {
+        "current_hp": "Vida",
+        "defense": "Defensa",
+        "extra_defense": "Defensa",
+        "special_defense": "Defensa especial",
+        "extra_special_defense": "Defensa especial",
+        "attack": "Ataque",
+        "extra_attack": "Ataque",
+        "special_attack": "Ataque Especial",
+        "extra_special_attack": "Ataque Especial",
+        "accuracy": "Puntería",
+        "extra_accuracy": "Puntería",
+        "enemy": "Enemigo",
+        "user": "Usuario",
+        "special": "Especial",
+        "normal": "Normal"
     }
 }

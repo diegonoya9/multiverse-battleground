@@ -108,12 +108,12 @@ const FightersPage = () => {
         if (actions[0]) {
             setModalContent(actions[0].map((action, index) => {
                 return <div key={Math.random()} >
-                    <p>Level: {action.level}</p>
-                    <p>Action: {index + 1}</p>
-                    <p>Inflicted on: {action.inflicted_on}</p>
-                    <p>Type: {action.attack_type}</p>
-                    <p>Field: {action.field}</p>
-                    <p>Value: {action.value}</p>
+                    <p>{t('fighterspage.level')}: {action.level}</p>
+                    <p>{t('fighterspage.action')}: {index + 1}</p>
+                    <p>{t('fighterspage.inflicted_on')}: {t(`actions.${action.inflicted_on}`)}</p>
+                    <p>{t('fighterspage.type')}: {t(`actions.${action.attack_type}`)}</p>
+                    <p>{t('fighterspage.field')}: {t(`actions.${action.field}`)}</p>
+                    <p>{t('fighterspage.value')}: {action.value}</p>
                 </div>
             }))
             setShowModal(true)

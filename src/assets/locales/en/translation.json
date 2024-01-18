@@ -12,6 +12,12 @@
     "pvp": "Player vs Player"
   },
   "fighterspage": {
+    "level": "Level",
+    "action": "Action",
+    "inflicted_on": "Inflicted on",
+    "type": "Type",
+    "field": "Field",
+    "value": "Value",
     "removeFromParty": "Remove from party",
     "addToParty": "Add to party",
     "setFirst": "Set First",
@@ -93,5 +99,22 @@
     "fighters": "Fighters",
     "money": "Current money",
     "main": "Back to Main Menu"
+  },
+  "actions": {
+    "current_hp": "HP",
+    "defense": "Defense",
+    "extra_defense": "Defense",
+    "special_defense": "Special defense",
+    "extra_special_defense": "Special defense",
+    "attack": "Attack",
+    "extra_attack": "Attack",
+    "special_attack": "Special attack",
+    "extra_special_attack": "Special attack",
+    "accuracy": "Accuracy",
+    "extra_accuracy": "Accuracy",
+    "enemy": "Enemy",
+    "user": "User",
+    "special": "Special",
+    "normal": "Normal"
   }
 }
