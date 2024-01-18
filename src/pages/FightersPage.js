@@ -89,7 +89,7 @@ const FightersPage = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(parameters),
-            }).then(() => updateFighters())
+            }).then(() => {updateFighters()})
         } else {
             setModalContent('You need to have at least one fighter in the party')
             setAllowCloseModal(true)

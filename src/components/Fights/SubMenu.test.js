@@ -2,6 +2,12 @@
 import { fireEvent, render } from '@testing-library/react';
 import SubMenu from './SubMenu';
 import { MyContextProvider } from '../../context/MyContext';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n';
+
+beforeAll(() => {
+    i18n.use(initReactI18next)
+});
 jest.mock('react-audio-player', () => {
     const ReactAudioPlayer = jest.fn();
     ReactAudioPlayer.prototype.play = jest.fn();
@@ -279,7 +285,9 @@ const user =
 const mockHandler = jest.fn();
 test('renders SubMenu component with fighters option', () => {
     const component = render(<MyContextProvider value={mockContextValue}>
-        <SubMenu selectedOption="fighters" changeUserFighter={mockHandler} userFighter={fighter} clickHandler={mockHandler} toggleSubMenu={mockHandler} user={user} />
+        <I18nextProvider i18n={i18n}>
+            <SubMenu selectedOption="fighters" changeUserFighter={mockHandler} userFighter={fighter} clickHandler={mockHandler} toggleSubMenu={mockHandler} user={user} />
+        </I18nextProvider>
     </MyContextProvider>)
     const fighterButton = component.getByText("Mew")
     component.findByAltText('fighter mini')
@@ -288,16 +296,20 @@ test('renders SubMenu component with fighters option', () => {
 });
 test('renders SubMenu component with objects option', () => {
     const component = render(<MyContextProvider value={mockContextValue}>
-        <SubMenu selectedOption="objects" userFighter={fighter} clickHandler={mockHandler} toggleSubMenu={mockHandler} user={user} />
+        <I18nextProvider i18n={i18n}>
+            <SubMenu selectedOption="objects" userFighter={fighter} clickHandler={mockHandler} toggleSubMenu={mockHandler} user={user} />
+        </I18nextProvider>
     </MyContextProvider>)
-    const objectButton = component.getByText("Potion:8")
+    const objectButton = component.getByText('objects.' + i18n.t('objects.potion') + ' : 8')
     component.findByAltText('fighter mini')
     fireEvent.click(objectButton)
     expect(mockHandler.mock.calls).toHaveLength(2)
 });
 test('renders SubMenu component with attacks option', () => {
     const component = render(<MyContextProvider value={mockContextValue}>
-        <SubMenu selectedOption="attacks" userFighter={fighter} clickHandler={mockHandler} toggleSubMenu={mockHandler} user={user} />
+        <I18nextProvider i18n={i18n}>
+            <SubMenu selectedOption="attacks" userFighter={fighter} clickHandler={mockHandler} toggleSubMenu={mockHandler} user={user} />
+        </I18nextProvider>
     </MyContextProvider>)
     const attackButton = component.getByText("Energy Ball:20/20")
     fireEvent.click(attackButton)
