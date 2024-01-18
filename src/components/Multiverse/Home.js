@@ -38,7 +38,9 @@ const Home = () => {
         <GoogleOAuthProvider clientId="297991534299-1ed49hpjqhhudbcngaa0an7b0jts398v.apps.googleusercontent.com">
             {!userLoggedIn &&
                 <div id="homeDivGoogle" className={classes.homeDivGoogle}>
-                    <h1>{t('home.login')}</h1>
+                    <div className={classes.divh1Login}>
+                        <h1>{t('home.login')}</h1>
+                    </div>
                     <GoogleLogin
                         onSuccess={credentialResponse => {
                             handleGoogleLogin(credentialResponse)

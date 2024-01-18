@@ -20,9 +20,13 @@ Array [
     className="homeDivGoogle"
     id="homeDivGoogle"
   >
-    <h1>
-      Login with Google
-    </h1>
+    <div
+      className="divh1Login"
+    >
+      <h1>
+        Login with Google
+      </h1>
+    </div>
     <div
       style={
         Object {

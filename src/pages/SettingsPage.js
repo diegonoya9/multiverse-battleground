@@ -82,7 +82,7 @@ const SettingsPage = ({ changeMultiverseActivePage, updateUser }) => {
         e.target.play();
     };
     return (
-        <div>
+        <div className={classes.container}>
             <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={volumes.bg / 100} autoPlay controls style={audioStyle} />
             {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
                 {modalContent}

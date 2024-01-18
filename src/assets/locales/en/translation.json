@@ -64,6 +64,20 @@
   "loading": {
     "loading": "Loading..."
   },
+  "missions": {
+    "back": "Back to Main Menu",
+    "start": "Start Mission",
+    "1": "Start having fun",
+    "2": "Having fun already?",
+    "3": "Show me what you've got",
+    "4": "Some more fun",
+    "5": "Are you holding up?",
+    "6": "Let's keep it up",
+    "7": "Lucky 7's",
+    "8": "It's gettin' dark",
+    "9": "Don't be afraid",
+    "10": "Don't cry please"
+  },
   "battleground": {
     "your": "Your",
     "levelUp": "leveled up",

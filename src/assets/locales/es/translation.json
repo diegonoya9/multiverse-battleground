@@ -30,7 +30,7 @@
         "welcome": "Bienvenido al Multiverse Battleground",
         "getReady": "Prepárate para batallas épicas!!",
         "start": "Empezar Aventura!",
-        "login": "Login con Google"
+        "login": "Logueate con Google"
     },
     "objectscard": {
         "price": "Precio",
@@ -63,6 +63,20 @@
     },
     "loading": {
         "loading": "Cargando..."
+    },
+    "missions": {
+        "back": "Volver al Menú Principal",
+        "start": "Empezar Misión",
+        "1": "Empieza a divertirte",
+        "2": "¿Ya te estás divirtiendo?",
+        "3": "Mostrame lo que tenés",
+        "4": "Más diversión",
+        "5": "¿Seguís aguantando?",
+        "6": "Sigamos así",
+        "7": "7 de la suerte",
+        "8": "Está oscureciendo..",
+        "9": "No tengas miedo",
+        "10": "No llores por favor"
     },
     "battleground": {
         "your": "Tu",

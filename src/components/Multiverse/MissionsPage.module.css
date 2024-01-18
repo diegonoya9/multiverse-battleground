@@ -1,4 +1,32 @@
 .container {
     text-align: center;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    background-image: url('../../assets/img/menu-background.jpg');
+    /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta de tu imagen */
+    background-size: 100% 100%;
+    /* Ajusta según tus preferencias, por ejemplo, 'contain' */
+    background-position: center;
+    /* Ajusta según tus preferencias, por ejemplo, 'left', 'right', 'top', 'bottom', etc. */
+    background-repeat: no-repeat;
+    /* No repetir la imagen de fondo */
+}
+
+.subContainer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.backgroundImg {
+    height: 100%;
+    width: 30%;
+    margin: auto;
+}
+
+.missionContainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

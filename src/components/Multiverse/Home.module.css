@@ -14,6 +14,19 @@
     display: flex;
 }
 
+.divh1Login {
+    background-image: url('../../assets/img/menu-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: 100% 100%;
+    height: 15%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .homeDivGoogle {
     background-image: url('../../assets/img/island.gif');
     min-height: 100vh;
@@ -24,7 +37,9 @@
     background-attachment: fixed;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 
 
