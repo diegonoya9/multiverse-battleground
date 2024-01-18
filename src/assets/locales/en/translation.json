@@ -116,5 +116,19 @@
     "user": "User",
     "special": "Special",
     "normal": "Normal"
+  },
+  "objects": {
+    "dopamine": "Dopamine",
+    "milanesa": "Milanesa",
+    "potion": "Potion",
+    "super_potion": "Super Potion",
+    "huevo_duro": "Hardboiled Egg",
+    "coffee": "Coffee",
+    "dopamine_d": "Increase accuracy by 25",
+    "milanesa_d": "Increases user defense by 150",
+    "potion_d": "Heals the user 2000 HP",
+    "super_potion_d": "Heals the user 5000 HP",
+    "huevo_duro_d": "Increases user attack by 100",
+    "coffee_d": "Increase special attack by 150"
   }
 }

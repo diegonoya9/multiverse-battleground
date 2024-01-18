@@ -116,5 +116,19 @@
         "user": "Usuario",
         "special": "Especial",
         "normal": "Normal"
+    },
+    "objects": {
+        "dopamine": "Dopamina",
+        "milanesa": "Milanesa",
+        "potion": "Poción",
+        "super_potion": "Super Poción",
+        "huevo_duro": "Huevo Duro",
+        "coffee": "Café",
+        "dopamine_d": "Incrementa la puntería del luchador en 25",
+        "milanesa_d": "Incrementa la defensa del luchador en 150",
+        "potion_d": "Cura al luchador 2000 de Vida",
+        "super_potion_d": "Cura al luchador 5000 de Vida",
+        "huevo_duro_d": "Incrementa el ataque del luchador en 100",
+        "coffee_d": "Incrementa la defensa especial del luchador en 150"
     }
 }
