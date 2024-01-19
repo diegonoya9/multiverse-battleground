@@ -1,10 +1,12 @@
 // ShopPage.test.js
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, act, fireEvent  } from '@testing-library/react';
 import { MyContextProvider } from '../context/MyContext';
-import ShopPage from './ShopPage'; import { initReactI18next, I18nextProvider } from 'react-i18next';
+import ShopPage from './ShopPage'; 
+import { initReactI18next, I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
 import { MemoryRouter } from 'react-router-dom';
+
 beforeAll(() => {
   i18n.use(initReactI18next)
 });

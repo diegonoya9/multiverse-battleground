@@ -1801,6 +1801,48 @@ describe('FightersPage Component', () => {
           });
         fireEvent.click(addAttack)
     });
+    it('renders correctly after fetching data and remove Attack', async () => {
+        // Simula el resultado del fetch
+        //const fakeData = [{ fighterId: 1, name: 'Fighter1' }];
+        const mockJsonPromise = Promise.resolve(fakeData);
+        const mockFetchPromise = Promise.resolve({
+            json: jest.fn().mockResolvedValueOnce(mockJsonPromise),
+            ok: true,
+        });
+
+        global.fetch = jest.fn().mockResolvedValueOnce(mockFetchPromise);
+        // Renderiza el componente
+        await act(async () => {
+            render(
+                <MyContextProvider value={mockContextValue}>
+                    <MemoryRouter initialEntries={['/fighters']}>
+                        <I18nextProvider i18n={i18n}>
+                            <FightersPage />
+                        </I18nextProvider>
+                    </MemoryRouter>
+                </MyContextProvider>
+            );
+        });
+
+        // Espera a que se resuelva la llamada fetch
+        await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
+
+        // Realiza expectativas sobre el estado del componente después de la llamada fetch
+        expect(screen.getByText('Charizard')).toBeInTheDocument();
+        const selectMoves = screen.getAllByText(i18n.t('fighterspage.selectMovements'))
+        fireEvent.click(selectMoves[1])
+        const removeAttack = screen.getAllByText(i18n.t('fighterspage.removeAttack'))
+        const fakeResponse = { ok:true };
+        global.fetch.mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce(fakeResponse),
+            ok: true,
+          });
+          global.fetch.mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce(fakeData),
+            ok: true,
+          });
+        fireEvent.click(removeAttack[0])
+    });
     // Puedes agregar más pruebas según las funcionalidades de tu componente
     // Por ejemplo, pruebas para las funciones addToParty, removeFromParty, etc.
 });

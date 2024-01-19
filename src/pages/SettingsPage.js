@@ -7,7 +7,7 @@ import { MyContext } from '../context/MyContext';
 import ReactAudioPlayer from 'react-audio-player';
 import musicFile from "../assets/sounds/music/OverNow.WAV"
 import { useNavigate } from 'react-router-dom';
-const SettingsPage = ({ changeMultiverseActivePage, updateUser }) => {
+const SettingsPage = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
     const { userContext, setUser } = useContext(MyContext);
