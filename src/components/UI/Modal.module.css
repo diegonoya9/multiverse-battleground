@@ -6,6 +6,11 @@
     position: relative;
 }
 
+.modal-open {
+    overflow: hidden;
+    height: 100vh;
+}
+
 .modalContainer {
     display: flex;
     align-items: center;
