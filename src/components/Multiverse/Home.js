@@ -39,7 +39,7 @@ const Home = () => {
             {!userLoggedIn &&
                 <div id="homeDivGoogle" className={classes.homeDivGoogle}>
                     <div className={classes.divh1Login}>
-                        <h1>{t('home.login')}</h1>
+                        <h1 className={classes.h1Login}>{t('home.login')}</h1>
                     </div>
                     <GoogleLogin
                         onSuccess={credentialResponse => {
