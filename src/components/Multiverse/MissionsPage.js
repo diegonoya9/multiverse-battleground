@@ -1,7 +1,5 @@
 import classes from "./MissionsPage.module.css"
 import { memo, useEffect, useState, useContext } from "react";
-import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../../assets/sounds/music/DiscoEterno.WAV"
 import Button from "../UI/Button";
 import { MyContext } from "../../context/MyContext";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +8,8 @@ const MissionsPage = () => {
     const { t } = useTranslation();
     const navigate = useNavigate()
     const [missions, setMissions] = useState()
-    const audioStyle = {
-        display: 'none',
-    };
     const { userContext, setCurrentMission, setCurrentLevel } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
-    let bg = userContext.bg
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -36,12 +30,7 @@ const MissionsPage = () => {
         setCurrentMission(mission)
         navigate('/battle')
     }
-    const handleAudioEnd = (e) => {
-        // Reiniciar la reproducción cuando la canción termine
-        e.target.play();
-    };
     return (<div className={classes.backgroundImg}>
-        <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={bg / 100} autoPlay controls style={audioStyle} />
         <Button colorType="lightgreen" value={t(`missions.back`)} onClick={() => { navigate('/') }}></Button>
         <div className={classes.container} >
             <div className={classes.subContainer} >

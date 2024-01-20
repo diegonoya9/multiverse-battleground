@@ -1,15 +1,31 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import classes from './Home.module.css'
 import { useTranslation } from 'react-i18next';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import { MyContext } from '../../context/MyContext';
+import ReactAudioPlayer from 'react-audio-player';
 const Home = () => {
     const { t } = useTranslation();
     const { userContext, setUser, setUserId, setUserName } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
+    let bg = userContext.bg
     const [userLoggedIn, setUserLoggedIn] = useState(false)
+    const audioStyle = {
+        display: 'none', // Oculta el reproductor de audio visualmente
+    };
+    const [song, setSong] = useState(0);
+    const songs = [
+        { id: 1, title: 'Song 1', src: '/assets/sounds/music/Aeroplane.WAV' },
+        { id: 2, title: 'Song 2', src: '/assets/sounds/music/africa.mp3' },
+        { id: 3, title: 'Song 3 ', src: '/assets/sounds/music/uptown.mp3' },
+        { id: 4, title: 'Song 4', src: '/assets/sounds/music/feel.mp3' },
+        { id: 5, title: 'Song 5', src: '/assets/sounds/music/what.mp3' },
+        { id: 6, title: 'Song 6', src: '/assets/sounds/music/dust.mp3' }
+        // Agrega más canciones según sea necesario
+    ];
+
     const handleGoogleLogin = (credentials) => {
         const parameters = [{
             credentials: credentials
@@ -34,8 +50,22 @@ const Home = () => {
                 }
             })
     }
+    const selectSong = () => {
+        let randomSong = Math.floor(Math.random() * songs.length)
+        setSong(songs[randomSong].src)
+    }
+    useEffect(() => {
+        const audio = document.getElementById('audioPlayer');
+        if (audio) {
+            audio.play()
+        }
+    }, [song])
+    useEffect(() => {
+        selectSong()
+    }, [])
     return (
         <GoogleOAuthProvider clientId="297991534299-1ed49hpjqhhudbcngaa0an7b0jts398v.apps.googleusercontent.com">
+            {song && <ReactAudioPlayer src={`${song}`} onEnded={() => selectSong()} volume={bg / 100} autoPlay id="audioPlayer" controls style={audioStyle} />}
             {!userLoggedIn &&
                 <div id="homeDivGoogle" className={classes.homeDivGoogle}>
                     <div className={classes.divh1Login}>

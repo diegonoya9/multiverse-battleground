@@ -1,7 +1,5 @@
 import classes from "./UsersPage.module.css"
-import ReactAudioPlayer from 'react-audio-player';
 import { useState, useContext, useEffect } from "react";
-import musicFile from "../assets/sounds/music/DirtyLove.WAV"
 import Button from "../components/UI/Button";
 import Modal from "../components/UI/Modal";
 import { MyContext } from '../context/MyContext';
@@ -9,9 +7,6 @@ import { useNavigate } from "react-router-dom";
 const UsersPage = () => {
     const navigate = useNavigate()
     const [users, setUsers] = useState([])
-    const audioStyle = {
-        display: 'none',
-    };
     const { userContext, setUserId } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
     const setActiveUser = (id) => {
@@ -38,7 +33,6 @@ const UsersPage = () => {
         </Modal>}
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { navigate('/') }}></Button>
         <div className={classes.container} >
-            <ReactAudioPlayer src={musicFile} autoPlay controls style={audioStyle} />
             {users &&
                 users.map((user) => {
                     return (

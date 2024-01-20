@@ -16,6 +16,7 @@ Array [
       rel="stylesheet"
     />
   </div>,
+  "0",
   <div
     className="homeDivGoogle"
     id="homeDivGoogle"
@@ -23,7 +24,9 @@ Array [
     <div
       className="divh1Login"
     >
-      <h1>
+      <h1
+        className="h1Login"
+      >
         Login with Google
       </h1>
     </div>

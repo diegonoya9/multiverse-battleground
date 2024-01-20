@@ -1,9 +1,7 @@
 import classes from "./ShopPage.module.css"
 import { memo, useEffect, useState, useContext } from "react";
-import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../components/UI/Modal";
 import Button from "../components/UI/Button";
-import musicFile from "../assets/sounds/music/OverNow.WAV"
 import { MyContext } from "../context/MyContext";
 import FighterCard from "../components/UI/FighterCard";
 import ObjectCard from "../components/UI/ObjectCard";
@@ -34,9 +32,6 @@ const ShopPage = () => {
             setShowModal(false)
         }
     }
-    const audioStyle = {
-        display: 'none',
-    };
     const changeQuantity = (action) => {
         if (action === "increase") {
             if (quantity < 100) {
@@ -183,12 +178,7 @@ const ShopPage = () => {
         </div>
         <Button value="Buy" onClick={() => buyObject()} />
     </div>
-    const handleAudioEnd = (e) => {
-        // Reiniciar la reproducción cuando la canción termine
-        e.target.play();
-    };
     return (<div className={classes.backgroundImg}>
-        {user && <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />}
         <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { navigate('/') }}></Button>
         {user && userMoney && <h1 className={classes.divBackground}>{t('shoppage.money')}:{userMoney}</h1>}
         {showModal && modalContent && <Modal onClose={closeModal} styleType="battlegroundColiseum" >

@@ -4,8 +4,6 @@ import Modal from '../components/UI/Modal'
 import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MyContext } from '../context/MyContext';
-import ReactAudioPlayer from 'react-audio-player';
-import musicFile from "../assets/sounds/music/OverNow.WAV"
 import { useNavigate } from 'react-router-dom';
 const SettingsPage = () => {
     const navigate = useNavigate()
@@ -20,9 +18,6 @@ const SettingsPage = () => {
         sound: user.sound_volume,
         sfx: user.sfx_volume
     })
-    const audioStyle = {
-        display: 'none',
-    };
     const saveChanges = () => {
         setModalContent('Saving settings..')
         setShowModal(true)
@@ -77,13 +72,8 @@ const SettingsPage = () => {
             setModalContent('')
         }
     }
-    const handleAudioEnd = (e) => {
-        // Reiniciar la reproducción cuando la canción termine
-        e.target.play();
-    };
     return (
         <div className={classes.container}>
-            <ReactAudioPlayer onEnded={handleAudioEnd} src={musicFile} volume={volumes.bg / 100} autoPlay controls style={audioStyle} />
             {showModal && <Modal styleType={"battlegroundColiseum"} onClose={closeModal} color="white">
                 {modalContent}
             </Modal>}
