@@ -8,10 +8,10 @@ import { MyContext } from '../../context/MyContext';
 import ReactAudioPlayer from 'react-audio-player';
 const Home = () => {
     const { t } = useTranslation();
-    const { userContext, setUser, setUserId, setUserName } = useContext(MyContext);
+    const { userContext, setUser, setUserId, setUserName, setUserLoggedIn } = useContext(MyContext);
     let backEndUrl = userContext.backEndUrl
     let bg = userContext.bg
-    const [userLoggedIn, setUserLoggedIn] = useState(false)
+    let logged_in = userContext.logged_in
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
@@ -66,7 +66,7 @@ const Home = () => {
     return (
         <GoogleOAuthProvider clientId="297991534299-1ed49hpjqhhudbcngaa0an7b0jts398v.apps.googleusercontent.com">
             {song && <ReactAudioPlayer src={`${song}`} onEnded={() => selectSong()} volume={bg / 100} autoPlay id="audioPlayer" controls style={audioStyle} />}
-            {!userLoggedIn &&
+            {!logged_in &&
                 <div id="homeDivGoogle" className={classes.homeDivGoogle}>
                     <div className={classes.divh1Login}>
                         <h1 className={classes.h1Login}>{t('home.login')}</h1>
@@ -80,7 +80,7 @@ const Home = () => {
                         }}
                         useOneTap
                     /> </div>}
-            {userLoggedIn &&
+            {logged_in &&
                 <div id="homeDiv" className={classes.homeDiv}>
                     <Outlet />
                 </div>

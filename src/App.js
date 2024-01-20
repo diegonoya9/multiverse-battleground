@@ -22,7 +22,6 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Multiverse /> },
           { path: '/fighters', element: <FightersPage /> },
-          { path: '/battle', element: <Battleground /> },
           { path: '/missions', element: <MissionsPage /> },
           { path: '/pvp', element: <MatchMaking /> },
           { path: '/bag', element: <ObjectsPage /> },
@@ -30,7 +29,8 @@ const router = createBrowserRouter([
           { path: '/config', element: <SettingsPage /> },
           { path: '/users', element: <UsersPage /> },
         ]
-      }
+      },
+      { path: '/battle', element: <Battleground /> }
     ]
   }
 ])
