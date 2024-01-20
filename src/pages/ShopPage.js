@@ -80,7 +80,7 @@ const ShopPage = () => {
                     body: JSON.stringify(parameters)
                 }).then(response => {
                     console.log(response)
-                    if (response.statusText === "OK") {
+                    if (response.ok) {
                         setModalContent(modalPurchaseConfirmed)
                         setShowModal(true)
                     } else {
