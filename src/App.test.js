@@ -4,7 +4,11 @@ import { render } from '@testing-library/react';
 import App from './App';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
-
+jest.mock('react-audio-player', () => {
+  const ReactAudioPlayer = jest.fn();
+  ReactAudioPlayer.prototype.play = jest.fn();
+  return ReactAudioPlayer;
+});
 beforeAll(() => {
   i18n.use(initReactI18next)
 });
