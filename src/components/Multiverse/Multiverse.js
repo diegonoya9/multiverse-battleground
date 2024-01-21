@@ -42,6 +42,7 @@ const Multiverse = () => {
                 <div className={classes.mainMenu}>
 
                     <div id="divWelcome" className={classes.divWelcome}>
+                        <img src={user.avatar} />
                         <h1 className={classes.h1}>{t('multiverse.welcome')} {user.name}</h1>
                         <h2 className={classes.h2}>{t('multiverse.money')} {money} pesos</h2>
                     </div>
