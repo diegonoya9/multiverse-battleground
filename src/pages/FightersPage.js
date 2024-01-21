@@ -1,8 +1,6 @@
 import classes from "./FightersPage.module.css"
-import ReactAudioPlayer from 'react-audio-player';
 import Modal from "../components/UI/Modal";
 import { useState, useContext, useEffect, useCallback } from "react";
-import musicFile from "../assets/sounds/music/DirtyLove.WAV"
 import Button from "../components/UI/Button";
 import { MyContext } from "../context/MyContext";
 import FighterCard from "../components/UI/FighterCard";
@@ -22,9 +20,6 @@ const FightersPage = () => {
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
     let bg = userContext.bg
-    const audioStyle = {
-        display: 'none',
-    };
     const closeModal = () => {
         if (allowCloseModal) {
             setShowModal(false)
@@ -89,7 +84,7 @@ const FightersPage = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(parameters),
-            }).then(() => {updateFighters()})
+            }).then(() => { updateFighters() })
         } else {
             setModalContent('You need to have at least one fighter in the party')
             setAllowCloseModal(true)
@@ -164,7 +159,7 @@ const FightersPage = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(parameters),
-            }).then(() => {updateFighters()})
+            }).then(() => { updateFighters() })
         }
     }
     useEffect(() => {
@@ -182,10 +177,10 @@ const FightersPage = () => {
                     <ul>{moves.map((move) => {
                         return <div key={move.user_fighter_move_id}>
                             {move.name}
-                            {move.selected === 1 && <Button  onClick={() => { removeAttack(move.user_fighter_move_id) }}>
+                            {move.selected === 1 && <Button onClick={() => { removeAttack(move.user_fighter_move_id) }}>
                                 {t('fighterspage.removeAttack')}
                             </Button>}
-                            {move.selected === 0 && <Button  onClick={() => { addAttack(move.user_fighter_move_id) }}>
+                            {move.selected === 0 && <Button onClick={() => { addAttack(move.user_fighter_move_id) }}>
                                 {t('fighterspage.addAttack')}
                             </Button>}
 
@@ -274,15 +269,10 @@ const FightersPage = () => {
     useEffect(() => {
         updateFighters()
     }, [])
-    const handleAudioEnd = (e) => {
-        // Reiniciar la reproducción cuando la canción termine
-        e.target.play();
-    };
     return (
         <div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
             <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { navigate('/') }}></Button>
             <div className={classes.container} >
-                <ReactAudioPlayer src={musicFile} onEnded={handleAudioEnd} volume={bg / 100} autoPlay controls style={audioStyle} />
                 {fighters &&
                     fighters.map((fighter, i) => {
                         return (<div className={classes.fighterContainer} key={fighter.user_fighter_id}>
