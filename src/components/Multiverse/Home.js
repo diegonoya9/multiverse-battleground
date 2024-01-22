@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext, useEffect,useCallback } from "react"
 import { Outlet } from "react-router-dom"
 import classes from './Home.module.css'
 import { useTranslation } from 'react-i18next';
@@ -16,15 +16,7 @@ const Home = () => {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
     const [song, setSong] = useState(0);
-    const songs = [
-        { id: 1, title: 'Song 1', src: '/assets/sounds/music/Aeroplane.WAV' },
-        { id: 2, title: 'Song 2', src: '/assets/sounds/music/africa.mp3' },
-        { id: 3, title: 'Song 3 ', src: '/assets/sounds/music/uptown.mp3' },
-        { id: 4, title: 'Song 4', src: '/assets/sounds/music/feel.mp3' },
-        { id: 5, title: 'Song 5', src: '/assets/sounds/music/what.mp3' },
-        { id: 6, title: 'Song 6', src: '/assets/sounds/music/dust.mp3' }
-        // Agrega más canciones según sea necesario
-    ];
+
 
     const handleGoogleLogin = (credentials) => {
         const parameters = [{
@@ -50,10 +42,19 @@ const Home = () => {
                 }
             })
     }
-    const selectSong = () => {
+    const selectSong = useCallback(() => {
+        const songs = [
+            { id: 1, title: 'Song 1', src: '/assets/sounds/music/Aeroplane.WAV' },
+            { id: 2, title: 'Song 2', src: '/assets/sounds/music/africa.mp3' },
+            { id: 3, title: 'Song 3 ', src: '/assets/sounds/music/uptown.mp3' },
+            { id: 4, title: 'Song 4', src: '/assets/sounds/music/feel.mp3' },
+            { id: 5, title: 'Song 5', src: '/assets/sounds/music/what.mp3' },
+            { id: 6, title: 'Song 6', src: '/assets/sounds/music/dust.mp3' }
+            // Agrega más canciones según sea necesario
+        ];
         let randomSong = Math.floor(Math.random() * songs.length)
         setSong(songs[randomSong].src)
-    }
+    },[])
     useEffect(() => {
         const audio = document.getElementById('audioPlayer');
         if (audio) {
@@ -62,7 +63,7 @@ const Home = () => {
     }, [song])
     useEffect(() => {
         selectSong()
-    }, [])
+    }, [selectSong])
     return (
         <GoogleOAuthProvider clientId="297991534299-1ed49hpjqhhudbcngaa0an7b0jts398v.apps.googleusercontent.com">
             {song && <ReactAudioPlayer src={`${song}`} onEnded={() => selectSong()} volume={bg / 100} autoPlay id="audioPlayer" controls style={audioStyle} />}
