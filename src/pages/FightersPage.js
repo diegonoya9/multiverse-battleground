@@ -1,6 +1,6 @@
 import classes from "./FightersPage.module.css"
 import Modal from "../components/UI/Modal";
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState, useContext, useEffect,useCallback } from "react";
 import Button from "../components/UI/Button";
 import { MyContext } from "../context/MyContext";
 import FighterCard from "../components/UI/FighterCard";
@@ -19,7 +19,17 @@ const FightersPage = () => {
     let user = userContext.user
     let backEndUrl = userContext.backEndUrl
     let activeUser = userContext.idUsuario
-    let bg = userContext.bg
+    const fetchData = useCallback(async () => {
+        try {
+            if (backEndUrl && activeUser) {
+                const response = await fetch(backEndUrl + '/alluserfighters/' + activeUser);
+                const data = await response.json();
+                setFighters(data);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    },[backEndUrl,activeUser]);
     const closeModal = () => {
         if (allowCloseModal) {
             setShowModal(false)
@@ -92,7 +102,7 @@ const FightersPage = () => {
         }
 
     }
-    const viewActions = (move_id) => {
+    const viewActions = useCallback((move_id) => {
         let actions = []
         moves.forEach((move) => {
             if (move.move_id === move_id) {
@@ -113,8 +123,11 @@ const FightersPage = () => {
             }))
             setShowModal(true)
         }
-    }
-    const removeAttack = (user_fighter_move_id) => {
+    },[moves,t])
+    const updateFighters = useCallback(async () => {
+        await fetchData()
+    },[fetchData])
+    const removeAttack = useCallback((user_fighter_move_id) => {
         let selected = 0
         moves.forEach((move) => {
             if (move.selected === 1) {
@@ -137,8 +150,8 @@ const FightersPage = () => {
                 body: JSON.stringify(parameters),
             }).then(() => updateFighters())
         }
-    }
-    const addAttack = (user_fighter_move_id) => {
+    },[backEndUrl,moves,t,updateFighters])
+    const addAttack = useCallback((user_fighter_move_id) => {
         let selected = 0
         moves.forEach((move) => {
             if (move.selected === 1) {
@@ -161,7 +174,7 @@ const FightersPage = () => {
                 body: JSON.stringify(parameters),
             }).then(() => { updateFighters() })
         }
-    }
+    },[backEndUrl,moves,t,updateFighters])
     useEffect(() => {
         if (moves) {
             if (!selectMoves) {
@@ -189,7 +202,7 @@ const FightersPage = () => {
                 )
             }
         }
-    }, [moves, selectMoves])
+    }, [moves, selectMoves,addAttack,removeAttack,t,viewActions])
     const viewMovements = (user_fighter_id, allowSelect) => {
         let moves = []
         fighters.forEach((fighter) => {
@@ -227,48 +240,15 @@ const FightersPage = () => {
         })
     }
 
-    const deleteFighter = (userFighterId) => {
-        /* setUserFighterId(userFighterId)
-         setShowConfirm(true)
-         setShowModal(true)*/
-    }
-    const deleteUserFighter = async (userFighterId) => {
-        /* let deleteFighter = await user.fighters.filter((fighter) => {
-             return fighter.userFighterId === userFighterId
-         })
-         let newFighters = user.fighters.filter((fighter) => {
-             return fighter.userFighterId !== userFighterId
-         })
-         const sell = user.objects[4].quantity
-         let price = deleteFighter[0].price
-         const result = sell + price
-         let newUser = user
-         newUser.objects[4].quantity = result
-         newUser.fighters = newFighters
-         setShowModal(false)
-         setShowConfirm(false)*/
-    }
-    const fetchData = async () => {
-        try {
-            if (backEndUrl && activeUser) {
-                const response = await fetch(backEndUrl + '/alluserfighters/' + activeUser);
-                const data = await response.json();
-                setFighters(data);
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-    const updateFighters = async () => {
-        await fetchData()
-    }
+   
+
     useEffect(() => {
         setShowModal(false)
         setModalContent()
     }, [fighters])
     useEffect(() => {
         updateFighters()
-    }, [])
+    }, [updateFighters])
     return (
         <div alt="divContainerFightersPage" className={`${classes.body} ${classes.backgroundImg}`}>
             <Button colorType="lightgreen" value={t('fighterspage.back')} onClick={() => { navigate('/') }}></Button>

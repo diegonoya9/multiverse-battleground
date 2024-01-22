@@ -21,7 +21,6 @@ const ShopPage = () => {
     const { userContext } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
-    let bg = userContext.bg
     const [fighters, setFighters] = useState()
     const [user, setUser] = useState()
     const [userMoney, setUserMoney] = useState()
@@ -60,7 +59,6 @@ const ShopPage = () => {
     const buy = (id, price, type) => {
         let newUser = user
         if (userMoney >= price) {
-
             if (type === "fighter") {
                 setUserMoney((prevValue) => {
                     prevValue -= price
@@ -79,7 +77,6 @@ const ShopPage = () => {
                     },
                     body: JSON.stringify(parameters)
                 }).then(response => {
-                    console.log(response)
                     if (response.ok) {
                         setModalContent(modalPurchaseConfirmed)
                         setShowModal(true)

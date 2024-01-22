@@ -24,11 +24,7 @@ const ObjectsPage = () => {
         };
 
         fetchData();
-    }, [backEndUrl, user.user_id])
-    const handleAudioEnd = (e) => {
-        // Reiniciar la reproducción cuando la canción termine
-        e.target.play();
-    };
+    }, [backEndUrl, user])
     return (<div className={classes.backgroundImg}>
         <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { navigate('/') }}></Button>
         <div className={classes.container} >
