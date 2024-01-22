@@ -43,7 +43,7 @@ const Multiverse = () => {
                 setSfx(data[0].sfx_volume)
                 setBg(data[0].bg_volume)
             })
-    }, [activeUser])
+    }, [activeUser,backEndUrl, setBg, setSfx, setSound, setUser,setUserName])
     return (
         <div alt='mainDiv' className={`${classes.container} ${classes.notScrollable}`} >
             {user &&
