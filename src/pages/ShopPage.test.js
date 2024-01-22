@@ -739,6 +739,37 @@ describe('ShopPage Component', () => {
     const buyButton = screen.getAllByText(i18n.t('shoppage.buy')); // Ajusta el texto según tu aplicación
     await act (async() => {fireEvent.click(buyButton[8])})
   });
+  test('buys object', async () => {
+    fetch
+      .mockResolvedValueOnce({ json: () => ( user ), ok: true })
+      .mockResolvedValueOnce({ json: () => (objects), ok: true })
+      .mockResolvedValueOnce({ json: () => (fighters), ok: true })
+     
+    await act(async () => {
+      render(
+        <MyContextProvider value={mockContextValue}>
+          <MemoryRouter initialEntries={['/shop']}>
+            <I18nextProvider i18n={i18n}>
+              <ShopPage />
+            </I18nextProvider>
+          </MemoryRouter>
+        </MyContextProvider>
+      );
+    });
+    // Puedes ajustar los selectores según la estructura de tu componente
+    const buyButton = screen.getAllByText(i18n.t('shoppage.buy')); // Ajusta el texto según tu aplicación
+    fireEvent.click(buyButton[3])
+    const increaseQuantity=screen.getByText("+")
+    const decreaseQuantity=screen.getByText("-")
+    const buyObject=screen.getByText('Buy object')
+    fireEvent.click(decreaseQuantity)
+    fireEvent.click(increaseQuantity)
+    fireEvent.click(decreaseQuantity)
+    fetch.mockResolvedValueOnce({
+      ok: true,
+    })
+    await act(async () => {fireEvent.click(buyObject)})
+  });
 
 
 })

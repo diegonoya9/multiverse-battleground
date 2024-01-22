@@ -177,7 +177,7 @@ const ShopPage = () => {
             />
             <Button value="+" onClick={() => changeQuantity("increase")} />
         </div>
-        <Button value="Buy" onClick={() => buyObject()} />
+        <Button value="Buy object" onClick={() => buyObject()} />
     </div>
     return (<div className={classes.backgroundImg}>
         <Button colorType="lightgreen" value={t('shoppage.main')} onClick={() => { navigate('/') }}></Button>
