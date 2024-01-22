@@ -1,7 +1,7 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import FightersPage from './pages/FightersPage';
-import Multiverse, { loader as multiverseLoader } from './components/Multiverse/Multiverse';
+import Multiverse from './components/Multiverse/Multiverse';
 import MissionsPage from './components/Multiverse/MissionsPage'
 import MatchMaking from './components/Multiverse/MatchMaking';
 import ObjectsPage from './pages/ObjectsPage'
