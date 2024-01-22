@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useContext } from "react"
+import { memo, useState, useEffect, useContext,useRef } from "react"
 import classes from './Multiverse.module.css'
 import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 const Multiverse = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
+    const isMounted = useRef(true);
     const { userContext, setUserName, setUser, setSound, setBg, setSfx, setCurrentMission } = useContext(MyContext);
     let activeUser = userContext.idUsuario
     let backEndUrl = userContext.backEndUrl
@@ -23,8 +24,15 @@ const Multiverse = () => {
         }
     }, [user])
     useEffect(() => {
-        setCurrentMission(0)
-    }, [])
+        if (isMounted.current) {
+          isMounted.current = false;
+        } else {
+          // Agrega una condición para evitar ejecutar setCurrentMission en cada render
+          if (userContext.currentMission !== 0) {
+            setCurrentMission(0);
+          }
+        }
+      }, [userContext, setCurrentMission]);
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
@@ -42,7 +50,7 @@ const Multiverse = () => {
                 <div className={classes.mainMenu}>
 
                     <div id="divWelcome" className={classes.divWelcome}>
-                        <img src={user.avatar} />
+                        <img alt="user_avatar" src={user.avatar} />
                         <h1 className={classes.h1}>{t('multiverse.welcome')} {user.name}</h1>
                         <h2 className={classes.h2}>{t('multiverse.money')} {money} pesos</h2>
                     </div>
