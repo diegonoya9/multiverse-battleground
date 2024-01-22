@@ -16,7 +16,7 @@ const Home = () => {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
     const [song, setSong] = useState(0);
-   
+
 
     const handleGoogleLogin = (credentials) => {
         const parameters = [{
@@ -54,7 +54,7 @@ const Home = () => {
         ];
         let randomSong = Math.floor(Math.random() * songs.length)
         setSong(songs[randomSong].src)
-    },[])
+    }, [])
     useEffect(() => {
         const audio = document.getElementById('audioPlayer');
         if (audio) {
