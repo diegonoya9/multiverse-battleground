@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, act, screen } from '@testing-library/react'
 import { MyContextProvider } from '../../context/MyContext';
 import { MemoryRouter } from 'react-router-dom';
-import { Home, handleGoogleLogin } from './Home'
+import Home from './Home'
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 
