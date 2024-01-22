@@ -24,7 +24,7 @@ const Multiverse = () => {
     }, [user])
     useEffect(() => {
         setCurrentMission(0)
-    }, [setCurrentMission])
+    }, [])
     useEffect(() => {
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
@@ -35,13 +35,14 @@ const Multiverse = () => {
                 setSfx(data[0].sfx_volume)
                 setBg(data[0].bg_volume)
             })
-    }, [activeUser,backEndUrl,setBg,setSound,setUser,setUserName,setSfx])
+    }, [activeUser])
     return (
         <div alt='mainDiv' className={`${classes.container} ${classes.notScrollable}`} >
             {user &&
                 <div className={classes.mainMenu}>
+
                     <div id="divWelcome" className={classes.divWelcome}>
-                        <img alt="user_avatar" src={user.avatar} />
+                        <img src={user.avatar} />
                         <h1 className={classes.h1}>{t('multiverse.welcome')} {user.name}</h1>
                         <h2 className={classes.h2}>{t('multiverse.money')} {money} pesos</h2>
                     </div>

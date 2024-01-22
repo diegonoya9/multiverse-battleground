@@ -1,16 +1,16 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import FightersPage from './pages/FightersPage';
-import Multiverse from './components/Multiverse/Multiverse'
+import Multiverse, { loader as multiverseLoader } from './components/Multiverse/Multiverse';
 import MissionsPage from './components/Multiverse/MissionsPage'
-import MatchMaking from './components/Multiverse/MatchMaking'
+import MatchMaking from './components/Multiverse/MatchMaking';
 import ObjectsPage from './pages/ObjectsPage'
 import ShopPage from './pages/ShopPage'
-import SettingsPage from './pages/SettingsPage'
-import UsersPage from './pages/UsersPage'
-import Battleground from './components/Fights/Battleground'
+import SettingsPage from './pages/SettingsPage';
+import UsersPage from './pages/UsersPage';
+import Battleground from './components/Fights/Battleground';
 import Home from './components/Multiverse/Home.js'
-import RootLayuout from './pages/Root'
+import RootLayuout from './pages/Root';
 const router = createBrowserRouter([
   {
     path: '/',

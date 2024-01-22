@@ -3,26 +3,22 @@ import classes from './Modal.module.css';
 
 const Modal = ({ onClose, backgroundColor, color, children, styleType }) => {
     const modalRef = useRef();
+    const originalScrollPosition = useRef(0);
     // Bloquear el scroll cuando se monta el modal
     useEffect(() => {
         let root = document.getElementById("root")
-        let originalHeight
-        let originalOverflow
-        if (root){
-            originalOverflow = root.style.overflow;
-            originalHeight = root.style.height;
-    
-            // Bloquear el scroll al montar el modal
-            root.style.overflow = 'hidden';
-            root.style.height = '100vh';
-            // Desbloquear el scroll al desmontar el modal
-            return () => {
-                root.style.overflow = originalOverflow;
-                root.style.height = originalHeight;
-            };
+        const originalOverflow = root.style.overflow;
+        const originalHeight = root.style.height;
 
-        }
+        // Bloquear el scroll al montar el modal
+        root.style.overflow = 'hidden';
+        root.style.height = '100vh';
 
+        // Desbloquear el scroll al desmontar el modal
+        return () => {
+            root.style.overflow = originalOverflow;
+            root.style.height = originalHeight;
+        };
     }, []);
 
     // Agregar un event listener para cerrar el modal haciendo clic fuera de él

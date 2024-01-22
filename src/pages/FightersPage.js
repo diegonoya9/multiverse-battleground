@@ -238,7 +238,10 @@ const FightersPage = () => {
         }).then(() => {
             updateFighters()
         })
-    } 
+    }
+
+   
+
     useEffect(() => {
         setShowModal(false)
         setModalContent()
