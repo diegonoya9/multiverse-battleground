@@ -6,11 +6,13 @@ import Modal from './Modal';
 test('renders Modal component', () => {
   // Renderiza Modal dentro de MyContextProvider con el contexto simulado
   const { getByText } = render(
+    <div id="root">
       <Modal >
         children
       </Modal>
+    </div>
   );
 
-  // Puedes agregar expectativas para asegurarte de que los elementos esperados estén presentes
+  // Puedes agregar expectativas para asegurarte de que los elementos esperados estï¿½n presentes
   expect(getByText(/children/)).toBeInTheDocument();
 });
