@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 const Battleground = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation();
+    const { t } = useTranslation()
     const audioStyle = {
         display: 'none', // Oculta el reproductor de audio visualmente
     };
@@ -280,7 +280,7 @@ const Battleground = () => {
     }, []);
     return (
         <div alt="battlegroundBackground" className={`${classes.battleground} ${classes[battlegroundType]}`}>
-            {!userFighter && !enemyFighter && <Loading />}
+            {!userFighter && !enemyFighter && !battleEnded.finished && <Loading />}
             {showModal && !showSelectFighter && !battleEnded.finished && <Modal styleType={battlegroundType} onClose={onCloseModal} color="white">{modalContent}</Modal>}
             {song && user && <ReactAudioPlayer src={`${song}`} id="audioPlayer" onEnded={() => selectSong()} volume={bg / 100} autoPlay controls style={audioStyle} />}
             {song && <ReactAudioPlayer onEnded={handleSfxEnded} src={`${Sfx}`} volume={sfx / 100} id="audioSfxPlayer" controls style={audioStyle} />}

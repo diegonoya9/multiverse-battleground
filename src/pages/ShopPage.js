@@ -135,18 +135,22 @@ const ShopPage = () => {
             .then(response => response.json())
             .then(data => {
                 setUser(data[0])
+            }).then(() => {
+                fetch(backEndUrl + '/allobjects')
+                    .then((response) => response.json())
+                    .then(objectsList => {
+                        objectsList = objectsList.filter((object) => {
+                            return object.name !== "Money"
+                        })
+                        setObjects(objectsList)
+                    }).then(() => {
+                        fetch(backEndUrl + '/allfightersinitiallevel')
+                            .then((response) => response.json())
+                            .then((data) => { setFighters(data) 
+                            })
+                    })
+
             })
-        fetch(backEndUrl + '/allobjects')
-            .then((response) => response.json())
-            .then((objectsList) => {
-                objectsList = objectsList.filter((object) => {
-                    return object.name !== "Money"
-                })
-                setObjects(objectsList)
-            })
-        fetch(backEndUrl + '/allfightersinitiallevel')
-            .then((response) => response.json())
-            .then((data) => { setFighters(data) })
     }, [activeUser, backEndUrl])
     useEffect(() => {
         if (user) {
