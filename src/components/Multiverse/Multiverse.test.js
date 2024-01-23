@@ -462,10 +462,7 @@ const user = [
 ]
 const mockContextValue = {
   userContext: {
-    user: {
-      user_id: 1,
-      userobjects: [{ objects: { name: "Money" } }]
-    },
+    user: user[0],
     backEndUrl: 'http://example.com/api',
     idUsuario: 1,
     bg: 50,

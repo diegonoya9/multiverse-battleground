@@ -16,7 +16,7 @@ const Multiverse = () => {
     //const [user, setUser] = useState()
     const [money, setMoney] = useState()
     useEffect(() => {
-        if (user) {
+        if (user && user.userobjects) {
             let newMoney = user.userobjects.filter((object) => {
                 return object.objects.name === "Money"
             })
@@ -34,7 +34,6 @@ const Multiverse = () => {
         }
     }, [userContext, setCurrentMission]);
     useEffect(() => {
-        console.log('lrpmqtrrmp')
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => {
