@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useContext,useRef } from "react"
+import { memo, useState, useEffect, useContext, useRef } from "react"
 import classes from './Multiverse.module.css'
 import Button from "../UI/Button.js"
 import { MyContext } from '../../context/MyContext';
@@ -25,15 +25,16 @@ const Multiverse = () => {
     }, [user])
     useEffect(() => {
         if (isMounted.current) {
-          isMounted.current = false;
+            isMounted.current = false;
         } else {
-          // Agrega una condición para evitar ejecutar setCurrentMission en cada render
-          if (userContext.currentMission !== 0) {
-            setCurrentMission(0);
-          }
+            // Agrega una condición para evitar ejecutar setCurrentMission en cada render
+            if (userContext.currentMission !== 0) {
+                setCurrentMission(0);
+            }
         }
-      }, [userContext, setCurrentMission]);
+    }, [userContext, setCurrentMission]);
     useEffect(() => {
+        console.log('lrpmqtrrmp')
         fetch(backEndUrl + '/allusers/' + activeUser)
             .then(response => response.json())
             .then(data => {
@@ -43,7 +44,7 @@ const Multiverse = () => {
                 setSfx(data[0].sfx_volume)
                 setBg(data[0].bg_volume)
             })
-    }, [activeUser,backEndUrl, setBg, setSfx, setSound, setUser,setUserName])
+    }, [activeUser, backEndUrl])
     return (
         <div alt='mainDiv' className={`${classes.container} ${classes.notScrollable}`} >
             {user &&
