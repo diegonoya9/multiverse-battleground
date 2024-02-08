@@ -3,7 +3,10 @@ import { useEffect, useState, useContext } from 'react'
 import { MyContext } from '../../context/MyContext';
 import Button from '../UI/Button';
 import { useNavigate } from 'react-router-dom';
-const MatchMaking = ({ changeMultiverseActivePage }) => {
+import Modal from '../UI/Modal';
+const MatchMaking = () => {
+  const [showModal,setShowModal]=useState()
+  const [modalContent,setModalContent]=useState()
   const navigate = useNavigate()
   const [ws, setWs] = useState(null);
   const [listaClientes, setListaClientes] = useState([]);
@@ -11,6 +14,15 @@ const MatchMaking = ({ changeMultiverseActivePage }) => {
   let activeUser = userContext.idUsuario
   let userName = userContext.userName
   let backEndWS = userContext.backEndWS
+  const closeModal= () => {
+    setShowModal(false)
+  }
+  const acceptChallenge= () => {
+    console.log('reto aceptado')
+  }
+  const rejectChallenge= () => {
+    console.log('reto rechazado')
+  }
   useEffect(() => {
     const newWs = new WebSocket(backEndWS);
 
@@ -29,6 +41,10 @@ const MatchMaking = ({ changeMultiverseActivePage }) => {
         setListaClientes(data.listaClientes);
         console.log(data.listaClientes)
       } else {
+        if (data.tipo === "challenge"){
+          setModalContent(`Te ha retado ${data.userName}`)
+          setShowModal(true)
+        }
         console.log(`Mensaje recibido del servidor: ${event.data}`);
         // Puedes manejar otros tipos de mensajes aquí
       }
@@ -42,23 +58,26 @@ const MatchMaking = ({ changeMultiverseActivePage }) => {
   }, []);
 
   const enviarMensaje = (mensaje) => {
+    console.log(mensaje)
     if (ws && ws.readyState === WebSocket.OPEN) {
       ws.send(JSON.stringify(mensaje));
     }
   };
 
   return (
-    <div>
+    <div className={classes.mainContainer}>
+      {showModal && <Modal styleType={"battlegroundColiseum"} onClose={ closeModal}>
+        {modalContent}
+        <Button value="Aceptar Reto" onClick={acceptChallenge}/>
+        <Button value="Rechazar" onClick={rejectChallenge}/>
+      </Modal>}
       <Button colorType="lightgreen" value="Back to Main Menu" onClick={() => { navigate('/') }}></Button>
       {/* Renderiza tu juego aquí */}
-      <button onClick={() => enviarMensaje({ tipo: 'cambio_turno', turno: 'jugador2' })}>
-        Cambiar Turno
-      </button>
       {listaClientes && listaClientes.map((cliente) => {
         return cliente.clientId !== activeUser && <div>
           <p>{cliente.userName}</p>
           <p>{cliente.clientId}</p>
-          <Button value="Challenge this MF" onClick={() => enviarMensaje({ type: "challenge", id: cliente.clientId, clientId: activeUser })}></Button>
+          <Button value="Challenge this MF" onClick={() => enviarMensaje({ type: "challenge", id: cliente.clientId, clientId: activeUser,userName })}></Button>
         </div>
       })}
     </div>
