@@ -65,7 +65,7 @@ const Home = () => {
         selectSong()
     }, [selectSong])
     return (
-        <GoogleOAuthProvider clientId="297991534299-1ed49hpjqhhudbcngaa0an7b0jts398v.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="54980855070-1itl4t2mpjllh1bphej2qdnfpvfls31o.apps.googleusercontent.com">
             {song && <ReactAudioPlayer src={`${song}`} onEnded={() => selectSong()} volume={bg / 100} autoPlay id="audioPlayer" controls style={audioStyle} />}
             {!logged_in &&
                 <div id="homeDivGoogle" className={classes.homeDivGoogle}>

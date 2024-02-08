@@ -1,5 +1,5 @@
 import React, { startTransition } from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act,fireEvent } from '@testing-library/react';
 import { MyContextProvider } from '../../context/MyContext';
 import Multiverse from './Multiverse';
 // Importa i18next y las funciones necesarias
@@ -7,7 +7,11 @@ import i18n from '../../i18n';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
-
+jest.mock('react-audio-player', () => {
+  const ReactAudioPlayer = jest.fn();
+  ReactAudioPlayer.prototype.play = jest.fn();
+  return ReactAudioPlayer;
+});
 beforeAll(() => {
   i18n.use(initReactI18next)
 });
@@ -493,7 +497,14 @@ test('renders multiverse component', async () => {
     );
   });
   screen.findByAltText('mainDiv')
-  screen.getByText(i18n.t('multiverse.fight'))
+  const fightBtn=screen.getByText(i18n.t('multiverse.fight'))
+  fireEvent.click(fightBtn)
+  const missionsBtn=screen.getByText(i18n.t('multiverse.missions'))
+  fireEvent.click(missionsBtn)
+  const configBtn=screen.getByText(i18n.t('multiverse.config'))
+  fireEvent.click(configBtn)
+  const fightersBtn=screen.getByText(i18n.t('multiverse.fighters'))
+  fireEvent.click(fightersBtn)
 });
 
 it('renders correctly accodring to snapshot', () => {

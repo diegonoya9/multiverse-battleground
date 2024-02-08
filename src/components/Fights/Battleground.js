@@ -94,122 +94,6 @@ const Battleground = () => {
         setMenuActive(true)
         startNewFight()
     }
-    const calculateXp = (level) => {
-        // Ajuste para que al llegar al nivel 99 se necesiten 5,000,000 de experiencia
-        if (level <= 99) {
-            return level * (level * 100);
-        }
-        return level * 5000;
-    };
-    const generateLevels = () => {
-        let levels = [];
-        let fightersInitialValues = [
-            {
-                /* Charizard */
-                attack: 100,
-                defense: 100,
-                specialAttack: 180,
-                specialDefense: 65,
-                maxHp: 250
-            },
-            {
-                /* Goku */
-                attack: 80,
-                defense: 120,
-                specialAttack: 150,
-                specialDefense: 65,
-                maxHp: 100
-            },
-            {
-                /* Mew */
-                attack: 100,
-                defense: 65,
-                specialAttack: 130,
-                specialDefense: 65,
-                maxHp: 150
-            },
-            {
-                /* Batman */
-                attack: 150,
-                defense: 150,
-                specialAttack: 65,
-                specialDefense: 65,
-                maxHp: 300
-            },
-            {
-                /* Michael */
-                attack: 75,
-                defense: 65,
-                specialAttack: 65,
-                specialDefense: 65,
-                maxHp: 200
-            },
-            {
-                /* Vegeta */
-                attack: 65,
-                defense: 120,
-                specialAttack: 65,
-                specialDefense: 120,
-                maxHp: 100
-            },
-            {
-                /* Ikki */
-                attack: 85,
-                defense: 120,
-                specialAttack: 95,
-                specialDefense: 120,
-                maxHp: 100
-            }
-        ]
-        let fighter_level_id = 1;
-        for (let fighterId = 1; fighterId <= 7; fighterId++) {
-            let prevAccuracy = 65
-            let prevAttack = 10
-            let prevSpecialAttack = 10
-            let prevDefense = 10
-            let prevSpecialDefense = 10
-            let prevMaxHp = 65
-            for (let level = 1; level <= 100; level++) {
-                const xp = calculateXp(level);
-                let attack = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].attack) + level * 5 + 10, prevAttack);
-                let specialAttack = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].specialAttack) + level * 5 + 10, prevSpecialAttack);
-                let defense = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].defense) + level * 5 + 10, prevDefense);
-                let specialDefense = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].specialDefense) + level * 5 + 10, prevSpecialDefense);
-                let maxHp = Math.max(Math.floor(Math.random() * fightersInitialValues[fighterId - 1].maxHp) + level * 100 + 100, prevMaxHp);
-                let accuracy = Math.max(Math.floor(Math.random() * 65) + level + 1, prevAccuracy);
-                prevAccuracy = accuracy
-                prevAttack = attack
-                prevSpecialAttack = specialAttack
-                prevDefense = defense
-                prevSpecialDefense = specialDefense
-                prevMaxHp = maxHp
-
-                // Adjust max values for level 100
-                attack += 90 * (level - 1);
-                specialAttack += 90 * (level - 1);
-                defense += 90 * (level - 1);
-                specialDefense += 90 * (level - 1);
-                maxHp += 900 * (level - 1);
-
-
-                const levelData = {
-                    fighterId,
-                    level,
-                    minXp: xp,
-                    attack,
-                    specialAttack,
-                    defense,
-                    specialDefense,
-                    maxHp,
-                    accuracy,
-                    fighter_level_id
-                };
-                fighter_level_id++
-                levels.push(levelData);
-            }
-        }
-        //console.log(levels)
-    };
     const selectTheme = () => {
         selectSong()
         selectBattlegroundType()
@@ -234,31 +118,7 @@ const Battleground = () => {
     useEffect(() => {
         const audioSfx = document.getElementById('audioSfxPlayer');
         let audio = '/assets/sounds/SFX/Ha.mp3'
-        if (userAttacked.active === "user") {
-            if (audioSfx) {
-                if (userAttacked.sfx) {
-                    audio = userAttacked.sfx
-                }
-                setSfx(audio)
-            }
-        }
-        if (userAttacked.active === "userPowerUp") {
-            if (audioSfx) {
-                if (userAttacked.sfx) {
-                    audio = userAttacked.sfx
-                }
-                setSfx(audio)
-            }
-        }
-        if (userAttacked.active === "enemy") {
-            if (audioSfx) {
-                if (userAttacked.sfx) {
-                    audio = userAttacked.sfx
-                }
-                setSfx(audio)
-            }
-        }
-        if (userAttacked.active === "enemyPowerUp") {
+        if (userAttacked.active === "user" || userAttacked.active === "userPowerUp" || userAttacked.active === "enemy" || userAttacked.active === "enemyPowerUp") {
             if (audioSfx) {
                 if (userAttacked.sfx) {
                     audio = userAttacked.sfx
@@ -274,8 +134,6 @@ const Battleground = () => {
         }
     }, [Sfx, user])
     useEffect(() => {
-        // Llamada a la función para generar y guardar los niveles
-        //generateLevels();
         selectTheme()
     }, []);
     return (
