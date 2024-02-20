@@ -21,7 +21,7 @@ const MatchMaking = () => {
     console.log('reto aceptado')
   }
   const rejectChallenge= () => {
-    console.log('reto rechazado')
+    console.log('reto rechazado');
   }
   useEffect(() => {
     const newWs = new WebSocket(backEndWS);
