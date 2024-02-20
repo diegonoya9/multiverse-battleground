@@ -27,7 +27,7 @@ const MatchMaking = () => {
     const newWs = new WebSocket(backEndWS);
 
     newWs.addEventListener('open', () => {
-      console.log('Conexión establecida');
+      console.log('Conexión establecida')
 
       // Envia el clientId al servidor en el momento de la conexión
       const clientId = activeUser;
