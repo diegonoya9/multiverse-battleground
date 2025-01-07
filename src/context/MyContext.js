@@ -11,8 +11,8 @@ const MyContextProvider = ({ children }) => {
         bg: 0,
         sfx: 0,
         sound: 0,
-        backEndUrl: process.env.NODE_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battleground-back.onrender.com/api", // Otros datos relacionados con el usuario si es necesario
-        backEndWS: process.env.NODE_ENV === 'development' ? "ws://localhost:3009" : "wss://multiverse-battleground-back.onrender.com", // Otros datos relacionados con el usuario si es necesario
+        backEndUrl: process.env.REACT_APP_ENV === 'development' ? "http://localhost:3009/api" : "https://multiverse-battleground-back.onrender.com/api", // Otros datos relacionados con el usuario si es necesario
+        backEndWS: process.env.REACT_APP_ENV === 'development' ? "ws://localhost:3009" : "wss://multiverse-battleground-back.onrender.com", // Otros datos relacionados con el usuario si es necesario
         currentMission: 0,
         currentLevel: 0
     });
